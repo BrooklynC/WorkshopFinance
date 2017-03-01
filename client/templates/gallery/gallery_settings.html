@@ -11,6 +11,9 @@
                 Membership Level: {{membership}}
             </div>
         </div>
+        {{#if isWorkshop}}
+            {{>indicesCreate}}
+        {{/if}}
         <!--<div>-->
             <!--<div>-->
                 <!--Notifications: {{notificationCount}}-->
