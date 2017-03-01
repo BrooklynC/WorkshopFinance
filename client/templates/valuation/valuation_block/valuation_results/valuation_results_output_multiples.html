@@ -1,0 +1,26 @@
+<!--Drop-down to choose Valuation Output and Period, if footballOutput is Multiple-->
+<template name="ValuationResultsOutputMultiples">
+    <div>
+        <select {{disableOption}} class="form-control result-selection {{themeStyle.formDropdown}}" name="result-selection">
+            <option class="result-text" disabled>Valuation Result:</option>
+            {{#if isCompany}}
+                <option class="result-text" {{selectedEvRevLtm}} value="resultEvRevenueLtm">EV/Revenue (LTM)</option>
+                {{#if isComps}}
+                    <option class="result-text" {{selectedEvRevFy1}} value="resultEvRevenueFy1">EV/Revenue (FY1)</option>
+                    <option class="result-text" {{selectedEvRevFy2}} value="resultEvRevenueFy2">EV/Revenue (FY2)</option>
+                {{/if}}
+                <option class="result-text" {{selectedEvEbitdaLtm}} value="resultEvEbitdaLtm">EV/EBITDA (LTM)</option>
+                {{#if isComps}}
+                    <option class="result-text" {{selectedEvEbitdaFy1}} value="resultEvEbitdaFy1">EV/EBITDA (FY1)</option>
+                    <option class="result-text" {{selectedEvEbitdaFy2}} value="resultEvEbitdaFy2">EV/EBITDA (FY2)</option>
+                    <option class="result-text" {{selectedPeLtm}} value="resultPeLtm">Price/Earnings (LTM)</option>
+                    <option class="result-text" {{selectedPeFy1}} value="resultPeFy1">Price/Earnings (FY1)</option>
+                    <option class="result-text" {{selectedPeFy2}} value="resultPeFy2">Price/Earnings (FY2)</option>
+                {{/if}}
+            {{else}}
+                <option class="result-text" {{selectedEvRevFy0}} value="resultEvRevenueFy0">EV/Revenue (FY0)</option>
+                <option class="result-text" {{selectedEvAttendFy0}} value="resultEvAttendanceFy0">EV/Attendance (FY0)</option>
+            {{/if}}
+        </select>
+    </div>
+</template>

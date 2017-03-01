@@ -1,0 +1,15 @@
+<!--Drop-down menu to change Library-->
+<template name="LibraryMenu">
+    <div class="left screen-left">
+        <select class="form-control library-filter {{themeStyle.formDropdown}}" name="library-filter">
+            <option disabled>Valuation Result:</option>
+            <option class="{{isComps}}" id="library-comps" value="comps">Comps</option>
+            <option class="{{isCompsIndices}}" id="library-comps-indices" value="compsIndices">Comps Indices</option>
+            <option class="{{isDeals}}" id="library-deals" value="deals">Deals</option>
+            <option class="{{isDealsIndices}}" id="library-deals-indices" value="dealsIndices">Deals Indices</option>
+        </select>
+    </div>
+    <div class="left screen-right">
+        {{>GalleryLibraryMenuScreen}}
+    </div>
+</template>

@@ -1,0 +1,13 @@
+<!--Drop-down menu for choosing Valuation Type (comps, deals, models or custom)-->
+<template name="ValuationBuildOptions">
+    <select {{disableOption}} {{disableOptionFull}} class="form-control build-type {{themeStyle.formDropdown}}" name="build-type" title="">
+        <option class="build-text" {{selectedComps}} value="comps">Comps</option>
+        <option class="build-text" {{selectedCompsIndices}} value="compsIndices">Comps (Indices)</option>
+        <option class="build-text" {{selectedDeals}} value="deals">Deals</option>
+        <option class="build-text" {{selectedDealsIndices}} value="dealsIndices">Deals (Indices)</option>
+        {{#if isPremium}}
+            <option class="build-text" {{selectedModels}} {{disableType}} {{disableMarket}} value="models"><strong>Models</strong></option>
+            <option class="build-text" {{selectedCustom}} {{disableMarket}} value="custom"><strong>Custom</strong></option>
+        {{/if}}
+    </select>
+</template>

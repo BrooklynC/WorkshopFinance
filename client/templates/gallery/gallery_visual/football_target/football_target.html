@@ -1,0 +1,13 @@
+<!--Drop down menu to change Football Type-->
+<template name="FootballTarget">
+    <form>
+        <div class="control-half-scroll left">
+            <div class="form-group {{themeStyle.formInput}}">
+                {{> inputAutocomplete settings=settings id="footballAddTarget" name="footballAddTarget" class="form-control" autocomplete="off" placeholder="Target"}}
+            </div>
+        </div>
+        <div class="control-half-scroll right">
+            <button type="submit" class="btn btn-default btn-full {{themeStyle.btnDefault}} {{disableOptionGallery}}">Update</button>
+        </div>
+    </form>
+</template>

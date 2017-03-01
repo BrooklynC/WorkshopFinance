@@ -1,0 +1,15 @@
+<!--Bottom half of Valuation, including selection form, table and results-->
+<template name="ValuationBlock">
+    <div class="valuation-block-inner {{themeStyle.main}} {{themeStyle.borderTop}} {{themeStyle.borderBottom}}">
+        <div class="left valuation-block-results">
+            <div class="valuation-results">
+                {{> ValuationResults}}
+            </div>
+        </div>
+        <div class="left valuation-block-build">
+            <div class="valuation-build">
+                {{> ValuationBuild}}
+            </div>
+        </div>
+    </div>
+</template>

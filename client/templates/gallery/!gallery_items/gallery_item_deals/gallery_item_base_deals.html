@@ -1,0 +1,11 @@
+<!--Item Base for Deals in Data Library-->
+<template name="GalleryItemBaseDeals">
+    {{#if Template.subscriptionsReady}}
+        <div>
+            {{dealName}}
+        </div>
+        <div>
+            {{dealTerms.dealType}} by {{dealTerms.acquirerName}}
+        </div>
+    {{/if}}
+</template>

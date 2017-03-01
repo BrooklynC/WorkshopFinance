@@ -1,0 +1,37 @@
+<!--Admin Settings-->
+<template name="GallerySettings">
+    <div class="panel-heading gallery-menu-base" id="gallery-settings-accordion" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-settings-inner" aria-expanded="false" aria-controls="gallery-settings-inner">
+        <div class="gallery-title-inner">
+            <h5>Profile & Settings</h5>
+        </div>
+    </div>
+    <div class="panel-collapse collapse gallery-menu-block" id="gallery-settings-inner" role="tabpanel">
+        <div>
+            <div id="settings-tier">
+                Membership Level: {{membership}}
+            </div>
+        </div>
+        <!--<div>-->
+            <!--<div>-->
+                <!--Notifications: {{notificationCount}}-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--Shared: {{sharedCount}}-->
+            <!--</div>-->
+            <!--<div>-->
+                <!--Sent: {{sendCount}}-->
+            <!--</div>-->
+        <!--</div>-->
+        <div class="control-row">
+            <div class="control-half left">
+                Toggle Theme
+            </div>
+            <div class="control-half left">
+                <button class="btn btn-default btn-full btn-sm {{themeStyle.btnDefault}}" type="button" name="theme-toggle" id="theme-toggle">{{themeToggle}}</button>
+            </div>
+        </div>
+        <div class="gallery-block-items">
+            {{>SettingsContent}}
+        </div>
+    </div>
+</template>

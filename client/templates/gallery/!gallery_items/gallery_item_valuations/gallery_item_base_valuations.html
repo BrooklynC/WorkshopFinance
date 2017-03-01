@@ -1,0 +1,11 @@
+<!--Item Base for Valuations in Coverage-->
+<template name="GalleryItemBaseValuations">
+    {{#if Template.subscriptionsReady}}
+        <div>
+            {{valuationName}}
+        </div>
+        <div>
+            {{capitalizeOne marketType}} / {{capitalizeOne valuationType}} / {{capitalizeOne valuationElement}}
+        </div>
+    {{/if}}
+</template>

@@ -1,0 +1,13 @@
+<!--Input to add public company to target list, uses autocomplete to search FeedCompanies-->
+<template name="GalleryTargetAdd">
+    <form>
+        <div class="control-half-scroll left">
+            <div class="form-group {{themeStyle.formInput}}">
+                {{> inputAutocomplete settings=targetSettings id="galleryAdd" name="galleryAdd" class="form-control" autocomplete="off" placeholder="Add Target"}}
+            </div>
+        </div>
+        <div class="control-half-scroll right">
+            <button type="submit" class="btn btn-default btn-full {{themeStyle.btnDefault}}">Add</button>
+        </div>
+    </form>
+</template>

@@ -1,0 +1,12 @@
+<!--Drop down menu to sort Valuations-->
+<template name="FootballSort">
+    <div>
+        <select {{disableOptionGallery}} class="form-control {{themeStyle.formDropdown}}" name="sort-selection" id="sort-selection">
+            <option class="sort-text" {{sortDateAscend}}>Date (oldest first)</option>
+            <option class="sort-text" {{sortDateDescend}}>Date (newest first)</option>
+            <option class="sort-text" {{sortValueAscend}}>Value (ascending)</option>
+            <option class="sort-text" {{sortValueDescend}}>Value (descending)</option>
+            <option class="sort-text" {{sortManual}}>Manual</option>
+        </select>
+    </div>
+</template>

@@ -1,0 +1,30 @@
+<!--Football Field details-->
+<template name="FootballBanner">
+    <div class="wrapper {{themeStyle.borderBottom}}" id="football-banner-inner">
+            <div class="wrapper" id="football-details">
+                <div class="left" id="banner-target">
+                    <h5>
+                        {{pre.targetCity}} {{targetDetail.targetName}} <small><em class="ticker-text">{{paren.open}}{{targetDetail.targetIden}}{{paren.close}}</em></small>
+                    </h5>
+                </div>
+                <div class="left" id="banner-valuation">
+                    {{>FootballValuationAdd}}
+                </div>
+                <div class="wrapper right" id="banner-name">
+                    {{#if showName}}
+                        <div class="right" id="football-name-value">
+                            <h5><em>{{footballName}}</em></h5>
+                        </div>
+                    {{else}}
+                        <div class="right">
+                            <form id="football-name-form">
+                                <div class="input-group-sm left">
+                                    <input name="football-name-edit" id="football-name-edit" autocomplete="off" type="text" value="{{footballName}}" placeholder="{{footballName}}" class="form-control"/>
+                                </div>
+                            </form>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+        </div>
+</template>

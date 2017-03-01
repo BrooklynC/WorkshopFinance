@@ -1,0 +1,27 @@
+<!--Item used in Settings, used for Users-->
+<template name="SettingsItem">
+    <div id="gallery-item{{this._id}}">
+        <div class="panel-group gallery-item-inner">
+            <div class="panel panel-default">
+                <div class="panel-heading gallery-item-base {{themeStyle.main}} {{themeStyle.borderShaded}} wrapper" role="tablist" id="accordion-gallery">
+                    <div class="gallery-item-detail left">
+                        <div class="left">
+                            {{>GalleryItemBaseUsers}}
+                        </div>
+                        <div class="right {{select}}">
+                            {{>GalleryItemTierUsers}}
+                        </div>
+                    </div>
+                    <div class="gallery-item-action left">
+                        {{>GalleryItemOpenSettings}}
+                    </div>
+                </div>
+                <div class="panel-collapse collapse {{themeStyle.main}} {{themeStyle.borderShaded}}" id="collapse{{collapseId}}" role="tabpanel">
+                    <div>
+                        {{>GalleryItemBlockUsers}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,12 @@
+<!--Drop down menu to change Football Output between Enterprise Value, Price per Share and Multiples-->
+<template name="FootballOutput">
+    <div>
+        <select {{disableOptionGallery}} class="form-control {{themeStyle.formDropdown}}" name="output-selection" id="output-selection">
+            <option class="output-text" {{outputMultiple}}>Multiple</option>
+            <option class="output-text" {{outputEv}} {{noTargetDisable}}>Enterprise Value</option>
+            {{#if isCompany}}
+                <option class="output-text" {{outputPrice}} {{noTargetDisable}}>Price per Share</option>
+            {{/if}}
+        </select>
+    </div>
+</template>

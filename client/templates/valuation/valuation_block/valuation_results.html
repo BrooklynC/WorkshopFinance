@@ -1,0 +1,36 @@
+<!--Full summary of results, including Build value and transformed value, if applicable-->
+<template name="ValuationResults">
+    <div class="valuation-results-inner">
+        <div>
+            <strong>Results:</strong>
+        </div>
+        <div class="wrapper results-row">
+            <div class="left results-left wrapper">
+                {{>valuationResultsOutput}}
+            </div>
+            <div class="left results-right wrapper">
+                <p><strong>{{resultFormat result}}{{resultMultiple}}</strong></p>
+            </div>
+        </div>
+        <div>
+            <strong>Based on:</strong>
+        </div>
+        <div class="wrapper results-row">
+            <div class="left results-left">
+                {{>valuationResultsBuild}}
+            </div>
+            <div class="left results-right">
+                {{>ValuationCalc}}
+            </div>
+        </div>
+        <div class="valuation-results-content">
+            {{> dateOption}}
+        </div>
+        <div class="valuation-results-content">
+            {{> ValuationControls}}
+        </div>
+        <!--<div class="valuation-results-content">-->
+            <!--{{> ValuationNotes}}-->
+        <!--</div>-->
+    </div>
+</template>

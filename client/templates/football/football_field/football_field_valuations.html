@@ -1,0 +1,31 @@
+<!--Holds array of Valuations-->
+<template name="FootballFieldValuations">
+    <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item">
+        {{#if isDesktop}}
+            {{#each valuations}}
+                <div class="wrapper valuation">
+                    {{> Valuation}}
+                </div>
+            {{/each}}
+        {{/if}}
+        {{#if isPhone}}
+            {{#if isArray}}
+                {{#each valuations}}
+                    <div class="wrapper valuation">
+                        {{> Valuation}}
+                    </div>
+                {{/each}}
+            {{else}}
+                {{#with activeValuation}}
+                    <div class="wrapper valuation">
+                        {{>Valuation}}
+                    </div>
+                {{/with}}
+            {{/if}}
+        {{/if}}
+    </div>
+    {{#if isArray}}
+        <div id={{valuationsDrag.old}} class="wrapper">
+        </div>
+    {{/if}}
+</template>

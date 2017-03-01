@@ -1,0 +1,15 @@
+<!--Holds controls to add selection and table of valuation selections-->
+<!--Build is simple valuation using average/median/high/low valuation and target reference value-->
+<template name="ValuationBuild">
+    <div class="wrapper valuation-build-inner">
+        <div class="left valuation-build-options">
+            {{>ValuationBuildOptions}}
+        </div>
+        <div class="left valuation-build-info wrapper">
+            {{>valuationBuildAdd}}
+        </div>
+    </div>
+    <div>
+        {{>valuationBuildTable}}
+    </div>
+</template>

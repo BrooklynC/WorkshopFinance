@@ -1,0 +1,31 @@
+<!--Details shows ValuationName, description of how result is calculated.-->
+<template name="ValuationBaseDetails">
+    <div class="wrapper valuation-detail-inner">
+        <div class="valuation-detail-text left">
+            <div class="valuation-detail-name">
+                <div class="valuation-name">
+                    {{#if showName}}
+                        <div class="valuation-name-value {{disableOption}}">
+                            {{valuationName}}
+                        </div>
+                    {{else}}
+                        <div>
+                            <form class="valuation-name-form">
+                                <div class="input-group-sm">
+                                    <input name="valuation-name-edit" id="valuation-name-edit" autocomplete="off" type="text" value="{{valuationName}}" placeholder="{{valuationName}}" class="form-control"/>
+                                </div>
+                            </form>
+                        </div>
+                    {{/if}}
+                </div>
+            </div>
+            <div class="valuation-detail-results">
+                <div class="left valuation-metric">
+                    <div>
+                        <em>{{detail}} {{paren.open}}{{period}}{{paren.close}} {{asOf}} {{dateAbbrevComp valuationDateComp}} {{hold}}</em>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</template>

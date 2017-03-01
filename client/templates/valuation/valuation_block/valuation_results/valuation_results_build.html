@@ -1,0 +1,28 @@
+<!--Shows Build Value, with toggle for metric and period-->
+<template name="ValuationResultsBuild">
+    <div>
+        <div>
+            <select {{disableOption}} class="form-control build-selection {{themeStyle.formDropdown}}" name="build-selection" title="">
+                <option class="build-text" disabled>Valuation Method:</option>
+                {{#if isCompany}}
+                    <option class="build-text" {{selectedEvRevLtm}} value="buildEvRevenueLtm">EV/Revenue (LTM)</option>
+                    {{#if isComps}}
+                        <option class="build-text" {{selectedEvRevFy1}} value="buildEvRevenueFy1">EV/Revenue (FY1)</option>
+                        <option class="build-text" {{selectedEvRevFy2}} value="buildEvRevenueFy2">EV/Revenue (FY2)</option>
+                    {{/if}}
+                    <option class="build-text" {{selectedEvEbitdaLtm}} value="buildEvEbitdaLtm">EV/EBITDA (LTM)</option>
+                    {{#if isComps}}
+                        <option class="build-text" {{selectedEvEbitdaFy1}} value="buildEvEbitdaFy1">EV/EBITDA (FY1)</option>
+                        <option class="build-text" {{selectedEvEbitdaFy2}} value="buildEvEbitdaFy2">EV/EBITDA (FY2)</option>
+                        <option class="build-text" {{selectedPriceEarningsLtm}} value="buildPriceEarningsLtm">Price/Earnings (LTM)</option>
+                        <option class="build-text" {{selectedPriceEarningsFy1}} value="buildPriceEarningsFy1">Price/Earnings (FY1)</option>
+                        <option class="build-text" {{selectedPriceEarningsFy2}} value="buildPriceEarningsFy2">Price/Earnings (FY2)</option>
+                    {{/if}}
+                {{else}}
+                    <option class="build-text" {{selectedEvRevFy0}} value="buildEvRevenueFy0">EV/Revenue (FY0)</option>
+                    <option class="build-text" {{selectedEvAttendFy0}} value="buildEvAttendanceFy0">EV/Attendance (FY0)</option>
+                {{/if}}
+            </select>
+        </div>
+    </div>
+</template>

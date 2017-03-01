@@ -1,0 +1,25 @@
+<!--Form to add selection to Valuation, searches using autocomplete for Comp Ticker or Deal Target-->
+<template name="ValuationBuildData">
+    <div class="build-info-inner wrapper">
+        <form>
+            <div class="left {{themeStyle.formInput}}">
+                {{#if isComps}}
+                    {{#if isSecurity}}
+                        {{> inputAutocomplete settings=buildSettings id="selection" name="selection" class="form-control" autocomplete="off" placeholder="Comp"}}
+                    {{else}}
+                        {{> inputAutocomplete settings=buildSettings id="selection" name="selection" class="form-control" autocomplete="off" placeholder="Comp Index"}}
+                    {{/if}}
+                {{else}}
+                    {{#if isSecurity}}
+                        {{> inputAutocomplete settings=buildSettings id="selection" name="selection" class="form-control" autocomplete="off" placeholder="Deal"}}
+                    {{else}}
+                        {{> inputAutocomplete settings=buildSettings id="selection" name="selection" class="form-control" autocomplete="off" placeholder="Deal Index"}}
+                    {{/if}}
+                {{/if}}
+            </div>
+            <div class="left">
+                <button type="submit" class="btn btn-default btn-full {{themeStyle.btnDefault}}">Add</button>
+            </div>
+        </form>
+    </div>
+</template>

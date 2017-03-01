@@ -1,0 +1,18 @@
+<!--Only holds other templates-->
+<template name="Football">
+    {{#if Template.subscriptionsReady}}
+        <div class="wrapper {{themeStyle.borderBottom}}" id="football-inner">
+            <div id="football-banner">
+                {{> FootballBanner}}
+            </div>
+            <div id="football-range">
+                {{> FootballRange}}
+            </div>
+            <div class="wrapper" id="football-field">
+                {{> FootballField}}
+            </div>
+        </div>
+    {{else}}
+        <p>Football Loading...</p>
+    {{/if}}
+</template>

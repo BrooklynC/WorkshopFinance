@@ -1,0 +1,41 @@
+<!--Form to add selection to Valuation with valuationType Model-->
+<template name="ValuationBuildModel">
+    <div class="build-info-inner wrapper">
+        <form>
+            <div class="wrapper">
+                <div class="left {{themeStyle.formInput}}">
+                    <input name="modelNameAdd" id="modelNameAdd" autocomplete="off" type="text" value="" placeholder="Model Name" class="form-control"/>
+                </div>
+                <div class="left {{themeStyle.formInput}}">
+                    <!--{{> inputAutocomplete settings=modelSettings id="modelTypeAdd" name="modelTypeAdd" class="form-control" autocomplete="off" placeholder="Model Type"}}-->
+                    <input name="modelTypeAdd" id="modelTypeAdd" autocomplete="off" type="text" value="" placeholder="Model Type" class="form-control"/>
+                </div>
+            </div>
+            <div class="wrapper">
+                <div class="left">
+                    <select class="form-control build-element {{themeStyle.formDropdown}}" id="modelStatAdd" name="modelStatAdd" title="">
+                        <option class="build-text" disabled>Value:</option>
+                        <option class="build-text" {{disabledMarket}} value="enterpriseValue">Enterprise Value</option>
+                        <option class="build-text" {{disabledMarket}} value="pricePerShare">Price per Share</option>
+                        <option class="build-text" disabled>Multiple:</option>
+                        <option class="build-text" value="evRevenueLtm">EV/Revenue (LTM)</option>
+                        <option class="build-text" value="evRevenueFy1">EV/Revenue (FY1)</option>
+                        <option class="build-text" value="evRevenueFy2">EV/Revenue (FY2)</option>
+                        <option class="build-text" value="evEbitdaLtm">EV/EBITDA (LTM)</option>
+                        <option class="build-text" value="evEbitdaFy1">EV/EBITDA (FY1)</option>
+                        <option class="build-text" value="evEbitdaFy2">EV/EBITDA (FY2)</option>
+                        <option class="build-text" value="priceEarningsLtm">Price/Earnings (LTM)</option>
+                        <option class="build-text" value="priceEarningsFy1">Price/Earnings (FY1)</option>
+                        <option class="build-text" value="priceEarningsFy2">Price/Earnings (FY2)</option>
+                    </select>
+                </div>
+                <div class="left {{themeStyle.formInput}}">
+                    <input name="modelValueAdd" id="modelValueAdd" autocomplete="off" type="text" value="" placeholder="Model Value" class="form-control"/>
+                </div>
+                <div class="left">
+                    <button type="submit" class="btn btn-default btn-full {{themeStyle.btnDefault}}">+ Model</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</template>

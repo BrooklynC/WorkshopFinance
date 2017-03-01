@@ -1,0 +1,10 @@
+<!--Drop down menu to change Football Type-->
+<template name="FootballMarketType">
+    <div>
+        <select {{disableMarketType}} class="form-control {{themeStyle.formDropdown}}" name="market-type-selection" id="market-type-selection">
+            <option class="type-text" disabled>Market Type:</option>
+            <option class="type-text" {{typeCompany}} value="company">Company</option>
+            <option class="type-text" {{typeTeam}} value="team">Team</option>
+        </select>
+    </div>
+</template>

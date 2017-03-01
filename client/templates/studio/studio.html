@@ -1,0 +1,22 @@
+<!--Appears when user is logged in-->
+<template name="Studio">
+    {{#if Template.subscriptionsReady}}
+        <div id="header">
+            {{> Header}}
+        </div>
+        {{#if currentUser}}
+            <div class="studio-inner {{themeStyle.main}}" id="workspace">
+                {{> Workspace}}
+            </div>
+        {{else}}
+            <div class="studio-inner" id="cover">
+                {{> Cover}}
+            </div>
+        {{/if}}
+        {{#if isDesktop}}
+            <div id="footer">
+                {{> Footer}}
+            </div>
+        {{/if}}
+    {{/if}}
+</template>

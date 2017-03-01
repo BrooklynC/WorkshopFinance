@@ -1,0 +1,19 @@
+<!--Data Library provided by app-->
+<template name="GalleryLibrary">
+    <div class="panel-heading gallery-menu-base" id="gallery-library-accordion" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-library-inner" aria-expanded="false" aria-controls="gallery-library-inner">
+        <div class="gallery-title-inner">
+            <h5>Data Library</h5>
+        </div>
+    </div>
+    <div class="panel-collapse collapse gallery-menu-block" id="gallery-library-inner" role="tabpanel">
+        <div>
+            {{>LibraryMenu}}
+        </div>
+        <div class="gallery-block-items">
+            {{>LibraryContent}}
+        </div>
+        <div class="gallery-block-controls">
+            {{>LibraryControls}}
+        </div>
+    </div>
+</template>
