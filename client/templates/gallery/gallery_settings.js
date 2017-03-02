@@ -8,31 +8,52 @@ Template.GallerySettings.events({
 });
 
 Template.GallerySettings.helpers({
-    isWorkshop: function() {
-        var username = Meteor.user().username;
-        console.log(username);
-        if(username == "workshop") {
-            return true;
-        }
-    },
     indicesCreate: function() {
         var username = Meteor.user().username;
         if (username == "workshop") {
-            var indicesComps = FeedCompaniesIndices.find({values:{$exists:true}});
-            if(indicesComps.count() === 0) {
-                return Template.GalleryIndicesComps;
+            var teams = FeedTeams.find({});
+            if(teams.count() === 0) {
+                return Template.GalleryAddData;
             } else {
-                var indicesDeals = FeedDealsIndices.find({values:{$exists:true}});
-                if(indicesDeals.count() === 0) {
-                    return Template.GalleryIndicesDeals;
-                } else {
-                    return Template.FootballBlank;
-                }
+                return Template.FootballBlank;
             }
         } else {
             return Template.FootballBlank;
         }
     },
+    //indicesCreate: function() {
+    //    var username = Meteor.user().username;
+    //    if (username == "workshop") {
+    //        var comps = FeedCompanies.find({});
+    //        if(comps.count() === 0) {
+    //            return Template.GalleryAddComps;
+    //        } else {
+    //            var deals = FeedDeals.find({});
+    //            if(deals.count() === 0) {
+    //                return Template.GalleryAddDeals;
+    //            } else {
+    //                var indicesComps = FeedCompaniesIndices.find({});
+    //                if (indicesComps.count() === 0) {
+    //                    return Template.GalleryAddIndicesComps;
+    //                } else {
+    //                    var indicesDeals = FeedDealsIndices.find({});
+    //                    if (indicesDeals.count() === 0) {
+    //                        return Template.GalleryAddIndicesDeals;
+    //                    } else {
+    //                        var teams = FeedTeams.find({});
+    //                        if(teams.count() === 0) {
+    //                            return Template.GalleryAddTeams;
+    //                        } else {
+    //                            return Template.FootballBlank;
+    //                        }
+    //                    }
+    //                }
+    //            }
+    //        }
+    //    } else {
+    //        return Template.FootballBlank;
+    //    }
+    //},
     membership: function() {
         var currentUserId = Meteor.userId();
         var user = Meteor.users.findOne({_id:currentUserId});
