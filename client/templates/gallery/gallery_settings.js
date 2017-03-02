@@ -21,39 +21,6 @@ Template.GallerySettings.helpers({
             return Template.FootballBlank;
         }
     },
-    //indicesCreate: function() {
-    //    var username = Meteor.user().username;
-    //    if (username == "workshop") {
-    //        var comps = FeedCompanies.find({});
-    //        if(comps.count() === 0) {
-    //            return Template.GalleryAddComps;
-    //        } else {
-    //            var deals = FeedDeals.find({});
-    //            if(deals.count() === 0) {
-    //                return Template.GalleryAddDeals;
-    //            } else {
-    //                var indicesComps = FeedCompaniesIndices.find({});
-    //                if (indicesComps.count() === 0) {
-    //                    return Template.GalleryAddIndicesComps;
-    //                } else {
-    //                    var indicesDeals = FeedDealsIndices.find({});
-    //                    if (indicesDeals.count() === 0) {
-    //                        return Template.GalleryAddIndicesDeals;
-    //                    } else {
-    //                        var teams = FeedTeams.find({});
-    //                        if(teams.count() === 0) {
-    //                            return Template.GalleryAddTeams;
-    //                        } else {
-    //                            return Template.FootballBlank;
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        }
-    //    } else {
-    //        return Template.FootballBlank;
-    //    }
-    //},
     membership: function() {
         var currentUserId = Meteor.userId();
         var user = Meteor.users.findOne({_id:currentUserId});
