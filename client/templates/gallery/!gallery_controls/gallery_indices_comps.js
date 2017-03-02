@@ -3,7 +3,7 @@ Template.GalleryIndicesComps.events({
     'submit form': function(e) {
         e.preventDefault();
 
-        Meteor.call('createIndicesComps', function (error, result) {
+        Meteor.call('addIndicesComps', function (error, result) {
         });
     }
 });

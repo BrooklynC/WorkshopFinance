@@ -3,7 +3,7 @@ Template.GalleryIndicesDeals.events({
     'submit form': function(e) {
         e.preventDefault();
 
-        Meteor.call('createIndicesDeals', function (error, result) {
+        Meteor.call('addIndicesDeals', function (error, result) {
         });
     }
 });
