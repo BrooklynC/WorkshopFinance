@@ -13,7 +13,7 @@ getResults = function(footballId, valuationId){
 
     if(valuationSelections.length > 0) {
         if (valuationMultiples) {
-            var multiple = getBuildMultiple(footballId, valuationId);
+            var multiple = getBuildMultiples(footballId, valuationId);
             if (multiple) {
                 if (footballType == "market") {
                     switch(marketType) {
@@ -83,7 +83,7 @@ getResults = function(footballId, valuationId){
                     var targetId = football.footballTarget.targetId;
                     var targetType = football.footballTarget.targetType;
                     var targetData = football.footballTarget.targetData;
-                    var buildValue = getBuildValue(footballId, valuationId);
+                    var buildValue = getBuildValues(footballId, valuationId);
                     switch (targetType) {
                         case "company":
                             switch (targetData) {
@@ -111,6 +111,7 @@ getResults = function(footballId, valuationId){
                                                         price: (buildValue.evEvRevLtm - feedCompanyData.netDebt) / feedCompanyData.sharesOs,
                                                         multiple: {
                                                             evRev: {
+                                                                //ltm: getBuildMultiples(footballId, valuationId).evRevLtm,
                                                                 ltm: buildValue.evEvRevLtm / feedCompanyData.revenueLtm,
                                                                 fy1: buildValue.evEvRevLtm / feedCompanyData.revenueFy1,
                                                                 fy2: buildValue.evEvRevLtm / feedCompanyData.revenueFy2
@@ -379,15 +380,15 @@ getResults = function(footballId, valuationId){
                                             return {
                                                 enterpriseValue: buildValue.enterpriseValue,
                                                 pricePerShare: buildValue.pricePerShare,
-                                                evRevenueLtm: getBuildMultiple(footballId, valuationId).evRevLtm,
-                                                evRevenueFy1: getBuildMultiple(footballId, valuationId).evRevFy1,
-                                                evRevenueFy2: getBuildMultiple(footballId, valuationId).evRevFy2,
-                                                evEbitdaLtm: getBuildMultiple(footballId, valuationId).evEbitdaLtm,
-                                                evEbitdaFy1: getBuildMultiple(footballId, valuationId).evEbitdaFy1,
-                                                evEbitdaFy2: getBuildMultiple(footballId, valuationId).evEbitdaFy2,
-                                                priceEarningsLtm: getBuildMultiple(footballId, valuationId).peLtm,
-                                                priceEarningsFy1: getBuildMultiple(footballId, valuationId).peFy1,
-                                                priceEarningsFy2: getBuildMultiple(footballId, valuationId).peFy2
+                                                evRevenueLtm: getBuildMultiples(footballId, valuationId).evRevLtm,
+                                                evRevenueFy1: getBuildMultiples(footballId, valuationId).evRevFy1,
+                                                evRevenueFy2: getBuildMultiples(footballId, valuationId).evRevFy2,
+                                                evEbitdaLtm: getBuildMultiples(footballId, valuationId).evEbitdaLtm,
+                                                evEbitdaFy1: getBuildMultiples(footballId, valuationId).evEbitdaFy1,
+                                                evEbitdaFy2: getBuildMultiples(footballId, valuationId).evEbitdaFy2,
+                                                priceEarningsLtm: getBuildMultiples(footballId, valuationId).peLtm,
+                                                priceEarningsFy1: getBuildMultiples(footballId, valuationId).peFy1,
+                                                priceEarningsFy2: getBuildMultiples(footballId, valuationId).peFy2
                                             };
                                             break;
                                         case "custom":
@@ -741,31 +742,30 @@ getResults = function(footballId, valuationId){
 };
 
 //Determines Active Result from above, given valuationOutput, valuationOutputPeriod, valuationMetric, ValuationPeriod
-Template.registerHelper('resultValue',function(footballId, valuationId) {
-    var football = Footballs.findOne({_id:footballId});
+getResultValue = function(footballId, valuationId) {
+    var football = Footballs.findOne({_id: footballId});
     var footballOutput = football.footballOutput;
     var footballType = football.footballType;
     var marketType = football.marketType;
 
     var valuation = Valuations.findOne({_id: valuationId});
     var valuationSelections = valuation.valuationSelections;
+    var valuationMultiples = valuation.multiples;
 
-    if (valuationSelections.length > 0) {
-        var valuationMultiples = valuation.multiples;
+    if (valuationSelections.length > 0 && valuationMultiples) {
         var valuationMetric = valuation.valuationMetric;
         var valuationPeriod = valuation.valuationPeriod;
         var valuationOutput = valuation.valuationOutput;
         var valuationOutputPeriod = valuation.valuationOutputPeriod;
 
-        if (valuationMultiples) {
             var valuesExist = getResults(footballId, valuationId);
-            if(valuesExist) {
-                if(footballType == "market") {
-                    switch(marketType) {
+            if (valuesExist) {
+                if (footballType == "market") {
+                    switch (marketType) {
                         case "company":
-                            switch(valuationMetric) {
+                            switch (valuationMetric) {
                                 case "EV/Revenue":
-                                    switch(valuationPeriod) {
+                                    switch (valuationPeriod) {
                                         case "LTM":
                                             return getResults(footballId, valuationId).evRevLtm;
                                             break;
@@ -778,7 +778,7 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                                     }
                                     break;
                                 case "EV/EBITDA":
-                                    switch(valuationPeriod) {
+                                    switch (valuationPeriod) {
                                         case "LTM":
                                             return getResults(footballId, valuationId).evEbitdaLtm;
                                             break;
@@ -791,7 +791,7 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                                     }
                                     break;
                                 case "Price/Earnings":
-                                    switch(valuationPeriod) {
+                                    switch (valuationPeriod) {
                                         case "LTM":
                                             return getResults(footballId, valuationId).peLtm;
                                             break;
@@ -806,7 +806,7 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                             }
                             break;
                         case "team":
-                            switch(valuationMetric) {
+                            switch (valuationMetric) {
                                 case "EV/Revenue":
                                     switch (valuationPeriod) {
                                         case "FY0":
@@ -826,10 +826,10 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                     }
                 } else {
                     var targetType = football.footballTarget.targetType;
-                    switch(targetType) {
+                    switch (targetType) {
                         case "company":
                             var valuationType = valuation.valuationType;
-                            if(valuationType == "comps" || valuationType == "deals") {
+                            if (valuationType == "comps" || valuationType == "deals") {
                                 switch (valuationMetric) {
                                     case "EV/Revenue":
                                         switch (valuationPeriod) {
@@ -1322,8 +1322,8 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                                         break;
                                 }
                             } else {
-                                if(valuationType == "models") {
-                                    switch(footballOutput) {
+                                if (valuationType == "models") {
+                                    switch (footballOutput) {
                                         case "Enterprise Value":
                                             var ev = getResults(footballId, valuationId).enterpriseValue;
                                             console.log("EV: ", ev);
@@ -1333,9 +1333,9 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                                             return getResults(footballId, valuationId).pricePerShare;
                                             break;
                                         case "Multiple":
-                                            switch(valuationMetric) {
+                                            switch (valuationMetric) {
                                                 case "EV/Revenue":
-                                                    switch(valuationPeriod) {
+                                                    switch (valuationPeriod) {
                                                         case "LTM":
                                                             return getResults(footballId, valuationId).evRevenueLtm;
                                                             break;
@@ -1348,7 +1348,7 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                                                     }
                                                     break;
                                                 case "EV/EBITDA":
-                                                    switch(valuationPeriod) {
+                                                    switch (valuationPeriod) {
                                                         case "LTM":
                                                             return getResults(footballId, valuationId).evEbitdaLtm;
                                                             break;
@@ -1361,7 +1361,7 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                                                     }
                                                     break;
                                                 case "Price/Earnings":
-                                                    switch(valuationPeriod) {
+                                                    switch (valuationPeriod) {
                                                         case "LTM":
                                                             return getResults(footballId, valuationId).priceEarningsLtm;
                                                             break;
@@ -1446,6 +1446,719 @@ Template.registerHelper('resultValue',function(footballId, valuationId) {
                     }
                 }
             }
-        }
     }
+};
+
+Template.registerHelper('resultValue', function(footballId, valuationId) {
+    return getResultValue(footballId, valuationId);
 });
+
+////Determines Active Result from above, given valuationOutput, valuationOutputPeriod, valuationMetric, ValuationPeriod
+//Template.registerHelper('resultValue',function(footballId, valuationId) {
+//    var football = Footballs.findOne({_id:footballId});
+//    var footballOutput = football.footballOutput;
+//    var footballType = football.footballType;
+//    var marketType = football.marketType;
+//
+//    var valuation = Valuations.findOne({_id: valuationId});
+//    var valuationSelections = valuation.valuationSelections;
+//
+//    if (valuationSelections.length > 0) {
+//        var valuationMultiples = valuation.multiples;
+//        var valuationMetric = valuation.valuationMetric;
+//        var valuationPeriod = valuation.valuationPeriod;
+//        var valuationOutput = valuation.valuationOutput;
+//        var valuationOutputPeriod = valuation.valuationOutputPeriod;
+//
+//        if (valuationMultiples) {
+//            var valuesExist = getResults(footballId, valuationId);
+//            if(valuesExist) {
+//                if(footballType == "market") {
+//                    switch(marketType) {
+//                        case "company":
+//                            switch(valuationMetric) {
+//                                case "EV/Revenue":
+//                                    switch(valuationPeriod) {
+//                                        case "LTM":
+//                                            return getResults(footballId, valuationId).evRevLtm;
+//                                            break;
+//                                        case "FY1":
+//                                            return getResults(footballId, valuationId).evRevFy1;
+//                                            break;
+//                                        case "FY2":
+//                                            return getResults(footballId, valuationId).evRevFy2;
+//                                            break;
+//                                    }
+//                                    break;
+//                                case "EV/EBITDA":
+//                                    switch(valuationPeriod) {
+//                                        case "LTM":
+//                                            return getResults(footballId, valuationId).evEbitdaLtm;
+//                                            break;
+//                                        case "FY1":
+//                                            return getResults(footballId, valuationId).evEbitdaFy1;
+//                                            break;
+//                                        case "FY2":
+//                                            return getResults(footballId, valuationId).evEbitdaFy2;
+//                                            break;
+//                                    }
+//                                    break;
+//                                case "Price/Earnings":
+//                                    switch(valuationPeriod) {
+//                                        case "LTM":
+//                                            return getResults(footballId, valuationId).peLtm;
+//                                            break;
+//                                        case "FY1":
+//                                            return getResults(footballId, valuationId).peFy1;
+//                                            break;
+//                                        case "FY2":
+//                                            return getResults(footballId, valuationId).peFy2;
+//                                            break;
+//                                    }
+//                                    break;
+//                            }
+//                            break;
+//                        case "team":
+//                            switch(valuationMetric) {
+//                                case "EV/Revenue":
+//                                    switch (valuationPeriod) {
+//                                        case "FY0":
+//                                            return getResults(footballId, valuationId).evRevFy0;
+//                                            break;
+//                                    }
+//                                    break;
+//                                case "EV/Attendance":
+//                                    switch (valuationPeriod) {
+//                                        case "FY0":
+//                                            return getResults(footballId, valuationId).evAttendanceFy0;
+//                                            break;
+//                                    }
+//                                    break;
+//                            }
+//                            break;
+//                    }
+//                } else {
+//                    var targetType = football.footballTarget.targetType;
+//                    switch(targetType) {
+//                        case "company":
+//                            var valuationType = valuation.valuationType;
+//                            if(valuationType == "comps" || valuationType == "deals") {
+//                                switch (valuationMetric) {
+//                                    case "EV/Revenue":
+//                                        switch (valuationPeriod) {
+//                                            case "LTM":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).evRev.ltm.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).evRev.ltm.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.ltm.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                            case "FY1":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).evRev.fy1.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).evRev.fy1.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.fy1.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                            case "FY2":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).evRev.fy2.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).evRev.fy2.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evRev.fy2.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                        }
+//                                        break;
+//                                    case "EV/EBITDA":
+//                                        switch (valuationPeriod) {
+//                                            case "LTM":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).evEbitda.ltm.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).evEbitda.ltm.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.ltm.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                            case "FY1":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).evEbitda.fy1.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).evEbitda.fy1.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy1.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                            case "FY2":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).evEbitda.fy2.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).evEbitda.fy2.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).evEbitda.fy2.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                        }
+//                                        break;
+//                                    case "Price/Earnings":
+//                                        switch (valuationPeriod) {
+//                                            case "LTM":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).pe.ltm.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).pe.ltm.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.ltm.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                            case "FY1":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).pe.fy1.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).pe.fy1.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.fy1.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                            case "FY2":
+//                                                switch (footballOutput) {
+//                                                    case "Enterprise Value":
+//                                                        return getResults(footballId, valuationId).pe.fy2.ev;
+//                                                        break;
+//                                                    case "Price per Share":
+//                                                        return getResults(footballId, valuationId).pe.fy2.price;
+//                                                        break;
+//                                                    case "Multiple":
+//                                                        switch (valuationOutput) {
+//                                                            case "EV/Revenue":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.evRev.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.evRev.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.evRev.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "EV/EBITDA":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.evEbitda.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.evEbitda.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.evEbitda.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                            case "Price/Earnings":
+//                                                                switch (valuationOutputPeriod) {
+//                                                                    case "LTM":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.pe.ltm;
+//                                                                        break;
+//                                                                    case "FY1":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.pe.fy1;
+//                                                                        break;
+//                                                                    case "FY2":
+//                                                                        return getResults(footballId, valuationId).pe.fy2.multiple.pe.fy2;
+//                                                                        break;
+//                                                                }
+//                                                                break;
+//                                                        }
+//                                                        break;
+//                                                }
+//                                                break;
+//                                        }
+//                                        break;
+//                                }
+//                            } else {
+//                                if(valuationType == "models") {
+//                                    switch(footballOutput) {
+//                                        case "Enterprise Value":
+//                                            var ev = getResults(footballId, valuationId).enterpriseValue;
+//                                            console.log("EV: ", ev);
+//                                            return getResults(footballId, valuationId).enterpriseValue;
+//                                            break;
+//                                        case "Price per Share":
+//                                            return getResults(footballId, valuationId).pricePerShare;
+//                                            break;
+//                                        case "Multiple":
+//                                            switch(valuationMetric) {
+//                                                case "EV/Revenue":
+//                                                    switch(valuationPeriod) {
+//                                                        case "LTM":
+//                                                            return getResults(footballId, valuationId).evRevenueLtm;
+//                                                            break;
+//                                                        case "FY1":
+//                                                            return getResults(footballId, valuationId).evRevenueFy1;
+//                                                            break;
+//                                                        case "FY2":
+//                                                            return getResults(footballId, valuationId).evRevenueFy2;
+//                                                            break;
+//                                                    }
+//                                                    break;
+//                                                case "EV/EBITDA":
+//                                                    switch(valuationPeriod) {
+//                                                        case "LTM":
+//                                                            return getResults(footballId, valuationId).evEbitdaLtm;
+//                                                            break;
+//                                                        case "FY1":
+//                                                            return getResults(footballId, valuationId).evEbitdaFy1;
+//                                                            break;
+//                                                        case "FY2":
+//                                                            return getResults(footballId, valuationId).evEbitdaFy2;
+//                                                            break;
+//                                                    }
+//                                                    break;
+//                                                case "Price/Earnings":
+//                                                    switch(valuationPeriod) {
+//                                                        case "LTM":
+//                                                            return getResults(footballId, valuationId).priceEarningsLtm;
+//                                                            break;
+//                                                        case "FY1":
+//                                                            return getResults(footballId, valuationId).priceEarningsFy1;
+//                                                            break;
+//                                                        case "FY2":
+//                                                            return getResults(footballId, valuationId).priceEarningsFy2;
+//                                                            break;
+//                                                    }
+//                                                    break;
+//                                            }
+//                                            break;
+//                                    }
+//                                } else {
+//                                    return getResults(footballId, valuationId).customValue;
+//                                }
+//                            }
+//                            break;
+//                        case "team":
+//                            switch (valuationMetric) {
+//                                case "EV/Revenue":
+//                                    switch (valuationPeriod) {
+//                                        case "FY0":
+//                                            switch (footballOutput) {
+//                                                case "Enterprise Value":
+//                                                    return getResults(footballId, valuationId).evRev.fy0.ev;
+//                                                    break;
+//                                                case "Multiple":
+//                                                    switch (valuationOutput) {
+//                                                        case "EV/Revenue":
+//                                                            switch (valuationOutputPeriod) {
+//                                                                case "FY0":
+//                                                                    return getResults(footballId, valuationId).evRev.fy0.multiple.evRev.fy0;
+//                                                                    break;
+//                                                            }
+//                                                            break;
+//                                                        case "EV/Attendance":
+//                                                            switch (valuationOutputPeriod) {
+//                                                                case "FY0":
+//                                                                    return getResults(footballId, valuationId).evRev.fy0.multiple.evAttendance.fy0;
+//                                                                    break;
+//                                                            }
+//                                                            break;
+//                                                    }
+//                                                    break;
+//                                            }
+//                                            break;
+//                                    }
+//                                    break;
+//                                case "EV/Attendance":
+//                                    switch (valuationPeriod) {
+//                                        case "FY0":
+//                                            switch (footballOutput) {
+//                                                case "Enterprise Value":
+//                                                    return getResults(footballId, valuationId).evAttendance.fy0.ev;
+//                                                    break;
+//                                                case "Multiple":
+//                                                    switch (valuationOutput) {
+//                                                        case "EV/Revenue":
+//                                                            switch (valuationOutputPeriod) {
+//                                                                case "FY0":
+//                                                                    return getResults(footballId, valuationId).evAttendance.fy0.multiple.evRev.fy0;
+//                                                                    break;
+//                                                            }
+//                                                            break;
+//                                                        case "EV/Attendance":
+//                                                            switch (valuationOutputPeriod) {
+//                                                                case "FY0":
+//                                                                    return getResults(footballId, valuationId).evAttendance.fy0.multiple.evAttendance.fy0;
+//                                                                    break;
+//                                                            }
+//                                                            break;
+//                                                    }
+//                                                    break;
+//                                            }
+//                                            break;
+//                                    }
+//                                    break;
+//                            }
+//                            break;
+//                    }
+//                }
+//            }
+//        }
+//    }
+//});

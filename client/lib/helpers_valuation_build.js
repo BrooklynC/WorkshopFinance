@@ -325,8 +325,8 @@ getVal = function(footballId, valuationId) {
     }
 };
 
-//Determines which multiple to use for Build, using previous helpers to determine Average/Median/High/Low
-getBuildMultiple = function(footballId, valuationId) {
+//Creates object with all multiples to use for Build, using previous helpers to decide between Average/Median/High/Low
+getBuildMultiples = function(footballId, valuationId) {
     var valuation = Valuations.findOne({_id:valuationId});
     var valuationSelections = valuation.valuationSelections;
     var valuationMultiples = valuation.multiples;
@@ -338,8 +338,6 @@ getBuildMultiple = function(footballId, valuationId) {
             switch(marketType) {
                 case "company":
                     return {
-                        enterpriseValue: val.enterpriseValue,
-                        pricePerShare: val.pricePerShare,
                         evRevLtm: val.evRevLtm,
                         evRevFy1: val.evRevFy1,
                         evRevFy2: val.evRevFy2,
@@ -349,6 +347,8 @@ getBuildMultiple = function(footballId, valuationId) {
                         peLtm: val.peLtm,
                         peFy1: val.peFy1,
                         peFy2: val.peFy2,
+                        enterpriseValue: val.enterpriseValue,
+                        pricePerShare: val.pricePerShare,
                         customValue: val.customValue
                     };
                     break;
@@ -365,15 +365,12 @@ getBuildMultiple = function(footballId, valuationId) {
 
 //Determines which multiple is active, based on valuationMetric and valuationPeriod
 //This will be the multiple used to calculate the dimensions of the bar
-Template.registerHelper('buildMultiple',function(){
-    var valuationId = this._id;
-
-    var footballId = Template.parentData(1)._id;
-    var football = Footballs.findOne({_id:footballId});
+getBuildMultiple = function(valuationId, footballId) {
+    var football = Footballs.findOne({_id: footballId});
     var marketType = football.marketType;
     var footballOutput = football.footballOutput;
 
-    var valuation = Valuations.findOne({_id:valuationId});
+    var valuation = Valuations.findOne({_id: valuationId});
     var valuationMetric = valuation.valuationMetric;
     var valuationPeriod = valuation.valuationPeriod;
     var valuationSelections = valuation.valuationSelections;
@@ -381,50 +378,50 @@ Template.registerHelper('buildMultiple',function(){
 
     var scaleAdjust = getScaleRange(footballId);
 
-    if(valuationSelections.length > 0) {
-        if(valuationMultiples) {
-            switch(marketType) {
+    if (valuationSelections.length > 0) {
+        if (valuationMultiples) {
+            switch (marketType) {
                 case "company":
                     var valuationType = valuation.valuationType;
-                    switch(valuationType) {
+                    switch (valuationType) {
                         case "comps":
                             switch (valuationMetric) {
                                 case "EV/Revenue":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiple(footballId, valuationId).evRevLtm;
+                                            return getBuildMultiples(footballId, valuationId).evRevLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiple(footballId, valuationId).evRevFy1;
+                                            return getBuildMultiples(footballId, valuationId).evRevFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiple(footballId, valuationId).evRevFy2;
+                                            return getBuildMultiples(footballId, valuationId).evRevFy2;
                                             break;
                                     }
                                     break;
                                 case "EV/EBITDA":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiple(footballId, valuationId).evEbitdaLtm;
+                                            return getBuildMultiples(footballId, valuationId).evEbitdaLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiple(footballId, valuationId).evEbitdaFy1;
+                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiple(footballId, valuationId).evEbitdaFy2;
+                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy2;
                                             break;
                                     }
                                     break;
                                 case "Price/Earnings":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiple(footballId, valuationId).peLtm;
+                                            return getBuildMultiples(footballId, valuationId).peLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiple(footballId, valuationId).peFy1;
+                                            return getBuildMultiples(footballId, valuationId).peFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiple(footballId, valuationId).peFy2;
+                                            return getBuildMultiples(footballId, valuationId).peFy2;
                                             break;
                                     }
                                     break;
@@ -435,39 +432,39 @@ Template.registerHelper('buildMultiple',function(){
                                 case "EV/Revenue":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiple(footballId, valuationId).evRevLtm;
+                                            return getBuildMultiples(footballId, valuationId).evRevLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiple(footballId, valuationId).evRevFy1;
+                                            return getBuildMultiples(footballId, valuationId).evRevFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiple(footballId, valuationId).evRevFy2;
+                                            return getBuildMultiples(footballId, valuationId).evRevFy2;
                                             break;
                                     }
                                     break;
                                 case "EV/EBITDA":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiple(footballId, valuationId).evEbitdaLtm;
+                                            return getBuildMultiples(footballId, valuationId).evEbitdaLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiple(footballId, valuationId).evEbitdaFy1;
+                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiple(footballId, valuationId).evEbitdaFy2;
+                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy2;
                                             break;
                                     }
                                     break;
                                 case "Price/Earnings":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiple(footballId, valuationId).peLtm;
+                                            return getBuildMultiples(footballId, valuationId).peLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiple(footballId, valuationId).peFy1;
+                                            return getBuildMultiples(footballId, valuationId).peFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiple(footballId, valuationId).peFy2;
+                                            return getBuildMultiples(footballId, valuationId).peFy2;
                                             break;
                                     }
                                     break;
@@ -476,49 +473,49 @@ Template.registerHelper('buildMultiple',function(){
                         case "models":
                             switch (footballOutput) {
                                 case "Enterprise Value":
-                                    return getBuildMultiple(footballId, valuationId).enterpriseValue / scaleAdjust;
+                                    return getBuildMultiples(footballId, valuationId).enterpriseValue / scaleAdjust;
                                     break;
                                 case "Price per Share":
-                                    return getBuildMultiple(footballId, valuationId).pricePerShare;
+                                    return getBuildMultiples(footballId, valuationId).pricePerShare;
                                     break;
                                 case "Multiple":
                                     switch (valuationMetric) {
                                         case "EV/Revenue":
                                             switch (valuationPeriod) {
                                                 case "LTM":
-                                                    return getBuildMultiple(footballId, valuationId).evRevLtm;
+                                                    return getBuildMultiples(footballId, valuationId).evRevLtm;
                                                     break;
                                                 case "FY1":
-                                                    return getBuildMultiple(footballId, valuationId).evRevFy1;
+                                                    return getBuildMultiples(footballId, valuationId).evRevFy1;
                                                     break;
                                                 case "FY2":
-                                                    return getBuildMultiple(footballId, valuationId).evRevFy2;
+                                                    return getBuildMultiples(footballId, valuationId).evRevFy2;
                                                     break;
                                             }
                                             break;
                                         case "EV/EBITDA":
                                             switch (valuationPeriod) {
                                                 case "LTM":
-                                                    return getBuildMultiple(footballId, valuationId).evEbitdaLtm;
+                                                    return getBuildMultiples(footballId, valuationId).evEbitdaLtm;
                                                     break;
                                                 case "FY1":
-                                                    return getBuildMultiple(footballId, valuationId).evEbitdaFy1;
+                                                    return getBuildMultiples(footballId, valuationId).evEbitdaFy1;
                                                     break;
                                                 case "FY2":
-                                                    return getBuildMultiple(footballId, valuationId).evEbitdaFy2;
+                                                    return getBuildMultiples(footballId, valuationId).evEbitdaFy2;
                                                     break;
                                             }
                                             break;
                                         case "Price/Earnings":
                                             switch (valuationPeriod) {
                                                 case "LTM":
-                                                    return getBuildMultiple(footballId, valuationId).peLtm;
+                                                    return getBuildMultiples(footballId, valuationId).peLtm;
                                                     break;
                                                 case "FY1":
-                                                    return getBuildMultiple(footballId, valuationId).peFy1;
+                                                    return getBuildMultiples(footballId, valuationId).peFy1;
                                                     break;
                                                 case "FY2":
-                                                    return getBuildMultiple(footballId, valuationId).peFy2;
+                                                    return getBuildMultiples(footballId, valuationId).peFy2;
                                                     break;
                                             }
                                             break;
@@ -534,14 +531,14 @@ Template.registerHelper('buildMultiple',function(){
                                 console.log("Scale: ", scale);
                                 switch (scale) {
                                     case "millions":
-                                        return getBuildMultiple(footballId, valuationId).customValue;
+                                        return getBuildMultiples(footballId, valuationId).customValue;
                                         break;
                                     case "billions":
-                                        return getBuildMultiple(footballId, valuationId).customValue / 1000;
+                                        return getBuildMultiples(footballId, valuationId).customValue / 1000;
                                         break;
                                 }
                             } else {
-                                return getBuildMultiple(footballId, valuationId).customValue;
+                                return getBuildMultiples(footballId, valuationId).customValue;
                             }
                             break;
                     }
@@ -551,14 +548,14 @@ Template.registerHelper('buildMultiple',function(){
                         case "EV/Revenue":
                             switch (valuationPeriod) {
                                 case "FY0":
-                                    return getBuildMultiple(footballId, valuationId).evRevFy0;
+                                    return getBuildMultiples(footballId, valuationId).evRevFy0;
                                     break;
                             }
                             break;
                         case "EV/Attendance":
                             switch (valuationPeriod) {
                                 case "FY0":
-                                    return getBuildMultiple(footballId, valuationId).evAttendanceFy0;
+                                    return getBuildMultiples(footballId, valuationId).evAttendanceFy0;
                                     break;
                             }
                             break;
@@ -567,17 +564,25 @@ Template.registerHelper('buildMultiple',function(){
             }
         }
     }
+};
+
+Template.registerHelper('buildMultiple',function(){
+    var valuationId = this._id;
+    var footballId = Template.parentData(1)._id;
+    return getBuildMultiple(valuationId, footballId);
 });
 
+
 //Calculates all Build Values using selected Build Multiple from above, as well as data from private or public company
-getBuildValue = function(footballId, valuationId) {
+getBuildValues = function(footballId, valuationId) {
     var football = Footballs.findOne({_id:footballId});
+    console.log(football);
     var footballType = football.footballType;
 
     var valuation = Valuations.findOne({_id:valuationId});
     var valuationSelections = valuation.valuationSelections;
     var valuationMultiples = valuation.multiples;
-    var multiple = getBuildMultiple(footballId, valuationId);
+    var multiple = getBuildMultiples(footballId, valuationId);
 
     if(valuationSelections.length > 0) {
         if(valuationMultiples) {
@@ -700,21 +705,19 @@ getBuildValue = function(footballId, valuationId) {
 
 //Determines which Build Value from above is active, given valuationMetric and valuationPeriod
 //This is the value used to calculate the dimensions of the bar
-Template.registerHelper('buildValue',function(){
-    var footballId = Template.parentData(1)._id;
+getBuildValue = function(valuationId, footballId) {
     var football = Footballs.findOne({_id:footballId});
     var footballType = football.footballType;
     var footballOutput = football.footballOutput;
     var targetType = football.footballTarget.targetType;
 
-    var valuationId = Template.parentData(0)._id;
     var valuation = Valuations.findOne({_id:valuationId});
     var valuationSelections = valuation.valuationSelections;
     var valuationMetric = valuation.valuationMetric;
     var valuationPeriod = valuation.valuationPeriod;
     var valuationMultiples = valuation.multiples;
 
-    var value = getBuildValue(footballId, valuationId);
+    var value = getBuildValues(footballId, valuationId);
 
     if(valuationSelections.length > 0) {
         if(valuationMultiples) {
@@ -846,74 +849,10 @@ Template.registerHelper('buildValue',function(){
             }
         }
     }
-});
+};
 
-////THE NEXT SET OF HELPERS DISABLE THE ABILITY TO EDIT A FOOTBALL FIELD OR VALUATION, DEPENDING ON CERTAIN VARIABLES
-
-//Disables editing if the current user is not the owner
-Template.registerHelper('disableOption',function() {
-    var ownerId = Template.parentData(0).ownerId;
-    var ownerIdTwo = Template.parentData(1).ownerId;
-    var currentUserId = Meteor.userId();
-    if(currentUserId !== ownerId && currentUserId !== ownerIdTwo) {
-        return "disabled";
-    }
-});
-
-//Disables editing if the current user is not the owner
-Template.registerHelper('disableOptionGallery',function() {
-    var ownerId = Template.parentData(0).ownerId;
-    var currentUserId = Meteor.userId();
-    if(currentUserId !== ownerId) {
-        return "disabled";
-    }
-});
-
-//Disables ability to add current or trading values if company is not public
-Template.registerHelper('disableOptionPublic',function() {
-    var currentUserId = Meteor.userId();
-    var ownerId = this.ownerId;
-    if(currentUserId !== ownerId) {
-        return "disabled";
-    } else {
-        var footballType = this.footballType;
-        switch(footballType) {
-            case "market":
-                return "disabled";
-                break;
-            case "target":
-                var target = this.footballTarget;
-                switch(target.targetType) {
-                    case "company":
-                        switch(target.targetData) {
-                            case "feed":
-                                var statusCompany = FeedCompanies.findOne({_id:target.targetId}).status;
-                                if(statusCompany == "private") {
-                                    return "disabled";
-                                }
-                                break;
-                        }
-                        break;
-                    case "team":
-                        switch(target.targetData) {
-                            case "feed":
-                                var statusTeam = "private";
-                                if(statusTeam == "private") {
-                                    return "disabled";
-                                }
-                                break;
-                        }
-
-                }
-        }
-    }
-});
-
-//Disables ability to change Valuation Type or Element if selections have already been made
-Template.registerHelper('disableOptionFull',function() {
-    var selections = this.valuationSelections;
-    var count = selections.length;
-    if(count > 0) {
-        return "disabled";
-    }
+Template.registerHelper('buildValue',function(){
+    var footballId = Template.parentData(1)._id;
+    var valuationId = Template.parentData(0)._id;
+    return getBuildValues(valuationId, footballId);
 });

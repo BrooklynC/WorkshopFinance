@@ -29,8 +29,8 @@ getTarget = function(currentFootballId, targetSelection) {
                                 targetType: "company",
                                 targetData: "feed"
                             };
-                        }
-                        break;
+                    }
+                    break;
                 case "team":
                     switch(targetData) {
                         case "feed":
@@ -40,8 +40,8 @@ getTarget = function(currentFootballId, targetSelection) {
                                 targetType: "team",
                                 targetData: "feed"
                             };
-                        }
-                        break;
+                    }
+                    break;
             }
         }
     }
@@ -114,11 +114,12 @@ getRangeCaps = function(footballId) {
     if(valuations) {
         valuations.forEach(function(valuationId) {
             var valuation = Valuations.findOne({_id:valuationId});
-            var valuationType = valuation.valuationType;
             var valuationSelections = valuation.valuationSelections;
-            var activeResult = UI._globalHelpers.resultValue(footballId, valuationId);
             if(valuationSelections.length > 0) {
+                var valuationType = valuation.valuationType;
                 if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
+                    //var activeResult = valuation.valuationActive;
+                    var activeResult = UI._globalHelpers.resultValue(footballId, valuationId);
                     if (activeResult) {
                         results.push(activeResult);
                     }
@@ -393,5 +394,95 @@ Template.registerHelper('tradingCalcs',function(footballId) {
     return {
         startPct: start / footballRange * 100,
         widthPct: targetWidth / footballRange * 100
+    }
+});
+
+//Switch between millions and billions in football
+Template.registerHelper('scaleSwitch', function(footballId) {
+    var football = Footballs.findOne({_id:footballId});
+    var footballScale = football.footballScale;
+    var footballOutput = football.footballOutput;
+    if(footballOutput == "Enterprise Value") {
+        switch(footballScale) {
+            case "millions":
+                return 1;
+                break;
+            case "billions":
+                return 1000;
+                break;
+        }
+    }
+    else {
+        return 1;
+    }
+});
+
+////THE NEXT SET OF HELPERS DISABLE THE ABILITY TO EDIT A FOOTBALL FIELD OR VALUATION, DEPENDING ON CERTAIN VARIABLES
+
+//Disables editing if the current user is not the owner
+Template.registerHelper('disableOption',function() {
+    var ownerId = Template.parentData(0).ownerId;
+    var ownerIdTwo = Template.parentData(1).ownerId;
+    var currentUserId = Meteor.userId();
+    if(currentUserId !== ownerId && currentUserId !== ownerIdTwo) {
+        return "disabled";
+    }
+});
+
+//Disables editing if the current user is not the owner
+Template.registerHelper('disableOptionGallery',function() {
+    var ownerId = Template.parentData(0).ownerId;
+    var currentUserId = Meteor.userId();
+    if(currentUserId !== ownerId) {
+        return "disabled";
+    }
+});
+
+//Disables ability to add current or trading values if company is not public
+Template.registerHelper('disableOptionPublic',function() {
+    var currentUserId = Meteor.userId();
+    var ownerId = this.ownerId;
+    if(currentUserId !== ownerId) {
+        return "disabled";
+    } else {
+        var footballType = this.footballType;
+        switch(footballType) {
+            case "market":
+                return "disabled";
+                break;
+            case "target":
+                var target = this.footballTarget;
+                switch(target.targetType) {
+                    case "company":
+                        switch(target.targetData) {
+                            case "feed":
+                                var statusCompany = FeedCompanies.findOne({_id:target.targetId}).status;
+                                if(statusCompany == "private") {
+                                    return "disabled";
+                                }
+                                break;
+                        }
+                        break;
+                    case "team":
+                        switch(target.targetData) {
+                            case "feed":
+                                var statusTeam = "private";
+                                if(statusTeam == "private") {
+                                    return "disabled";
+                                }
+                                break;
+                        }
+
+                }
+        }
+    }
+});
+
+//Disables ability to change Valuation Type or Element if selections have already been made
+Template.registerHelper('disableOptionFull',function() {
+    var selections = this.valuationSelections;
+    var count = selections.length;
+    if(count > 0) {
+        return "disabled";
     }
 });

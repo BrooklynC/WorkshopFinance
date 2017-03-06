@@ -260,11 +260,15 @@ Template.ValuationBuildTableData.helpers({
         }
     },
     buildValueAdjusted: function() {
+        var valuationId = this._id;
+        var footballId = Template.parentData(1)._id;
         var footballType = Template.parentData(1).footballType;
         if(footballType == "target") {
             var scale = Template.parentData(1).footballScale;
             var valuationMetric = this.valuationMetric;
-            var value = UI._globalHelpers.buildValue();
+            var value = getBuildValue(valuationId, footballId);
+            console.log("Value: ", value);
+            //var value = UI._globalHelpers.buildValue();
             switch(valuationMetric) {
                 case "EV/Revenue":
                     switch (scale) {

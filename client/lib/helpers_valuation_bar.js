@@ -1,31 +1,12 @@
 ////VALUATION - BAR
 
-//Switch between millions and billions in football
-Template.registerHelper('scaleSwitch', function(footballId) {
-    var football = Footballs.findOne({_id:footballId});
-    var footballScale = football.footballScale;
-    var footballOutput = football.footballOutput;
-    if(footballOutput == "Enterprise Value") {
-        switch(footballScale) {
-            case "millions":
-                return 1;
-                break;
-            case "billions":
-                return 1000;
-                break;
-        }
-    }
-    else {
-        return 1;
-    }
-});
-
 //Calculates high and low value of valuation bar
 Template.registerHelper('valuationLowHigh',function(footballId) {
     var football = Footballs.findOne({_id:footballId});
     var footballSpread = football.footballSpread;
 
     var valuationId = Template.parentData(0)._id;
+    //var valuationActive = Valuations.findOne({_id:valuationId}).valuationActive;
     var valuationActive = UI._globalHelpers.resultValue(footballId, valuationId);
 
     return {

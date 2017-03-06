@@ -320,9 +320,11 @@ Template.registerHelper('valueTwoFormat', function(a) {
 
 //Format for active value one at bottom of Valuation selections table. Differs from above because of different data context
 Template.registerHelper('buildOneFormat', function(a) {
+    var valuationId = this._id;
+    var footballId = Template.parentData(1)._id;
     var footballType = Template.parentData(1).footballType;
     if(footballType == "target") {
-        var value = UI._globalHelpers.buildValue();
+        var value = getBuildValue(valuationId, footballId);
         if(value) {
             var valuationMetric = this.valuationMetric;
             switch(valuationMetric) {
@@ -345,9 +347,11 @@ Template.registerHelper('buildOneFormat', function(a) {
 
 //Format for active value one at bottom of Valuation selections table. Differs from above because of different data context
 Template.registerHelper('buildTwoFormat', function(a) {
+    var valuationId = this._id;
+    var footballId = Template.parentData(1)._id;
     var footballType = Template.parentData(1).footballType;
     if(footballType == "target") {
-        var value = UI._globalHelpers.buildValue();
+        var value = getBuildValue(valuationId, footballId);
         if(value) {
             var valuationMetric = this.valuationMetric;
             switch(valuationMetric) {

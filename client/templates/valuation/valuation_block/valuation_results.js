@@ -81,18 +81,22 @@ Template.ValuationResults.helpers({
         var output = football.footballOutput;
         var valuationId = this._id;
         var valuationSelections = this.valuationSelections;
+        //var valuationActive = this.valuationActive;
         var scaleAdjust = getScale(footballId);
         if(valuationSelections.length > 0) {
             var valuationType = this.valuationType;
             if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
                 if(output == "Enterprise Value") {
+                    //var r = valuationActive / scaleAdjust;
                     var r = UI._globalHelpers.resultValue(footballId, valuationId) / scaleAdjust;
                     console.log("Result: ", r);
                     return r;
                 } else {
+                    //return valuationActive;
                     return UI._globalHelpers.resultValue(footballId, valuationId);
                 }
             } else {
+                //return valuationActive;
                 return UI._globalHelpers.resultValue(footballId, valuationId);
             }
         }
