@@ -1308,18 +1308,22 @@ getResultValue = function(footballId, valuationId) {
 };
 
 //Calculates high and low value of valuation bar
-getValuationLowHigh = function(footballId) {
+Template.registerHelper('valuationLowHigh',function() {
+    var footballId = Template.parentData(1)._id;
     var football = Footballs.findOne({_id:footballId});
     var footballSpread = football.footballSpread;
 
     var valuationId = Template.parentData(0)._id;
     //var valuationActive = Valuations.findOne({_id:valuationId}).valuationActive;
     var valuationActive = getResultValue(footballId, valuationId);
+    console.log(valuationActive);
 
     return {
         valuationLow: valuationActive * (1 - (footballSpread / 100)),
         valuationHigh: valuationActive * (1 + (footballSpread / 100))
     };
+});
+getValuationLowHigh = function(footballId) {
 };
 
 //Uses high and low values from above to calculate values needed by d3 for valuation bar
@@ -1378,10 +1382,5 @@ Template.registerHelper('resultValue', function() {
     var footballId = Template.parentData(1)._id;
     var valuationId = Template.parentData(0)._id;
     return getResultValue(footballId, valuationId);
-});
-
-Template.registerHelper('valuationLowHigh',function() {
-    var footballId = Template.parentData(1)._id;
-    return getValuationLowHigh(footballId);
 });
 
