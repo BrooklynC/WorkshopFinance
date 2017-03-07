@@ -88,16 +88,16 @@ Template.ValuationResults.helpers({
             if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
                 if(output == "Enterprise Value") {
                     //var r = valuationActive / scaleAdjust;
-                    var r = UI._globalHelpers.resultValue(footballId, valuationId) / scaleAdjust;
+                    var r = getResultValue(footballId, valuationId) / scaleAdjust;
                     console.log("Result: ", r);
                     return r;
                 } else {
                     //return valuationActive;
-                    return UI._globalHelpers.resultValue(footballId, valuationId);
+                    return getResultValue(footballId, valuationId);
                 }
             } else {
                 //return valuationActive;
-                return UI._globalHelpers.resultValue(footballId, valuationId);
+                return getResultValue(footballId, valuationId);
             }
         }
     },

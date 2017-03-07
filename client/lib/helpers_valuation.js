@@ -691,649 +691,648 @@ getResultValue = function(footballId, valuationId) {
     var targetId = football.footballTarget.targetId;
 
     var valuation = Valuations.findOne({_id: valuationId});
-    var valuationSelections = valuation.valuationSelections;
-    var valuationMultiples = valuation.multiples;
+    if(valuation) {
+        var valuationSelections = valuation.valuationSelections;
+        var valuationMultiples = valuation.multiples;
 
-    if (valuationSelections.length > 0 && valuationMultiples) {
-        var valuationMetric = valuation.valuationMetric;
-        var valuationPeriod = valuation.valuationPeriod;
-        var valuationOutput = valuation.valuationOutput;
-        var valuationOutputPeriod = valuation.valuationOutputPeriod;
+        if (valuationSelections.length > 0 && valuationMultiples) {
+            var valuationMetric = valuation.valuationMetric;
+            var valuationPeriod = valuation.valuationPeriod;
+            var valuationOutput = valuation.valuationOutput;
+            var valuationOutputPeriod = valuation.valuationOutputPeriod;
 
-        var buildMultiple = getBuildMultiple(footballId, valuationId);
-        var buildValue = getBuildValue(footballId, valuationId);
-        if (buildMultiple) {
-            if (footballType == "market") {
-                return buildMultiple;
-            } else {
-                var targetType = football.footballTarget.targetType;
-                switch (targetType) {
-                    case "company":
-                        var feedCompany = FeedCompanies.findOne({_id: targetId});
-                        var feedCompanyData = {
-                            revenueLtm: feedCompany.financial.ltm.revenue,
-                            revenueFy1: feedCompany.financial.fy1.revenue,
-                            revenueFy2: feedCompany.financial.fy2.revenue,
-                            ebitdaLtm: feedCompany.financial.ltm.ebitda,
-                            ebitdaFy1: feedCompany.financial.fy1.ebitda,
-                            ebitdaFy2: feedCompany.financial.fy2.ebitda,
-                            epsLtm: feedCompany.financial.ltm.eps,
-                            epsFy1: feedCompany.financial.fy1.eps,
-                            epsFy2: feedCompany.financial.fy2.eps,
-                            sharesOs: feedCompany.capTable.sharesOs,
-                            netDebt: feedCompany.capTable.netDebt
-                        };
-                        var valuationType = valuation.valuationType;
-                        if (valuationType == "comps" || valuationType == "deals") {
-                            switch (valuationMetric) {
-                                case "EV/Revenue":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Price per Share":
-                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                        case "FY1":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Price per Share":
-                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                        case "FY2":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Price per Share":
-                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                    break;
-                                case "EV/EBITDA":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Price per Share":
-                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                        case "FY1":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Price per Share":
-                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                        case "FY2":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Price per Share":
-                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                    break;
-                                case "Price/Earnings":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
-                                                    break;
-                                                case "Price per Share":
-                                                    return buildValue;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                        case "FY1":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
-                                                    break;
-                                                case "Price per Share":
-                                                    return buildValue;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                        case "FY2":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
-                                                    break;
-                                                case "Price per Share":
-                                                    return buildValue;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/EBITDA":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "Price/Earnings":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "LTM":
-                                                                    return buildValue / feedCompanyData.epsLtm;
-                                                                    break;
-                                                                case "FY1":
-                                                                    return buildValue / feedCompanyData.epsFy1;
-                                                                    break;
-                                                                case "FY2":
-                                                                    return buildValue / feedCompanyData.epsFy2;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                    break;
-                            }
-                        } else {
-                            if (valuationType == "models") {
-                                switch (footballOutput) {
-                                    case "Enterprise Value":
-                                        return buildValue;
+            var buildMultiple = getBuildMultiple(footballId, valuationId);
+            var buildValue = getBuildValue(footballId, valuationId);
+            if (buildMultiple) {
+                if (footballType == "market") {
+                    return buildMultiple;
+                } else {
+                    var targetType = football.footballTarget.targetType;
+                    switch (targetType) {
+                        case "company":
+                            var feedCompany = FeedCompanies.findOne({_id: targetId});
+                            var feedCompanyData = {
+                                revenueLtm: feedCompany.financial.ltm.revenue,
+                                revenueFy1: feedCompany.financial.fy1.revenue,
+                                revenueFy2: feedCompany.financial.fy2.revenue,
+                                ebitdaLtm: feedCompany.financial.ltm.ebitda,
+                                ebitdaFy1: feedCompany.financial.fy1.ebitda,
+                                ebitdaFy2: feedCompany.financial.fy2.ebitda,
+                                epsLtm: feedCompany.financial.ltm.eps,
+                                epsFy1: feedCompany.financial.fy1.eps,
+                                epsFy2: feedCompany.financial.fy2.eps,
+                                sharesOs: feedCompany.capTable.sharesOs,
+                                netDebt: feedCompany.capTable.netDebt
+                            };
+                            var valuationType = valuation.valuationType;
+                            if (valuationType == "comps" || valuationType == "deals") {
+                                switch (valuationMetric) {
+                                    case "EV/Revenue":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                            case "FY1":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                            case "FY2":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                        }
                                         break;
-                                    case "Price per Share":
-                                        return buildValue;
+                                    case "EV/EBITDA":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                            case "FY1":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                            case "FY2":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                        }
                                         break;
-                                    case "Multiple":
-                                        return buildMultiple;
+                                    case "Price/Earnings":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                            case "FY1":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                            case "FY2":
+                                                switch (footballOutput) {
+                                                    case "Enterprise Value":
+                                                        return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
+                                                        break;
+                                                    case "Price per Share":
+                                                        return buildValue;
+                                                        break;
+                                                    case "Multiple":
+                                                        switch (valuationOutput) {
+                                                            case "EV/Revenue":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "EV/EBITDA":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                            case "Price/Earnings":
+                                                                switch (valuationOutputPeriod) {
+                                                                    case "LTM":
+                                                                        return buildValue / feedCompanyData.epsLtm;
+                                                                        break;
+                                                                    case "FY1":
+                                                                        return buildValue / feedCompanyData.epsFy1;
+                                                                        break;
+                                                                    case "FY2":
+                                                                        return buildValue / feedCompanyData.epsFy2;
+                                                                        break;
+                                                                }
+                                                                break;
+                                                        }
+                                                        break;
+                                                }
+                                                break;
+                                        }
                                         break;
                                 }
                             } else {
-                                return buildValue;
+                                if (valuationType == "models") {
+                                    switch (footballOutput) {
+                                        case "Enterprise Value":
+                                            return buildValue;
+                                            break;
+                                        case "Price per Share":
+                                            return buildValue;
+                                            break;
+                                        case "Multiple":
+                                            return buildMultiple;
+                                            break;
+                                    }
+                                } else {
+                                    return buildValue;
+                                }
                             }
-                        }
-                        break;
-                    case "team":
-                        var feedTeam = FeedTeams.findOne({_id: targetId});
-                        var feedTeamData = {
-                            revenueFy0: feedTeam.financial.fy0.revenue,
-                            attendanceFy0: feedTeam.financial.fy0.attendance
-                        };
-                        switch (valuationMetric) {
-                            case "EV/Revenue":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        switch (footballOutput) {
-                                            case "Enterprise Value":
-                                                return buildValue;
-                                                break;
-                                            case "Multiple":
-                                                switch (valuationOutput) {
-                                                    case "EV/Revenue":
-                                                        switch (valuationOutputPeriod) {
-                                                            case "FY0":
-                                                                return buildValue / feedTeamData.revenueFy0;
-                                                                break;
-                                                        }
-                                                        break;
-                                                    case "EV/Attendance":
-                                                        switch (valuationOutputPeriod) {
-                                                            case "FY0":
-                                                                return buildValue / feedTeamData.attendanceFy0;
-                                                                break;
-                                                        }
-                                                        break;
-                                                }
-                                                break;
-                                        }
-                                        break;
-                                }
-                                break;
-                            case "EV/Attendance":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        switch (footballOutput) {
-                                            case "Enterprise Value":
-                                                return buildValue;
-                                                break;
-                                            case "Multiple":
-                                                switch (valuationOutput) {
-                                                    case "EV/Revenue":
-                                                        switch (valuationOutputPeriod) {
-                                                            case "FY0":
-                                                                return buildValue / feedTeamData.revenueFy0;
-                                                                break;
-                                                        }
-                                                        break;
-                                                    case "EV/Attendance":
-                                                        switch (valuationOutputPeriod) {
-                                                            case "FY0":
-                                                                return buildValue / feedTeamData.attendanceFy0;
-                                                                break;
-                                                        }
-                                                        break;
-                                                }
-                                                break;
-                                        }
-                                        break;
-                                }
-                                break;
-                        }
-                        break;
+                            break;
+                        case "team":
+                            var feedTeam = FeedTeams.findOne({_id: targetId});
+                            var feedTeamData = {
+                                revenueFy0: feedTeam.financial.fy0.revenue,
+                                attendanceFy0: feedTeam.financial.fy0.attendance
+                            };
+                            switch (valuationMetric) {
+                                case "EV/Revenue":
+                                    switch (valuationPeriod) {
+                                        case "FY0":
+                                            switch (footballOutput) {
+                                                case "Enterprise Value":
+                                                    return buildValue;
+                                                    break;
+                                                case "Multiple":
+                                                    switch (valuationOutput) {
+                                                        case "EV/Revenue":
+                                                            switch (valuationOutputPeriod) {
+                                                                case "FY0":
+                                                                    return buildValue / feedTeamData.revenueFy0;
+                                                                    break;
+                                                            }
+                                                            break;
+                                                        case "EV/Attendance":
+                                                            switch (valuationOutputPeriod) {
+                                                                case "FY0":
+                                                                    return buildValue / feedTeamData.attendanceFy0;
+                                                                    break;
+                                                            }
+                                                            break;
+                                                    }
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                    break;
+                                case "EV/Attendance":
+                                    switch (valuationPeriod) {
+                                        case "FY0":
+                                            switch (footballOutput) {
+                                                case "Enterprise Value":
+                                                    return buildValue;
+                                                    break;
+                                                case "Multiple":
+                                                    switch (valuationOutput) {
+                                                        case "EV/Revenue":
+                                                            switch (valuationOutputPeriod) {
+                                                                case "FY0":
+                                                                    return buildValue / feedTeamData.revenueFy0;
+                                                                    break;
+                                                            }
+                                                            break;
+                                                        case "EV/Attendance":
+                                                            switch (valuationOutputPeriod) {
+                                                                case "FY0":
+                                                                    return buildValue / feedTeamData.attendanceFy0;
+                                                                    break;
+                                                            }
+                                                            break;
+                                                    }
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                    break;
+                            }
+                            break;
+                    }
                 }
             }
         }
     }
 };
 
-//Calculates high and low value of valuation bar
-Template.registerHelper('valuationLowHigh',function() {
-    var footballId = Template.parentData(1)._id;
+
+getValuationLowHigh = function(footballId, valuationId) {
+    console.log(footballId);
+    console.log(valuationId);
     var football = Footballs.findOne({_id:footballId});
     var footballSpread = football.footballSpread;
 
-    var valuationId = Template.parentData(0)._id;
-    //var valuationActive = Valuations.findOne({_id:valuationId}).valuationActive;
     var valuationActive = getResultValue(footballId, valuationId);
-    console.log(valuationActive);
 
     return {
         valuationLow: valuationActive * (1 - (footballSpread / 100)),
         valuationHigh: valuationActive * (1 + (footballSpread / 100))
     };
-});
-getValuationLowHigh = function(footballId) {
 };
 
-//Uses high and low values from above to calculate values needed by d3 for valuation bar
-Template.registerHelper('valuationCalcs',function(footballId) {
+getValuationCalcs = function(footballId, valuationId) {
+    console.log(footballId);
+    console.log(valuationId);
     var footballRangeLow = getRangeCaps(footballId).min;
     var footballRangeHigh = getRangeCaps(footballId).max;
     var footballRange = footballRangeHigh - footballRangeLow;
 
-    var valuationLow = UI._globalHelpers.valuationLowHigh(footballId).valuationLow;
-    var valuationHigh = UI._globalHelpers.valuationLowHigh(footballId).valuationHigh;
+    var valuationLow = getValuationLowHigh(footballId, valuationId).valuationLow;
+    var valuationHigh = getValuationLowHigh(footballId, valuationId).valuationHigh;
     var valuationRange = valuationHigh - valuationLow;
     var valuationStart = valuationLow - footballRangeLow;
     var valuationEnd = valuationStart + valuationRange;
@@ -1345,18 +1344,17 @@ Template.registerHelper('valuationCalcs',function(footballId) {
             endPct: valuationEnd / footballRange * 100
         };
     }
-});
+};
 
-//Calculate values and spaces for labels for valuation bar
-Template.registerHelper('valuationText',function(footballId) {
-    var valuationStartPct = UI._globalHelpers.valuationCalcs(footballId).startPct;
-    var valuationEndPct = UI._globalHelpers.valuationCalcs(footballId).endPct;
+getValuationText = function(footballId, valuationId) {
+    var valuationStartPct = getValuationCalcs(footballId, valuationId).startPct;
+    var valuationEndPct = getValuationCalcs(footballId, valuationId).endPct;
 
     var textSpace = 0.5;
     var scaleSwitch = UI._globalHelpers.scaleSwitch(footballId);
 
-    var valuationLow = UI._globalHelpers.valuationLowHigh(footballId).valuationLow;
-    var valuationHigh = UI._globalHelpers.valuationLowHigh(footballId).valuationHigh;
+    var valuationLow = getValuationLowHigh(footballId, valuationId).valuationLow;
+    var valuationHigh = getValuationLowHigh(footballId, valuationId).valuationHigh;
 
     return {
         valuationLowSpace: valuationStartPct - textSpace,
@@ -1364,7 +1362,7 @@ Template.registerHelper('valuationText',function(footballId) {
         valuationLowText: valuationLow / scaleSwitch,
         valuationHighText: valuationHigh / scaleSwitch
     }
-});
+};
 
 Template.registerHelper('buildMultiple',function(){
     var valuationId = this._id;
@@ -1382,5 +1380,19 @@ Template.registerHelper('resultValue', function() {
     var footballId = Template.parentData(1)._id;
     var valuationId = Template.parentData(0)._id;
     return getResultValue(footballId, valuationId);
+});
+
+Template.registerHelper('valuationLowHigh',function(footballId, valuationId) {
+    return getValuationLowHigh(footballId, valuationId);
+});
+
+//Uses high and low values from above to calculate values needed by d3 for valuation bar
+Template.registerHelper('valuationCalcs',function(footballId, valuationId) {
+    return getValuationCalcs(footballId, valuationId)
+});
+
+//Calculate values and spaces for labels for valuation bar
+Template.registerHelper('valuationText',function(footballId, valuationId) {
+    return getValuationText(footballId, valuationId);
 });
 

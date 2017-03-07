@@ -116,12 +116,17 @@ p {
     width:100%;
     height:calc(100% - 45px);
     position: absolute;
-    top:45px;
+    top:35px;
 }
 #gallery-menu-inner {
     position: relative;
     width:100%;
     height:100%;
+    margin:0;
+}
+#gallery-menu-inner .panel {
+    margin:0;
+    border-bottom: solid white 1px;
 }
 .gallery-menu-base {
     padding: 2px;
@@ -153,7 +158,7 @@ p {
     margin:0;
 }
 .gallery-menu-base {
-    height:37px;
+    height:35px;
     cursor: pointer;
 }
 .gallery-title-inner {
@@ -203,10 +208,9 @@ p {
 }
 /*GALLERY VISUAL*/
 #controls-top {
-    margin-top:5px;
+    margin-top:3px;
 }
 #controls-scroll {
-    /*padding-top: 4px;*/
     height:215px;
     width:100%;
     margin-top:5px;

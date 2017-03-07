@@ -30,13 +30,13 @@ Template.ValuationBaseBarFull.onRendered (function () {
     var footballId = Template.parentData(1)._id;
     var valuationId = Template.parentData(0)._id;
 
-    var valuationStartPct = UI._globalHelpers.valuationCalcs(footballId).startPct;
-    var valuationWidthPct = UI._globalHelpers.valuationCalcs(footballId).widthPct;
+    var valuationStartPct = getValuationCalcs(footballId, valuationId).startPct;
+    var valuationWidthPct = getValuationCalcs(footballId, valuationId).widthPct;
 
-    var valuationLowSpace = UI._globalHelpers.valuationText(footballId).valuationLowSpace;
-    var valuationHighSpace = UI._globalHelpers.valuationText(footballId).valuationHighSpace;
-    var valuationLowText = UI._globalHelpers.valuationText(footballId).valuationLowText;
-    var valuationHighText = UI._globalHelpers.valuationText(footballId).valuationHighText;
+    var valuationLowSpace = getValuationText(footballId, valuationId).valuationLowSpace;
+    var valuationHighSpace = getValuationText(footballId, valuationId).valuationHighSpace;
+    var valuationLowText = getValuationText(footballId, valuationId).valuationLowText;
+    var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
     var barFormat = UI._globalHelpers.barFormat(footballId);
     var symCurrency = UI._globalHelpers.symCurrency(footballId);
@@ -77,13 +77,13 @@ Template.ValuationBaseBarFull.onRendered (function () {
     self.autorun(function() {
         var footballId = Template.parentData(1)._id;
         var valuationId = Template.parentData(0)._id;
-        var valuationStartPct = UI._globalHelpers.valuationCalcs(footballId).startPct;
-        var valuationWidthPct = UI._globalHelpers.valuationCalcs(footballId).widthPct;
+        var valuationStartPct = getValuationCalcs(footballId, valuationId).startPct;
+        var valuationWidthPct = getValuationCalcs(footballId, valuationId).widthPct;
 
-        var valuationLowSpace = UI._globalHelpers.valuationText(footballId).valuationLowSpace;
-        var valuationHighSpace = UI._globalHelpers.valuationText(footballId).valuationHighSpace;
-        var valuationLowText = UI._globalHelpers.valuationText(footballId).valuationLowText;
-        var valuationHighText = UI._globalHelpers.valuationText(footballId).valuationHighText;
+        var valuationLowSpace = getValuationText(footballId, valuationId).valuationLowSpace;
+        var valuationHighSpace = getValuationText(footballId, valuationId).valuationHighSpace;
+        var valuationLowText = getValuationText(footballId, valuationId).valuationLowText;
+        var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
         var themeText = UI._globalHelpers.themeStyle().barText;
         var barFormat = UI._globalHelpers.barFormat(footballId);
