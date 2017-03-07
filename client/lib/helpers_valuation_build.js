@@ -325,44 +325,6 @@ getVal = function(footballId, valuationId) {
     }
 };
 
-//Creates object with all multiples to use for Build, using previous helpers to decide between Average/Median/High/Low
-getBuildMultiples = function(footballId, valuationId) {
-    var valuation = Valuations.findOne({_id:valuationId});
-    var valuationSelections = valuation.valuationSelections;
-    var valuationMultiples = valuation.multiples;
-    var marketType = Footballs.findOne({_id:footballId}).marketType;
-
-    if(valuationSelections.length > 0) {
-        if(valuationMultiples) {
-            var val = getVal(footballId, valuationId);
-            switch(marketType) {
-                case "company":
-                    return {
-                        evRevLtm: val.evRevLtm,
-                        evRevFy1: val.evRevFy1,
-                        evRevFy2: val.evRevFy2,
-                        evEbitdaLtm: val.evEbitdaLtm,
-                        evEbitdaFy1: val.evEbitdaFy1,
-                        evEbitdaFy2: val.evEbitdaFy2,
-                        peLtm: val.peLtm,
-                        peFy1: val.peFy1,
-                        peFy2: val.peFy2,
-                        enterpriseValue: val.enterpriseValue,
-                        pricePerShare: val.pricePerShare,
-                        customValue: val.customValue
-                    };
-                    break;
-                case "team":
-                    return {
-                        evRevFy0: val.evRevFy0,
-                        evAttendanceFy0: val.evAttendanceFy0
-                    };
-                    break;
-            }
-        }
-    }
-};
-
 //Determines which multiple is active, based on valuationMetric and valuationPeriod
 //This will be the multiple used to calculate the dimensions of the bar
 getBuildMultiple = function(valuationId, footballId) {
@@ -375,6 +337,8 @@ getBuildMultiple = function(valuationId, footballId) {
     var valuationPeriod = valuation.valuationPeriod;
     var valuationSelections = valuation.valuationSelections;
     var valuationMultiples = valuation.multiples;
+
+    var val = getVal(footballId, valuationId);
 
     var scaleAdjust = getScaleRange(footballId);
 
@@ -389,39 +353,39 @@ getBuildMultiple = function(valuationId, footballId) {
                                 case "EV/Revenue":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiples(footballId, valuationId).evRevLtm;
+                                            return val.evRevLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiples(footballId, valuationId).evRevFy1;
+                                            return val.evRevFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiples(footballId, valuationId).evRevFy2;
+                                            return val.evRevFy2;
                                             break;
                                     }
                                     break;
                                 case "EV/EBITDA":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiples(footballId, valuationId).evEbitdaLtm;
+                                            return val.evEbitdaLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy1;
+                                            return val.evEbitdaFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy2;
+                                            return val.evEbitdaFy2;
                                             break;
                                     }
                                     break;
                                 case "Price/Earnings":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiples(footballId, valuationId).peLtm;
+                                            return val.peLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiples(footballId, valuationId).peFy1;
+                                            return val.peFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiples(footballId, valuationId).peFy2;
+                                            return val.peFy2;
                                             break;
                                     }
                                     break;
@@ -432,39 +396,39 @@ getBuildMultiple = function(valuationId, footballId) {
                                 case "EV/Revenue":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiples(footballId, valuationId).evRevLtm;
+                                            return val.evRevLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiples(footballId, valuationId).evRevFy1;
+                                            return val.evRevFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiples(footballId, valuationId).evRevFy2;
+                                            return val.evRevFy2;
                                             break;
                                     }
                                     break;
                                 case "EV/EBITDA":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiples(footballId, valuationId).evEbitdaLtm;
+                                            return val.evEbitdaLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy1;
+                                            return val.evEbitdaFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiples(footballId, valuationId).evEbitdaFy2;
+                                            return val.evEbitdaFy2;
                                             break;
                                     }
                                     break;
                                 case "Price/Earnings":
                                     switch (valuationPeriod) {
                                         case "LTM":
-                                            return getBuildMultiples(footballId, valuationId).peLtm;
+                                            return val.peLtm;
                                             break;
                                         case "FY1":
-                                            return getBuildMultiples(footballId, valuationId).peFy1;
+                                            return val.peFy1;
                                             break;
                                         case "FY2":
-                                            return getBuildMultiples(footballId, valuationId).peFy2;
+                                            return val.peFy2;
                                             break;
                                     }
                                     break;
@@ -473,49 +437,49 @@ getBuildMultiple = function(valuationId, footballId) {
                         case "models":
                             switch (footballOutput) {
                                 case "Enterprise Value":
-                                    return getBuildMultiples(footballId, valuationId).enterpriseValue / scaleAdjust;
+                                    return val.enterpriseValue / scaleAdjust;
                                     break;
                                 case "Price per Share":
-                                    return getBuildMultiples(footballId, valuationId).pricePerShare;
+                                    return val.pricePerShare;
                                     break;
                                 case "Multiple":
                                     switch (valuationMetric) {
                                         case "EV/Revenue":
                                             switch (valuationPeriod) {
                                                 case "LTM":
-                                                    return getBuildMultiples(footballId, valuationId).evRevLtm;
+                                                    return val.evRevLtm;
                                                     break;
                                                 case "FY1":
-                                                    return getBuildMultiples(footballId, valuationId).evRevFy1;
+                                                    return val.evRevFy1;
                                                     break;
                                                 case "FY2":
-                                                    return getBuildMultiples(footballId, valuationId).evRevFy2;
+                                                    return val.evRevFy2;
                                                     break;
                                             }
                                             break;
                                         case "EV/EBITDA":
                                             switch (valuationPeriod) {
                                                 case "LTM":
-                                                    return getBuildMultiples(footballId, valuationId).evEbitdaLtm;
+                                                    return val.evEbitdaLtm;
                                                     break;
                                                 case "FY1":
-                                                    return getBuildMultiples(footballId, valuationId).evEbitdaFy1;
+                                                    return val.evEbitdaFy1;
                                                     break;
                                                 case "FY2":
-                                                    return getBuildMultiples(footballId, valuationId).evEbitdaFy2;
+                                                    return val.evEbitdaFy2;
                                                     break;
                                             }
                                             break;
                                         case "Price/Earnings":
                                             switch (valuationPeriod) {
                                                 case "LTM":
-                                                    return getBuildMultiples(footballId, valuationId).peLtm;
+                                                    return val.peLtm;
                                                     break;
                                                 case "FY1":
-                                                    return getBuildMultiples(footballId, valuationId).peFy1;
+                                                    return val.peFy1;
                                                     break;
                                                 case "FY2":
-                                                    return getBuildMultiples(footballId, valuationId).peFy2;
+                                                    return val.peFy2;
                                                     break;
                                             }
                                             break;
@@ -531,14 +495,14 @@ getBuildMultiple = function(valuationId, footballId) {
                                 console.log("Scale: ", scale);
                                 switch (scale) {
                                     case "millions":
-                                        return getBuildMultiples(footballId, valuationId).customValue;
+                                        return val.customValue;
                                         break;
                                     case "billions":
-                                        return getBuildMultiples(footballId, valuationId).customValue / 1000;
+                                        return val.customValue / 1000;
                                         break;
                                 }
                             } else {
-                                return getBuildMultiples(footballId, valuationId).customValue;
+                                return val.customValue;
                             }
                             break;
                     }
@@ -548,14 +512,14 @@ getBuildMultiple = function(valuationId, footballId) {
                         case "EV/Revenue":
                             switch (valuationPeriod) {
                                 case "FY0":
-                                    return getBuildMultiples(footballId, valuationId).evRevFy0;
+                                    return val.evRevFy0;
                                     break;
                             }
                             break;
                         case "EV/Attendance":
                             switch (valuationPeriod) {
                                 case "FY0":
-                                    return getBuildMultiples(footballId, valuationId).evAttendanceFy0;
+                                    return val.evAttendanceFy0;
                                     break;
                             }
                             break;
@@ -582,7 +546,7 @@ getBuildValues = function(footballId, valuationId) {
     var valuation = Valuations.findOne({_id:valuationId});
     var valuationSelections = valuation.valuationSelections;
     var valuationMultiples = valuation.multiples;
-    var multiple = getBuildMultiples(footballId, valuationId);
+    var multiple = getBuildMultipleAll(footballId, valuationId);
 
     if(valuationSelections.length > 0) {
         if(valuationMultiples) {
@@ -855,4 +819,59 @@ Template.registerHelper('buildValue',function(){
     var footballId = Template.parentData(1)._id;
     var valuationId = Template.parentData(0)._id;
     return getBuildValues(valuationId, footballId);
+});
+
+//Calculates high and low value of valuation bar
+Template.registerHelper('valuationLowHigh',function(footballId) {
+    var football = Footballs.findOne({_id:footballId});
+    var footballSpread = football.footballSpread;
+
+    var valuationId = Template.parentData(0)._id;
+    //var valuationActive = Valuations.findOne({_id:valuationId}).valuationActive;
+    var valuationActive = UI._globalHelpers.resultValue(footballId, valuationId);
+
+    return {
+        valuationLow: valuationActive * (1 - (footballSpread / 100)),
+        valuationHigh: valuationActive * (1 + (footballSpread / 100))
+    };
+});
+
+//Uses high and low values from above to calculate values needed by d3 for valuation bar
+Template.registerHelper('valuationCalcs',function(footballId) {
+    var footballRangeLow = getRangeCaps(footballId).min;
+    var footballRangeHigh = getRangeCaps(footballId).max;
+    var footballRange = footballRangeHigh - footballRangeLow;
+
+    var valuationLow = UI._globalHelpers.valuationLowHigh(footballId).valuationLow;
+    var valuationHigh = UI._globalHelpers.valuationLowHigh(footballId).valuationHigh;
+    var valuationRange = valuationHigh - valuationLow;
+    var valuationStart = valuationLow - footballRangeLow;
+    var valuationEnd = valuationStart + valuationRange;
+
+    if(footballRange) {
+        return {
+            startPct: valuationStart / footballRange * 100,
+            widthPct: valuationRange / footballRange * 100,
+            endPct: valuationEnd / footballRange * 100
+        };
+    }
+});
+
+//Calculate values and spaces for labels for valuation bar
+Template.registerHelper('valuationText',function(footballId) {
+    var valuationStartPct = UI._globalHelpers.valuationCalcs(footballId).startPct;
+    var valuationEndPct = UI._globalHelpers.valuationCalcs(footballId).endPct;
+
+    var textSpace = 0.5;
+    var scaleSwitch = UI._globalHelpers.scaleSwitch(footballId);
+
+    var valuationLow = UI._globalHelpers.valuationLowHigh(footballId).valuationLow;
+    var valuationHigh = UI._globalHelpers.valuationLowHigh(footballId).valuationHigh;
+
+    return {
+        valuationLowSpace: valuationStartPct - textSpace,
+        valuationHighSpace: valuationEndPct + textSpace,
+        valuationLowText: valuationLow / scaleSwitch,
+        valuationHighText: valuationHigh / scaleSwitch
+    }
 });

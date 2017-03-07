@@ -13,7 +13,7 @@ getResults = function(footballId, valuationId){
 
     if(valuationSelections.length > 0) {
         if (valuationMultiples) {
-            var multiple = getBuildMultiples(footballId, valuationId);
+            var multiple = getBuildMultipleAll(footballId, valuationId);
             if (multiple) {
                 if (footballType == "market") {
                     switch(marketType) {
@@ -111,7 +111,6 @@ getResults = function(footballId, valuationId){
                                                         price: (buildValue.evEvRevLtm - feedCompanyData.netDebt) / feedCompanyData.sharesOs,
                                                         multiple: {
                                                             evRev: {
-                                                                //ltm: getBuildMultiples(footballId, valuationId).evRevLtm,
                                                                 ltm: buildValue.evEvRevLtm / feedCompanyData.revenueLtm,
                                                                 fy1: buildValue.evEvRevLtm / feedCompanyData.revenueFy1,
                                                                 fy2: buildValue.evEvRevLtm / feedCompanyData.revenueFy2
@@ -380,15 +379,15 @@ getResults = function(footballId, valuationId){
                                             return {
                                                 enterpriseValue: buildValue.enterpriseValue,
                                                 pricePerShare: buildValue.pricePerShare,
-                                                evRevenueLtm: getBuildMultiples(footballId, valuationId).evRevLtm,
-                                                evRevenueFy1: getBuildMultiples(footballId, valuationId).evRevFy1,
-                                                evRevenueFy2: getBuildMultiples(footballId, valuationId).evRevFy2,
-                                                evEbitdaLtm: getBuildMultiples(footballId, valuationId).evEbitdaLtm,
-                                                evEbitdaFy1: getBuildMultiples(footballId, valuationId).evEbitdaFy1,
-                                                evEbitdaFy2: getBuildMultiples(footballId, valuationId).evEbitdaFy2,
-                                                priceEarningsLtm: getBuildMultiples(footballId, valuationId).peLtm,
-                                                priceEarningsFy1: getBuildMultiples(footballId, valuationId).peFy1,
-                                                priceEarningsFy2: getBuildMultiples(footballId, valuationId).peFy2
+                                                evRevenueLtm: getBuildMultipleAll(footballId, valuationId).evRevLtm,
+                                                evRevenueFy1: getBuildMultipleAll(footballId, valuationId).evRevFy1,
+                                                evRevenueFy2: getBuildMultipleAll(footballId, valuationId).evRevFy2,
+                                                evEbitdaLtm: getBuildMultipleAll(footballId, valuationId).evEbitdaLtm,
+                                                evEbitdaFy1: getBuildMultipleAll(footballId, valuationId).evEbitdaFy1,
+                                                evEbitdaFy2: getBuildMultipleAll(footballId, valuationId).evEbitdaFy2,
+                                                priceEarningsLtm: getBuildMultipleAll(footballId, valuationId).peLtm,
+                                                priceEarningsFy1: getBuildMultipleAll(footballId, valuationId).peFy1,
+                                                priceEarningsFy2: getBuildMultipleAll(footballId, valuationId).peFy2
                                             };
                                             break;
                                         case "custom":
