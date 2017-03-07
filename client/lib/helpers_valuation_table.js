@@ -324,8 +324,8 @@ Template.registerHelper('buildOneFormat', function(a) {
     var footballId = Template.parentData(1)._id;
     var footballType = Template.parentData(1).footballType;
     if(footballType == "target") {
-        var value = getBuildValue(footballId, valuationId);
-        if(value) {
+        var multiple = getBuildMultiple(footballId, valuationId);
+        if(multiple) {
             var valuationMetric = this.valuationMetric;
             switch(valuationMetric) {
                 case "EV/Revenue":
@@ -351,9 +351,8 @@ Template.registerHelper('buildTwoFormat', function(a) {
     var footballId = Template.parentData(1)._id;
     var footballType = Template.parentData(1).footballType;
     if(footballType == "target") {
-        var value = getBuildValue(footballId, valuationId);
-        console.log(value);
-        if(value) {
+        var multiple = getBuildMultiple(footballId, valuationId);
+        if(multiple) {
             var valuationMetric = this.valuationMetric;
             switch(valuationMetric) {
                 case "EV/Revenue":

@@ -267,7 +267,6 @@ Template.ValuationBuildTableData.helpers({
             var scale = Template.parentData(1).footballScale;
             var valuationMetric = this.valuationMetric;
             var value = getBuildValue(footballId, valuationId);
-            console.log("Value: ", value);
             switch(valuationMetric) {
                 case "EV/Revenue":
                     switch (scale) {
@@ -325,7 +324,6 @@ Template.ValuationBuildTableData.helpers({
                             switch(targetData) {
                                 case "feed":
                                     var feedCompany = FeedCompanies.findOne({_id:targetId});
-                                    console.log(feedCompany);
                                     switch (valuationMetric) {
                                         case "EV/Revenue":
                                             switch (valuationPeriod) {

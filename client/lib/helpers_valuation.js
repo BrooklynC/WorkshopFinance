@@ -509,19 +509,12 @@ getBuildMultiple = function(footballId, valuationId) {
     }
 };
 
-Template.registerHelper('buildMultiple',function(){
-    var valuationId = this._id;
-    var footballId = Template.parentData(1)._id;
-    return getBuildMultiple(footballId, valuationId);
-});
-
-//Determines which Build Value from above is active, given valuationMetric and valuationPeriod
-//This is the value used to calculate the dimensions of the bar
-getBuildValue = function(footballId, valuationId) {
+getBuildFinancial = function(footballId, valuationId) {
     var football = Footballs.findOne({_id:footballId});
     var footballType = football.footballType;
     var footballOutput = football.footballOutput;
     var targetType = football.footballTarget.targetType;
+    var targetId = football.footballTarget.targetId;
 
     var valuation = Valuations.findOne({_id:valuationId});
     var valuationSelections = valuation.valuationSelections;
@@ -529,14 +522,12 @@ getBuildValue = function(footballId, valuationId) {
     var valuationPeriod = valuation.valuationPeriod;
     var valuationMultiples = valuation.multiples;
 
-    var buildMultiple = getBuildMultiple(valuation, footballId);
-
     if(valuationSelections.length > 0) {
         if(valuationMultiples) {
             if (footballType == "target") {
                 switch (targetType) {
                     case "company":
-                        var feedCompany = FeedCompanies.findOne({_id: target.targetId});
+                        var feedCompany = FeedCompanies.findOne({_id: targetId});
 
                         var feedCompanyData = {
                             revenueLtm: feedCompany.financial.ltm.revenue,
@@ -558,39 +549,39 @@ getBuildValue = function(footballId, valuationId) {
                                     case "EV/Revenue":
                                         switch (valuationPeriod) {
                                             case "LTM":
-                                                return feedCompanyData.revenueLtm * buildMultiple;
+                                                return feedCompanyData.revenueLtm;
                                                 break;
                                             case "FY1":
-                                                return feedCompanyData.revenueFy1 * buildMultiple;
+                                                return feedCompanyData.revenueFy1;
                                                 break;
                                             case "FY2":
-                                                return feedCompanyData.revenueFy2 * buildMultiple;
+                                                return feedCompanyData.revenueFy2;
                                                 break;
                                         }
                                         break;
                                     case "EV/EBITDA":
                                         switch (valuationPeriod) {
                                             case "LTM":
-                                                return feedCompanyData.ebitdaLtm * buildMultiple;
+                                                return feedCompanyData.ebitdaLtm;
                                                 break;
                                             case "FY1":
-                                                return feedCompanyData.ebitdaFy1 * buildMultiple;
+                                                return feedCompanyData.ebitdaFy1;
                                                 break;
                                             case "FY2":
-                                                return feedCompanyData.ebitdaFy2 * buildMultiple;
+                                                return feedCompanyData.ebitdaFy2;
                                                 break;
                                         }
                                         break;
                                     case "Price/Earnings":
                                         switch (valuationPeriod) {
                                             case "LTM":
-                                                return feedCompanyData.epsLtm * buildMultiple;
+                                                return feedCompanyData.epsLtm;
                                                 break;
                                             case "FY1":
-                                                return feedCompanyData.epsFy1 * buildMultiple;
+                                                return feedCompanyData.epsFy1;
                                                 break;
                                             case "FY2":
-                                                return feedCompanyData.epsFy2 * buildMultiple;
+                                                return feedCompanyData.epsFy2;
                                                 break;
                                         }
                                         break;
@@ -601,39 +592,39 @@ getBuildValue = function(footballId, valuationId) {
                                     case "EV/Revenue":
                                         switch (valuationPeriod) {
                                             case "LTM":
-                                                return feedCompanyData.revenueLtm * buildMultiple;
+                                                return feedCompanyData.revenueLtm;
                                                 break;
                                             case "FY1":
-                                                return feedCompanyData.revenueFy1 * buildMultiple;
+                                                return feedCompanyData.revenueFy1;
                                                 break;
                                             case "FY2":
-                                                return feedCompanyData.revenueFy2 * buildMultiple;
+                                                return feedCompanyData.revenueFy2;
                                                 break;
                                         }
                                         break;
                                     case "EV/EBITDA":
                                         switch (valuationPeriod) {
                                             case "LTM":
-                                                return feedCompanyData.ebitdaLtm * buildMultiple;
+                                                return feedCompanyData.ebitdaLtm;
                                                 break;
                                             case "FY1":
-                                                return feedCompanyData.ebitdaFy1 * buildMultiple;
+                                                return feedCompanyData.ebitdaFy1;
                                                 break;
                                             case "FY2":
-                                                return feedCompanyData.ebitdaFy2 * buildMultiple;
+                                                return feedCompanyData.ebitdaFy2;
                                                 break;
                                         }
                                         break;
                                     case "Price/Earnings":
                                         switch (valuationPeriod) {
                                             case "LTM":
-                                                return feedCompanyData.epsLtm * buildMultiple;
+                                                return feedCompanyData.epsLtm;
                                                 break;
                                             case "FY1":
-                                                return feedCompanyData.epsFy1 * buildMultiple;
+                                                return feedCompanyData.epsFy1;
                                                 break;
                                             case "FY2":
-                                                return feedCompanyData.epsFy2 * buildMultiple;
+                                                return feedCompanyData.epsFy2;
                                                 break;
                                         }
                                         break;
@@ -642,15 +633,15 @@ getBuildValue = function(footballId, valuationId) {
                             case "models":
                                 switch(footballOutput) {
                                     case "Enterprise Value":
-                                        return buildMultiple;
+                                        return 1;
                                         break;
                                     case "Price per Share":
-                                        return buildMultiple;
+                                        return 1;
                                         break;
                                 }
                                 break;
                             case "custom":
-                                return buildMultiple;
+                                return 1;
                                 break;
                         }
                         break;
@@ -665,14 +656,14 @@ getBuildValue = function(footballId, valuationId) {
                             case "EV/Revenue":
                                 switch (valuationPeriod) {
                                     case "FY0":
-                                        return feedTeamData.revenueFy0 * buildMultiple;
+                                        return feedTeamData.revenueFy0;
                                         break;
                                 }
                                 break;
                             case "EV/Attendance":
                                 switch (valuationPeriod) {
                                     case "FY0":
-                                        return feedTeamData.attendanceFy0 * buildMultiple;
+                                        return feedTeamData.attendanceFy0;
                                         break;
                                 }
                                 break;
@@ -684,18 +675,20 @@ getBuildValue = function(footballId, valuationId) {
     }
 };
 
-Template.registerHelper('buildValue',function(){
-    var footballId = Template.parentData(1)._id;
-    var valuationId = Template.parentData(0)._id;
-    return getBuildValue(footballId, valuationId);
-});
+getBuildValue = function(footballId, valuationId) {
+    var buildFinancial = getBuildFinancial(footballId, valuationId);
+    var buildMultiple = getBuildMultiple(footballId, valuationId);
+    //console.log(buildFinancial);
+    //console.log(buildMultiple);
+    return buildFinancial * buildMultiple;
+};
 
 //Determines Active Result from above, given valuationOutput, valuationOutputPeriod, valuationMetric, ValuationPeriod
 getResultValue = function(footballId, valuationId) {
     var football = Footballs.findOne({_id: footballId});
     var footballOutput = football.footballOutput;
     var footballType = football.footballType;
-    var marketType = football.marketType;
+    var targetId = football.footballTarget.targetId;
 
     var valuation = Valuations.findOne({_id: valuationId});
     var valuationSelections = valuation.valuationSelections;
@@ -708,76 +701,28 @@ getResultValue = function(footballId, valuationId) {
         var valuationOutputPeriod = valuation.valuationOutputPeriod;
 
         var buildMultiple = getBuildMultiple(footballId, valuationId);
+        var buildValue = getBuildValue(footballId, valuationId);
         if (buildMultiple) {
             if (footballType == "market") {
-                switch (marketType) {
-                    case "company":
-                        switch (valuationMetric) {
-                            case "EV/Revenue":
-                                switch (valuationPeriod) {
-                                    case "LTM":
-                                        console.log(getResultAll(footballId, valuationId).evRevLtm);
-                                        return getResultAll(footballId, valuationId).evRevLtm;
-                                        break;
-                                    case "FY1":
-                                        return getResultAll(footballId, valuationId).evRevFy1;
-                                        break;
-                                    case "FY2":
-                                        return getResultAll(footballId, valuationId).evRevFy2;
-                                        break;
-                                }
-                                break;
-                            case "EV/EBITDA":
-                                switch (valuationPeriod) {
-                                    case "LTM":
-                                        return getResultAll(footballId, valuationId).evEbitdaLtm;
-                                        break;
-                                    case "FY1":
-                                        return getResultAll(footballId, valuationId).evEbitdaFy1;
-                                        break;
-                                    case "FY2":
-                                        return getResultAll(footballId, valuationId).evEbitdaFy2;
-                                        break;
-                                }
-                                break;
-                            case "Price/Earnings":
-                                switch (valuationPeriod) {
-                                    case "LTM":
-                                        return getResultAll(footballId, valuationId).peLtm;
-                                        break;
-                                    case "FY1":
-                                        return getResultAll(footballId, valuationId).peFy1;
-                                        break;
-                                    case "FY2":
-                                        return getResultAll(footballId, valuationId).peFy2;
-                                        break;
-                                }
-                                break;
-                        }
-                        break;
-                    case "team":
-                        switch (valuationMetric) {
-                            case "EV/Revenue":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return getResultAll(footballId, valuationId).evRevFy0;
-                                        break;
-                                }
-                                break;
-                            case "EV/Attendance":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return getResultAll(footballId, valuationId).evAttendanceFy0;
-                                        break;
-                                }
-                                break;
-                        }
-                        break;
-                }
+                return buildMultiple;
             } else {
                 var targetType = football.footballTarget.targetType;
                 switch (targetType) {
                     case "company":
+                        var feedCompany = FeedCompanies.findOne({_id: targetId});
+                        var feedCompanyData = {
+                            revenueLtm: feedCompany.financial.ltm.revenue,
+                            revenueFy1: feedCompany.financial.fy1.revenue,
+                            revenueFy2: feedCompany.financial.fy2.revenue,
+                            ebitdaLtm: feedCompany.financial.ltm.ebitda,
+                            ebitdaFy1: feedCompany.financial.fy1.ebitda,
+                            ebitdaFy2: feedCompany.financial.fy2.ebitda,
+                            epsLtm: feedCompany.financial.ltm.eps,
+                            epsFy1: feedCompany.financial.fy1.eps,
+                            epsFy2: feedCompany.financial.fy2.eps,
+                            sharesOs: feedCompany.capTable.sharesOs,
+                            netDebt: feedCompany.capTable.netDebt
+                        };
                         var valuationType = valuation.valuationType;
                         if (valuationType == "comps" || valuationType == "deals") {
                             switch (valuationMetric) {
@@ -786,49 +731,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "LTM":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).evRev.ltm.ev;
+                                                    return buildValue;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).evRev.ltm.price;
+                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.evRev.ltm;
+                                                                    return buildValue / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.evRev.fy1;
+                                                                    return buildValue / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.evRev.fy2;
+                                                                    return buildValue / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.evEbitda.ltm;
+                                                                    return buildValue / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.evEbitda.fy1;
+                                                                    return buildValue / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.evEbitda.fy2;
+                                                                    return buildValue / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.pe.ltm;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.pe.fy1;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.ltm.multiple.pe.fy2;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -839,49 +784,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "FY1":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).evRev.fy1.ev;
+                                                    return buildValue;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).evRev.fy1.price;
+                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.evRev.ltm;
+                                                                    return buildValue / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.evRev.fy1;
+                                                                    return buildValue / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.evRev.fy2;
+                                                                    return buildValue / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.evEbitda.ltm;
+                                                                    return buildValue / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.evEbitda.fy1;
+                                                                    return buildValue / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.evEbitda.fy2;
+                                                                    return buildValue / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.pe.ltm;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.pe.fy1;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy1.multiple.pe.fy2;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -892,49 +837,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "FY2":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).evRev.fy2.ev;
+                                                    return buildValue;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).evRev.fy2.price;
+                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.evRev.ltm;
+                                                                    return buildValue / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.evRev.fy1;
+                                                                    return buildValue / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.evRev.fy2;
+                                                                    return buildValue / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.evEbitda.ltm;
+                                                                    return buildValue / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.evEbitda.fy1;
+                                                                    return buildValue / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.evEbitda.fy2;
+                                                                    return buildValue / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.pe.ltm;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.pe.fy1;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evRev.fy2.multiple.pe.fy2;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -949,49 +894,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "LTM":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.ev;
+                                                    return buildValue;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.price;
+                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.evRev.ltm;
+                                                                    return buildValue / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.evRev.fy1;
+                                                                    return buildValue / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.evRev.fy2;
+                                                                    return buildValue / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.evEbitda.ltm;
+                                                                    return buildValue / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.evEbitda.fy1;
+                                                                    return buildValue / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.evEbitda.fy2;
+                                                                    return buildValue / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.pe.ltm;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.pe.fy1;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.ltm.multiple.pe.fy2;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -1002,49 +947,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "FY1":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.ev;
+                                                    return buildValue;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.price;
+                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.evRev.ltm;
+                                                                    return buildValue / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.evRev.fy1;
+                                                                    return buildValue / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.evRev.fy2;
+                                                                    return buildValue / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.evEbitda.ltm;
+                                                                    return buildValue / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.evEbitda.fy1;
+                                                                    return buildValue / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.evEbitda.fy2;
+                                                                    return buildValue / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.pe.ltm;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.pe.fy1;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy1.multiple.pe.fy2;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -1055,49 +1000,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "FY2":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.ev;
+                                                    return buildValue;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.price;
+                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.evRev.ltm;
+                                                                    return buildValue / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.evRev.fy1;
+                                                                    return buildValue / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.evRev.fy2;
+                                                                    return buildValue / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.evEbitda.ltm;
+                                                                    return buildValue / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.evEbitda.fy1;
+                                                                    return buildValue / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.evEbitda.fy2;
+                                                                    return buildValue / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.pe.ltm;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.pe.fy1;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).evEbitda.fy2.multiple.pe.fy2;
+                                                                    return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -1112,49 +1057,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "LTM":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).pe.ltm.ev;
+                                                    return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).pe.ltm.price;
+                                                    return buildValue;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.evRev.ltm;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.evRev.fy1;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.evRev.fy2;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.evEbitda.ltm;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.evEbitda.fy1;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.evEbitda.fy2;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.pe.ltm;
+                                                                    return buildValue / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.pe.fy1;
+                                                                    return buildValue / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.ltm.multiple.pe.fy2;
+                                                                    return buildValue / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -1165,49 +1110,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "FY1":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).pe.fy1.ev;
+                                                    return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).pe.fy1.price;
+                                                    return buildValue;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.evRev.ltm;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.evRev.fy1;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.evRev.fy2;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.evEbitda.ltm;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.evEbitda.fy1;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.evEbitda.fy2;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.pe.ltm;
+                                                                    return buildValue / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.pe.fy1;
+                                                                    return buildValue / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.fy1.multiple.pe.fy2;
+                                                                    return buildValue / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -1218,49 +1163,49 @@ getResultValue = function(footballId, valuationId) {
                                         case "FY2":
                                             switch (footballOutput) {
                                                 case "Enterprise Value":
-                                                    return getResultAll(footballId, valuationId).pe.fy2.ev;
+                                                    return (buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt;
                                                     break;
                                                 case "Price per Share":
-                                                    return getResultAll(footballId, valuationId).pe.fy2.price;
+                                                    return buildValue;
                                                     break;
                                                 case "Multiple":
                                                     switch (valuationOutput) {
                                                         case "EV/Revenue":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.evRev.ltm;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.evRev.fy1;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.evRev.fy2;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.revenueFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "EV/EBITDA":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.evEbitda.ltm;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.evEbitda.fy1;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.evEbitda.fy2;
+                                                                    return ((buildValue * feedCompanyData.sharesOs) + feedCompanyData.netDebt) / feedCompanyData.ebitdaFy2;
                                                                     break;
                                                             }
                                                             break;
                                                         case "Price/Earnings":
                                                             switch (valuationOutputPeriod) {
                                                                 case "LTM":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.pe.ltm;
+                                                                    return buildValue / feedCompanyData.epsLtm;
                                                                     break;
                                                                 case "FY1":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.pe.fy1;
+                                                                    return buildValue / feedCompanyData.epsFy1;
                                                                     break;
                                                                 case "FY2":
-                                                                    return getResultAll(footballId, valuationId).pe.fy2.multiple.pe.fy2;
+                                                                    return buildValue / feedCompanyData.epsFy2;
                                                                     break;
                                                             }
                                                             break;
@@ -1275,82 +1220,47 @@ getResultValue = function(footballId, valuationId) {
                             if (valuationType == "models") {
                                 switch (footballOutput) {
                                     case "Enterprise Value":
-                                        return getResultAll(footballId, valuationId).enterpriseValue;
+                                        return buildValue;
                                         break;
                                     case "Price per Share":
-                                        return getResultAll(footballId, valuationId).pricePerShare;
+                                        return buildValue;
                                         break;
                                     case "Multiple":
-                                        switch (valuationMetric) {
-                                            case "EV/Revenue":
-                                                switch (valuationPeriod) {
-                                                    case "LTM":
-                                                        return getResultAll(footballId, valuationId).evRevenueLtm;
-                                                        break;
-                                                    case "FY1":
-                                                        return getResultAll(footballId, valuationId).evRevenueFy1;
-                                                        break;
-                                                    case "FY2":
-                                                        return getResultAll(footballId, valuationId).evRevenueFy2;
-                                                        break;
-                                                }
-                                                break;
-                                            case "EV/EBITDA":
-                                                switch (valuationPeriod) {
-                                                    case "LTM":
-                                                        return getResultAll(footballId, valuationId).evEbitdaLtm;
-                                                        break;
-                                                    case "FY1":
-                                                        return getResultAll(footballId, valuationId).evEbitdaFy1;
-                                                        break;
-                                                    case "FY2":
-                                                        return getResultAll(footballId, valuationId).evEbitdaFy2;
-                                                        break;
-                                                }
-                                                break;
-                                            case "Price/Earnings":
-                                                switch (valuationPeriod) {
-                                                    case "LTM":
-                                                        return getResultAll(footballId, valuationId).priceEarningsLtm;
-                                                        break;
-                                                    case "FY1":
-                                                        return getResultAll(footballId, valuationId).priceEarningsFy1;
-                                                        break;
-                                                    case "FY2":
-                                                        return getResultAll(footballId, valuationId).priceEarningsFy2;
-                                                        break;
-                                                }
-                                                break;
-                                        }
+                                        return buildMultiple;
                                         break;
                                 }
                             } else {
-                                return getResultAll(footballId, valuationId).customValue;
+                                return buildValue;
                             }
                         }
                         break;
                     case "team":
+                        var feedTeam = FeedTeams.findOne({_id: targetId});
+                        var feedTeamData = {
+                            revenueFy0: feedTeam.financial.fy0.revenue,
+                            attendanceFy0: feedTeam.financial.fy0.attendance
+                        };
                         switch (valuationMetric) {
                             case "EV/Revenue":
                                 switch (valuationPeriod) {
                                     case "FY0":
                                         switch (footballOutput) {
                                             case "Enterprise Value":
-                                                return getResultAll(footballId, valuationId).evRev.fy0.ev;
+                                                return buildValue;
                                                 break;
                                             case "Multiple":
                                                 switch (valuationOutput) {
                                                     case "EV/Revenue":
                                                         switch (valuationOutputPeriod) {
                                                             case "FY0":
-                                                                return getResultAll(footballId, valuationId).evRev.fy0.multiple.evRev.fy0;
+                                                                return buildValue / feedTeamData.revenueFy0;
                                                                 break;
                                                         }
                                                         break;
                                                     case "EV/Attendance":
                                                         switch (valuationOutputPeriod) {
                                                             case "FY0":
-                                                                return getResultAll(footballId, valuationId).evRev.fy0.multiple.evAttendance.fy0;
+                                                                return buildValue / feedTeamData.attendanceFy0;
                                                                 break;
                                                         }
                                                         break;
@@ -1365,21 +1275,21 @@ getResultValue = function(footballId, valuationId) {
                                     case "FY0":
                                         switch (footballOutput) {
                                             case "Enterprise Value":
-                                                return getResultAll(footballId, valuationId).evAttendance.fy0.ev;
+                                                return buildValue;
                                                 break;
                                             case "Multiple":
                                                 switch (valuationOutput) {
                                                     case "EV/Revenue":
                                                         switch (valuationOutputPeriod) {
                                                             case "FY0":
-                                                                return getResultAll(footballId, valuationId).evAttendance.fy0.multiple.evRev.fy0;
+                                                                return buildValue / feedTeamData.revenueFy0;
                                                                 break;
                                                         }
                                                         break;
                                                     case "EV/Attendance":
                                                         switch (valuationOutputPeriod) {
                                                             case "FY0":
-                                                                return getResultAll(footballId, valuationId).evAttendance.fy0.multiple.evAttendance.fy0;
+                                                                return buildValue / feedTeamData.attendanceFy0;
                                                                 break;
                                                         }
                                                         break;
@@ -1397,14 +1307,8 @@ getResultValue = function(footballId, valuationId) {
     }
 };
 
-Template.registerHelper('resultValue', function() {
-    var footballId = Template.parentData(1)._id;
-    var valuationId = Template.parentData(0)._id;
-    return getResultValue(footballId, valuationId);
-});
-
 //Calculates high and low value of valuation bar
-Template.registerHelper('valuationLowHigh',function(footballId) {
+getValuationLowHigh = function(footballId) {
     var football = Footballs.findOne({_id:footballId});
     var footballSpread = football.footballSpread;
 
@@ -1416,7 +1320,7 @@ Template.registerHelper('valuationLowHigh',function(footballId) {
         valuationLow: valuationActive * (1 - (footballSpread / 100)),
         valuationHigh: valuationActive * (1 + (footballSpread / 100))
     };
-});
+};
 
 //Uses high and low values from above to calculate values needed by d3 for valuation bar
 Template.registerHelper('valuationCalcs',function(footballId) {
@@ -1457,3 +1361,27 @@ Template.registerHelper('valuationText',function(footballId) {
         valuationHighText: valuationHigh / scaleSwitch
     }
 });
+
+Template.registerHelper('buildMultiple',function(){
+    var valuationId = this._id;
+    var footballId = Template.parentData(1)._id;
+    return getBuildMultiple(footballId, valuationId);
+});
+
+Template.registerHelper('buildValue',function(){
+    var footballId = Template.parentData(1)._id;
+    var valuationId = Template.parentData(0)._id;
+    return getBuildValue(footballId, valuationId);
+});
+
+Template.registerHelper('resultValue', function() {
+    var footballId = Template.parentData(1)._id;
+    var valuationId = Template.parentData(0)._id;
+    return getResultValue(footballId, valuationId);
+});
+
+Template.registerHelper('valuationLowHigh',function() {
+    var footballId = Template.parentData(1)._id;
+    return getValuationLowHigh(footballId);
+});
+

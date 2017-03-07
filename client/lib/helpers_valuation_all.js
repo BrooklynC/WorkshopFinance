@@ -40,7 +40,6 @@ getBuildMultipleAll = function(footballId, valuationId) {
 //Calculates all Build Values using selected Build Multiple from above, as well as data from private or public company
 getBuildValueAll = function(footballId, valuationId) {
     var football = Footballs.findOne({_id:footballId});
-    console.log(football);
     var footballType = football.footballType;
 
     var valuation = Valuations.findOne({_id:valuationId});
