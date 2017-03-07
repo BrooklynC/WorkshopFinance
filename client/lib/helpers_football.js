@@ -119,7 +119,7 @@ getRangeCaps = function(footballId) {
                 var valuationType = valuation.valuationType;
                 if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
                     //var activeResult = valuation.valuationActive;
-                    var activeResult = UI._globalHelpers.resultValue(footballId, valuationId);
+                    var activeResult = getResultValue(footballId, valuationId);
                     if (activeResult) {
                         results.push(activeResult);
                     }
@@ -486,3 +486,23 @@ Template.registerHelper('disableOptionFull',function() {
         return "disabled";
     }
 });
+
+//Toggle calc between average, median, high and low
+Template.registerHelper('calc',function(){
+    var valuationCalc = this.valuationCalc;
+    switch(valuationCalc) {
+        case "average":
+            return "Average";
+            break;
+        case "median":
+            return "Median";
+            break;
+        case "high":
+            return "High";
+            break;
+        case "low":
+            return "Low";
+            break;
+    }
+});
+
