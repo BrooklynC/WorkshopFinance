@@ -471,7 +471,7 @@ getBuildMultiple = function(footballId, valuationId) {
                         case "custom":
                             var existingCustom = this.existingCustom;
                             if (existingCustom == "customValue") {
-                                var scale = Template.parentData(1).footballScale;
+                                var scale = football.footballScale;
                                 switch (scale) {
                                     case "millions":
                                         return val.customValue;
@@ -1311,8 +1311,6 @@ getResultValue = function(footballId, valuationId) {
 
 
 getValuationLowHigh = function(footballId, valuationId) {
-    console.log(footballId);
-    console.log(valuationId);
     var football = Footballs.findOne({_id:footballId});
     var footballSpread = football.footballSpread;
 
@@ -1325,8 +1323,6 @@ getValuationLowHigh = function(footballId, valuationId) {
 };
 
 getValuationCalcs = function(footballId, valuationId) {
-    console.log(footballId);
-    console.log(valuationId);
     var footballRangeLow = getRangeCaps(footballId).min;
     var footballRangeHigh = getRangeCaps(footballId).max;
     var footballRange = footballRangeHigh - footballRangeLow;
@@ -1391,7 +1387,6 @@ Template.registerHelper('valuationCalcs',function(footballId, valuationId) {
     return getValuationCalcs(footballId, valuationId)
 });
 
-//Calculate values and spaces for labels for valuation bar
 Template.registerHelper('valuationText',function(footballId, valuationId) {
     return getValuationText(footballId, valuationId);
 });

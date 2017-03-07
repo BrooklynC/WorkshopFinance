@@ -124,12 +124,14 @@ p {
     height:100%;
     margin:0;
 }
-#gallery-menu-inner .panel {
+#gallery-menu-inner > .panel {
     margin:0;
     border-bottom: solid white 1px;
+    border-radius:0;
 }
 .gallery-menu-base {
     padding: 2px;
+    border-radius:0;
 }
 .gallery-menu-block {
     height: 320px;
