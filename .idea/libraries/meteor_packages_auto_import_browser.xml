@@ -37,8 +37,10 @@
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/privateAPI.js" />
         <item url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/collections.js" />
         <item url="file://$USER_HOME$/.meteor/packages/autoupdate/1.2.4/web.browser/autoupdate_client.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/mizzao_user-status/0.6.6/web.browser/monitor.coffee" />
         <item url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.4/web.browser/babel-runtime.js" />
         <item url="file://$USER_HOME$/.meteor/packages/base64/1.0.4/web.browser/base64.js" />
+        <item url="file://$USER_HOME$/.meteor/packages/mizzao_timesync/0.3.4/web.browser/timesync-client.js" />
         <item url="file://$USER_HOME$/.meteor/packages/mdg_validation-error/0.2.0/web.browser/validation-error.js" />
         <item url="file://$USER_HOME$/.meteor/packages/binary-heap/1.0.4/web.browser/min-max-heap.js" />
         <item url="file://$USER_HOME$/.meteor/packages/binary-heap/1.0.4/web.browser/min-heap.js" />
@@ -259,8 +261,10 @@
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/privateAPI.js" />
       <root url="file://$USER_HOME$/.meteor/packages/meteortoys_toykit/3.0.4/web.browser/lib/collections.js" />
       <root url="file://$USER_HOME$/.meteor/packages/autoupdate/1.2.4/web.browser/autoupdate_client.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/mizzao_user-status/0.6.6/web.browser/monitor.coffee" />
       <root url="file://$USER_HOME$/.meteor/packages/babel-runtime/0.1.4/web.browser/babel-runtime.js" />
       <root url="file://$USER_HOME$/.meteor/packages/base64/1.0.4/web.browser/base64.js" />
+      <root url="file://$USER_HOME$/.meteor/packages/mizzao_timesync/0.3.4/web.browser/timesync-client.js" />
       <root url="file://$USER_HOME$/.meteor/packages/mdg_validation-error/0.2.0/web.browser/validation-error.js" />
       <root url="file://$USER_HOME$/.meteor/packages/binary-heap/1.0.4/web.browser/min-max-heap.js" />
       <root url="file://$USER_HOME$/.meteor/packages/binary-heap/1.0.4/web.browser/min-heap.js" />

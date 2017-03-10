@@ -29,3 +29,6 @@ Meteor.publish('footballActive', function(currentFootballId) {
     return Footballs.find({_id:currentFootballId});
 });
 
+Meteor.publish("userStatus", function() {
+    return Meteor.users.find({ "status.online": true });
+});

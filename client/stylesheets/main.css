@@ -50,6 +50,9 @@ p {
 .gu-mirror {
     left: 27.2%  !important;
 }
+.online {
+    background-color: chartreuse;
+}
 /*BUTTONS*/
 .btn-full {
     width:100%;

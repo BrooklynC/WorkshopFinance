@@ -12,8 +12,6 @@ Template.GalleryItemTierUsers.events({
 Template.GalleryItemTierUsers.helpers({
     tier: function() {
         var userId = Template.parentData(0)._id;
-        var tier = Meteor.users.findOne({_id: userId}).profile.tier;
-        console.log("Tier: ", tier);
-        return tier;
+        return Meteor.users.findOne({_id: userId}).profile.tier;
     }
 });
