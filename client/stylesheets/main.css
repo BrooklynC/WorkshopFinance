@@ -500,19 +500,19 @@ svg {
 .valuation-build-inner {
     width:100%;
 }
-.valuation-build-options {
+.valuation-build-type {
     width:25%;
 }
-.valuation-build-options > select {
+.valuation-build-type > select {
     width:100%;
 }
 .valuation-build-select {
-    width:70%;
+    width:75%;
 }
-.build-info-inner {
+.build-select-inner {
     width:100%;
 }
-.build-info-inner > form > div {
+.build-select-inner > form > div {
     width:50%;
 }
 .valuation-results-inner {

@@ -7,7 +7,7 @@ Template.ValuationBuild.helpers({
             var valuationType = this.valuationType;
             switch (valuationType) {
                 case "comps":
-                    return Template.ValuationBuildData;
+                    return Template.ValuationBuildDataComps;
                     break;
                 case "deals":
                     return Template.ValuationBuildData;

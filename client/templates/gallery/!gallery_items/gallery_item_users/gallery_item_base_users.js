@@ -15,7 +15,7 @@ Template.GalleryItemBaseUsers.helpers({
         var userId = this._id;
         var loginDate = Meteor.users.findOne({_id:userId}).status.lastLogin.date;
         console.log(loginDate);
-        return date(loginDate)
+        return loginDate;
     }
 });
 

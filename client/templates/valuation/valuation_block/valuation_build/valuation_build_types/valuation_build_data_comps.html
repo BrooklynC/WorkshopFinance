@@ -1,0 +1,26 @@
+<!--Drop-down menu for choosing Valuation Type (comps, deals, models or custom)-->
+<template name="ValuationBuildDataComps">
+    <div>
+        <select {{disableOption}} {{disableOptionFull}} class="form-control build-comps-sector {{themeStyle.formDropdown}}" name="build-comps-sector" title="">
+            <option class="comps-sector" value="">Sector:</option>
+            <option class="comps-sector {{selectedHealthcare}}" value="Healthcare">Healthcare</option>
+            <option class="comps-sector {{selectedMaterials}}" value="Materials">Materials</option>
+            <option class="comps-sector {{selectedIndustrials}}" value="Industrials">Industrials</option>
+            <option class="comps-sector {{selectedIt}}" value="Information Technology">Information Technology</option>
+            <option class="comps-sector {{selectedFinancials}}" value="Financials">Financials</option>
+            <option class="comps-sector {{selectedConsumerStaples}}" value="Consumer Staples">Consumer Staples</option>
+            <option class="comps-sector {{selectedConsumerDisc}}" value="Consumer Discretionary">Consumer Discretionary</option>
+            <option class="comps-sector {{selectedUtilities}}" value="Utilities">Utilities</option>
+            <option class="comps-sector {{selectedEnergy}}" value="Energy">Energy</option>
+            <option class="comps-sector {{selectedTelecom}}" value="Telecommunication Services">Telecommunication Services</option>
+        </select>
+    </div>
+    <div>
+        <select {{disableOption}} {{disableOptionFull}} class="form-control build-comps-comp {{themeStyle.formDropdown}}" name="build-comps-comp" title="">
+            <option class="build-comps-comp" value="">Comp:</option>
+            {{#each comps}}
+                <option class="comps-comp" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+            {{/each}}
+        </select>
+    </div>
+</template>

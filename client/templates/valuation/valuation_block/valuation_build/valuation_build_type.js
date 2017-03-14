@@ -1,4 +1,4 @@
-Template.ValuationBuildOptions.events({
+Template.ValuationBuildType.events({
     'change .build-type': function(e) {
         e.preventDefault();
 
@@ -9,7 +9,7 @@ Template.ValuationBuildOptions.events({
     }
 });
 
-Template.ValuationBuildOptions.helpers({
+Template.ValuationBuildType.helpers({
     isPremium: function() {
         var currentUserId = Meteor.userId();
         var tier = Meteor.users.findOne({_id:currentUserId}).profile.tier;
