@@ -12,7 +12,8 @@ getTarget = function(currentFootballId, targetSelection) {
     } else {
         var marketType = Footballs.findOne({_id:currentFootballId}).marketType;
         var targetData = Session.get('targetData');
-        if(!targetSelection)  {
+        if(targetSelection == "none")  {
+        //if(!targetSelection)  {
             return {
                 targetId: "none",
                 targetType: "none",
@@ -34,7 +35,7 @@ getTarget = function(currentFootballId, targetSelection) {
                 case "team":
                     switch(targetData) {
                         case "feed":
-                            var feedTeamId = FeedTeams.findOne({teamName:targetSelection})._id;
+                            var feedTeamId = FeedTeams.findOne({ticker:targetSelection})._id;
                             return {
                                 targetId: feedTeamId,
                                 targetType: "team",
@@ -49,7 +50,7 @@ getTarget = function(currentFootballId, targetSelection) {
 
 //Chooses footballType to set, depending on whether or not a target is selected
 getFootballType = function(targetSelection) {
-    if(!targetSelection)  {
+    if(targetSelection == "none")  {
         return "market"
     } else {
         return "target"

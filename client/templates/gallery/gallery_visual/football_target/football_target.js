@@ -4,7 +4,9 @@ Template.FootballTarget.events({
         e.preventDefault();
 
         var field = $(e.target).find('[id=footballAddTarget]');
-        var targetSelection = field.val();
+        //var targetSelection = field.val();
+        var targetSelection = $(".football-target option:selected").val();
+        console.log(targetSelection);
 
         var currentFootballId = this._id;
         var currentFootball = Footballs.findOne({_id:currentFootballId});
@@ -36,6 +38,9 @@ Template.FootballTarget.events({
 });
 
 Template.FootballTarget.helpers({
+    targets: function() {
+        return FeedCompanies.find({});
+    },
     settings: function() {
         var market = Template.parentData(0).marketType;
         switch(market) {

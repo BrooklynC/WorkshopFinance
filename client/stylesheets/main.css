@@ -177,6 +177,20 @@ p {
 .control-half {
     width:50%;
 }
+.control-half-title {
+    width:40%;
+}
+.output-text {
+    display: table;
+    height:100%;
+}
+.output-text p {
+    display: table-cell;
+    vertical-align: middle;
+}
+.control-half-value {
+    width:60%;
+}
 .control-half-scroll {
     width:49%;
 }
