@@ -1,4 +1,4 @@
-Template.ValuationBuildData.events({
+Template.ValuationBuildDataAuto.events({
     'submit form': function(e) {
         e.preventDefault();
 
@@ -18,7 +18,7 @@ Template.ValuationBuildData.events({
     }
 });
 
-Template.ValuationBuildData.helpers({
+Template.ValuationBuildDataAuto.helpers({
     buildSettings: function() {
         var valuationType = this.valuationType;
         var valuationElement = this.valuationElement;

@@ -1,0 +1,35 @@
+<!--Form to add selection to Valuation, searches using autocomplete for Comp Ticker or Deal Target-->
+<template name="ValuationBuildDataDeals">
+    <div class="build-select-sector left">
+        <select {{disableOption}} class="form-control build-deals-sector {{themeStyle.formDropdown}}" name="build-deals-sector" title="">
+            <option class="comps-sector" value="">Sector:</option>
+            <option class="comps-sector {{selectedHealthcare}}" value="Healthcare">Healthcare</option>
+            <option class="comps-sector {{selectedMaterials}}" value="Materials">Materials</option>
+            <option class="comps-sector {{selectedIndustrials}}" value="Industrials">Industrials</option>
+            <option class="comps-sector {{selectedHighTech}}" value="High Technology">High Technology</option>
+            <option class="comps-sector {{selectedMedia}}" value="Media and Entertainment">Media and Entertainment</option>
+            <option class="comps-sector {{selectedFinancials}}" value="Financials">Financials</option>
+            <option class="comps-sector {{selectedRealEstate}}" value="Real Estate">Real Estate</option>
+            <option class="comps-sector {{selectedConsumerStaples}}" value="Consumer Staples">Consumer Staples</option>
+            <option class="comps-sector {{selectedConsumerProducts}}" value="Consumer Products and Services">Consumer Products and Services</option>
+            <option class="comps-sector {{selectedRetail}}" value="Retail">Retail</option>
+            <option class="comps-sector {{selectedEnergy}}" value="Energy and Power">Energy and Power</option>
+            <option class="comps-sector {{selectedTelecom}}" value="Telecommunications">Telecommunications</option>
+        </select>
+    </div>
+    <div class="build-select-selection wrapper left">
+        <form>
+            <div class="left {{themeStyle.formInput}}">
+                <select {{disableOption}} class="form-control build-deals-deal {{themeStyle.formDropdown}}" name="build-deals-deal" title="">
+                    <option class="deals-deal" value="">Deal:</option>
+                    {{#each deals}}
+                        <option class="deals-deal" value="{{companyName}}">{{dealTerms.acquirerName}} ({{companyName}})</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="left">
+                <button type="submit" class="btn btn-default btn-full {{themeStyle.btnDefault}}">Add</button>
+            </div>
+        </form>
+    </div>
+</template>

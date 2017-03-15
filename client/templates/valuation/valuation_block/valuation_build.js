@@ -1,16 +1,54 @@
 Template.ValuationBuild.helpers({
     //Only owner can add selections
-    valuationBuildAdd: function() {
+    valuationBuildAddAuto: function() {
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
         if (currentUserId == ownerId) {
             var valuationType = this.valuationType;
             switch (valuationType) {
                 case "comps":
-                    return Template.ValuationBuildDataComps;
+                    return Template.ValuationBuildDataAuto;
                     break;
                 case "deals":
-                    return Template.ValuationBuildData;
+                    return Template.ValuationBuildDataAuto;
+                    break;
+                case "models":
+                    return Template.ValuationBuildModel;
+                    break;
+                case "custom":
+                    return Template.ValuationBuildCustom;
+                    break;
+            }
+        } else {
+            return Template.FootballBlank;
+        }
+    },
+    valuationBuildAdd: function() {
+        var ownerId = this.ownerId;
+        var currentUserId = Meteor.userId();
+        if (currentUserId == ownerId) {
+            var valuationType = this.valuationType;
+            var valuationElement = this.valuationElement;
+            switch (valuationType) {
+                case "comps":
+                    switch(valuationElement) {
+                        case "security":
+                            return Template.ValuationBuildDataComps;
+                            break;
+                        case "index":
+                            return Template.ValuationBuildDataCompsIndices;
+                            break;
+                    }
+                    break;
+                case "deals":
+                    switch(valuationElement) {
+                        case "security":
+                            return Template.ValuationBuildDataDeals;
+                            break;
+                        case "index":
+                            return Template.ValuationBuildDataDealsIndices;
+                            break;
+                    }
                     break;
                 case "models":
                     return Template.ValuationBuildModel;

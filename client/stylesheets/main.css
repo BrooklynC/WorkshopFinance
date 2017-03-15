@@ -509,12 +509,33 @@ svg {
 .valuation-build-select {
     width:75%;
 }
+.valuation-build-select .build-select-sector {
+    width: calc(100%/3);
+}
+.valuation-build-select .build-select-selection {
+    width: calc(100%/3 * 2);
+}
+.valuation-build-select .build-select-selection-index {
+    width: 100%;
+}
+.build-select-selection form div {
+    width: 50%;
+}
+.build-select-selection-index form .select-index {
+    width: calc(100%/3 * 2);
+}
+.build-select-selection-index form .select-button {
+    width: calc(100%/3);
+}
 .build-select-inner {
     width:100%;
 }
-.build-select-inner > form > div {
-    width:50%;
+.build-select-inner > form > div > div {
+    width:25%;
 }
+/*.build-select-inner > form > div {*/
+    /*width:50%;*/
+/*}*/
 .valuation-results-inner {
     padding: 1% 10% 1% 1%;
     width:100%;

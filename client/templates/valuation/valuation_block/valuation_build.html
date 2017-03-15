@@ -6,7 +6,12 @@
             {{>ValuationBuildType}}
         </div>
         <div class="left valuation-build-select wrapper">
-            {{>valuationBuildAdd}}
+            {{#if isDesktop}}
+                {{>valuationBuildAdd}}
+            {{/if}}
+            {{#if isPhone}}
+                {{>valuationBuildAdd}}
+            {{/if}}
         </div>
     </div>
     <div>

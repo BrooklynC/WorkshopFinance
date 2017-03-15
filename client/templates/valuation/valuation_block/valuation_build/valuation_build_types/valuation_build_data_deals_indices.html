@@ -1,0 +1,18 @@
+<!--Form to add selection to Valuation, searches using autocomplete for Comp Ticker or Deal Target-->
+<template name="ValuationBuildDataDealsIndices">
+    <div class="build-select-selection-index wrapper left">
+        <form>
+            <div class="select-index left {{themeStyle.formInput}}">
+                <select {{disableOption}} class="form-control build-deals-index {{themeStyle.formDropdown}}" name="build-deals-index" title="">
+                    <option class="deals-index" value="">Index:</option>
+                    {{#each indices}}
+                        <option class="deals-index" value="{{_id}}">{{indexName}}</option>
+                    {{/each}}
+                </select>
+            </div>
+            <div class="select-button left">
+                <button type="submit" class="btn btn-default btn-full {{themeStyle.btnDefault}}">Add</button>
+            </div>
+        </form>
+    </div>
+</template>
