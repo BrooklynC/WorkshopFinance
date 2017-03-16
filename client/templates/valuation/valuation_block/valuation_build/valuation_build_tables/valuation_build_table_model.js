@@ -231,188 +231,31 @@ Template.ValuationBuildTableModel.helpers({
                 return "x";
                 break;
         }
+    },
+    result: function() {
+        var footballId = Template.parentData(1)._id;
+        var football = Footballs.findOne({_id:footballId});
+        var output = football.footballOutput;
+        var valuationId = this._id;
+        var valuationSelections = this.valuationSelections;
+        var scaleAdjust = getScale(footballId);
+        if (valuationSelections.length > 0) {
+            var valuationType = this.valuationType;
+            if (valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
+                if (output == "Enterprise Value") {
+                    return getResultValue(footballId, valuationId) / scaleAdjust;
+                } else {
+                    return getResultValue(footballId, valuationId);
+                }
+            } else {
+                var existingCustom = this.existingCustom;
+                if(existingCustom == "customValue") {
+                    return getResultValue(footballId, valuationId) / scaleAdjust;
+                } else {
+                    return getResultValue(footballId, valuationId);
+                }
+            }
+        }
     }
-    //},
-    //buildValueAdjusted: function() {
-    //    var footballType = Template.parentData(1).footballType;
-    //    if(footballType == "target") {
-    //        var scale = Template.parentData(1).footballScale;
-    //        var valuationMetric = this.valuationMetric;
-    //        var value = UI._globalHelpers.buildValue();
-    //        console.log(value);switch(valuationMetric) {
-    //            case "EV/Revenue":
-    //                switch (scale) {
-    //                    case "millions":
-    //                        return value;
-    //                        break;
-    //                    case "billions":
-    //                        return value / 1000;
-    //                        break;
-    //                }
-    //                break;
-    //            case "EV/EBITDA":
-    //                switch (scale) {
-    //                    case "millions":
-    //                        return value;
-    //                        break;
-    //                    case "billions":
-    //                        return value / 1000;
-    //                        break;
-    //                }
-    //                break;
-    //            case "EV/Attendance":
-    //                switch (scale) {
-    //                    case "millions":
-    //                        return value;
-    //                        break;
-    //                    case "billions":
-    //                        return value / 1000;
-    //                        break;
-    //                }
-    //                break;
-    //            case "Price/Earnings":
-    //                return value;
-    //                break;
-    //        }
-    //    }
-    //},
-    //targetReferenceValue: function() {
-    //    var footballId = Template.parentData(1)._id;
-    //    var football = Footballs.findOne({_id:footballId});
-    //    var footballType = football.footballType;
-    //    if(footballType == "target") {
-    //        var targetId = football.footballTarget.targetId;
-    //        var targetType = football.footballTarget.targetType;
-    //        var targetData = football.footballTarget.targetData;
-    //        var marketType = this.marketType;
-    //        var valuationMetric = this.valuationMetric;
-    //        var valuationPeriod = this.valuationPeriod;
-    //        var scaleAdjust = getScale(footballId);
-    //        var attendAdjust = getAttend(footballId);
-    //        switch(marketType) {
-    //            case "company":
-    //                switch(targetType) {
-    //                    case "company":
-    //                        switch(targetData) {
-    //                            case "feed":
-    //                                var feedCompany = FeedCompanies.findOne({_id:targetId});
-    //                                switch (valuationMetric) {
-    //                                    case "EV/Revenue":
-    //                                        switch (valuationPeriod) {
-    //                                            case "LTM":
-    //                                                return feedCompany.financial.ltm.revenue / scaleAdjust;
-    //                                                break;
-    //                                            case "FY1":
-    //                                                return feedCompany.financial.fy1.revenue / scaleAdjust;
-    //                                                break;
-    //                                            case "FY2":
-    //                                                return feedCompany.financial.fy2.revenue / scaleAdjust;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                    case "EV/EBITDA":
-    //                                        switch (valuationPeriod) {
-    //                                            case "LTM":
-    //                                                return feedCompany.financial.ltm.ebitda / scaleAdjust;
-    //                                                break;
-    //                                            case "FY1":
-    //                                                return feedCompany.financial.fy1.ebitda / scaleAdjust;
-    //                                                break;
-    //                                            case "FY2":
-    //                                                return feedCompany.financial.fy2.ebitda / scaleAdjust;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                    case "Price/Earnings":
-    //                                        switch (valuationPeriod) {
-    //                                            case "LTM":
-    //                                                return feedCompany.financial.ltm.eps;
-    //                                                break;
-    //                                            case "FY1":
-    //                                                return feedCompany.financial.fy1.eps;
-    //                                                break;
-    //                                            case "FY2":
-    //                                                return feedCompany.financial.fy2.eps;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                }
-    //                                break;
-    //                            case "custom":
-    //                                var customCompany = TargetsCompanies.findOne({_id:targetId});
-    //                                switch (valuationMetric) {
-    //                                    case "EV/Revenue":
-    //                                        switch (valuationPeriod) {
-    //                                            case "LTM":
-    //                                                return customCompany.financial.ltm.revenue / scaleAdjust;
-    //                                                break;
-    //                                            case "FY1":
-    //                                                return customCompany.financial.fy1.revenue / scaleAdjust;
-    //                                                break;
-    //                                            case "FY2":
-    //                                                return customCompany.financial.fy2.revenue / scaleAdjust;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                    case "EV/EBITDA":
-    //                                        switch (valuationPeriod) {
-    //                                            case "LTM":
-    //                                                return customCompany.financial.ltm.ebitda / scaleAdjust;
-    //                                                break;
-    //                                            case "FY1":
-    //                                                return customCompany.financial.fy1.ebitda / scaleAdjust;
-    //                                                break;
-    //                                            case "FY2":
-    //                                                return customCompany.financial.fy2.ebitda / scaleAdjust;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                    case "Price/Earnings":
-    //                                        switch (valuationPeriod) {
-    //                                            case "LTM":
-    //                                                return customCompany.financial.ltm.eps;
-    //                                                break;
-    //                                            case "FY1":
-    //                                                return customCompany.financial.fy1.eps;
-    //                                                break;
-    //                                            case "FY2":
-    //                                                return customCompany.financial.fy2.eps;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                }
-    //                                break;
-    //                        }
-    //                }
-    //                break;
-    //            case "team":
-    //                switch(targetType) {
-    //                    case "team":
-    //                        switch(targetData) {
-    //                            case "feed":
-    //                                var feedTeam = FeedTeams.findOne({_id:targetId});
-    //                                switch (valuationMetric) {
-    //                                    case "EV/Revenue":
-    //                                        switch (valuationPeriod) {
-    //                                            case "FY0":
-    //                                                return feedTeam.financial.fy0.revenue / scaleAdjust;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                    case "EV/Attendance":
-    //                                        switch (valuationPeriod) {
-    //                                            case "FY0":
-    //                                                return feedTeam.financial.fy0.attendance * attendAdjust;
-    //                                                break;
-    //                                        }
-    //                                        break;
-    //                                }
-    //                                break;
-    //                        }
-    //                        break;
-    //                }
-    //                break;
-    //        }
-    //    }
 });
 

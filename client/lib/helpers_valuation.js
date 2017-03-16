@@ -320,8 +320,7 @@ getBuildMultiple = function(footballId, valuationId) {
     var valuationMultiples = valuation.multiples;
 
     var val = getVal(footballId, valuationId);
-
-    var scaleAdjust = getScaleRange(footballId);
+    var scaleAdjust = getScale(footballId);
 
     if (valuationSelections.length > 0) {
         if (valuationMultiples) {
@@ -418,7 +417,7 @@ getBuildMultiple = function(footballId, valuationId) {
                         case "models":
                             switch (footballOutput) {
                                 case "Enterprise Value":
-                                    return val.enterpriseValue / scaleAdjust;
+                                    return val.enterpriseValue;
                                     break;
                                 case "Price per Share":
                                     return val.pricePerShare;
@@ -477,7 +476,7 @@ getBuildMultiple = function(footballId, valuationId) {
                                         return val.customValue;
                                         break;
                                     case "billions":
-                                        return val.customValue / 1000;
+                                        return val.customValue / scaleAdjust;
                                         break;
                                 }
                             } else {
@@ -678,8 +677,6 @@ getBuildFinancial = function(footballId, valuationId) {
 getBuildValue = function(footballId, valuationId) {
     var buildFinancial = getBuildFinancial(footballId, valuationId);
     var buildMultiple = getBuildMultiple(footballId, valuationId);
-    //console.log(buildFinancial);
-    //console.log(buildMultiple);
     return buildFinancial * buildMultiple;
 };
 
@@ -689,8 +686,8 @@ getResultValue = function(footballId, valuationId) {
     var footballOutput = football.footballOutput;
     var footballType = football.footballType;
     var targetId = football.footballTarget.targetId;
-
     var valuation = Valuations.findOne({_id: valuationId});
+
     if(valuation) {
         var valuationSelections = valuation.valuationSelections;
         var valuationMultiples = valuation.multiples;

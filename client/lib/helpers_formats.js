@@ -209,6 +209,7 @@ Template.registerHelper('resultFormat', function(a) {
     var footballOutput = Template.parentData(1).footballOutput;
     var valuationSelections = this.valuationSelections;
     var valuationType = this.valuationType;
+
     if(valuationSelections.length > 0) {
         if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
             switch (footballOutput) {

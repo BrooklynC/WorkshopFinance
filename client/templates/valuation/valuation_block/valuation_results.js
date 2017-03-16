@@ -81,33 +81,32 @@ Template.ValuationResults.helpers({
         var output = football.footballOutput;
         var valuationId = this._id;
         var valuationSelections = this.valuationSelections;
-        //var valuationActive = this.valuationActive;
         var scaleAdjust = getScale(footballId);
-        if(valuationSelections.length > 0) {
+        if (valuationSelections.length > 0) {
             var valuationType = this.valuationType;
-            if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
-                if(output == "Enterprise Value") {
-                    //var r = valuationActive / scaleAdjust;
-                    var r = getResultValue(footballId, valuationId) / scaleAdjust;
-                    console.log("Result: ", r);
-                    return r;
+            if (valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
+                if (output == "Enterprise Value") {
+                    return getResultValue(footballId, valuationId) / scaleAdjust;
                 } else {
-                    //return valuationActive;
                     return getResultValue(footballId, valuationId);
                 }
             } else {
-                //return valuationActive;
-                return getResultValue(footballId, valuationId);
+                var existingCustom = this.existingCustom;
+                if(existingCustom == "customValue") {
+                    return getResultValue(footballId, valuationId) / scaleAdjust;
+                } else {
+                    return getResultValue(footballId, valuationId);
+                }
             }
         }
     },
     scale: function() {
         var footballId = Template.parentData(1)._id;
-        var football = Footballs.findOne({_id:footballId});
+        var football = Footballs.findOne({_id: footballId});
         var footballOutput = football.footballOutput;
         var footballScale = football.footballScale;
-        if(footballOutput == "Enterprise Value") {
-            switch(footballScale) {
+        if (footballOutput == "Enterprise Value") {
+            switch (footballScale) {
                 case "millions":
                     return "million";
                     break;
