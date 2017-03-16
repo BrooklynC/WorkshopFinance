@@ -9,7 +9,7 @@ Template.ValuationResults.helpers({
                 return Template.ValuationResultsOutput;
                 break;
             case "models":
-                return Template.FootballBlank;
+                return Template.ValuationResultsOutput;
                 break;
             case "custom":
                 return Template.FootballBlank;
@@ -38,7 +38,7 @@ Template.ValuationResults.helpers({
                                 return Template.FootballBlank;
                                 break;
                             case "Multiple":
-                                return Template.ValuationResultsBuild;
+                                return Template.FootballBlank;
                                 break;
                         }
                         break;

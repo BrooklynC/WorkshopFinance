@@ -241,6 +241,9 @@ p {
 #football-actions-input {
     height:40px;
 }
+.cushion-text {
+    margin: 0 auto;
+}
 /*GALLERY LIBRARY*/
 .screen-left {
     width:50%;

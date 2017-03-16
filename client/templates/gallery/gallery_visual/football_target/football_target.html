@@ -5,7 +5,44 @@
             <select class="form-control football-target {{themeStyle.formDropdown}}" title="">
                 <option class="target-selected" value="">Update Target:</option>
                 <option class="target-selected" value="none">Market Comparison</option>
-                {{#each targets}}
+                <option class="target-selected" disabled value="none">HEALTHCARE</option>
+                {{#each targetsHealthcare}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">MATERIALS</option>
+                {{#each targetsMaterials}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">INDUSTRIALS</option>
+                {{#each targetsIndustrials}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">INFORMATION TECHNOLOGY</option>
+                {{#each targetsIt}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">FINANCIALS</option>
+                {{#each targetsFinancials}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">CONSUMER STAPLES</option>
+                {{#each targetsConsumerStaples}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">CONSUMER DISCRETIONARY</option>
+                {{#each targetsConsumerDisc}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">UTILITIES</option>
+                {{#each targetsUtilities}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">ENERGY</option>
+                {{#each targetsEnergy}}
+                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                {{/each}}
+                <option class="target-selected" disabled value="none">TELECOMMUNICATION SERVICES</option>
+                {{#each targetsTelecom}}
                     <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
                 {{/each}}
             </select>

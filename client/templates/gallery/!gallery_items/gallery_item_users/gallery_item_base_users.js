@@ -10,12 +10,6 @@ Template.GalleryItemBaseUsers.helpers({
         } else {
             return "Offline"
         }
-    },
-    last: function() {
-        var userId = this._id;
-        var loginDate = Meteor.users.findOne({_id:userId}).status.lastLogin.date;
-        console.log(loginDate);
-        return loginDate;
     }
 });
 

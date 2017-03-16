@@ -22,7 +22,7 @@ Template.FootballTarget.events({
 
         if(currentUserId == ownerId) {
             if (valuationsCount > 0) {
-                var saveCopy = confirm("Do you want to save a copy of this football first?");
+                var saveCopy = confirm("Select OK to recreate this football field with this new target.  Select Cancel to update the existing football field with this target.");
                 Meteor.call('footballTargetUpdateAndCopy', currentFootballId, target, footballType, saveCopy, function (error, result) {
                 });
             } else {
@@ -38,8 +38,35 @@ Template.FootballTarget.events({
 });
 
 Template.FootballTarget.helpers({
-    targets: function() {
-        return FeedCompanies.find({});
+    targetsHealthcare: function() {
+        return FeedCompanies.find({sector:"Healthcare"}, {sort: {companyName: 1}});
+    },
+    targetsMaterials: function() {
+        return FeedCompanies.find({sector:"Materials"}, {sort: {timeCreated: 1}});
+    },
+    targetsIndustrials: function() {
+        return FeedCompanies.find({sector:"Industrials"}, {sort: {timeCreated: 1}});
+    },
+    targetsIt: function() {
+        return FeedCompanies.find({sector:"Information Technology"}, {sort: {timeCreated: 1}});
+    },
+    targetsFinancials: function() {
+        return FeedCompanies.find({sector:"Financials"}, {sort: {timeCreated: 1}});
+    },
+    targetsConsumerStaples: function() {
+        return FeedCompanies.find({sector:"Consumer Staples"}, {sort: {timeCreated: 1}});
+    },
+    targetsConsumerDisc: function() {
+        return FeedCompanies.find({sector:"Consumer Discretionary"}, {sort: {timeCreated: 1}});
+    },
+    targetsUtilities: function() {
+        return FeedCompanies.find({sector:"Utilities"}, {sort: {timeCreated: 1}});
+    },
+    targetsEnergy: function() {
+        return FeedCompanies.find({sector:"Energy"}, {sort: {timeCreated: 1}});
+    },
+    targetsTelecom: function() {
+        return FeedCompanies.find({sector:"Telecommunication Services"}, {sort: {timeCreated: 1}});
     },
     settings: function() {
         var market = Template.parentData(0).marketType;

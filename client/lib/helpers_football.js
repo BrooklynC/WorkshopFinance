@@ -118,9 +118,9 @@ getRangeCaps = function(footballId) {
             var valuationSelections = valuation.valuationSelections;
             if(valuationSelections.length > 0) {
                 var valuationType = valuation.valuationType;
+                var activeResult = getResultValue(footballId, valuationId);
                 if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
                     //var activeResult = valuation.valuationActive;
-                    var activeResult = getResultValue(footballId, valuationId);
                     if (activeResult) {
                         results.push(activeResult);
                     }
@@ -153,6 +153,7 @@ getRangeCaps = function(footballId) {
             }
         });
     }
+    console.log(results);
     //Push result from each includeCurrent, if it exists, into results array
     var includeCurrent = football.includeCurrent;
     var current = UI._globalHelpers.targetCurrent(footballId);

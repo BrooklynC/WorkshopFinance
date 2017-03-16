@@ -5,21 +5,18 @@ Template.ValuationBuildCustom.events({
         var currentFootballId = Template.parentData(1)._id;
         var currentValuationId = this._id;
         var fieldName = $(e.target).find('[id=customNameAdd]');
-        var fieldDesc = $(e.target).find('[id=customDescAdd]');
         var fieldStat = $(e.target).find('[id=customStatAdd]');
         var fieldValue = $(e.target).find('[id=customValueAdd]');
 
         var selectionName = fieldName.val();
-        var selectionDesc = fieldDesc.val();
         var menuStat = fieldStat.val();
         var selectionValue = fieldValue.val();
 
         if(selectionName == "" || selectionValue == "") {
-            alert("You must include a name, type, stat and value.")
+            alert("You must include a name, stat and value.")
         } else {
             fieldName.val('');
-            fieldDesc.val('');
-            fieldStat.val('enterpriseValue');
+            fieldStat.val('');
             fieldValue.val('');
 
             var ownerId = this.ownerId;
@@ -39,7 +36,7 @@ Template.ValuationBuildCustom.events({
             var selectionStat = getStat();
 
             if(currentUserId == ownerId) {
-                return Meteor.call('valuationBuildCustomAdd', currentFootballId, currentValuationId, selectionName, selectionDesc, selectionStat, selectionValue, function(error, result) {
+                return Meteor.call('valuationBuildCustomAdd', currentFootballId, currentValuationId, selectionName, selectionStat, selectionValue, function(error, result) {
                 });
             }
         }
