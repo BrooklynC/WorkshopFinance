@@ -13,7 +13,7 @@ Template.ValuationBuildModel.events({
         var selectionValue = fieldValue.val();
 
         if(selectionName == "" || selectionStat == "" || selectionValue == "") {
-            alert("You must include a name, type, stat and value.")
+            alert("You must include a name, stat and value.")
         } else {
             fieldName.val('');
             fieldStat.val('enterpriseValue');

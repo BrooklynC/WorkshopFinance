@@ -19,7 +19,7 @@ Template.ValuationBaseBar.helpers({
         var selections = this.valuationSelections;
         var multiples = this.multiples;
         var currentUserId = Meteor.userId();
-        var tier = Meteor.users.findOne({_id:currentUserId}).profile.tier;
+        //var tier = Meteor.users.findOne({_id:currentUserId}).profile.tier;
         if (!selections || selections.length == 0 || !multiples) {
             return Template.ValuationBaseBarEmpty;
         } else {
@@ -33,18 +33,18 @@ Template.ValuationBaseBar.helpers({
                     break;
                 case "models":
                     if(currentUserId == ownerId) {
-                        if(tier == "B") {
+                        //if(tier == "B") {
                             return Template.ValuationBaseBarFull;
-                        } else {
-                            return Template.ValuationBaseBarHold;
-                        }
+                        //} else {
+                        //    return Template.ValuationBaseBarHold;
+                        //}
                     } else {
                         return Template.ValuationBaseBarFull;
                     }
                     break;
                 case "custom":
                     if(currentUserId == ownerId) {
-                        if(tier == "B") {
+                        //if(tier == "B") {
                             var footballOutput = Template.parentData(1).footballOutput;
                             var existingCustom = this.existingCustom;
                             var count = selections.length;
@@ -83,9 +83,9 @@ Template.ValuationBaseBar.helpers({
                                     }
                                     break;
                             }
-                        } else {
-                            return Template.ValuationBaseBarHold;
-                        }
+                        //} else {
+                        //    return Template.ValuationBaseBarHold;
+                        //}
                     } else {
                         return Template.ValuationBaseBarFull;
                     }

@@ -9,7 +9,7 @@ Template.ValuationResults.helpers({
                 return Template.ValuationResultsOutput;
                 break;
             case "models":
-                return Template.ValuationResultsOutput;
+                return Template.ValuationResultsBuild;
                 break;
             case "custom":
                 return Template.FootballBlank;
