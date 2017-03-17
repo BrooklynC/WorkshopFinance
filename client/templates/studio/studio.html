@@ -1,6 +1,8 @@
 <!--Appears when user is logged in-->
 <template name="Studio">
     {{#if Template.subscriptionsReady}}
+        <!-- Modal -->
+        {{> About}}
         <div id="header">
             {{> Header}}
         </div>

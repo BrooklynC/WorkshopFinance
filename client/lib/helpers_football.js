@@ -153,7 +153,6 @@ getRangeCaps = function(footballId) {
             }
         });
     }
-    console.log(results);
     //Push result from each includeCurrent, if it exists, into results array
     var includeCurrent = football.includeCurrent;
     var current = UI._globalHelpers.targetCurrent(footballId);

@@ -29,6 +29,13 @@ p {
     width:100%;
     height:1px;
 }
+.rotateimg90 {
+    -webkit-transform:rotate(90deg);
+    -moz-transform: rotate(90deg);
+    -ms-transform: rotate(90deg);
+    -o-transform: rotate(90deg);
+    transform: rotate(90deg);
+}
 /*tpl class is used to clearly show template boundaries (for prototyping)*/
 .tpl {
     border: dashed thin blue;
@@ -684,6 +691,9 @@ svg {
 }
 .navbar-default, .navbar-brand, .dropdown-toggle {
     color: rgba(255,255,255,1) !important;
+}
+.navbar-brand {
+    cursor: pointer;
 }
 .gallery-menu-base {
     background-color: rgba(68, 68, 68, 1) !important;
