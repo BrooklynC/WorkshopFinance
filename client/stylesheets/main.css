@@ -201,6 +201,13 @@ p {
 .control-half-scroll {
     width:49%;
 }
+.visual-inc {
+    width:20%;
+}
+.visual-text {
+    width:60%;
+    text-align: center;
+}
 .control-half button, .control-half div {
     width:100%;
 }
