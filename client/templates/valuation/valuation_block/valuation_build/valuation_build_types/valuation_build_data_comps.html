@@ -21,7 +21,7 @@
                 <select {{disableOption}} class="form-control build-comps-comp {{themeStyle.formDropdown}}" name="build-comps-comp" title="">
                     <option class="comps-comp" value="">Comp:</option>
                     {{#each comps}}
-                        <option class="comps-comp" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
+                        <option class="comps-comp" value="{{_id}}">{{companyName}} ({{ticker}})</option>
                     {{/each}}
                 </select>
             </div>
