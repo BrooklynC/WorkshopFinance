@@ -112,7 +112,6 @@ p {
 }
 #gallery-inner {
     position: relative;
-    padding-bottom: 5px;
 }
 #gallery-football-add {
     position: absolute;
@@ -144,9 +143,10 @@ p {
     border-radius:0;
 }
 .gallery-menu-block {
-    height: 320px;
+    height: 342px;
     border-radius: 0;
     padding-top:5px;
+    padding-bottom:5px;
 }
 .gallery-block-items {
     width:100%;

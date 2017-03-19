@@ -8,9 +8,3 @@ Template.SettingsContent.helpers({
         }
     }
 });
-
-Template.SettingsContent.onCreated (function () {
-    var self = this;
-    self.autorun(function() {
-    });
-});

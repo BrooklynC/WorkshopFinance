@@ -20,7 +20,7 @@
     <div class="build-select-selection wrapper left">
         <form>
             <div class="left {{themeStyle.formInput}}">
-                <select {{disableOption}} class="form-control build-deals-deal {{themeStyle.formDropdown}}" name="build-deals-deal" title="">
+                <select {{disableOption}} {{disableNoSector}} class="form-control build-deals-deal {{themeStyle.formDropdown}}" name="build-deals-deal" title="">
                     <option class="deals-deal" value="">Deal:</option>
                     {{#each deals}}
                         <option class="deals-deal" value="{{_id}}">{{dealTerms.acquirerName}} ({{companyName}})</option>

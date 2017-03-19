@@ -33,6 +33,11 @@ Meteor.publish('galleryFootballsShared', function() {
     return Footballs.find({viewers:{$in:[currentUserId]}});
 });
 
+Meteor.publish('galleryFootballsOwner', function(ownerId) {
+    check(ownerId, String);
+    return Footballs.find({ownerId: ownerId});
+});
+
 Meteor.publish('galleryFootballsItem', function(footballId) {
     check(footballId, String);
     return Footballs.find({_id:footballId});

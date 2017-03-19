@@ -100,6 +100,12 @@ Template.ValuationBuildDataDeals.helpers({
         var sector = Template.instance().state.get('sector');
         console.log(sector);
         return FeedDeals.find({sector:sector});
+    },
+    disableNoSector: function() {
+        var sector = Template.instance().state.get('sector');
+        if(sector == null) {
+            return "disabled";
+        }
     }
 });
 

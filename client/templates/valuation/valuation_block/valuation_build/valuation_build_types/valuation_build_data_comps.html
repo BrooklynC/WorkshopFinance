@@ -18,7 +18,7 @@
     <div class="build-select-selection wrapper left">
         <form>
             <div class="left {{themeStyle.formInput}}">
-                <select {{disableOption}} class="form-control build-comps-comp {{themeStyle.formDropdown}}" name="build-comps-comp" title="">
+                <select {{disableOption}} {{disableNoSector}} class="form-control build-comps-comp {{themeStyle.formDropdown}}" name="build-comps-comp" title="">
                     <option class="comps-comp" value="">Comp:</option>
                     {{#each comps}}
                         <option class="comps-comp" value="{{_id}}">{{companyName}} ({{ticker}})</option>

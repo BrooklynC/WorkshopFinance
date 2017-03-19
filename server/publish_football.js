@@ -14,6 +14,11 @@ Meteor.publish('valuationsShared', function() {
     return Valuations.find({viewers:{$in:[currentUserId]}});
 });
 
+Meteor.publish('galleryValuationsOwner', function(ownerId) {
+    check(ownerId, String);
+    return Valuations.find({ownerId: ownerId});
+});
+
 Meteor.publish('feedCompaniesAll', function() {
     return FeedCompanies.find({});
 });
