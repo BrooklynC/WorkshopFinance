@@ -4,8 +4,9 @@ Template.ValuationResultsBuild.events({
 
         var currentValuationId = this._id;
         var selection = $(e.target).val();
+        var footballId = Template.parentData(1)._id;
 
-        Meteor.call('valuationBuildSelect', currentValuationId, selection, function(error, result) {});
+        Meteor.call('valuationBuildSelect', currentValuationId, selection, footballId, function(error, result) {});
     }
 });
 

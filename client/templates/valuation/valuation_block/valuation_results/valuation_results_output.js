@@ -1,10 +1,4 @@
 Template.ValuationResultsOutput.helpers({
-    isValues: function() {
-        var output = Template.parentData(1).footballOutput;
-        if(output !== "Multiple") {
-            return true;
-        }
-    },
     isMarket: function() {
         var footballId = Template.parentData(1)._id;
         var footballType = Footballs.findOne({_id:footballId}).footballType;
@@ -17,14 +11,29 @@ Template.ValuationResultsOutput.helpers({
         var football = Footballs.findOne({_id:footballId});
         return football.footballOutput;
     },
-    valuationResultsOutputMultiples: function() {
-        var footballType = Template.parentData(1).footballType;
-        switch(footballType) {
-            case "target":
-                return Template.ValuationResultsOutputMultiples;
+    isMultiple: function() {
+        var footballOutput = Template.parentData(1).footballOutput;
+        if(footballOutput == "Multiple") {
+            return true
+        }
+    },
+    isCustom: function() {
+        var valuationType = this.valuationType;
+        if(valuationType == "custom") {
+            return true
+        }
+    },
+    custom: function() {
+        var existing = this.existingCustom;
+        switch(existing) {
+            case "customValue":
+                return "Custom Enterprise Value";
                 break;
-            case "market":
-                return Template.FootballBlank;
+            case "customPrice":
+                return "Custom Price per Share";
+                break;
+            case "customMultiple":
+                return "Custom Multipl";
                 break;
         }
     }

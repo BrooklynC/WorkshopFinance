@@ -27,7 +27,7 @@ Template.ValuationBuildTableCustom.helpers({
         var customStat = this.values.customStat;
         switch(customStat) {
             case "customValue":
-                return "Custom Value";
+                return "Custom Enterprise Value";
                 break;
             case "customPrice":
                 return "Custom Price";

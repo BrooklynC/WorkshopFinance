@@ -1,18 +1,42 @@
 Template.ValuationResults.helpers({
-    valuationResultsOutput: function() {
+    output: function() {
         var valuationType = this.valuationType;
+        var footballType = Template.parentData(1).footballType;
+        var footballOutput = Template.parentData(1).footballOutput;
         switch(valuationType) {
             case "comps":
-                return Template.ValuationResultsOutput;
+                switch(footballType) {
+                    case "market":
+                        return Template.ValuationResultsOutput;
+                        break;
+                    case "target":
+                        if(footballOutput == "Multiple") {
+                            return Template.ValuationResultsOutputMultiples;
+                        } else {
+                            return Template.ValuationResultsOutput;
+                        }
+                        break;
+                }
                 break;
             case "deals":
-                return Template.ValuationResultsOutput;
+                switch(footballType) {
+                    case "market":
+                        return Template.ValuationResultsOutput;
+                        break;
+                    case "target":
+                        if(footballOutput == "Multiple") {
+                            return Template.ValuationResultsOutputMultiples;
+                        } else {
+                            return Template.ValuationResultsOutput;
+                        }
+                        break;
+                }
                 break;
             case "models":
-                return Template.ValuationResultsBuild;
+                return Template.ValuationResultsOutput;
                 break;
             case "custom":
-                return Template.FootballBlank;
+                return Template.ValuationResultsOutput;
                 break;
         }
     },
@@ -26,27 +50,29 @@ Template.ValuationResults.helpers({
                 return Template.ValuationResultsBuild;
                 break;
             case "models":
-                var footballType = Template.parentData(1).footballType;
-                switch(footballType) {
-                    case "target":
-                        var footballOutput = Template.parentData(1).footballOutput;
-                        switch(footballOutput) {
-                            case "Enterprise Value":
-                                return Template.FootballBlank;
-                                break;
-                            case "Price per Share":
-                                return Template.FootballBlank;
-                                break;
-                            case "Multiple":
-                                return Template.FootballBlank;
-                                break;
-                        }
-                        break;
-                    case "market":
-                        return Template.FootballBlank;
-                        break;
-                }
+                return Template.ValuationResultsBuild;
                 break;
+                //var footballType = Template.parentData(1).footballType;
+                //switch(footballType) {
+                //    case "target":
+                //        var footballOutput = Template.parentData(1).footballOutput;
+                //        switch(footballOutput) {
+                //            case "Enterprise Value":
+                //                return Template.FootballBlank;
+                //                break;
+                //            case "Price per Share":
+                //                return Template.FootballBlank;
+                //                break;
+                //            case "Multiple":
+                //                return Template.FootballBlank;
+                //                break;
+                //        }
+                //        break;
+                //    case "market":
+                //        return Template.FootballBlank;
+                //        break;
+                //}
+                //break;
             case "custom":
                 return Template.FootballBlank;
                 break;

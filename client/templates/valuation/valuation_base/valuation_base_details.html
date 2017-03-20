@@ -19,12 +19,22 @@
                     {{/if}}
                 </div>
             </div>
-            <div class="valuation-detail-results">
-                <div class="left valuation-metric">
-                    <div>
-                        <em>{{detail}} {{paren.open}}{{period}}{{paren.close}} {{asOf}} {{dateAbbrevComp valuationDateComp}} {{hold}}</em>
-                    </div>
-                </div>
+            <div class="valuation-detail-results wrapper">
+                {{#if isValuations}}
+                    {{#if isOutput}}
+                        <div class="left valuation-metric">
+                            <em>{{detailOutput}} {{parenOutput.open}}{{periodOutput}}{{parenOutput.close}}</em>
+                        </div>
+                        <div class="left valuation-metric">
+                            <em>{{asOf}} {{dateAbbrevComp valuationDateComp}} {{hold}}</em>
+                        </div>
+                    {{/if}}
+                    <!--{{#if isValue}}-->
+                        <!--<div class="left valuation-metric">-->
+                            <!--<em>Based on {{valuationCalc}} {{detailMetric}} {{parenBuild.open}}{{periodMetric}}{{parenBuild.close}}</em>-->
+                        <!--</div>-->
+                    <!--{{/if}}-->
+                {{/if}}
             </div>
         </div>
     </div>

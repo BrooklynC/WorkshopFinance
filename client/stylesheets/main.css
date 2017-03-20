@@ -424,8 +424,9 @@ p {
 .valuation-inner .in, .valuation-inner .collapsing {
     display: inline-block;
 }
-.valuation-base-inner {
+.valuation-right {
     height:100%;
+    padding-bottom:10px;
 }
 .valuation-bar-frame {
     cursor: pointer;
@@ -450,6 +451,9 @@ p {
 }
 .valuation-detail-name, .valuation-detail-results {
     display: inline-block;
+}
+.valuation-metric {
+    clear: both;
 }
 .valuation-name-value, .valuation-note-value {
     cursor: pointer;
@@ -520,6 +524,7 @@ svg {
 /*VALUATION BLOCK*/
 .valuation-block-inner {
     width:100%;
+    padding-top:5px;
     overflow: hidden;
 }
 .valuation-block-results {

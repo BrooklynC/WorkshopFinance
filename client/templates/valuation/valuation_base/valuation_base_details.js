@@ -34,35 +34,57 @@ Template.ValuationBaseDetails.helpers({
     showName: function() {
         return Template.instance().showName.get();
     },
+    isValuations: function() {
+        var selections = this.valuationSelections;
+        var count = selections.length;
+        if(count > 0) {
+            return true
+        }
+    },
+    isOutput: function() {
+        var footballId = Template.parentData(1)._id;
+        var footballOutput = Footballs.findOne({_id:footballId}).footballOutput;
+        var footballType = Footballs.findOne({_id:footballId}).footballType;
+        var valuationType = this.valuationType;
+        if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
+            switch(footballType) {
+                case "market":
+                    return true;
+                    break;
+                case "target":
+                    if(footballOutput == "Multiple") {
+                        return true;
+                    }
+            }
+        } else {
+            return true;
+        }
+    },
+    isValue: function() {
+        var valuationType = this.valuationType;
+        if(valuationType == "comps" || valuationType == "deals") {
+            return true
+        }
+    },
     //Valuation Output matches Football Output if Enterprise Value or Price per Share, otherwise use Valuation Output
-    detail: function() {
+    detailOutput: function() {
         var footballId = Template.parentData(1)._id;
         var football = Footballs.findOne({_id:footballId});
-        var targetId = football.footballTarget.targetId;
         var footballType = football.footballType;
         var footballOutput = football.footballOutput;
-        var valuationMetric = this.valuationMetric;
         var valuationOutput = this.valuationOutput;
         var valuationType = this.valuationType;
         switch(valuationType) {
             case "comps":
-                if (targetId !== "none") {
-                    return valuationOutput;
-                } else {
-                    return valuationMetric
-                }
+                return valuationOutput;
                 break;
             case "deals":
-                if (targetId !== "none") {
-                    return valuationOutput;
-                } else {
-                    return valuationOutput
-                }
+                return valuationOutput;
                 break;
             case "models":
                 switch(footballType) {
                     case "market":
-                        return "Models";
+                        return valuationOutput;
                         break;
                     case "target":
                         switch(footballOutput) {
@@ -82,7 +104,7 @@ Template.ValuationBaseDetails.helpers({
                 var existingCustom = this.existingCustom;
                 switch(existingCustom) {
                     case "customValue":
-                        return "Custom Value";
+                        return "Custom Enterprise Value";
                         break;
                     case "customPrice":
                         return "Custom Price";
@@ -94,8 +116,26 @@ Template.ValuationBaseDetails.helpers({
                 break;
         }
     },
+    detailMetric: function() {
+        var valuationMetric = this.valuationMetric;
+        var valuationType = this.valuationType;
+        switch(valuationType) {
+            case "comps":
+                    return valuationMetric;
+                break;
+            case "deals":
+                return valuationMetric;
+                break;
+            case "models":
+                return "";
+                break;
+            case "custom":
+                return "";
+                break;
+        }
+    },
     //Show Output Period if footballOutput is Multiple
-    period: function() {
+    periodOutput: function() {
         var footballId = Template.parentData(1)._id;
         var football = Footballs.findOne({_id:footballId});
         var targetId = football.footballTarget.targetId;
@@ -127,7 +167,7 @@ Template.ValuationBaseDetails.helpers({
                         return "";
                         break;
                     case "Multiple":
-                        return valuationPeriod;
+                        return valuationOutputPeriod;
                         break;
                 }
                 break;
@@ -136,8 +176,27 @@ Template.ValuationBaseDetails.helpers({
                 break;
         }
     },
+    //Show Output Period if footballOutput is Multiple
+    periodMetric: function() {
+        var valuationType = this.valuationType;
+        var valuationPeriod = this.valuationPeriod;
+        switch(valuationType) {
+            case "comps":
+                return valuationPeriod;
+                break;
+            case "deals":
+                return valuationPeriod;
+                break;
+            case "models":
+                return "";
+                break;
+            case "custom":
+                return valuationPeriod;
+                break;
+        }
+    },
     //Formatting helper to use around Output Period if shown
-    paren: function() {
+    parenOutput: function() {
         var valuationType = this.valuationType;
         switch(valuationType) {
             case "comps":
@@ -171,6 +230,53 @@ Template.ValuationBaseDetails.helpers({
                         return {
                             open: "(",
                             close: ")"
+                        };
+                        break;
+                }
+                break;
+            case "custom":
+                return {
+                    open: "",
+                    close: ""
+                };
+                break;
+        }
+    },
+    //Formatting helper to use around Output Period if shown
+    parenBuild: function() {
+        var valuationType = this.valuationType;
+        switch(valuationType) {
+            case "comps":
+                return {
+                    open: "(",
+                    close: ")"
+                };
+                break;
+            case "deals":
+                return {
+                    open: "(",
+                    close: ")"
+                };
+                break;
+            case "models":
+                var footballOutput = Template.parentData(1).footballOutput;
+                switch(footballOutput) {
+                    case "Enterprise Value":
+                        return {
+                            open: "",
+                            close: ""
+                        };
+                        break;
+                    case "Price per Share":
+                        return {
+                            open: "",
+                            close: ""
+                        };
+                        break;
+                    case "Multiple":
+                        return {
+                            open: "",
+                            close: ""
                         };
                         break;
                 }

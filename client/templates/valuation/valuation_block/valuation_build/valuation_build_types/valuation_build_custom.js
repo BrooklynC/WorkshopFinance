@@ -69,7 +69,7 @@ Template.ValuationBuildCustom.helpers({
         var existingCustom = this.existingCustom;
         switch(existingCustom) {
             case "customValue":
-                return "Custom Value";
+                return "Custom Enterprise Value";
                 break;
             case "customPrice":
                 return "Custom Price";
