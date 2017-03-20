@@ -23,7 +23,7 @@
                 <select {{disableOption}} {{disableNoSector}} class="form-control build-deals-deal {{themeStyle.formDropdown}}" name="build-deals-deal" title="">
                     <option class="deals-deal" value="">Deal:</option>
                     {{#each deals}}
-                        <option class="deals-deal" value="{{_id}}">{{dealTerms.acquirerName}} ({{companyName}})</option>
+                        <option class="deals-deal" value="{{_id}}">{{companyName}} ({{dealTerms.acquirerName}})</option>
                     {{/each}}
                 </select>
             </div>
