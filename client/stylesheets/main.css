@@ -69,8 +69,10 @@ p {
 .btn-info:active,
 .btn-info:visited,
 .btn-info:focus {
-    background-color: rgba(68, 68, 68, 1);
-    border-color: rgba(68, 68, 68, 1);
+    background-color: rgba(86, 86, 86, 1);
+    border-color: rgba(86, 86, 86, 1);
+    /*background-color: rgba(68, 68, 68, 1);*/
+    /*border-color: rgba(68, 68, 68, 1);*/
     /*border-color: rgba(68, 68, 68, 0.5);*/
 }
 .btn.disabled {
@@ -621,13 +623,16 @@ svg {
     margin:auto;
 }
 .valuation-controls-inner {
-    height: 40px;
+    height: 35px;
 }
 .valuation-controls-inner div {
     width: calc(100% / 3);
 }
 .valuation-controls-inner div .btn {
     width:100%;
+}
+.date {
+    margin-bottom: 5px;
 }
 /*VALUATION BUILD*/
 .valuation-build {
@@ -820,30 +825,24 @@ svg {
 .border-shaded-bottom-light {
     border-bottom: solid 1px rgba(170, 170, 170, 1) !important;
 }
-.btn-default-light, .form-date-light > input {
+.btn-default-light {
     background-color: rgba(255, 255, 255, 1) !important;
     color: rgba(0, 0, 0, 1) !important;
-    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
+    border-color: rgba(170, 170, 170, 1);
 }
-.form-input-light > input {
+.form-dropdown-light, .form-dropdown-light > input, .form-input-light > input, .form-date-light > input {
     background-color: rgba(255, 255, 255, 1) !important;
     color: rgba(0, 0, 0, 1) !important;
-    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
-}
-.form-dropdown-light, .form-dropdown-light > input {
-    background-color: rgba(170, 170, 170, 1) !important;
-    color: rgba(0, 0, 0, 1) !important;
-    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
+    border: solid 1px rgba(64, 64, 64, 0.5) !important;
 }
 .is-selected-light > .btn-select {
     background-color: rgba(0, 128, 0, 1) !important;
     color: rgba(255, 255, 255, 1);
-    border: 0;
+    border-color: rgba(0, 128, 0, 1);
 }
 .is-notselected-light > .btn-select {
     background-color: rgba(255, 255, 255, 1) !important;
     color: rgba(0, 0, 0, 1) !important;
-    border: solid 1px rgba(64, 64, 64, 1) !important;
 }
 /*COLORS - DARK THEME*/
 .main-dark, .main-dark a, .main-dark div .panel-collapse, .main-dark .-autocomplete-container, .calendar-dark + .datepicker, .calendar-dark + .datepicker div {
@@ -868,30 +867,24 @@ svg {
 .border-shaded-bottom-dark {
     border-bottom: solid 1px rgba(64, 64, 64, 1) !important;
 }
-.btn-default-dark, .form-date-dark > input {
+.btn-default-dark {
     background-color: rgba(20, 20, 20, 1) !important;
     color: rgba(170, 170, 170, 1) !important;
-    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
+    border-color: rgba(170, 170, 170, 1);
 }
-.form-input-dark > input {
-    background-color: rgba(170, 170, 170, 1) !important;
-    color: rgba(0, 0, 0, 1) !important;
-    border: solid 1px rgba(64, 64, 64, 1) !important;
-}
-.form-dropdown-dark, .form-dropdown-dark > input {
-    background-color: rgba(170, 170, 170, 1) !important;
-    color: rgba(0, 0, 0, 1) !important;
-    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
+.form-dropdown-dark, .form-dropdown-dark > input, .form-input-dark > input, .form-date-dark > input {
+    background-color: rgba(20, 20, 20, 1) !important;
+    color: rgba(170, 170, 170, 1) !important;
+    border: solid 1px rgba(64, 64, 64, 0.5) !important;
 }
 .is-selected-dark > .btn-select {
     background-color: rgba(0, 128, 0, 1) !important;
     color: rgba(0, 0, 0, 1);
-    border: 0;
+    border-color: rgba(0, 128, 0, 1);
 }
 .is-notselected-dark > .btn-select {
     background-color: rgba(20, 20, 20, 1) !important;
     color: rgba(170, 170, 170, 1) !important;
-    border: solid 1px rgba(64, 64, 64, 1);
 }
 @media only screen
 and (min-device-width: 375px)
