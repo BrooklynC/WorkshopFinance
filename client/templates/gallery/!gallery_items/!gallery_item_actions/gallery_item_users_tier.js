@@ -1,4 +1,4 @@
-Template.GalleryItemTierUsers.events({
+Template.GalleryItemUsersTier.events({
     'click #tier-change': function(e) {
         e.preventDefault();
 
@@ -9,7 +9,7 @@ Template.GalleryItemTierUsers.events({
     }
 });
 
-Template.GalleryItemTierUsers.helpers({
+Template.GalleryItemUsersTier.helpers({
     tier: function() {
         var userId = Template.parentData(0)._id;
         return Meteor.users.findOne({_id: userId}).profile.tier;

@@ -8,7 +8,11 @@
         </div>
         {{#if currentUser}}
             <div class="studio-inner {{themeStyle.main}}" id="workspace">
-                {{> Workspace}}
+                {{#if isActive}}
+                    {{> Workspace}}
+                {{else}}
+                    <p>This membership has been suspended.  Please contact us at brendan@workshopfinance.com.</p>
+                {{/if}}
             </div>
         {{else}}
             <div class="studio-inner" id="cover">

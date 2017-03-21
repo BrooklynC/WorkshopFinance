@@ -20,6 +20,3 @@ Template.GalleryFootballAdd.events({
         });
     }
 });
-
-Template.GalleryFootballAdd.helpers({
-});
