@@ -64,6 +64,14 @@ p {
 .btn-full {
     width:100%;
 }
+.btn-primary,
+.btn-primary:hover,
+.btn-primary:active,
+.btn-primary:visited,
+.btn-primary:focus {
+    background-color: rgba(98, 110, 96, 1);
+    border-color: rgba(98, 110, 96, 1);
+}
 .btn-info,
 .btn-info:hover,
 .btn-info:active,
@@ -71,9 +79,6 @@ p {
 .btn-info:focus {
     background-color: rgba(86, 86, 86, 1);
     border-color: rgba(86, 86, 86, 1);
-    /*background-color: rgba(68, 68, 68, 1);*/
-    /*border-color: rgba(68, 68, 68, 1);*/
-    /*border-color: rgba(68, 68, 68, 0.5);*/
 }
 .btn.disabled {
     opacity: 0.2;
