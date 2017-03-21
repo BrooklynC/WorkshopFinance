@@ -64,7 +64,14 @@ p {
 .btn-full {
     width:100%;
 }
-/*HEADER*/
+.btn-info,
+.btn-info:hover,
+.btn-info:active,
+.btn-info:visited,
+.btn-info:focus {
+    background-color: rgba(68, 68, 68, 1);
+    border-color: rgba(68, 68, 68, 0.5);
+}/*HEADER*/
 #logo {
     padding-right:10px;
 }
@@ -143,7 +150,7 @@ p {
     border-radius:0;
 }
 .gallery-menu-block {
-    height: 342px;
+    height: 320px;
     border-radius: 0;
     padding-top:5px;
     padding-bottom:5px;
@@ -711,7 +718,7 @@ svg {
     padding-right:20px !important;
 }
 .gallery-menu-base {
-    background-color: rgba(68, 68, 68, 1) !important;
+    background-color: rgba(58, 38, 19, 1) !important;
     color: rgba(204, 204, 204, 1);
 }
 .gallery-menu-base h5 {
