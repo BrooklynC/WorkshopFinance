@@ -70,8 +70,18 @@ p {
 .btn-info:visited,
 .btn-info:focus {
     background-color: rgba(68, 68, 68, 1);
-    border-color: rgba(68, 68, 68, 0.5);
-}/*HEADER*/
+    border-color: rgba(68, 68, 68, 1);
+    /*border-color: rgba(68, 68, 68, 0.5);*/
+}
+.btn.disabled {
+    opacity: 0.2;
+}
+.btn-warning {
+    background-color: rgba(255, 0, 0, 0.5);
+    color: rgba(255,255,255,1);
+    border: solid 1px rgba(255, 0, 0, 0.5);
+}
+/*HEADER*/
 #logo {
     padding-right:10px;
 }
@@ -545,6 +555,7 @@ svg {
 }
 .valuation-build-type {
     width:25%;
+    padding-right: 2px;
 }
 .valuation-build-type > select {
     width:100%;
@@ -554,6 +565,7 @@ svg {
 }
 .valuation-build-select .build-select-sector {
     width: calc(100%/3);
+    padding-right: 2px;
 }
 .valuation-build-select .build-select-selection {
     width: calc(100%/3 * 2);
@@ -563,6 +575,7 @@ svg {
 }
 .build-select-selection form div {
     width: 50%;
+    padding-right: 2px;
 }
 .build-select-selection-index form .select-index {
     width: calc(100%/3 * 2);
@@ -570,15 +583,15 @@ svg {
 .build-select-selection-index form .select-button {
     width: calc(100%/3);
 }
+.build-select-selection-index form div {
+    padding-right: 2px;
+}
 .build-select-inner {
     width:100%;
 }
 .build-select-inner > form > div > div {
     width:25%;
 }
-/*.build-select-inner > form > div {*/
-    /*width:50%;*/
-/*}*/
 .valuation-results-inner {
     padding: 1% 10% 1% 1%;
     width:100%;
@@ -724,11 +737,6 @@ svg {
 .gallery-menu-base h5 {
     color: rgba(204, 204, 204, 1);
 }
-.btn-remove {
-    background-color: rgba(255, 0, 0, 0.5);
-    color: rgba(255,255,255,1);
-    border: solid 1px rgba(64, 64, 64, 1) !important;
-}
 .btn-remove span {
     color: rgba(255,255,255,1);
 }
@@ -812,10 +820,20 @@ svg {
 .border-shaded-bottom-light {
     border-bottom: solid 1px rgba(170, 170, 170, 1) !important;
 }
-.btn-default-light, .form-dropdown-light, .form-dropdown-light > input, .form-input-light > input, .form-date-light > input {
+.btn-default-light, .form-date-light > input {
     background-color: rgba(255, 255, 255, 1) !important;
     color: rgba(0, 0, 0, 1) !important;
-    border: solid 1px rgba(64, 64, 64, 1) !important;
+    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
+}
+.form-input-light > input {
+    background-color: rgba(255, 255, 255, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
+    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
+}
+.form-dropdown-light, .form-dropdown-light > input {
+    background-color: rgba(170, 170, 170, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
+    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
 }
 .is-selected-light > .btn-select {
     background-color: rgba(0, 128, 0, 1) !important;
@@ -850,10 +868,20 @@ svg {
 .border-shaded-bottom-dark {
     border-bottom: solid 1px rgba(64, 64, 64, 1) !important;
 }
-.btn-default-dark, .form-dropdown-dark, .form-dropdown-dark > input, .form-input-dark > input, .form-date-dark > input {
+.btn-default-dark, .form-date-dark > input {
     background-color: rgba(20, 20, 20, 1) !important;
     color: rgba(170, 170, 170, 1) !important;
+    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
+}
+.form-input-dark > input {
+    background-color: rgba(170, 170, 170, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
     border: solid 1px rgba(64, 64, 64, 1) !important;
+}
+.form-dropdown-dark, .form-dropdown-dark > input {
+    background-color: rgba(170, 170, 170, 1) !important;
+    color: rgba(0, 0, 0, 1) !important;
+    /*border: solid 1px rgba(64, 64, 64, 1) !important;*/
 }
 .is-selected-dark > .btn-select {
     background-color: rgba(0, 128, 0, 1) !important;
