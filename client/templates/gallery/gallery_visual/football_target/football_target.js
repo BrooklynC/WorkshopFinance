@@ -4,7 +4,6 @@ Template.FootballTarget.events({
         e.preventDefault();
 
         var field = $(e.target).find('[id=footballAddTarget]');
-        //var targetSelection = field.val();
         var targetSelection = $(".football-target option:selected").val();
         console.log(targetSelection);
 
@@ -29,7 +28,9 @@ Template.FootballTarget.events({
                 Meteor.call('footballTargetUpdate', currentFootballId, target, footballType, function (error, result) {
                 });
             }
-
+        } else {
+            return Meteor.call('footballSave', currentFootballId, targetSelection, footballType, function () {
+            });
         }
         //Clear selections
         field.val('');
@@ -99,6 +100,18 @@ Template.FootballTarget.helpers({
                     ]
                 };
                 break;
+        }
+    }
+});
+
+Template.FootballTarget.helpers({
+    updateTarget: function() {
+        var ownerId = this.ownerId;
+        var currentUserId = Meteor.userId();
+        if(ownerId == currentUserId) {
+            return "Save as New / Update"
+        } else {
+            return "Save as New"
         }
     }
 });

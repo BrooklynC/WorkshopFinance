@@ -16,5 +16,3 @@ Template.FootballScale.events({
     }
 });
 
-Template.FootballScale.helpers({
-});

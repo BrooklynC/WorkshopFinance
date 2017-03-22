@@ -88,6 +88,12 @@ p {
     color: rgba(255,255,255,1);
     border: solid 1px rgba(255, 0, 0, 0.5);
 }
+.button-row-one, .button-row-two {
+    padding-right: 2px;
+}
+.button-row-two, .button-row-three {
+    padding-left: 2px;
+}
 /*HEADER*/
 #logo {
     padding-right:10px;
@@ -110,7 +116,7 @@ p {
     height: calc(100% - 100px);
 }
 #workspace {
-    padding-top:10px;
+    padding-top: 10px;
     padding-bottom: 10px;
 }
 #workspace-inner {
@@ -165,27 +171,21 @@ p {
     padding: 2px;
     border-radius:0;
 }
-.gallery-menu-block {
-    height: 315px;
+.gallery-block {
     border-radius: 0;
     padding-top:5px;
     padding-bottom:5px;
 }
+.gallery-block-menu {
+    height:40px;
+}
 .gallery-block-items {
     width:100%;
+    height:calc(100% - 70px);
     margin-bottom:5px;
     overflow-y: scroll;
 }
-#gallery-library-inner .gallery-block-items {
-    height:calc(100% - 70px);
-}
-#gallery-library-inner .gallery-block-controls {
-    height:30px;
-}
-#gallery-coverage-inner .gallery-block-items {
-    height:calc(100% - 70px);
-}
-#gallery-coverage-inner .gallery-block-controls {
+.gallery-block-controls {
     height:30px;
 }
 .input-gallery {
@@ -265,12 +265,12 @@ p {
 /*GALLERY VISUAL*/
 #controls-top {
     margin-top:3px;
+    height:80px;
 }
 #controls-scroll {
     height:215px;
     width:100%;
     margin-top:5px;
-    /*overflow-y: scroll;*/
 }
 #controls-scroll-inner {
     /*width: calc(100% - 17px);*/
@@ -282,6 +282,9 @@ p {
     margin: 0 auto;
 }
 /*GALLERY LIBRARY*/
+.screen-full {
+    width:100%;
+}
 .screen-left {
     width:50%;
 }
@@ -890,6 +893,37 @@ svg {
     background-color: rgba(20, 20, 20, 1) !important;
     color: rgba(170, 170, 170, 1) !important;
 }
+/*Desktop*/
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 1) {
+    #workspace {
+        top: 50px;
+    }
+    #controls-scroll {
+        /*overflow-y: scroll;*/
+    }
+    #gallery-menu-inner > .panel > .in {
+        height:320px;
+    }
+}
+@media screen
+and (min-device-width: 1200px)
+and (max-device-width: 1600px)
+and (-webkit-min-device-pixel-ratio: 2)
+and (min-resolution: 192dpi) {
+    #workspace {
+        top: px;
+    }
+    #controls-scroll {
+        /*overflow-y: scroll;*/
+    }
+    #gallery-menu-inner > .panel > .in {
+        height:320px;
+    }
+}
+/*iPhone 6*/
 @media only screen
 and (min-device-width: 375px)
 and (max-device-width: 667px)
@@ -897,6 +931,9 @@ and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: portrait) {
     .studio-inner {
         top: 50px;
+    }
+    #footer {
+        display: none;
     }
     #workspace-inner-gallery {
         width: 100%;
@@ -909,23 +946,11 @@ and (orientation: portrait) {
     #football-field-valuations {
         display: none;
     }
-}
-/*Desktop*/
-@media screen
-and (min-device-width: 1200px)
-and (max-device-width: 1600px)
-and (-webkit-min-device-pixel-ratio: 1) {
-    #workspace {
-        top: 50px;
+    #gallery-menu-inner > .panel > .in {
+        height:310px;
     }
-}
-@media screen
-and (min-device-width: 1200px)
-and (max-device-width: 1600px)
-and (-webkit-min-device-pixel-ratio: 2)
-and (min-resolution: 192dpi) {
-    #workspace {
-        top: 50px;
+    #controls-scroll {
+        overflow-y: scroll;
     }
 }
 /*iPhone 6*/
@@ -957,6 +982,37 @@ and (orientation: landscape) {
 @media only screen
 and (min-device-width : 414px)
 and (max-device-width : 736px)
+and (orientation: portrait) {
+    .studio-inner {
+        top: 50px;
+    }
+    #footer {
+        display: none;
+    }
+    #workspace {
+        top: 50px;
+    }
+    #workspace-inner-gallery {
+        width: 100%;
+        margin: auto;
+        height: 100%;
+        padding-left: 1%;
+    }
+    #workspace-inner-football {
+        display: none;
+    }
+    #gallery-menu-inner > .panel > .in {
+        height: 310px;
+    }
+    #controls-scroll {
+        height:235px;
+        overflow-y: scroll;
+    }
+}
+/*iPhone 6 Plus*/
+@media only screen
+and (min-device-width : 414px)
+and (max-device-width : 736px)
 and (orientation : landscape) {
     #header {
         display: none;
@@ -977,31 +1033,63 @@ and (orientation : landscape) {
         padding-left: 1%;
     }
 }
-/*iPhone 5*/
-@media only screen
-and (min-device-width : 320px)
-and (max-device-width : 568px)
-and (orientation : portrait) {
-    #workspace {
-        top:50px;
-    }
-    #workspace-inner-gallery {
-        width: 100%;
-        margin: auto;
-        height: 100%;
-        padding-left: 1%;
-    }
-    #workspace-inner-football {
-        display: none;
-    }
-
-}
+/*!*iPhone 5*!*/
+/*@media only screen*/
+/*and (min-device-width : 320px)*/
+/*and (max-device-width : 568px)*/
+/*and (orientation : portrait) {*/
+    /*.studio-inner {*/
+        /*top: 50px;*/
+    /*}*/
+    /*#workspace {*/
+        /*top: 50px;*/
+    /*}*/
+    /*#workspace-inner-gallery {*/
+        /*width: 100%;*/
+        /*margin: auto;*/
+        /*height: 100%;*/
+        /*padding-left: 1%;*/
+    /*}*/
+    /*#workspace-inner-football {*/
+        /*display: none;*/
+    /*}*/
+    /*#gallery-menu-inner > .panel > .in {*/
+        /*height: 250px;*/
+    /*}*/
+    /*#controls-scroll {*/
+        /*overflow-y: scroll;*/
+    /*}*/
+/*}*/
+/*!*iPhone 5*!*/
+/*@media only screen*/
+/*and (min-device-width : 320px)*/
+/*and (max-device-width : 568px)*/
+/*and (orientation : landscape) {*/
+    /*#header {*/
+        /*display: none;*/
+    /*}*/
+    /*#footer {*/
+        /*display: none;*/
+    /*}*/
+    /*#workspace {*/
+        /*height: 100%;*/
+    /*}*/
+    /*#workspace-inner-gallery {*/
+        /*display: none;*/
+    /*}*/
+    /*#workspace-inner-football {*/
+        /*width: 100%;*/
+        /*margin: auto;*/
+        /*height: 100%;*/
+        /*padding-left: 1%;*/
+    /*}*/
+/*}*/
 /*iPad*/
 @media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : landscape) {
     #workspace {
-        top:50px;
+        top: 50px;
     }
 }

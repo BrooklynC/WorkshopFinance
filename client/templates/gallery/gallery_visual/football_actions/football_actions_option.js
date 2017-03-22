@@ -3,46 +3,49 @@ Template.FootballActionsOption.events({
     'submit form': function(e) {
         e.preventDefault();
 
-        var currentUser = Meteor.user();
-        var currentUsername = currentUser.username;
-
-        var currentFootballId = this._id;
-
         var field = $(e.target).find('[id=selection]');
         var selection = field.val();
-        field.val('');
 
-        var action = Session.get('sessionActions');
-        switch(action) {
-            case "save":
-                return Meteor.call('footballSave', currentFootballId, selection, function () {
+        var currentFootballId = this._id;
+        var sessionActions = Session.get('sessionActions');
+        console.log(field);
+        console.log(selection);
+
+        switch(sessionActions) {
+            case "send":
+                return Meteor.call('footballSend', currentFootballId, selection, function () {
                     Session.set('sessionActions', "none");
                 });
                 break;
-            case "send":
-                if(selection == currentUsername) {
-                    return alert("You can't send a Football to yourself.")
-                } else {
-                    return Meteor.call('footballSend', currentFootballId, selection, function () {
-                        Session.set('sessionActions', "none");
-                    });
-                }
-                break;
             case "share":
-                if(selection == currentUsername) {
-                    return alert("You can't share a Football with yourself.");
-                } else {
-                    Meteor.call('footballShare', currentFootballId, selection, function () {
-                        Session.set('sessionActions', "none");
-                    });
-                }
+                return Meteor.call('footballShare', currentFootballId, selection, function () {
+                    Session.set('sessionActions', "none");
+                });
+                break;
+            case "delete":
+                return Meteor.call('footballRemove', currentFootballId, selection, function () {
+                    Session.set('sessionActions', "none");
+                });
+                break;
         }
+        field.val('');
+    },
+    'click #football-action-cancel': function(e) {
+        e.preventDefault();
+
+        Session.set('sessionActions', "none");
     }
 });
 
 //Select new target to attach to new Football
 //Different method will be run depending on whether target is selected
 Template.FootballActionsOption.helpers({
+    isDelete: function() {
+        var sessionActions = Session.get('sessionActions');
+        if(sessionActions == "delete") {
+            return true
+        }
+    },
     settings: function() {
         var marketType = this.marketType;
         var action = Session.get('sessionActions');

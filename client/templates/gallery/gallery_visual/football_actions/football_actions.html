@@ -1,15 +1,23 @@
 <!--Drop-down menu to select actions to Save New/Send/Share/Remove Football-->
 <template name="FootballActions">
-    <div id="football-action-options">
-        <select class="form-control action-selection {{themeStyle.formDropdown}}" name="action-selection" id="action-selection">
-            <option id="football-cancel" {{selectedNone}} value="football-cancel">ACTIONS</option>
-            <!--<option id="football-save" {{selectedSave}} value="football-save">Save New</option>-->
-            <option id="football-send" {{selectedSend}} value="football-send" {{disabledOn}}>Send {{readonlyOn}}</option>
-            <option id="football-share" {{selectedShare}} value="football-share" {{disabledOn}}>Share {{readonlyOn}}</option>
-            <option id="football-remove" {{selectedDelete}} value="football-remove" {{disabledOn}}>Delete {{readonlyOn}}</option>
-        </select>
+    <div class="valuation-controls-inner">
+        <div class="left button-row-one">
+            <button type="button" class="btn btn-info btn-sm btn-send {{disabledOn}}">
+                Send
+            </button>
+        </div>
+        <div class="left button-row-two">
+            <button type="button" class="btn btn-info btn-sm btn-share {{disabledOn}}">
+                Share
+            </button>
+        </div>
+        <div class="left button-row-three">
+            <button type="button" class="btn btn-warning btn-sm btn-delete {{disabledOn}}">
+                Delete
+            </button>
+        </div>
     </div>
-    <div id="football-actions-input">
+    <div class="wrapper" id="football-actions-input">
         {{> actionsInput}}
     </div>
 </template>

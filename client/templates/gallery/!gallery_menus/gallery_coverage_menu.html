@@ -1,6 +1,6 @@
 <!--Drop-down menu to change Coverage-->
 <template name="CoverageMenu">
-    <div class="left screen-left">
+    <div class="left screen-full">
         <select class="form-control coverage-filter {{themeStyle.formDropdown}}" name="coverage-filter">
             <option disabled>Coverage Type:</option>
             <option class="{{isFootballs}}" id="coverage-footballs" value="footballs">Footballs</option>
@@ -8,7 +8,7 @@
             <option class="{{isTargets}}" id="coverage-targets" value="targets">Targets</option>
         </select>
     </div>
-    <div class="left screen-right">
-        {{>GalleryCoverageMenuScreen}}
-    </div>
+    <!--<div class="left screen-right">-->
+        <!--{{>GalleryCoverageMenuScreen}}-->
+    <!--</div>-->
 </template>
