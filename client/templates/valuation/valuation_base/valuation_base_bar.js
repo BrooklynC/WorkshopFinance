@@ -50,7 +50,7 @@ Template.ValuationBaseBar.helpers({
                             var count = selections.length;
                             switch(footballOutput) {
                                 case "Enterprise Value":
-                                    if (existingCustom == "customValue") {
+                                    if (existingCustom == "Value") {
                                         return Template.ValuationBaseBarFull;
                                     } else {
                                         if (count > 0) {
@@ -61,7 +61,7 @@ Template.ValuationBaseBar.helpers({
                                     }
                                     break;
                                 case "Price per Share":
-                                    if (existingCustom == "customPrice") {
+                                    if (existingCustom == "Price") {
                                         return Template.ValuationBaseBarFull;
                                     } else {
                                         if (count > 0) {
@@ -72,7 +72,7 @@ Template.ValuationBaseBar.helpers({
                                     }
                                     break;
                                 case "Multiple":
-                                    if (existingCustom == "customMultiple") {
+                                    if (existingCustom == "Multiple") {
                                         return Template.ValuationBaseBarFull;
                                     } else {
                                         if (count > 0) {
@@ -83,9 +83,6 @@ Template.ValuationBaseBar.helpers({
                                     }
                                     break;
                             }
-                        //} else {
-                        //    return Template.ValuationBaseBarHold;
-                        //}
                     } else {
                         return Template.ValuationBaseBarFull;
                     }

@@ -4,7 +4,7 @@ Template.LibraryContentList.helpers({
     library: function() {
         var sessionLibraryType = Session.get('sessionLibraryType');
         switch (sessionLibraryType) {
-            case "comps":
+            case "Comps":
                 var screenSectorComps = Session.get('sessionScreenCompsSector');
                 if(screenSectorComps !== '') {
                     var sectorComps = screenSectorComps
@@ -13,10 +13,10 @@ Template.LibraryContentList.helpers({
                     {sector: sectorComps}
                 );
                 break;
-            case "compsIndices":
+            case "Comps Indices":
                 return FeedCompaniesIndices.find({});
                 break;
-            case "deals":
+            case "Deals":
                 var screenSectorDeals = Session.get('sessionScreenDealsSector');
                 if(screenSectorDeals !== '') {
                     var sectorDeals = screenSectorDeals
@@ -25,7 +25,7 @@ Template.LibraryContentList.helpers({
                     {sector: sectorDeals}
                 );
                 break;
-            case "dealsIndices":
+            case "Deals Indices":
                 return FeedDealsIndices.find({});
                 break;
         }

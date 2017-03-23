@@ -2,7 +2,7 @@ Template.CoverageItem.events({
     'click .gallery-item-detail': function() {
         var coverage = Session.get('sessionCoverageType');
 
-        if(coverage == "footballs") {
+        if(coverage == "Footballs") {
             var currentFootballId = this._id;
 
             Meteor.call('footballOpen', currentFootballId, function() {
@@ -28,13 +28,13 @@ Template.CoverageItem.helpers({
     itemBase: function() {
         var coverage = Session.get('sessionCoverageType');
         switch(coverage) {
-            case "footballs":
+            case "Footballs":
                 return Template.GalleryItemBaseFootballs;
                 break;
-            case "valuations":
+            case "Valuations":
                 return Template.GalleryItemBaseValuations;
                 break;
-            case "targets":
+            case "Targets":
                 return Template.GalleryItemBaseTargets;
                 break;
         }
@@ -42,13 +42,13 @@ Template.CoverageItem.helpers({
     itemBlock: function() {
         var coverage = Session.get('sessionCoverageType');
         switch(coverage) {
-            case "footballs":
+            case "Footballs":
                 return Template.GalleryItemBlockFootballs;
                 break;
-            case "valuations":
+            case "Valuations":
                 return Template.GalleryItemBlockValuations;
                 break;
-            case "targets":
+            case "Targets":
                 return Template.GalleryItemBlockTargets;
                 break;
         }
@@ -56,13 +56,13 @@ Template.CoverageItem.helpers({
     collapseId: function() {
         var coverage = Session.get('sessionCoverageType');
         switch(coverage) {
-            case "footballs":
+            case "Footballs":
                 return this._id;
                 break;
-            case "valuations":
+            case "Valuations":
                 return this._id;
                 break;
-            case "targets":
+            case "Targets":
                 return this.targetId;
                 break;
         }
@@ -82,7 +82,7 @@ Template.CoverageItem.helpers({
     itemAction: function() {
         var coverage = Session.get('sessionCoverageType');
         switch(coverage) {
-            case "footballs":
+            case "Footballs":
                 var currentUserId = Meteor.userId();
                 var currentFootballId = Template.parentData(0)._id;
                 var notification = Notifications.findOne({receiverId:currentUserId,itemId:currentFootballId});
@@ -100,10 +100,10 @@ Template.CoverageItem.helpers({
                     }
                 }
                 break;
-            case "valuations":
+            case "Valuations":
                 return Template.GalleryItemSelect;
                 break;
-            case "targets":
+            case "Targets":
                 return Template.GalleryItemFootballAdd;
                 break;
         }

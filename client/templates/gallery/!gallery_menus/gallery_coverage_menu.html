@@ -1,12 +1,27 @@
 <!--Drop-down menu to change Coverage-->
 <template name="CoverageMenu">
     <div class="left screen-full">
-        <select class="form-control coverage-filter {{themeStyle.formDropdown}}" name="coverage-filter">
-            <option disabled>Coverage Type:</option>
-            <option class="{{isFootballs}}" id="coverage-footballs" value="footballs">Footballs</option>
-            <option class="{{isValuations}}" id="coverage-valuations" value="valuations">Valuations</option>
-            <option class="{{isTargets}}" id="coverage-targets" value="targets">Targets</option>
-        </select>
+        <div class="btn-group btn-dropdown">
+            <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownCoverage" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="left">
+                    {{coverage}}
+                </div>
+                <div class="right">
+                    <span class="caret"></span>
+                </div>
+            </button>
+            <ul class="dropdown-menu dropdown-scroll" aria-labelledby="dropdownCoverage">
+                {{#if isNotFootballs}}
+                    <li ><a class="menu-coverage" id="Multiple">Footballs</a></li>
+                {{/if}}
+                {{#if isNotValuations}}
+                    <li><a class="menu-coverage">Valuations</a></li>
+                {{/if}}
+                {{#if isNotTargets}}
+                    <li><a class="menu-coverage">Targets</a></li>
+                {{/if}}
+            </ul>
+        </div>
     </div>
     <!--<div class="left screen-right">-->
         <!--{{>GalleryCoverageMenuScreen}}-->

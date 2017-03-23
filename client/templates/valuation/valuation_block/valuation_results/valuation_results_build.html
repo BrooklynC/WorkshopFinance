@@ -2,6 +2,36 @@
 <template name="ValuationResultsBuild">
     <div>
         <div>
+            <!--<div class="btn-group btn-dropdown">-->
+                <!--<button class="btn btn-info btn-sm dropdown-toggle wrapper {{disableOptionGallery}}" type="button" id="dropdownResultsBuild" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                    <!--<div class="left">-->
+                        <!--{{valuationMetric}} ({{valuationPeriod}})-->
+                    <!--</div>-->
+                    <!--<div class="right">-->
+                        <!--<span class="caret"></span>-->
+                    <!--</div>-->
+                <!--</button>-->
+                <!--<ul class="dropdown-menu dropdown-scroll" aria-labelledby="dropdownResultsBuild">-->
+                    <!--{{#if isCompany}}-->
+                        <!--<li><a class="menu-result-build">EV/Revenue (LTM)</a></li>-->
+                        <!--{{#if isComps}}-->
+                            <!--<li><a class="menu-result-build">EV/Revenue (FY1)</a></li>-->
+                            <!--<li><a class="menu-result-build">EV/Revenue (FY2)</a></li>-->
+                        <!--{{/if}}-->
+                        <!--<li><a class="menu-result-build">EV/EBITDA (LTM)</a></li>-->
+                            <!--{{#if isComps}}-->
+                                <!--<li><a class="menu-result-build">EV/EBITDA (FY1)</a></li>-->
+                                <!--<li><a class="menu-result-build">EV/EBITDA (FY2)</a></li>-->
+                                <!--<li><a class="menu-result-build">Price/Earnings (LTM)</a></li>-->
+                                <!--<li><a class="menu-result-build">Price/Earnings (FY1)</a></li>-->
+                                <!--<li><a class="menu-result-build">Price/Earnings (FY2)</a></li>-->
+                            <!--{{/if}}-->
+                    <!--{{else}}-->
+                        <!--<li><a class="menu-result-build">EV/Revenue (FY0)</a></li>-->
+                        <!--<li><a class="menu-result-build">EV/Attendance (FY0)</a></li>-->
+                    <!--{{/if}}-->
+                <!--</ul>-->
+            <!--</div>-->
             <select {{disableOption}} class="form-control build-selection {{themeStyle.formDropdown}}" name="build-selection" title="">
                 <option class="build-text" disabled>Valuation Method:</option>
                 {{#if isCompany}}

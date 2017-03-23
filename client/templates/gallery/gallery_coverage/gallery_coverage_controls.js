@@ -1,7 +1,7 @@
 Template.CoverageControls.helpers({
     targetAdd: function() {
         var coverage = Session.get('sessionCoverageType');
-        if(coverage == "targets") {
+        if(coverage == "Targets") {
             return Template.GalleryTargetAdd;
         } else {
             return Template.FootballBlank;
@@ -9,7 +9,7 @@ Template.CoverageControls.helpers({
     },
     footballExpand: function() {
         var coverage = Session.get('sessionCoverageType');
-        if(coverage == "valuations") {
+        if(coverage == "Valuations") {
             return Template.GalleryFootballExpand;
         } else {
             return Template.FootballBlank;
@@ -17,7 +17,7 @@ Template.CoverageControls.helpers({
     },
     footballNew: function() {
         var coverage = Session.get('sessionCoverageType');
-        if(coverage == "valuations") {
+        if(coverage == "Valuations") {
             return Template.GalleryFootballNew;
         } else {
             return Template.FootballBlank;

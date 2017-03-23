@@ -4,8 +4,8 @@ Template.ValuationBuildDataCompsIndices.events({
 
         var currentFootballId = Template.parentData(1)._id;
         var currentValuationId = this._id;
-        var selection = $(".build-comps-index option:selected").val();
-        console.log(selection);
+        var selectionField = $('#build' + currentValuationId + " " + 'option:selected');
+        var selection = selectionField.val();
 
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();

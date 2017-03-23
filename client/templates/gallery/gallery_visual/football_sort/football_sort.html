@@ -1,12 +1,30 @@
 <!--Drop down menu to sort Valuations-->
 <template name="FootballSort">
-    <div>
-        <select {{disableOptionGallery}} class="form-control {{themeStyle.formDropdown}}" name="sort-selection" id="sort-selection">
-            <option class="sort-text" {{sortDateAscend}}>Date (oldest first)</option>
-            <option class="sort-text" {{sortDateDescend}}>Date (newest first)</option>
-            <option class="sort-text" disabled {{sortValueAscend}}>Value (ascending)</option>
-            <option class="sort-text" disabled {{sortValueDescend}}>Value (descending)</option>
-            <!--<option class="sort-text" {{sortManual}}>Manual</option>-->
-        </select>
+    <div class="btn-group btn-dropdown">
+        <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownSort" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="left">
+                {{footballSort}}
+            </div>
+            <div class="right">
+                <span class="caret"></span>
+            </div>
+        </button>
+        <ul class="dropdown-menu dropdown-scroll {{disableOptionGallery}}" aria-labelledby="dropdownSort">
+            {{#if isNotDateAsc}}
+                <li ><a class="menu-sort-text">Date (oldest first)</a></li>
+            {{/if}}
+            {{#if isNotDateDesc}}
+                <li><a class="menu-sort-text">Date (newest first)</a></li>
+            {{/if}}
+            {{#if isNotValueAsc}}
+                <li class="disabled"><a class="menu-sort-text">Value (ascending)</a></li>
+            {{/if}}
+            {{#if isNotValueDesc}}
+                <li class="disabled"><a class="menu-sort-text">Value (descending)</a></li>
+            {{/if}}
+            {{#if isNotManual}}
+                <li class="disabled"><a class="menu-sort-text">Manual</a></li>
+            {{/if}}
+        </ul>
     </div>
 </template>

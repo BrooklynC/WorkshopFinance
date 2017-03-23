@@ -474,13 +474,13 @@ Template.registerHelper('buildSymCurrency', function() {
             break;
         case "custom":
             switch(existingCustom) {
-                case "customValue":
+                case "Value":
                     return "$";
                     break;
-                case "customPrice":
+                case "Price":
                     return "$";
                     break;
-                case "customMultiple":
+                case "Multiple":
                     return "";
                     break;
             }
@@ -549,13 +549,13 @@ Template.registerHelper('buildSymMultiple', function() {
             break;
         case "custom":
             switch(existingCustom) {
-                case "customValue":
+                case "Value":
                     return "";
                     break;
-                case "customPrice":
+                case "Price":
                     return "";
                     break;
-                case "customMultiple":
+                case "Multiple":
                     return "x";
                     break;
             }

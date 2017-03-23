@@ -1,32 +1,35 @@
-Session.set('sessionCoverageType', "footballs");
+Session.set('sessionCoverageType', "Footballs");
 
 Template.CoverageMenu.events({
-    'change .coverage-filter': function(e) {
+    'click .menu-coverage': function(e) {
         e.preventDefault();
 
-        var coverage = $(e.target).val();
+        var coverage = $(e.target).text();
 
         Session.set('sessionCoverageType', coverage);
     }
 });
 
 Template.CoverageMenu.helpers({
-    isFootballs: function() {
+    coverage: function() {
+        return Session.get('sessionCoverageType');
+    },
+    isNotFootballs: function() {
         var coverage = Session.get('sessionCoverageType');
-        if (coverage == "footballs") {
-            return "filter-coverage-active";
+        if(coverage !== "Footballs") {
+            return true
         }
     },
-    isValuations: function() {
+    isNotValuations: function() {
         var coverage = Session.get('sessionCoverageType');
-        if (coverage == "valuations") {
-            return "filter-coverage-active";
+        if(coverage !== "Valuations") {
+            return true
         }
     },
-    isTargets: function() {
+    isNotTargets: function() {
         var coverage = Session.get('sessionCoverageType');
-        if (coverage == "targets") {
-            return "filter-coverage-active";
+        if(coverage !== "Targets") {
+            return true
         }
     }
 });

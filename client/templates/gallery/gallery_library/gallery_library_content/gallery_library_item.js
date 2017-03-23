@@ -20,16 +20,16 @@ Template.LibraryItem.helpers({
     itemBase: function() {
         var libraryType = Session.get('sessionLibraryType');
         switch(libraryType) {
-            case "comps":
+            case "Comps":
                 return Template.GalleryItemBaseComps;
                 break;
-            case "compsIndices":
+            case "Comps Indices":
                 return Template.GalleryItemBaseCompsIndices;
                 break;
-            case "deals":
+            case "Deals":
                 return Template.GalleryItemBaseDeals;
                 break;
-            case "dealsIndices":
+            case "Deals Indices":
                 return Template.GalleryItemBaseDealsIndices;
                 break;
         }
@@ -37,16 +37,16 @@ Template.LibraryItem.helpers({
     itemBlock: function() {
         var libraryType = Session.get('sessionLibraryType');
         switch(libraryType) {
-            case "comps":
+            case "Comps":
                 return Template.GalleryItemBlockComps;
                 break;
-            case "compsIndices":
+            case "Comps Indices":
                 return Template.GalleryItemBlockCompsIndices;
                 break;
-            case "deals":
+            case "Deals":
                 return Template.GalleryItemBlockDeals;
                 break;
-            case "dealsIndices":
+            case "Deals Indices":
                 return Template.GalleryItemBlockDealsIndices;
                 break;
         }

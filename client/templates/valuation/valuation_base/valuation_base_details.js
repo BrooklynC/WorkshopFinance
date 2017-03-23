@@ -103,13 +103,13 @@ Template.ValuationBaseDetails.helpers({
             case "custom":
                 var existingCustom = this.existingCustom;
                 switch(existingCustom) {
-                    case "customValue":
+                    case "Value":
                         return "Custom Enterprise Value";
                         break;
-                    case "customPrice":
+                    case "Price":
                         return "Custom Price";
                         break;
-                    case "customMultiple":
+                    case "Multiple":
                         return "Custom Multiple";
                         break;
                 }

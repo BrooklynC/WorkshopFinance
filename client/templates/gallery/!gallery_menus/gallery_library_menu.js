@@ -1,38 +1,41 @@
-Session.set('sessionLibraryType', "comps");
+Session.set('sessionLibraryType', "Comps");
 
 Template.LibraryMenu.events({
-    'change .library-filter': function(e) {
+    'click .menu-library-filter': function(e) {
         e.preventDefault();
 
-        var library = $(e.target).val();
+        var library = $(e.target).text();
 
         Session.set('sessionLibraryType', library);
     }
 });
 
 Template.LibraryMenu.helpers({
-    isComps: function() {
-        var library = Session.get('sessionLibraryType');
-        if (library == "comps") {
-            return "filter-library-active";
-        }
-    },
-    isCompsIndices: function() {
-        var library = Session.get('sessionLibraryType');
-        if (library == "compsIndices") {
-            return "filter-library-active";
-        }
-    },
-    isDeals: function() {
-        var library = Session.get('sessionLibraryType');
-        if (library == "deals") {
-            return "filter-library-active";
-        }
-    },
-    isDealsIndices: function() {
-        var library = Session.get('sessionLibraryType');
-        if (library == "dealsIndices") {
-            return "filter-library-active";
-        }
+    libraryFilter: function() {
+        return Session.get('sessionLibraryType');
+    //},
+    //isNotComps: function() {
+    //    var library = Session.get('sessionLibraryType');
+    //    if (library !== "Comps") {
+    //        return true;
+    //    }
+    //},
+    //isNotCompsIndices: function() {
+    //    var library = Session.get('sessionLibraryType');
+    //    if (library !== "Comps Indices") {
+    //        return true;
+    //    }
+    //},
+    //isNotDeals: function() {
+    //    var library = Session.get('sessionLibraryType');
+    //    if (library !== "Deals Indices") {
+    //        return true;
+    //    }
+    //},
+    //isNotDealsIndices: function() {
+    //    var library = Session.get('sessionLibraryType');
+    //    if (library !== "Deals Indices") {
+    //        return true;
+    //    }
     }
 });

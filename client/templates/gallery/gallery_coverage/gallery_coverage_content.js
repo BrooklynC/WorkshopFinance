@@ -3,7 +3,7 @@ Template.CoverageContent.helpers({
         var coverage = Session.get('sessionCoverageType');
         var currentUserId = Meteor.userId();
         switch (coverage) {
-            case "footballs":
+            case "Footballs":
                 var footballs = Footballs.find({$or:[{ownerId: currentUserId},{viewers:{$in:[currentUserId]}}]});
                 if (!footballs) {
                     return Template.CoverageContentMessage;
@@ -11,7 +11,7 @@ Template.CoverageContent.helpers({
                     return Template.CoverageContentList;
                 }
                 break;
-            case "targets":
+            case "Targets":
                 var targets = Options.findOne({ownerId: currentUserId}).targets;
                 var targetsCount = targets.length;
                 if (targetsCount < 1) {
@@ -20,7 +20,7 @@ Template.CoverageContent.helpers({
                     return Template.CoverageContentList;
                 }
                 break;
-            case "valuations":
+            case "Valuations":
                 var valuations = Valuations.find({ownerId: currentUserId, valuationFavorite: true});
                 if (!valuations) {
                     return Template.CoverageContentMessage;

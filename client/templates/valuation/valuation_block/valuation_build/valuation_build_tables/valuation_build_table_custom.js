@@ -26,20 +26,20 @@ Template.ValuationBuildTableCustom.helpers({
     stat: function() {
         var customStat = this.values.customStat;
         switch(customStat) {
-            case "customValue":
+            case "Value":
                 return "Custom Enterprise Value";
                 break;
-            case "customPrice":
+            case "Price":
                 return "Custom Price";
                 break;
-            case "customMultiple":
+            case "Multiple":
                 return "Custom Multiple";
                 break;
         }
     },
     value: function() {
         var stat = this.values.customStat;
-        if(stat == "customValue") {
+        if(stat == "Value") {
             var scale = Template.parentData(2).footballScale;
             switch(scale) {
                 case "millions":
@@ -56,7 +56,7 @@ Template.ValuationBuildTableCustom.helpers({
     },
     customCurrency: function() {
         var stat = this.values.customStat;
-        if(stat == "customValue" || stat == "customPrice") {
+        if(stat == "Value" || stat == "Price") {
             return "$";
         } else {
             return "";
@@ -64,7 +64,7 @@ Template.ValuationBuildTableCustom.helpers({
     },
     customFormat: function(a) {
         var stat = this.values.customStat;
-        if(stat === "customPrice") {
+        if(stat === "Price") {
             return numeral(a).format('0,0.00');
         } else {
             return numeral(a).format('0,0.0');
@@ -72,7 +72,7 @@ Template.ValuationBuildTableCustom.helpers({
     },
     customMultiple: function() {
         var stat = this.values.customStat;
-        if(stat == "customValue" || stat == "customPrice") {
+        if(stat == "Value" || stat == "Price") {
             return "";
         } else {
             return "x";
@@ -95,7 +95,7 @@ Template.ValuationBuildTableCustom.helpers({
                 }
             } else {
                 var existingCustom = this.existingCustom;
-                if(existingCustom == "customValue") {
+                if(existingCustom == "Value") {
                     return getResultValue(footballId, valuationId) / scaleAdjust;
                 } else {
                     return getResultValue(footballId, valuationId);

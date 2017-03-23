@@ -1,11 +1,12 @@
 //Changes Football Output options and updates Football document
 Template.FootballOutput.events({
-    'change #output-selection': function(e) {
+    'click .menu-output-text': function(e) {
         e.preventDefault();
+
+        var newFootballOutput = $(e.target).text();
 
         var currentFootballId = this._id;
 
-        var newFootballOutput = $(e.target).val();
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 
@@ -17,28 +18,22 @@ Template.FootballOutput.events({
 });
 
 Template.FootballOutput.helpers({
-    isCompany: function() {
-        var marketType = this.marketType;
-        if(marketType == "company") {
-            return true;
+    isNotMultiple: function() {
+        var output = this.footballOutput;
+        if(output !== "Multiple") {
+            return true
         }
     },
-    outputEv: function() {
-        var footballOutput = this.footballOutput;
-        if(footballOutput == "Enterprise Value") {
-            return "selected";
+    isNotEv: function() {
+        var output = this.footballOutput;
+        if(output !== "Enterprise Value") {
+            return true
         }
     },
-    outputPrice: function() {
-        var footballOutput = this.footballOutput;
-        if(footballOutput == "Price per Share") {
-            return "selected";
-        }
-    },
-    outputMultiple: function() {
-        var footballOutput = this.footballOutput;
-        if(footballOutput == "Multiple") {
-            return "selected";
+    isNotPrice: function() {
+        var output = this.footballOutput;
+        if(output !== "Price per Share") {
+            return true
         }
     },
     //These options (Enterprise Value, Price per Share) are disabled if there is no target.  Multiple is only option

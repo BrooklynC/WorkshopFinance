@@ -109,7 +109,7 @@ Template.registerHelper('modelValueFormat', function(a) {
 //Format for valuation table - Custom
 Template.registerHelper('customValueFormat', function(a) {
     var customStat = this.existingCustom;
-    if(customStat == "customPrice") {
+    if(customStat == "Price") {
         return numeral(a).format('0,0.00');
     } else {
         return numeral(a).format('0,0.0');
@@ -226,13 +226,13 @@ Template.registerHelper('resultFormat', function(a) {
         } else {
             var existingCustom = this.existingCustom;
             switch(existingCustom) {
-                case "customValue":
+                case "Value":
                     return numeral(a).format('$0,0.0');
                     break;
-                case "customPrice":
+                case "Price":
                     return numeral(a).format('$0,0.00');
                     break;
-                case "customMultiple":
+                case "Multiple":
                     return numeral(a).format('0,0.0');
                     break;
             }
@@ -261,13 +261,13 @@ Template.registerHelper('resultMultiple', function() {
         } else {
             var existingCustom = this.existingCustom;
             switch(existingCustom) {
-                case "customValue":
+                case "Value":
                     return "";
                     break;
-                case "customPrice":
+                case "Price":
                     return "";
                     break;
-                case "customMultiple":
+                case "Multiple":
                     return "x";
                     break;
             }

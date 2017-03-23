@@ -1,11 +1,12 @@
 //Changes Football Output options and updates Football document
 Template.FootballSort.events({
-    'change #sort-selection': function(e) {
+    'click .menu-sort-text': function(e) {
         e.preventDefault();
+
+        var newFootballSort = $(e.target).text();
 
         var currentFootballId = this._id;
 
-        var newFootballSort = $(e.target).val();
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 
@@ -17,34 +18,34 @@ Template.FootballSort.events({
 });
 
 Template.FootballSort.helpers({
-    sortDateAscend: function() {
-        var footballSort = this.footballSort;
-        if(footballSort == "Date (oldest first)") {
-            return "selected";
+    isNotDateAsc: function() {
+        var output = this.footballSort;
+        if(output !== "Date (oldest first)") {
+            return true
         }
     },
-    sortDateDescend: function() {
-        var footballSort = this.footballSort;
-        if(footballSort == "Date (newest first)") {
-            return "selected";
+    isNotDateDesc: function() {
+        var output = this.footballSort;
+        if(output !== "Date (newest first)") {
+            return true
         }
     },
-    sortValueAscend: function() {
-        var footballSort = this.footballSort;
-        if(footballSort == "Value (ascending)") {
-            return "selected";
+    isNotValueAsc: function() {
+        var output = this.footballSort;
+        if(output !== "Value (ascending)") {
+            return true
         }
     },
-    sortValueDescend: function() {
-        var footballSort = this.footballSort;
-        if(footballSort == "Value (descending)") {
-            return "selected";
+    isNotValueDesc: function() {
+        var output = this.footballSort;
+        if(output !== "Value (descending)") {
+            return true
         }
     },
-    sortManual: function() {
-        var footballSort = this.footballSort;
-        if(footballSort == "Manual") {
-            return "selected";
+    isNotManual: function() {
+        var output = this.footballSort;
+        if(output !== "Manual") {
+            return true
         }
     }
 });

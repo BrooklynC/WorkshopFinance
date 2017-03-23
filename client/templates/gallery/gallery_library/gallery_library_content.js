@@ -2,7 +2,7 @@ Template.LibraryContent.helpers({
     libraryPage: function() {
         var libraryType = Session.get('sessionLibraryType');
         switch (libraryType) {
-            case "comps":
+            case "Comps":
                 var screenComps = Session.get('sessionScreenCompsSector');
                 if (!screenComps) {
                     return Template.LibraryContentMessage;
@@ -10,10 +10,10 @@ Template.LibraryContent.helpers({
                     return Template.LibraryContentList;
                 }
                 break;
-            case "compsIndices":
+            case "Comps Indices":
                 return Template.LibraryContentList;
                 break;
-            case "deals":
+            case "Deals":
                 var screenDeals = Session.get('sessionScreenDealsSector');
                 if (!screenDeals) {
                     return Template.LibraryContentMessage;
@@ -21,7 +21,7 @@ Template.LibraryContent.helpers({
                     return Template.LibraryContentList;
                 }
                 break;
-            case "dealsIndices":
+            case "Deals Indices":
                 return Template.LibraryContentList;
                 break;
         }

@@ -4,12 +4,12 @@ Template.CoverageContentList.helpers({
         var sessionCoverage = Session.get('sessionCoverageType');
         var sessionCoverageScreen = Session.get('sessionCoverageScreenType');
         switch (sessionCoverage) {
-            case "footballs":
+            case "Footballs":
                 return Footballs.find(
                     {marketType: sessionCoverageScreen}
                 );
                 break;
-            case "valuations":
+            case "Valuations":
                 return Valuations.find({
                     $and: [
                         {
@@ -24,7 +24,7 @@ Template.CoverageContentList.helpers({
                     ]
                 });
                 break;
-            case "targets":
+            case "Targets":
                 var targets = Options.findOne({ownerId: currentUserId}).targets;
                 var companies = [];
                 var teams = [];

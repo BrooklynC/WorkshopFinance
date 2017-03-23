@@ -1,11 +1,22 @@
-Session.set('sessionScreenDealsSector', "");
+Session.set('sessionScreenDealsSector', '');
 
 Template.GalleryScreenDealSector.events({
-    'change #screen-deal-inner': function(e) {
+    'click .screen-comp-sector': function(e) {
         e.preventDefault();
 
-        var selection = $(e.target).val();
+        var sector = $(e.target).text();
 
-        Session.set('sessionScreenDealsSector', selection);
+        Session.set('sessionScreenDealsSector', sector);
+    }
+});
+
+Template.GalleryScreenDealSector.helpers({
+    sectorTitle: function() {
+        var title = Session.get('sessionScreenDealsSector');
+        if(title == '') {
+            return "Select Sector";
+        } else {
+            return Session.get('sessionScreenDealsSector');
+        }
     }
 });

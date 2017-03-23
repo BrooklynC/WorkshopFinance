@@ -4,13 +4,13 @@
 getValuationSelect = function() {
     var library = Session.get('sessionLibraryType');
     switch(library) {
-        case "comps":
+        case "Comps":
             return {
                 type: "comps",
                 element: "security"
             };
             break;
-        case "compsIndices":
+        case "Comps Indices":
             return {
                 type: "comps",
                 element: "index"
@@ -22,6 +22,7 @@ getValuationSelect = function() {
                 element: "security"
             };
             break;
+        case "Deals Indices":
             return {
                 type: "deals",
                 element: "index"

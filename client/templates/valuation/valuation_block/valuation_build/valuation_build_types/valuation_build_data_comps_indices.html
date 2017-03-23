@@ -3,7 +3,7 @@
     <div class="build-select-selection-index wrapper left">
         <form>
             <div class="select-index left {{themeStyle.formInput}}">
-                <select {{disableOption}} class="form-control build-comps-index {{themeStyle.formDropdown}}" name="build-comps-index" title="">
+                <select {{disableOption}} class="form-control build-comps-index {{themeStyle.formDropdown}}" id="build{{this._id}}" name="build-comps-index" title="">
                     <option class="comps-index" value="">Index:</option>
                     {{#each indices}}
                         <option class="comps-index" value="{{_id}}">{{indexName}}</option>

@@ -1,18 +1,25 @@
 <!--Drop-down menu to change sectors in Comps Data Library-->
 <template name="GalleryScreenCompSector">
-    <div>
-        <select class="form-control {{themeStyle.formDropdown}}" id="screen-comp-inner">
-            <option class="screen-comp-sector" value="">Sector:</option>
-            <option class="screen-comp-sector" value="Healthcare">Healthcare</option>
-            <option class="screen-comp-sector" value="Materials">Materials</option>
-            <option class="screen-comp-sector" value="Industrials">Industrials</option>
-            <option class="screen-comp-sector" value="Information Technology">Information Technology</option>
-            <option class="screen-comp-sector" value="Financials">Financials</option>
-            <option class="screen-comp-sector" value="Consumer Staples">Consumer Staples</option>
-            <option class="screen-comp-sector" value="Consumer Discretionary">Consumer Discretionary</option>
-            <option class="screen-comp-sector" value="Utilities">Utilities</option>
-            <option class="screen-comp-sector" value="Energy">Energy</option>
-            <option class="screen-comp-sector" value="Telecommunication Services">Telecommunication Services</option>
-        </select>
+    <div class="btn-group btn-dropdown">
+        <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownCompSector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="left">
+                {{sectorTitle}}
+            </div>
+            <div class="right">
+                <span class="caret"></span>
+            </div>
+        </button>
+        <ul class="dropdown-menu dropdown-scroll" aria-labelledby="dropdownCompSector">
+            <li ><a class="screen-comp-sector">Healthcare</a></li>
+            <li><a class="screen-comp-sector">Materials</a></li>
+            <li><a class="screen-comp-sector">Industrials</a></li>
+            <li><a class="screen-comp-sector">Information Technology</a></li>
+            <li ><a class="screen-comp-sector">Financials</a></li>
+            <li><a class="screen-comp-sector">Consumer Staples</a></li>
+            <li><a class="screen-comp-sector">Consumer Discretionary</a></li>
+            <li><a class="screen-comp-sector">Utilities</a></li>
+            <li ><a class="screen-comp-sector">Energy</a></li>
+            <li><a class="screen-comp-sector">Telecommunication Services</a></li>
+        </ul>
     </div>
 </template>

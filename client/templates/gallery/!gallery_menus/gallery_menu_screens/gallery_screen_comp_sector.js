@@ -1,11 +1,23 @@
 Session.set('sessionScreenCompsSector', '');
 
 Template.GalleryScreenCompSector.events({
-    'change #screen-comp-inner': function(e) {
+    'click .screen-comp-sector': function(e) {
         e.preventDefault();
 
-        var selection = $(e.target).val();
+        var sector = $(e.target).text();
 
-        Session.set('sessionScreenCompsSector', selection);
+        Session.set('sessionScreenCompsSector', sector);
     }
 });
+
+Template.GalleryScreenCompSector.helpers({
+    sectorTitle: function() {
+        var title = Session.get('sessionScreenCompsSector');
+        if(title == '') {
+            return "Select Sector";
+        } else {
+            return Session.get('sessionScreenCompsSector');
+        }
+    }
+});
+

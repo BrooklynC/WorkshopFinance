@@ -1,18 +1,27 @@
 <!--Drop-down menu to change sectors in Deals Data Library-->
 <template name="GalleryScreenDealSector">
-    <select class="form-control {{themeStyle.formDropdown}}" id="screen-deal-inner">
-        <option class="screen-deal-sector" value="">Sector:</option>
-        <option class="screen-deal-sector" value="Healthcare">Healthcare</option>
-        <option class="screen-deal-sector" value="Materials">Materials</option>
-        <option class="screen-deal-sector" value="Industrials">Industrials</option>
-        <option class="screen-deal-sector" value="High Technology">High Technology</option>
-        <option class="screen-deal-sector" value="Media and Entertainment">Media and Entertainment</option>
-        <option class="screen-deal-sector" value="Financials">Financials</option>
-        <option class="screen-deal-sector" value="Real Estate">Real Estate</option>
-        <option class="screen-deal-sector" value="Consumer Staples">Consumer Staples</option>
-        <option class="screen-deal-sector" value="Consumer Products and Services">Consumer Products and Services</option>
-        <option class="screen-deal-sector" value="Retail">Retail</option>
-        <option class="screen-deal-sector" value="Energy and Power">Energy and Power</option>
-        <option class="screen-deal-sector" value="Telecommunication">Telecommunication</option>
-    </select>
+    <div class="btn-group btn-dropdown">
+        <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownDealSector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="left">
+                {{sectorTitle}}
+            </div>
+            <div class="right">
+                <span class="caret"></span>
+            </div>
+        </button>
+        <ul class="dropdown-menu dropdown-scroll" aria-labelledby="dropdownDealSector">
+            <li ><a class="screen-comp-sector">Healthcare</a></li>
+            <li><a class="screen-comp-sector">Materials</a></li>
+            <li><a class="screen-comp-sector">Industrials</a></li>
+            <li><a class="screen-comp-sector">High Technology</a></li>
+            <li><a class="screen-comp-sector">Media and Entertainment</a></li>
+            <li ><a class="screen-comp-sector">Financials</a></li>
+            <li ><a class="screen-comp-sector">Real Estate</a></li>
+            <li><a class="screen-comp-sector">Consumer Staples</a></li>
+            <li><a class="screen-comp-sector">Consumer Products and Services</a></li>
+            <li><a class="screen-comp-sector">Retail</a></li>
+            <li ><a class="screen-comp-sector">Energy and Power</a></li>
+            <li><a class="screen-comp-sector">Telecommunication</a></li>
+        </ul>
+    </div>
 </template>

@@ -2,19 +2,16 @@ Template.GalleryLibraryMenuScreen.helpers({
     sectorScreen: function() {
         var libraryType = Session.get('sessionLibraryType');
         switch(libraryType) {
-            case "none":
-                return Template.FootballBlank;
-                break;
-            case "comps":
+            case "Comps":
                 return Template.GalleryScreenCompSector;
                 break;
-            case "compsIndices":
+            case "Comps Indices":
                 return Template.FootballBlank;
                 break;
-            case "deals":
+            case "Deals":
                 return Template.GalleryScreenDealSector;
                 break;
-            case "dealsIndices":
+            case "Deals Indices":
                 return Template.FootballBlank;
                 break;
         }

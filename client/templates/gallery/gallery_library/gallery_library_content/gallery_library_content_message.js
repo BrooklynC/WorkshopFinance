@@ -2,16 +2,16 @@ Template.LibraryContentMessage.helpers({
     libraryMessage: function() {
         var library = Session.get('sessionLibraryType');
         switch(library) {
-            case "comps":
+            case "Comps":
                 return "You haven't selected any Comp criteria yet.";
                 break;
-            case "compsIndices":
+            case "Comps Indices":
                 return "You don't yet have any indices available.";
                 break;
-            case "deals":
+            case "Deals":
                 return "You haven't selected any Deal criteria yet.";
                 break;
-            case "dealsIndices":
+            case "Deals Indices":
                 return "You don't yet have any indices available.";
                 break;
         }

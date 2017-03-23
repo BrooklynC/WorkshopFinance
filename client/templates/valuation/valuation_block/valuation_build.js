@@ -1,28 +1,28 @@
 Template.ValuationBuild.helpers({
     //Only owner can add selections
-    valuationBuildAddAuto: function() {
-        var ownerId = this.ownerId;
-        var currentUserId = Meteor.userId();
-        if (currentUserId == ownerId) {
-            var valuationType = this.valuationType;
-            switch (valuationType) {
-                case "comps":
-                    return Template.ValuationBuildDataAuto;
-                    break;
-                case "deals":
-                    return Template.ValuationBuildDataAuto;
-                    break;
-                case "models":
-                    return Template.ValuationBuildModel;
-                    break;
-                case "custom":
-                    return Template.ValuationBuildCustom;
-                    break;
-            }
-        } else {
-            return Template.FootballBlank;
-        }
-    },
+    //valuationBuildAddAuto: function() {
+    //    var ownerId = this.ownerId;
+    //    var currentUserId = Meteor.userId();
+    //    if (currentUserId == ownerId) {
+    //        var valuationType = this.valuationType;
+    //        switch (valuationType) {
+    //            case "comps":
+    //                return Template.ValuationBuildDataAuto;
+    //                break;
+    //            case "deals":
+    //                return Template.ValuationBuildDataAuto;
+    //                break;
+    //            case "models":
+    //                return Template.ValuationBuildModel;
+    //                break;
+    //            case "custom":
+    //                return Template.ValuationBuildCustom;
+    //                break;
+    //        }
+    //    } else {
+    //        return Template.FootballBlank;
+    //    }
+    //},
     valuationBuildAdd: function() {
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();

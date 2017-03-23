@@ -11,7 +11,8 @@ Template.ValuationBuildDataComps.events({
 
         var currentFootballId = Template.parentData(1)._id;
         var currentValuationId = this._id;
-        var selection = $(".build-comps-comp option:selected").val();
+        var selectionField = $('#build' + currentValuationId + " " + 'option:selected');
+        var selection = selectionField.val();
 
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
@@ -20,6 +21,7 @@ Template.ValuationBuildDataComps.events({
             return Meteor.call('valuationBuildDataAdd', currentFootballId, currentValuationId, selection, function(error, result) {
             });
         }
+        selectionField.val('');
     }
 });
 

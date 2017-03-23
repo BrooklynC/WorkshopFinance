@@ -128,21 +128,21 @@ getRangeCaps = function(footballId) {
                     var existingCustom = valuation.existingCustom;
                     switch (footballOutput) {
                         case "Enterprise Value":
-                            if (existingCustom == "customValue") {
+                            if (existingCustom == "Value") {
                                 if (activeResult) {
                                     results.push(activeResult);
                                 }
                             }
                             break;
                         case "Price per Share":
-                            if (existingCustom == "customPrice") {
+                            if (existingCustom == "Price") {
                                 if (activeResult) {
                                     results.push(activeResult);
                                 }
                             }
                             break;
                         case "Multiple":
-                            if (existingCustom == "customMultiple") {
+                            if (existingCustom == "Multiple") {
                                 if (activeResult) {
                                     results.push(activeResult);
                                 }

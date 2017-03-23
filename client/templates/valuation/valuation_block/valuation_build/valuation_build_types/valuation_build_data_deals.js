@@ -11,7 +11,8 @@ Template.ValuationBuildDataDeals.events({
 
         var currentFootballId = Template.parentData(1)._id;
         var currentValuationId = this._id;
-        var selection = $(".build-deals-deal option:selected").val();
+        var selectionField = $('#build' + currentValuationId + " " + 'option:selected');
+        var selection = selectionField.val();
 
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
