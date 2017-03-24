@@ -2,50 +2,69 @@
 <template name="FootballTarget">
     <form>
         <div class="control-half-scroll left">
-            <select class="form-control football-target {{themeStyle.formDropdown}}" title="">
-                <option class="target-selected" value="">Update Target:</option>
-                <option class="target-selected" value="none">Market Comparison</option>
-                <option class="target-selected" disabled value="none">HEALTHCARE</option>
-                {{#each targetsHealthcare}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">MATERIALS</option>
-                {{#each targetsMaterials}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">INDUSTRIALS</option>
-                {{#each targetsIndustrials}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">INFORMATION TECHNOLOGY</option>
-                {{#each targetsIt}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">FINANCIALS</option>
-                {{#each targetsFinancials}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">CONSUMER STAPLES</option>
-                {{#each targetsConsumerStaples}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">CONSUMER DISCRETIONARY</option>
-                {{#each targetsConsumerDisc}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">UTILITIES</option>
-                {{#each targetsUtilities}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">ENERGY</option>
-                {{#each targetsEnergy}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-                <option class="target-selected" disabled value="none">TELECOMMUNICATION SERVICES</option>
-                {{#each targetsTelecom}}
-                    <option class="target-selected" value="{{ticker}}">{{companyName}} ({{ticker}})</option>
-                {{/each}}
-            </select>
+            <div class="btn-group btn-dropdown">
+                <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownTarget" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="left">
+                        Update Target:
+                    </div>
+                    <div class="right">
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <ul class="dropdown-menu dropdown-scroll target-options {{disableOptionGallery}}" aria-labelledby="dropdownTarget">
+                    <li class="menu-target"><a value="market">Market Comparison</a></li>
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsHealthcare}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsMaterials}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsIndustrials}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsIt}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsFinancials}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsConsumerStaples}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsConsumerDisc}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsUtilities}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsEnergy}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                    <li role="separator" class="divider"></li>
+                    <li class="disabled"><a class="menu-target">HEALTHCARE</a></li>
+                    {{#each targetsTelecom}}
+                        <li><a class="menu-target" value="{{ticker}}">{{companyName}} ({{ticker}})</a></li>
+                    {{/each}}
+                </ul>
+            </div>
             <!--<div class="form-group {{themeStyle.formInput}}">-->
                 <!--{{> inputAutocomplete settings=settings id="footballAddTarget" name="footballAddTarget" class="form-control" autocomplete="off" placeholder="Target"}}-->
             <!--</div>-->

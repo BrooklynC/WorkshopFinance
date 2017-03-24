@@ -18,24 +18,6 @@ Template.FootballOutput.events({
 });
 
 Template.FootballOutput.helpers({
-    isNotMultiple: function() {
-        var output = this.footballOutput;
-        if(output !== "Multiple") {
-            return true
-        }
-    },
-    isNotEv: function() {
-        var output = this.footballOutput;
-        if(output !== "Enterprise Value") {
-            return true
-        }
-    },
-    isNotPrice: function() {
-        var output = this.footballOutput;
-        if(output !== "Price per Share") {
-            return true
-        }
-    },
     //These options (Enterprise Value, Price per Share) are disabled if there is no target.  Multiple is only option
     noTargetDisable: function() {
         var footballType = this.footballType;

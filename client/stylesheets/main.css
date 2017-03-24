@@ -93,8 +93,14 @@ p {
 .dropdown-scroll {
     height: auto;
     max-height: 200px;
+    cursor: pointer;
     overflow-x: hidden;
     z-index: 100000;
+}
+.dropdown-right {
+    left: -126px;
+    right: 0;
+    text-align: right;
 }
 /*HEADER*/
 #logo {

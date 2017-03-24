@@ -9,22 +9,12 @@
                 <span class="caret"></span>
             </div>
         </button>
-        <ul class="dropdown-menu dropdown-scroll {{disableOptionGallery}}" aria-labelledby="dropdownSort">
-            {{#if isNotDateAsc}}
-                <li ><a class="menu-sort-text">Date (oldest first)</a></li>
-            {{/if}}
-            {{#if isNotDateDesc}}
-                <li><a class="menu-sort-text">Date (newest first)</a></li>
-            {{/if}}
-            {{#if isNotValueAsc}}
-                <li class="disabled"><a class="menu-sort-text">Value (ascending)</a></li>
-            {{/if}}
-            {{#if isNotValueDesc}}
-                <li class="disabled"><a class="menu-sort-text">Value (descending)</a></li>
-            {{/if}}
-            {{#if isNotManual}}
-                <li class="disabled"><a class="menu-sort-text">Manual</a></li>
-            {{/if}}
+        <ul class="dropdown-menu dropdown-scroll dropdown-right {{disableOptionGallery}}" aria-labelledby="dropdownSort">
+            <li ><a class="menu-sort-text">Date (oldest first)</a></li>
+            <li><a class="menu-sort-text">Date (newest first)</a></li>
+            <li class="disabled"><a class="menu-sort-text">Value (ascending)</a></li>
+            <li class="disabled"><a class="menu-sort-text">Value (descending)</a></li>
+            <li class="disabled"><a class="menu-sort-text">Manual</a></li>
         </ul>
     </div>
 </template>

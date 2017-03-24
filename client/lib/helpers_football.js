@@ -13,7 +13,6 @@ getTarget = function(currentFootballId, targetSelection) {
         var marketType = Footballs.findOne({_id:currentFootballId}).marketType;
         var targetData = Session.get('targetData');
         if(targetSelection == "none")  {
-        //if(!targetSelection)  {
             return {
                 targetId: "none",
                 targetType: "none",

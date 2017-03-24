@@ -1,10 +1,25 @@
 //Changes Football Output options and updates Football document
 Template.FootballTarget.events({
+    'click .target-options li': function(e) {
+        e.preventDefault();
+
+        var ticker = this.ticker;
+
+        getTargetTicker = function(ticker) {
+            if(ticker == null) {
+                return "none"
+            } else {
+                return ticker;
+            }
+        };
+        var target = getTargetTicker(ticker);
+
+        Template.instance().state.set('target', target);
+    },
     'submit form': function(e) {
         e.preventDefault();
 
-        var field = $(e.target).find('[id=footballAddTarget]');
-        var targetSelection = $(".football-target option:selected").val();
+        var targetSelection = Template.instance().state.get('target');
 
         var currentFootballId = this._id;
         var currentFootball = Footballs.findOne({_id:currentFootballId});
@@ -14,17 +29,18 @@ Template.FootballTarget.events({
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 
-        if(targetSelection) {
-            var target = getTarget(currentFootballId, targetSelection);
+        if(targetSelection !== null) {
+            var targetObject = getTarget(currentFootballId, targetSelection);
+            console.log("Target Object: ", targetObject);
             var footballType = getFootballType(targetSelection);
 
             if(currentUserId == ownerId) {
                 if (valuationsCount > 0) {
                     var saveCopy = confirm("Select OK to recreate this football field with this new target.  Select Cancel to update the existing football field with this target.");
-                    Meteor.call('footballTargetUpdateAndCopy', currentFootballId, target, footballType, saveCopy, function (error, result) {
+                    Meteor.call('footballTargetUpdateAndCopy', currentFootballId, targetObject, footballType, saveCopy, function (error, result) {
                     });
                 } else {
-                    Meteor.call('footballTargetUpdate', currentFootballId, target, footballType, function (error, result) {
+                    Meteor.call('footballTargetUpdate', currentFootballId, targetObject, footballType, function (error, result) {
                     });
                 }
             } else {
@@ -33,7 +49,6 @@ Template.FootballTarget.events({
             }
         }
         //Clear selections
-        field.val('');
         localSelections.remove({});
     }
 });
@@ -114,4 +129,10 @@ Template.FootballTarget.helpers({
             return "Save as New"
         }
     }
+});
+
+
+Template.FootballTarget.onCreated (function () {
+    this.state = new ReactiveDict;
+    this.state.set('target', null);
 });

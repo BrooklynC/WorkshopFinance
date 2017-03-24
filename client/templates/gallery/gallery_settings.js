@@ -10,7 +10,7 @@ Template.GallerySettings.events({
 Template.GallerySettings.helpers({
     indicesCreate: function() {
         var username = Meteor.user().username;
-        if (username == "workshop") {
+        if (username == "workshop" || username == "Workshop") {
             var teams = FeedTeams.find({});
             if(teams.count() === 0) {
                 return Template.GalleryAddData;
@@ -26,7 +26,7 @@ Template.GallerySettings.helpers({
         var user = Meteor.users.findOne({_id:currentUserId});
         var username = user.username;
         var tier = user.profile.tier;
-        if(username == "workshop") {
+        if(username == "workshop" || username == "Workshop") {
             return "Workshop Finance";
         } else {
             switch(tier) {

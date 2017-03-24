@@ -13,29 +13,5 @@ Template.LibraryMenu.events({
 Template.LibraryMenu.helpers({
     libraryFilter: function() {
         return Session.get('sessionLibraryType');
-    //},
-    //isNotComps: function() {
-    //    var library = Session.get('sessionLibraryType');
-    //    if (library !== "Comps") {
-    //        return true;
-    //    }
-    //},
-    //isNotCompsIndices: function() {
-    //    var library = Session.get('sessionLibraryType');
-    //    if (library !== "Comps Indices") {
-    //        return true;
-    //    }
-    //},
-    //isNotDeals: function() {
-    //    var library = Session.get('sessionLibraryType');
-    //    if (library !== "Deals Indices") {
-    //        return true;
-    //    }
-    //},
-    //isNotDealsIndices: function() {
-    //    var library = Session.get('sessionLibraryType');
-    //    if (library !== "Deals Indices") {
-    //        return true;
-    //    }
     }
 });

@@ -9,16 +9,10 @@
                 <span class="caret"></span>
             </div>
         </button>
-        <ul class="dropdown-menu dropdown-scroll" aria-labelledby="dropdownOutput">
-            {{#if isNotMultiple}}
-                <li ><a class="menu-output-text" id="Multiple">Multiple</a></li>
-            {{/if}}
-            {{#if isNotEv}}
-                <li class="{{noTargetDisable}}"><a class="menu-output-text">Enterprise Value</a></li>
-            {{/if}}
-            {{#if isNotPrice}}
-                <li class="{{noTargetDisable}}"><a class="menu-output-text">Price per Share</a></li>
-            {{/if}}
+        <ul class="dropdown-menu dropdown-scroll dropdown-right {{disableOptionGallery}}" aria-labelledby="dropdownOutput">
+            <li><a class="menu-output-text" id="Multiple">Multiple</a></li>
+            <li class="{{noTargetDisable}}"><a class="menu-output-text">Enterprise Value</a></li>
+            <li class="{{noTargetDisable}}"><a class="menu-output-text">Price per Share</a></li>
         </ul>
     </div>
 </template>

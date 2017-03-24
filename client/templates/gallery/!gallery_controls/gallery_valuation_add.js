@@ -29,7 +29,7 @@ Template.GalleryValuationAdd.events({
         var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
 
 
-        if(marketType === "company") {
+        if(marketType == "company") {
             if(ownerId == currentUserId) {
                 if(length > 0) {
                     Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, function(error, result) {
