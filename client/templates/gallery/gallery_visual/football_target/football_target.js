@@ -54,6 +54,18 @@ Template.FootballTarget.events({
 });
 
 Template.FootballTarget.helpers({
+    name: function() {
+        var ticker = Template.instance().state.get('target');
+        if(ticker == null) {
+            return "Update Target:"
+        } else {
+            if(ticker == "none") {
+                return "Market Comparison"
+            } else {
+                return ticker;
+            }
+        }
+    },
     targetsHealthcare: function() {
         return FeedCompanies.find({sector:"Healthcare"}, {sort: {companyName: 1}});
     },
