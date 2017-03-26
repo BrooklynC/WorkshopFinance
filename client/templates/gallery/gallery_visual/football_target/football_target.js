@@ -1,3 +1,7 @@
+//Session.set('sessionTargetSelection', null);
+//Session.set('sessionTargetFootballId', null);
+//Session.set('sessionOwnerId', null);
+
 //Changes Football Output options and updates Football document
 Template.FootballTarget.events({
     'click .target-options li': function(e) {
@@ -26,6 +30,8 @@ Template.FootballTarget.events({
         var valuations = currentFootball.footballValuations;
         var valuationsCount = valuations.length;
 
+        Template.instance().state.set('target', null);
+
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 
@@ -51,6 +57,35 @@ Template.FootballTarget.events({
         //Clear selections
         localSelections.remove({});
     }
+    //'submit form': function(e) {
+    //    e.preventDefault();
+    //
+    //    var currentFootballId = this._id;
+    //    var ownerId = Footballs.findOne({_id:currentFootballId}).ownerId;
+    //    Session.set('sessionOwnerId', ownerId);
+    //    Template.instance().state.set('target', null);
+    //
+    //},
+    //'click #target-update-empty': function(e) {
+    //    e.preventDefault();
+    //
+    //    var targetSelection = Session.get('sessionTargetSelection');
+    //    Template.instance().state.set('target', null);
+    //
+    //    var currentFootballId = this._id;
+    //    var currentFootball = Footballs.findOne({_id:currentFootballId});
+    //
+    //    var ownerId = currentFootball.ownerId;
+    //    var currentUserId = Meteor.userId();
+    //
+    //    if(currentUserId == ownerId) {
+    //        var targetObject = getTarget(currentFootballId, targetSelection);
+    //        var footballType = getFootballType(targetSelection);
+    //
+    //        Meteor.call('footballTargetUpdate', currentFootballId, targetObject, footballType, function (error, result) {
+    //        });
+    //    }
+    //}
 });
 
 Template.FootballTarget.helpers({
@@ -134,6 +169,14 @@ Template.FootballTarget.helpers({
         if(selection == null) {
             return "disabled"
         }
+    //},
+    //isValuations: function() {
+    //    var currentFootballId = this._id;
+    //    var valuations = Footballs.findOne({_id:currentFootballId}).footballValuations;
+    //    var count = valuations.length;
+    //    if(count > 0) {
+    //        return true
+    //    }
     }
 });
 

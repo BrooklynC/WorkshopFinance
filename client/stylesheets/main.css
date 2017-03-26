@@ -968,7 +968,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     }
     #controls-scroll {
         height: 210px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
     #gallery-menu-inner > .panel > .in {
         height:320px;
@@ -1006,7 +1006,7 @@ and (min-resolution: 192dpi) {
     }
     #controls-scroll {
         height: 210px;
-        overflow-y: scroll;
+        overflow-y: auto;
     }
 }
 /*iPhone 5*/

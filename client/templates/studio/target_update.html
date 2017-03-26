@@ -1,0 +1,31 @@
+<template name="TargetUpdate">
+    <div class="modal" id="modal-target-update" tabindex="-1" role="dialog" aria-labelledby="modalTargetUpdateLabel">
+        <div class="modal-dialog modal-sm" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="modalTargetUpdateLabel">Target Update</h4>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <h5>Select OK to recreate this football field with this new target.</h5>
+                    </div>
+                    <div>
+                        <h5>Select Cancel to update the existing football field with this target.</h5>
+                    </div>
+                </div>
+                <div class="modal-footer wrapper">
+                    <div>
+                        <button type="button" class="btn btn-default left" id="target-existing" data-dismiss="modal">Existing</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-default left" id="target-new" data-dismiss="modal">New</button>
+                    </div>
+                    <div>
+                        <button type="button" class="btn btn-default left" id="target-cancel" data-dismiss="modal">Cancel</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+ </template>

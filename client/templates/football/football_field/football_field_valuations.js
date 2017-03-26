@@ -5,10 +5,8 @@ Template.FootballFieldValuations.helpers({
     valuations: function() {
         var footballId = this._id;
         var footballValuations = Footballs.findOne({_id:footballId}).footballValuations;
-        console.log(footballValuations);
         if (footballValuations) {
             var footballSort = this.footballSort;
-            console.log(footballSort);
             switch(footballSort) {
                 case "Date (oldest first)":
                     return Valuations.find({_id: {$in: footballValuations}}, {sort: {timeCreated: 1}});
@@ -31,7 +29,6 @@ Template.FootballFieldValuations.helpers({
     },
     isArray: function() {
         var sessionValuations = Session.get('sessionValuations');
-        console.log(sessionValuations);
         if(sessionValuations == "array") {
             return true;
         }
