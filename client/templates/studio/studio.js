@@ -14,7 +14,6 @@ Template.Studio.helpers({
     },
     headerLogin: function() {
         var currentUser = Meteor.user();
-        console.log(currentUser);
         if(currentUser == null) {
             return "header-logout"
         } else {
@@ -23,7 +22,6 @@ Template.Studio.helpers({
     },
     footerLogin: function() {
         var currentUser = Meteor.user();
-        console.log(currentUser);
         if(currentUser == null) {
             return "footer-logout"
         } else {

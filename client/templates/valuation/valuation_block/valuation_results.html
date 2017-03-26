@@ -1,26 +1,30 @@
 <!--Full summary of results, including Build value and transformed value, if applicable-->
 <template name="ValuationResults">
     <div class="valuation-results-inner">
-        <div>
-            <strong>Implied Results:</strong>
-        </div>
         <div class="wrapper results-row">
-            <div class="left results-left">
-                {{>output}}
+            <div class="left results-result-left">
+                <strong>Implied:</strong>
             </div>
-            <div class="left results-right">
+            <div class="right results-result-right">
                 <p><strong>{{resultFormat result}}{{resultMultiple}}</strong></p>
             </div>
         </div>
-        <div>
-            <strong>Based on:</strong>
+        <div class="wrapper results-row">
+            <div class="left results-full">
+                {{>output}}
+            </div>
         </div>
         <div class="wrapper results-row">
-            <div class="results-left left">
-                {{>valuationResultsBuild}}
+            <div class="left results-left">
+                <strong>Based on:</strong>
             </div>
-            <div class="results-right left">
+            <div class="right results-right">
                 {{>ValuationCalc}}
+            </div>
+        </div>
+        <div class="wrapper results-row">
+            <div class="results-full left">
+                {{>valuationResultsBuild}}
             </div>
         </div>
         <div class="valuation-results-content">

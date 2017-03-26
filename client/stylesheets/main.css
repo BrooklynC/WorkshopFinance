@@ -107,7 +107,7 @@ p {
 }
 .dropdown-scroll-result {
     height: auto;
-    max-height: 125px;
+    max-height: 100px;
     cursor: pointer;
     overflow-x: hidden;
 }
@@ -540,11 +540,18 @@ p {
     height: 40px;
     line-height: 40px;
 }
+.results-result-left {
+    width:20%;
+}
+.results-result-right {
+    width:80%;
+    text-align: right;
+}
 .results-left {
     width:65%;
 }
 .results-left p {
-    text-align: left;
+    /*text-align: left;*/
 }
 .results-right {
     width:35%;
@@ -552,6 +559,9 @@ p {
 }
 .results-right p {
     text-align: right;
+}
+.results-full {
+    width:100%;
 }
 /*VALUATION BAR*/
 .valuation-base-bar {
