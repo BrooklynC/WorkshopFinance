@@ -112,11 +112,11 @@ p {
     overflow-x: hidden;
 }
 /*.dropdown-scroll-block {*/
-    /*height: auto;*/
-    /*max-height: 160px;*/
-    /*cursor: pointer;*/
-    /*overflow-x: hidden;*/
-    /*z-index: 100000;*/
+/*height: auto;*/
+/*max-height: 160px;*/
+/*cursor: pointer;*/
+/*overflow-x: hidden;*/
+/*z-index: 100000;*/
 /*}*/
 .dropdown-right {
     left: -126px;
@@ -255,6 +255,17 @@ p {
 }
 .gallery-item-action {
     width: 13%;
+}
+.action-input {
+    width:50%;
+    padding-right: 1px
+}
+.action-button {
+    width:25%;
+    padding-left: 1px;
+}
+.action-button button {
+    width:100%;
 }
 .gallery-item-open {
     height: 30px;
@@ -1103,10 +1114,10 @@ and (orientation: portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:275px;
+        height:300px;
     }
     #controls-scroll {
-        height: 170px;
+        height: 195px;
         overflow-y: scroll;
     }
 }
@@ -1264,3 +1275,4 @@ and (orientation : landscape) {
         overflow-y: scroll;
     }
 }
+
