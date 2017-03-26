@@ -11,6 +11,24 @@ Template.Studio.helpers({
                 return true
             }
         }
+    },
+    headerLogin: function() {
+        var currentUser = Meteor.user();
+        console.log(currentUser);
+        if(currentUser == null) {
+            return "header-logout"
+        } else {
+            return "header-login"
+        }
+    },
+    footerLogin: function() {
+        var currentUser = Meteor.user();
+        console.log(currentUser);
+        if(currentUser == null) {
+            return "footer-logout"
+        } else {
+            return "footer-login"
+        }
     }
 });
 

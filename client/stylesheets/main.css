@@ -144,12 +144,13 @@ p {
     text-align: center;
 }
 /*WORKSPACE*/
-.studio-inner {
+#cover {
     position: fixed;
     width: 100%;
-    height: calc(100% - 100px);
 }
 #workspace {
+    position: fixed;
+    width: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -157,17 +158,6 @@ p {
     width: 95%;
     height:100%;
     margin: auto;
-}
-#workspace-inner-gallery {
-    width: 25%;
-    margin: auto;
-    height: 100%;
-}
-#workspace-inner-football {
-    width: 75%;
-    margin: auto;
-    height: 100%;
-    padding-left: 1%;
 }
 /*GALLERY*/
 #gallery, #gallery-inner {
@@ -233,17 +223,6 @@ p {
 .gallery-title-inner {
     text-align: center;
 }
-.control-row {
-    width:100%;
-    display: inline-block;
-    margin-bottom: 1px;
-}
-.control-half {
-    width:50%;
-}
-.control-half-title {
-    width:40%;
-}
 .output-text {
     display: table;
     height:100%;
@@ -251,12 +230,6 @@ p {
 .output-text p {
     display: table-cell;
     vertical-align: middle;
-}
-.control-half-value {
-    width:60%;
-}
-.control-half-scroll {
-    width:49%;
 }
 .visual-inc {
     width:20%;
@@ -299,15 +272,48 @@ p {
 /*GALLERY VISUAL*/
 #controls-top {
     margin-top:3px;
-    height:80px;
+    height:40px;
+}
+#controls-top-inner {
+    width:100%;
+    /*width: calc(100% - 17px);*/
+}
+.controls-top-left {
+    width: calc(50% - 17px);
+    padding-right:1px;
+}
+.controls-top-right {
+    width: calc(50% + 17px);
+    padding-left: 1px;
+}
+.control-row {
+    width:100%;
+    display: inline-block;
+    margin-bottom: 1px;
+}
+.control-half {
+    width:50%;
+}
+.control-half-title {
+    width:35%;
+}
+.control-half-value {
+    width:65%;
+}
+.control-scroll-left {
+    width: calc(((100% + 17px) * 0.5) - 17px);
+    padding-right: 1px;
+}
+.control-scroll-right {
+    width: calc((100% + 17px) * 0.5);
+    padding-left: 1px;
 }
 #controls-scroll {
-    height:215px;
     width:100%;
     margin-top:5px;
 }
 #controls-scroll-inner {
-    /*width: calc(100% - 17px);*/
+    width: calc(100% - 17px);
 }
 #football-actions-input {
     height:40px;
@@ -597,14 +603,14 @@ svg {
     width:100%;
 }
 .valuation-build-type {
-    width:25%;
+    width:30%;
     padding-right: 2px;
 }
 .valuation-build-type > select {
     width:100%;
 }
 .valuation-build-select {
-    width:75%;
+    width:70%;
 }
 .valuation-build-select .build-select-sector {
     width: calc(100%/3);
@@ -657,9 +663,6 @@ svg {
 }
 .valuation-results-content {
     width: 100%;
-}
-.output-text, .sort-text {
-    text-align: center;
 }
 .result-value p {
     margin:auto;
@@ -938,11 +941,24 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .navbar-brand {
         padding: 0 0 0 10px;
     }
-    #workspace {
+    #cover, #workspace {
+        height: calc(100% - 100px);
         top: 50px;
     }
+    #workspace-inner-gallery {
+        width: 25%;
+        margin: auto;
+        height: 100%;
+    }
+    #workspace-inner-football {
+        width: 75%;
+        margin: auto;
+        height: 100%;
+        padding-left: 1%;
+    }
     #controls-scroll {
-        /*overflow-y: scroll;*/
+        height: 210px;
+        overflow-y: scroll;
     }
     #gallery-menu-inner > .panel > .in {
         height:320px;
@@ -957,13 +973,30 @@ and (min-resolution: 192dpi) {
         padding: 0 0 0 10px;
     }
     #workspace {
+        height: calc(100% - 100px);
         top: 50px;
     }
-    #controls-scroll {
-        /*overflow-y: scroll;*/
+    #cover {
+        height: 100%;
+        top: 50px;
+    }
+    #workspace-inner-gallery {
+        width: 25%;
+        margin: auto;
+        height: 100%;
+    }
+    #workspace-inner-football {
+        width: 75%;
+        margin: auto;
+        height: 100%;
+        padding-left: 1%;
     }
     #gallery-menu-inner > .panel > .in {
         height:320px;
+    }
+    #controls-scroll {
+        height: 210px;
+        overflow-y: scroll;
     }
 }
 /*iPhone 5*/
@@ -974,10 +1007,15 @@ and (orientation : portrait) {
     .navbar-brand {
         padding: 0;
     }
-    .studio-inner {
+    #workspace {
+        height: calc(100% - 50px);
         top: 50px;
     }
-    #footer {
+    #cover {
+        height:calc(100% - 100px);
+        top: 50px;
+    }
+    .footer-login {
         display: none;
     }
     #workspace-inner-gallery {
@@ -992,9 +1030,10 @@ and (orientation : portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:280px;
+        height:230px;
     }
     #controls-scroll {
+        height: 115px;
         overflow-y: scroll;
     }
 }
@@ -1002,10 +1041,17 @@ and (orientation : portrait) {
 and (min-device-width : 320px)
 and (max-device-width : 568px)
 and (orientation : landscape) {
-    #header {
+    .header-login {
         display: none;
     }
-    #footer {
+    .navbar-brand {
+        padding: 0;
+    }
+    #cover {
+        top:50px;
+        height:100%;
+    }
+    .footer-login {
         display: none;
     }
     #workspace {
@@ -1030,10 +1076,7 @@ and (orientation: portrait) {
     .navbar-brand {
         padding: 0;
     }
-    .studio-inner {
-        top: 50px;
-    }
-    #footer {
+    .footer-login {
         display: none;
     }
     #workspace-inner-gallery {
@@ -1044,13 +1087,11 @@ and (orientation: portrait) {
     #workspace-inner-football {
         display: none;
     }
-    #football-field-valuations {
-        display: none;
-    }
     #gallery-menu-inner > .panel > .in {
-        height:310px;
+        height:295px;
     }
     #controls-scroll {
+        height: 180px;
         overflow-y: scroll;
     }
 }
@@ -1059,10 +1100,17 @@ and (min-device-width: 375px)
 and (max-device-width: 667px)
 and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: landscape) {
-    #header {
+    .header-login {
         display: none;
     }
-    #footer {
+    .navbar-brand {
+        padding: 0;
+    }
+    #cover {
+        top:50px;
+        height:100%;
+    }
+    .footer-login {
         display: none;
     }
     #workspace {
@@ -1086,14 +1134,8 @@ and (orientation: portrait) {
     .navbar-brand {
         padding: 0;
     }
-    .studio-inner {
-        top: 50px;
-    }
-    #footer {
+    .footer-login {
         display: none;
-    }
-    #workspace {
-        top: 50px;
     }
     #workspace-inner-gallery {
         width: 100%;
@@ -1108,7 +1150,7 @@ and (orientation: portrait) {
         height: 310px;
     }
     #controls-scroll {
-        height:235px;
+        height:190px;
         overflow-y: scroll;
     }
 }
@@ -1116,10 +1158,17 @@ and (orientation: portrait) {
 and (min-device-width : 414px)
 and (max-device-width : 736px)
 and (orientation : landscape) {
-    #header {
+    .header-login {
         display: none;
     }
-    #footer {
+    .navbar-brand {
+        padding: 0;
+    }
+    #cover {
+        top:50px;
+        height:100%;
+    }
+    .footer-login {
         display: none;
     }
     #workspace {
@@ -1140,21 +1189,63 @@ and (orientation : landscape) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
-    #workspace {
-        top: 50px;
+    .header-login {
+        display: none;
     }
     .navbar-brand {
-        padding: 0 0 0 10px;
+        padding: 0;
+    }
+    #cover {
+        top:50px;
+        height:100%;
+    }
+    .footer-login {
+        display: none;
+    }
+    #workspace {
+        height: 100%;
+    }
+    #workspace-inner-gallery {
+        display: none;
+    }
+    #workspace-inner-football {
+        width: 100%;
+        margin: auto;
+        height: 100%;
+        padding-left: 1%;
     }
 }
 @media only screen
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : landscape) {
-    #workspace {
-        top: 50px;
-    }
     .navbar-brand {
         padding: 0 0 0 10px;
+    }
+    #workspace {
+        height: calc(100% - 100px);
+        top: 50px;
+    }
+    #cover {
+        height: 100%;
+        top: 50px;
+    }
+    #workspace-inner-gallery {
+        width: 35%;
+        margin: auto;
+        height: 100%;
+    }
+    #workspace-inner-football {
+        width: 65%;
+        margin: auto;
+        height: 100%;
+        padding-left: 1%;
+    }
+    #gallery-menu-inner > .panel > .in {
+        height:320px;
+    }
+    #controls-scroll {
+        height: 210px;
+        overflow-y: scroll;
     }
 }

@@ -3,11 +3,11 @@
     {{#if Template.subscriptionsReady}}
         <!-- Modal -->
         {{> About}}
-        <div id="header">
+        <div class="{{headerLogin}}" id="header">
             {{> Header}}
         </div>
         {{#if currentUser}}
-            <div class="studio-inner {{themeStyle.main}}" id="workspace">
+            <div class="{{themeStyle.main}}" id="workspace">
                 {{#if isActive}}
                     {{> Workspace}}
                 {{else}}
@@ -15,11 +15,11 @@
                 {{/if}}
             </div>
         {{else}}
-            <div class="studio-inner" id="cover">
+            <div id="cover">
                 {{> Cover}}
             </div>
         {{/if}}
-        <div id="footer">
+        <div class="{{footerLogin}}" id="footer">
             {{> Footer}}
         </div>
     {{/if}}

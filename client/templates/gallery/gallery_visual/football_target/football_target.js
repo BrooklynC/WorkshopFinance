@@ -128,6 +128,12 @@ Template.FootballTarget.helpers({
                 };
                 break;
         }
+    },
+    disableNoSelection: function() {
+        var selection = Template.instance().state.get('target');
+        if(selection == null) {
+            return "disabled"
+        }
     }
 });
 
