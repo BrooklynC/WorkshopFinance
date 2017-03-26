@@ -3,43 +3,33 @@
     <div class="build-select-inner wrapper">
         <form>
             <div class="wrapper">
-                <div class="left {{themeStyle.formInput}}">
+                <div class="left input-group input-group-sm {{themeStyle.formInput}}">
                     <input name="customNameAdd" id="customNameAdd" autocomplete="off" type="text" value="" placeholder="Name" class="form-control"/>
                 </div>
-            </div>
-            <div class="wrapper">
                 {{#if isCount}}
                     <div class="custom-add-menu left">
                         <p>{{existingCustom}}</p>
                     </div>
                 {{else}}
                     <div class="left">
-                        <div class="left">
-                            <select class="form-control build-element {{themeStyle.formDropdown}}" id="customStatAdd" name="customStatAdd" title="">
-                                <option class="build-text" disabled>Custom:</option>
-                                <option class="build-text" {{disabledMarket}} value="Value">Value</option>
-                                <option class="build-text" {{disabledMarket}} value="Price">Price per Share</option>
-                                <option class="build-text" value="customMultiple">Multiple</option>
-                            </select>
+                        <div class="btn-group btn-dropdown">
+                            <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownBuildElement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <div class="left">
+                                    {{buildElement}}
+                                </div>
+                                <div class="right">
+                                    <span class="caret"></span>
+                                </div>
+                            </button>
+                            <ul class="dropdown-menu dropdown-scroll {{disableOptionGallery}}" aria-labelledby="dropdownBuildElement">
+                                <li class="{{disabledMarket}}"><a class="menu-build-element">Value</a></li>
+                                <li class="{{disabledMarket}}"><a class="menu-build-element">Price</a></li>
+                                <li><a class="menu-build-element">Multiple</a></li>
+                            </ul>
                         </div>
-                        <!--<div class="btn-group btn-dropdown">-->
-                            <!--<button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownBuildElement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
-                                <!--<div class="left">-->
-                                    <!--{{buildElement}}-->
-                                <!--</div>-->
-                                <!--<div class="right">-->
-                                    <!--<span class="caret"></span>-->
-                                <!--</div>-->
-                            <!--</button>-->
-                            <!--<ul class="dropdown-menu dropdown-scroll {{disableOptionGallery}}" aria-labelledby="dropdownBuildElement">-->
-                                <!--<li class="{{disabledMarket}}"><a class="menu-build-element">Value</a></li>-->
-                                <!--<li class="{{disabledMarket}}"><a class="menu-build-element">Price</a></li>-->
-                                <!--<li><a class="menu-build-element">Multiple</a></li>-->
-                            <!--</ul>-->
-                        <!--</div>-->
                     </div>
                 {{/if}}
-                <div class="left {{themeStyle.formInput}}">
+                <div class="left input-group input-group-sm {{themeStyle.formInput}}">
                     <input name="customValueAdd" id="customValueAdd" autocomplete="off" type="text" value="" placeholder="Value" class="form-control"/>
                 </div>
                 <div class="left">

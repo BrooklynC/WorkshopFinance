@@ -1,22 +1,31 @@
 Template.ValuationBuildModel.events({
+    'click .menu-build-stat': function(e) {
+        e.preventDefault();
+
+        var stat = $(e.target).text();
+
+        Template.instance().state.set('stat', stat);
+    },
     'submit form': function(e) {
         e.preventDefault();
 
         var currentFootballId = Template.parentData(1)._id;
         var currentValuationId = this._id;
         var fieldName = $(e.target).find('[id=modelNameAdd]');
-        var fieldStat = $(e.target).find('[id=modelStatAdd]');
+        var fieldStat = Template.instance().state.get('stat');
         var fieldValue = $(e.target).find('[id=modelValueAdd]');
 
         var selectionName = fieldName.val();
-        var selectionStat = fieldStat.val();
+        var selectionStat = fieldStat;
         var selectionValue = fieldValue.val();
+
+        Template.instance().state.set('stat', null);
 
         if(selectionName == "" || selectionStat == "" || selectionValue == "") {
             alert("You must include a name, stat and value.")
         } else {
             fieldName.val('');
-            fieldStat.val('enterpriseValue');
+            Template.instance().state.set('stat', null);
             fieldValue.val('');
 
             var ownerId = this.ownerId;
@@ -31,36 +40,12 @@ Template.ValuationBuildModel.events({
 });
 
 Template.ValuationBuildModel.helpers({
-    stat: function() {
-        var existingModel = this.existingModel;
-        switch(existingModel) {
-            case "evRevenueLtm":
-                return "EV/Revenue (LTM)";
-                break;
-            case "evRevenueFY1":
-                return "EV/Revenue (FY1)";
-                break;
-            case "evRevenueFY2":
-                return "EV/Revenue (LTM)";
-                break;
-            case "evEbitdaLtm":
-                return "EV/EBITDA (LTM)";
-                break;
-            case "evEbitdaFy1":
-                return "EV/EBITDA (FY1)";
-                break;
-            case "evEbitdaFy2":
-                return "EV/EBITDA (FY2)";
-                break;
-            case "priceEarningsLtm":
-                return "Price/Earnings (LTM)";
-                break;
-            case "priceEarningsFy1":
-                return "Price/Earnings (FY1)";
-                break;
-            case "priceEarningsFy2":
-                return "Price/Earnings (FY2)";
-                break;
+    statTitle: function() {
+        var stat = Template.instance().state.get('stat');
+        if(stat == null) {
+            return "Stat:"
+        } else {
+            return stat
         }
     },
     disabledMarket: function() {
@@ -69,4 +54,9 @@ Template.ValuationBuildModel.helpers({
             return "disabled";
         }
     }
+});
+
+Template.ValuationBuildModel.onCreated (function () {
+    this.state = new ReactiveDict;
+    this.state.set('stat', null);
 });

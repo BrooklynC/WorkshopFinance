@@ -296,17 +296,17 @@ Template.ValuationBaseDetails.helpers({
             var existingCustom = this.existingCustom;
             switch(footballOutput) {
                 case "Enterprise Value":
-                    if(existingCustom !== "customValue") {
+                    if(existingCustom !== "Value") {
                         return "*Not in calculations";
                     }
                     break;
                 case "Price per Share":
-                    if(existingCustom !== "customPrice") {
+                    if(existingCustom !== "Price") {
                         return "*Not in calculations";
                     }
                     break;
                 case "Multiple":
-                    if(existingCustom !== "customMultiple") {
+                    if(existingCustom !== "Multiple") {
                         return "*Not in calculations";
                     }
                     break;

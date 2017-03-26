@@ -1,13 +1,21 @@
 <!--Drop-down menu for choosing Valuation Type (comps, deals, models or custom)-->
 <template name="ValuationBuildType">
-    <select {{disableOption}} {{disableOptionFull}} class="form-control build-type {{themeStyle.formDropdown}}" name="build-type" title="">
-        <option class="build-text" {{selectedComps}} value="comps">Comps</option>
-        <option class="build-text" {{selectedCompsIndices}} value="compsIndices">Comps (Indices)</option>
-        <option class="build-text" {{selectedDeals}} value="deals">Deals</option>
-        <option class="build-text" {{selectedDealsIndices}} value="dealsIndices">Deals (Indices)</option>
-        <!--{{#if isPremium}}-->
-            <option class="build-text" {{selectedModels}} {{disableType}} {{disableMarket}} value="models"><strong>Models</strong></option>
-            <option class="build-text" {{selectedCustom}} {{disableMarket}} value="custom"><strong>Custom</strong></option>
-        <!--{{/if}}-->
-    </select>
+    <div class="btn-group btn-dropdown">
+        <button class="btn btn-info btn-sm dropdown-toggle wrapper {{disableOption}} {{disableOptionFull}}" type="button" id="dropdownValuationType" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <div class="left">
+                {{type}}
+            </div>
+            <div class="right">
+                <span class="caret"></span>
+            </div>
+        </button>
+        <ul class="dropdown-menu dropdown-scroll build-type" id="type{{this._id}}" aria-labelledby="dropdownValuationType">
+            <li><a class="menu-valuation-type">Comps</a></li>
+            <li><a class="menu-valuation-type">Comps Indices</a></li>
+            <li><a class="menu-valuation-type">Deals</a></li>
+            <li><a class="menu-valuation-type">Deals Indices</a></li>
+            <li class="{{disableType}} {{disableMarket}}"><a class="menu-valuation-type">Models</a></li>
+            <li class="{{disableMarket}}"><a class="menu-valuation-type">Custom</a></li>
+        </ul>
+    </div>
 </template>

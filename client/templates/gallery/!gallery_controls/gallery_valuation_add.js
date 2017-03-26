@@ -8,6 +8,7 @@ Template.GalleryValuationAdd.events({
         var marketType = this.marketType;
 
         var type = getValuationSelect().type;
+        console.log("Type: ", type);
         var element = getValuationSelect().element;
 
         var metric = getValuationInfo(marketType).metric;

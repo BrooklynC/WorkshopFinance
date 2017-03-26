@@ -1,60 +1,43 @@
 Template.ValuationBuildType.events({
-    'change .build-type': function(e) {
+    'click .build-type li': function(e) {
         e.preventDefault();
 
         var currentValuationId = this._id;
-        var option = $(e.target).val();
+        var option = $(e.target).text();
 
         Meteor.call('valuationBuildOptions', currentValuationId, option, function(error, result) {});
     }
 });
 
 Template.ValuationBuildType.helpers({
-    isPremium: function() {
-        var currentUserId = Meteor.userId();
-        var tier = Meteor.users.findOne({_id:currentUserId}).profile.tier;
-        if(tier == "B") {
-            return true;
-        }
-    },
-    selectedComps: function() {
+    type: function() {
         var valuationType = this.valuationType;
         var valuationElement = this.valuationElement;
-        if(valuationType == "comps" && valuationElement == "security") {
-            return "selected";
-        }
-    },
-    selectedCompsIndices: function() {
-        var valuationType = this.valuationType;
-        var valuationElement = this.valuationElement;
-        if(valuationType == "comps" && valuationElement == "index") {
-            return "selected";
-        }
-    },
-    selectedDeals: function() {
-        var valuationType = this.valuationType;
-        var valuationElement = this.valuationElement;
-        if(valuationType == "deals" && valuationElement == "security") {
-            return "selected";
-        }
-    },
-    selectedDealsIndices: function() {
-        var valuationType = this.valuationType;
-        var valuationElement = this.valuationElement;
-        if(valuationType == "deals" && valuationElement == "index") {
-            return "selected";
-        }
-    },
-    selectedModels: function() {
-        var valuationElement = this.valuationType;
-        if(valuationElement == "models") {
-            return "selected";
-        }
-    },
-    selectedCustom: function() {
-        var valuationElement = this.valuationType;
-        if(valuationElement == "custom") {
-            return "selected";
+        switch(valuationType) {
+            case "comps":
+                switch(valuationElement) {
+                    case "security":
+                        return "Comps";
+                        break;
+                    case "index":
+                        return "Comps Indices";
+                }
+                break;
+            case "deals":
+                switch(valuationElement) {
+                    case "security":
+                        return "Deals";
+                        break;
+                    case "index":
+                        return "Deals Indices";
+                }
+                break;
+            case "models":
+                return "Models";
+                break;
+            case "custom":
+                return "Custom";
+                break;
         }
     },
     disableMarket: function() {

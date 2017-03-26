@@ -8,8 +8,6 @@ Template.FootballActionsOption.events({
 
         var currentFootballId = this._id;
         var sessionActions = Session.get('sessionActions');
-        console.log(field);
-        console.log(selection);
 
         switch(sessionActions) {
             case "send":

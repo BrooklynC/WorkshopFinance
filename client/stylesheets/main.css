@@ -97,6 +97,13 @@ p {
     overflow-x: hidden;
     z-index: 100000;
 }
+/*.dropdown-scroll-block {*/
+    /*height: auto;*/
+    /*max-height: 160px;*/
+    /*cursor: pointer;*/
+    /*overflow-x: hidden;*/
+    /*z-index: 100000;*/
+/*}*/
 .dropdown-right {
     left: -126px;
     right: 0;
@@ -300,9 +307,11 @@ p {
 }
 .screen-left {
     width:50%;
+    padding-right: 1px;
 }
 .screen-right {
     width:50%;
+    padding-left: 1px;
 }
 .screen-left > .dropdown > button {
     width: 100%;
@@ -475,6 +484,9 @@ p {
     margin-top:5px;
     overflow: hidden;
 }
+.valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+    min-height: 250px;
+}
 /*VALUATION BASE*/
 .valuation-base-inner {
     width:100%;
@@ -595,7 +607,7 @@ svg {
 .valuation-build-select .build-select-selection-index {
     width: 100%;
 }
-.build-select-selection form div {
+.build-select-selection form > div {
     width: 50%;
     padding-right: 2px;
 }
@@ -613,6 +625,7 @@ svg {
 }
 .build-select-inner > form > div > div {
     width:25%;
+    padding-right: 2px;
 }
 .valuation-results-inner {
     padding: 1% 10% 1% 1%;
@@ -676,7 +689,7 @@ svg {
     width: calc(100% - 15px);
 }
 .table-valuation tbody {
-    max-height: 115px;
+    max-height: 130px;
     /*width: 100%;*/
     width: calc(100% - 15px);
     overflow-y: scroll;

@@ -26,14 +26,14 @@ Template.ValuationResultsOutput.helpers({
     custom: function() {
         var existing = this.existingCustom;
         switch(existing) {
-            case "customValue":
+            case "Value":
                 return "Custom Enterprise Value";
                 break;
-            case "customPrice":
+            case "Price":
                 return "Custom Price per Share";
                 break;
-            case "customMultiple":
-                return "Custom Multipl";
+            case "Multiple":
+                return "Custom Multiple";
                 break;
         }
     }

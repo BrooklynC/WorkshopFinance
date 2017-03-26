@@ -23,10 +23,10 @@
                 {{#if isValuations}}
                     {{#if isOutput}}
                         <div class="left valuation-metric">
-                            <em>{{detailOutput}} {{parenOutput.open}}{{periodOutput}}{{parenOutput.close}}</em>
+                            <em>{{detailOutput}} {{parenOutput.open}}{{periodOutput}}{{parenOutput.close}} {{asOf}} {{dateAbbrevComp valuationDateComp}}</em>
                         </div>
                         <div class="left valuation-metric">
-                            <em>{{asOf}} {{dateAbbrevComp valuationDateComp}} {{hold}}</em>
+                            <em>{{hold}}</em>
                         </div>
                     {{/if}}
                     <!--{{#if isValue}}-->

@@ -1,34 +1,50 @@
 <!--Form to add selection to Valuation, searches using autocomplete for Comp Ticker or Deal Target-->
 <template name="ValuationBuildDataDeals">
     <div class="build-select-sector left">
-        <select {{disableOption}} class="form-control build-deals-sector {{themeStyle.formDropdown}}" name="build-deals-sector" title="">
-            <option class="comps-sector" value="">Sector:</option>
-            <option class="comps-sector {{selectedHealthcare}}" value="Healthcare">Healthcare</option>
-            <option class="comps-sector {{selectedMaterials}}" value="Materials">Materials</option>
-            <option class="comps-sector {{selectedIndustrials}}" value="Industrials">Industrials</option>
-            <option class="comps-sector {{selectedHighTech}}" value="High Technology">High Technology</option>
-            <option class="comps-sector {{selectedMedia}}" value="Media and Entertainment">Media and Entertainment</option>
-            <option class="comps-sector {{selectedFinancials}}" value="Financials">Financials</option>
-            <option class="comps-sector {{selectedRealEstate}}" value="Real Estate">Real Estate</option>
-            <option class="comps-sector {{selectedConsumerStaples}}" value="Consumer Staples">Consumer Staples</option>
-            <option class="comps-sector {{selectedConsumerProducts}}" value="Consumer Products and Services">Consumer Products and Services</option>
-            <option class="comps-sector {{selectedRetail}}" value="Retail">Retail</option>
-            <option class="comps-sector {{selectedEnergy}}" value="Energy and Power">Energy and Power</option>
-            <option class="comps-sector {{selectedTelecom}}" value="Telecommunications">Telecommunications</option>
-        </select>
+        <div class="btn-group btn-dropdown">
+            <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownBuildDealSector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="left">
+                    {{sectorTitle}}
+                </div>
+                <div class="right">
+                    <span class="caret"></span>
+                </div>
+            </button>
+            <ul class="dropdown-menu dropdown-right dropdown-scroll" aria-labelledby="dropdownBuildDealSector">
+                <li><a class="build-deal-sector">Healthcare</a></li>
+                <li><a class="build-deal-sector">Materials</a></li>
+                <li><a class="build-deal-sector">Industrials</a></li>
+                <li><a class="build-deal-sector">High Technology</a></li>
+                <li><a class="build-deal-sector">Media and Entertainment</a></li>
+                <li><a class="build-deal-sector">Financials</a></li>
+                <li><a class="build-deal-sector">Real Estate</a></li>
+                <li><a class="build-deal-sector">Consumer Staples</a></li>
+                <li><a class="build-deal-sector">Consumer Products and Services</a></li>
+                <li><a class="build-deal-sector">Retail</a></li>
+                <li><a class="build-deal-sector">Energy and Power</a></li>
+                <li><a class="build-deal-sector">Telecommunication</a></li>
+            </ul>
+        </div>
     </div>
     <div class="build-select-selection wrapper left">
         <form>
-            <div class="left {{themeStyle.formInput}}">
-                <select {{disableOption}} {{disableNoSector}} class="form-control build-deals-deal {{themeStyle.formDropdown}}" id="build{{this._id}}" name="build-deals-deal" title="">
-                    <option class="deals-deal" value="">Deal:</option>
+            <div class="btn-group btn-dropdown left">
+                <button class="btn btn-info btn-sm dropdown-toggle {{disableNoSector}} wrapper" type="button" id="dropdownBuildDeal" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="left">
+                        {{dealTitle}}
+                    </div>
+                    <div class="right">
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <ul class="dropdown-menu dropdown-scroll deal-options {{disableOptionGallery}}" aria-labelledby="dropdownBuildDeal">
                     {{#each deals}}
-                        <option class="deals-deal" value="{{_id}}">{{companyName}} ({{dealTerms.acquirerName}})</option>
+                        <li><a class="build-deal-deal">{{companyName}} ({{dealTerms.acquirerName}})</a></li>
                     {{/each}}
-                </select>
+                </ul>
             </div>
             <div class="left">
-                <button type="submit" class="btn btn-info btn-full">Add</button>
+                <button type="submit" class="btn btn-info btn-sm btn-full">Add</button>
             </div>
         </form>
     </div>

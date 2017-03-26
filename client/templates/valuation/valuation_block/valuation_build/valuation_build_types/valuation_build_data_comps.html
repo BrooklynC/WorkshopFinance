@@ -1,32 +1,48 @@
 <!--Form to add selection to Valuation, searches using autocomplete for Comp Ticker or Deal Target-->
 <template name="ValuationBuildDataComps">
     <div class="build-select-sector left">
-        <select {{disableOption}} class="form-control build-comps-sector {{themeStyle.formDropdown}}" name="build-comps-sector" title="">
-            <option class="comps-sector" value="">Sector:</option>
-            <option class="comps-sector {{selectedHealthcare}}" value="Healthcare">Healthcare</option>
-            <option class="comps-sector {{selectedMaterials}}" value="Materials">Materials</option>
-            <option class="comps-sector {{selectedIndustrials}}" value="Industrials">Industrials</option>
-            <option class="comps-sector {{selectedIt}}" value="Information Technology">Information Technology</option>
-            <option class="comps-sector {{selectedFinancials}}" value="Financials">Financials</option>
-            <option class="comps-sector {{selectedConsumerStaples}}" value="Consumer Staples">Consumer Staples</option>
-            <option class="comps-sector {{selectedConsumerDisc}}" value="Consumer Discretionary">Consumer Discretionary</option>
-            <option class="comps-sector {{selectedUtilities}}" value="Utilities">Utilities</option>
-            <option class="comps-sector {{selectedEnergy}}" value="Energy">Energy</option>
-            <option class="comps-sector {{selectedTelecom}}" value="Telecommunication Services">Telecommunication Services</option>
-        </select>
+        <div class="btn-group btn-dropdown">
+            <button class="btn btn-info btn-sm dropdown-toggle wrapper {{disableOption}}" type="button" id="dropdownBuildCompSector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                <div class="left">
+                    {{sectorTitle}}
+                </div>
+                <div class="right">
+                    <span class="caret"></span>
+                </div>
+            </button>
+            <ul class="dropdown-menu dropdown-right dropdown-scroll" aria-labelledby="dropdownBuildCompSector">
+                <li><a class="build-comp-sector">Healthcare</a></li>
+                <li><a class="build-comp-sector">Materials</a></li>
+                <li><a class="build-comp-sector">Industrials</a></li>
+                <li><a class="build-comp-sector">Information Technology</a></li>
+                <li><a class="build-comp-sector">Financials</a></li>
+                <li><a class="build-comp-sector">Consumer Staples</a></li>
+                <li><a class="build-comp-sector">Consumer Discretionary</a></li>
+                <li><a class="build-comp-sector">Utilities</a></li>
+                <li><a class="build-comp-sector">Energy</a></li>
+                <li><a class="build-comp-sector">Telecommunication Services</a></li>
+            </ul>
+        </div>
     </div>
     <div class="build-select-selection wrapper left">
         <form>
-            <div class="left {{themeStyle.formInput}}">
-                <select {{disableOption}} {{disableNoSector}} class="form-control build-comps-comp {{themeStyle.formDropdown}}" name="build-comps-comp" id="build{{this._id}}" title="">
-                    <option class="comps-comp" value="">Comp:</option>
+            <div class="btn-group btn-dropdown left">
+                <button class="btn btn-info btn-sm dropdown-toggle {{disableNoSector}} wrapper" type="button" id="dropdownBuildComp" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="left">
+                        {{compTitle}}
+                    </div>
+                    <div class="right">
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <ul class="dropdown-menu dropdown-scroll comp-options {{disableOptionGallery}}" aria-labelledby="dropdownBuildComp">
                     {{#each comps}}
-                        <option class="comps-comp" value="{{_id}}">{{companyName}} ({{ticker}})</option>
+                        <li><a class="build-comp-comp">{{companyName}} ({{ticker}})</a></li>
                     {{/each}}
-                </select>
+                </ul>
             </div>
             <div class="left">
-                <button type="submit" class="btn btn-info btn-full">Add</button>
+                <button type="submit" class="btn btn-info btn-sm btn-full">Add</button>
             </div>
         </form>
     </div>

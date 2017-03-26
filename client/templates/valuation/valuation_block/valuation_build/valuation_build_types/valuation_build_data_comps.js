@@ -1,18 +1,26 @@
 Template.ValuationBuildDataComps.events({
-    'change .build-comps-sector': function(e) {
+    'click .build-comp-sector': function(e) {
         e.preventDefault();
 
-        var sector = $(e.target).val();
+        var sector = $(e.target).text();
 
         Template.instance().state.set('sector', sector);
+    },
+    'click .build-comp-comp': function(e) {
+        e.preventDefault();
+
+        var comp = this._id;
+
+        Template.instance().state.set('comp', comp);
     },
     'submit form': function(e) {
         e.preventDefault();
 
         var currentFootballId = Template.parentData(1)._id;
         var currentValuationId = this._id;
-        var selectionField = $('#build' + currentValuationId + " " + 'option:selected');
-        var selection = selectionField.val();
+        var selection = Template.instance().state.get('comp');
+
+        Template.instance().state.set('comp', null);
 
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
@@ -21,69 +29,24 @@ Template.ValuationBuildDataComps.events({
             return Meteor.call('valuationBuildDataAdd', currentFootballId, currentValuationId, selection, function(error, result) {
             });
         }
-        selectionField.val('');
     }
 });
 
 Template.ValuationBuildDataComps.helpers({
-    selectedHealthcare: function() {
+    sectorTitle: function() {
         var sector = Template.instance().state.get('sector');
-        if(sector == "Healthcare") {
-            return "selected";
+        if(sector == null) {
+            return "Sector:"
+        } else {
+            return sector;
         }
     },
-    selectedMaterials: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Materials") {
-            return "selected";
-        }
-    },
-    selectedIndustrials: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Industrials") {
-            return "selected";
-        }
-    },
-    selectedIt: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Information Technology") {
-            return "selected";
-        }
-    },
-    selectedFinancials: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Financials") {
-            return "selected";
-        }
-    },
-    selectedConsumerStaples: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Consumer Staples") {
-            return "selected";
-        }
-    },
-    selectedConsumerDisc: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Consumer Discretionary") {
-            return "selected";
-        }
-    },
-    selectedUtilities: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Healthcare") {
-            return "selected";
-        }
-    },
-    selectedEnergy: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Energy") {
-            return "selected";
-        }
-    },
-    selectedTelecom: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == "Telecommunication Services") {
-            return "selected";
+    compTitle: function() {
+        var comp = Template.instance().state.get('comp');
+        if(comp == null) {
+            return "Comp:"
+        } else {
+            return FeedCompanies.findOne({_id:comp}).ticker;
         }
     },
     comps: function() {
@@ -101,4 +64,5 @@ Template.ValuationBuildDataComps.helpers({
 Template.ValuationBuildDataComps.onCreated (function () {
     this.state = new ReactiveDict;
     this.state.set('sector', null);
+    this.state.set('comp', null);
 });

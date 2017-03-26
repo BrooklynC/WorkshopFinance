@@ -16,7 +16,7 @@ getValuationSelect = function() {
                 element: "index"
             };
             break;
-        case "deals":
+        case "Deals":
             return {
                 type: "deals",
                 element: "security"

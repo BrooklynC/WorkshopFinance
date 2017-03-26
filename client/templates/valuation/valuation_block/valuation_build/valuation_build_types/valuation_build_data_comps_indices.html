@@ -2,16 +2,23 @@
 <template name="ValuationBuildDataCompsIndices">
     <div class="build-select-selection-index wrapper left">
         <form>
-            <div class="select-index left {{themeStyle.formInput}}">
-                <select {{disableOption}} class="form-control build-comps-index {{themeStyle.formDropdown}}" id="build{{this._id}}" name="build-comps-index" title="">
-                    <option class="comps-index" value="">Index:</option>
+            <div class="btn-group btn-dropdown select-index left">
+                <button class="btn btn-info btn-sm dropdown-toggle {{disableOptionGallery}} wrapper" type="button" id="dropdownBuildCompIndex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="left">
+                        {{indexTitle}}
+                    </div>
+                    <div class="right">
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <ul class="dropdown-menu dropdown-scroll comp-options" aria-labelledby="dropdownBuildCompIndex">
                     {{#each indices}}
-                        <option class="comps-index" value="{{_id}}">{{indexName}}</option>
+                        <li><a class="build-comp-index">{{indexName}}</a></li>
                     {{/each}}
-                </select>
+                </ul>
             </div>
             <div class="select-button left">
-                <button type="submit" class="btn btn-info btn-full">Add</button>
+                <button type="submit" class="btn btn-info btn-sm btn-full">Add</button>
             </div>
         </form>
     </div>

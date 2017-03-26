@@ -1,7 +1,37 @@
 <!--Drop-down to choose Valuation Output and Period, if footballOutput is Multiple-->
 <template name="ValuationResultsOutputMultiples">
     <div>
-        <select {{disableOption}} class="form-control result-selection {{themeStyle.formDropdown}}" name="result-selection">
+        <!--<div class="btn-group btn-dropdown">-->
+            <!--<button class="btn btn-info btn-sm dropdown-toggle {{disableOption}} wrapper" type="button" id="dropdownResultOutput" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">-->
+                <!--<div class="left">-->
+                    <!--{{valuationOutput}} ({{valuationOutputPeriod}})-->
+                <!--</div>-->
+                <!--<div class="right">-->
+                    <!--<span class="caret"></span>-->
+                <!--</div>-->
+            <!--</button>-->
+            <!--<ul class="dropdown-menu dropdown-scroll" aria-labelledby="dropdownResultOutput">-->
+                <!--{{#if isCompany}}-->
+                    <!--<li><a class="menu-result-output">EV/Revenue (LTM)</a></li>-->
+                    <!--{{#if isComps}}-->
+                        <!--<li><a class="menu-result-output">EV/Revenue (FY1)</a></li>-->
+                        <!--<li><a class="menu-result-output">EV/Revenue (FY2)</a></li>-->
+                    <!--{{/if}}-->
+                    <!--<li><a class="menu-result-output">EV/EBITDA (LTM)</a></li>-->
+                    <!--{{#if isComps}}-->
+                        <!--<li><a class="menu-result-output">EV/EBITDA (FY1)</a></li>-->
+                        <!--<li><a class="menu-result-output">EV/EBITDA (FY2)</a></li>-->
+                        <!--<li><a class="menu-result-output">Price/Earnings (LTM)</a></li>-->
+                        <!--<li><a class="menu-result-output">Price/Earnings (FY1)</a></li>-->
+                        <!--<li><a class="menu-result-output">Price/Earnings (FY2)</a></li>-->
+                    <!--{{/if}}-->
+                <!--{{else}}-->
+                    <!--<li><a class="menu-result-output">Price/Earnings (FY1)</a></li>-->
+                    <!--<li><a class="menu-result-output">Price/Earnings (FY2)</a></li>-->
+                <!--{{/if}}-->
+            <!--</ul>-->
+        <!--</div>-->
+        <select {{disableOption}} class="form-control btn-sm result-selection {{themeStyle.formDropdown}}" name="result-selection">
             <option class="result-text" disabled>Valuation Result:</option>
             {{#if isCompany}}
                 <option class="result-text" {{selectedEvRevLtm}} value="resultEvRevenueLtm">EV/Revenue (LTM)</option>
