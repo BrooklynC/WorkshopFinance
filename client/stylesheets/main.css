@@ -971,12 +971,12 @@ and (-webkit-min-device-pixel-ratio: 1) {
         height: 100%;
         padding-left: 1%;
     }
-    #controls-scroll {
-        height: 210px;
-        overflow-y: scroll;
-    }
     #gallery-menu-inner > .panel > .in {
         height:320px;
+    }
+    #controls-scroll {
+        height: 215px;
+        overflow-y: scroll;
     }
 }
 @media screen
@@ -1010,7 +1010,7 @@ and (min-resolution: 192dpi) {
         height:320px;
     }
     #controls-scroll {
-        height: 210px;
+        height: 215px;
         overflow-y: scroll;
     }
 }
@@ -1048,7 +1048,7 @@ and (orientation : portrait) {
         height:250px;
     }
     #controls-scroll {
-        height: 140px;
+        height: 145px;
         overflow-y: scroll;
     }
 }
@@ -1106,7 +1106,7 @@ and (orientation: portrait) {
         height:275px;
     }
     #controls-scroll {
-        height: 165px;
+        height: 170px;
         overflow-y: scroll;
     }
 }
@@ -1165,7 +1165,7 @@ and (orientation: portrait) {
         height: 300px;
     }
     #controls-scroll {
-        height:190px;
+        height:195px;
         overflow-y: scroll;
     }
 }
@@ -1260,7 +1260,7 @@ and (orientation : landscape) {
         height:320px;
     }
     #controls-scroll {
-        height: 210px;
+        height: 215px;
         overflow-y: scroll;
     }
 }
