@@ -23,10 +23,10 @@ Template.FootballTradingToggle.helpers({
         var trading = this.includeTrading;
         switch(trading) {
             case true:
-                return "Hide Trading";
+                return "Hide High/Low";
                 break;
             case false:
-                return "Show Trading";
+                return "Show High/Low";
                 break;
         }
     }
