@@ -10,7 +10,7 @@
                     <span class="caret"></span>
                 </div>
             </button>
-            <ul class="dropdown-menu dropdown-right dropdown-scroll" aria-labelledby="dropdownBuildCompSector">
+            <ul class="dropdown-menu dropdown-right dropdown-scroll-build" aria-labelledby="dropdownBuildCompSector">
                 <li><a class="build-comp-sector">Healthcare</a></li>
                 <li><a class="build-comp-sector">Materials</a></li>
                 <li><a class="build-comp-sector">Industrials</a></li>
@@ -35,7 +35,7 @@
                         <span class="caret"></span>
                     </div>
                 </button>
-                <ul class="dropdown-menu dropdown-scroll comp-options {{disableOptionGallery}}" aria-labelledby="dropdownBuildComp">
+                <ul class="dropdown-menu dropdown-scroll-build dropdown-right comp-options {{disableOptionGallery}}" aria-labelledby="dropdownBuildComp">
                     {{#each comps}}
                         <li><a class="build-comp-comp">{{companyName}} ({{ticker}})</a></li>
                     {{/each}}

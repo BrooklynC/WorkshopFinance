@@ -46,6 +46,9 @@ p {
 .panel-heading {
     padding: 0;
 }
+.input-group {
+    border-radius: 3px;
+}
 /*This needs proper calculation*/
 .gu-mirror {
     left: 27.2%  !important;
@@ -95,7 +98,18 @@ p {
     max-height: 200px;
     cursor: pointer;
     overflow-x: hidden;
-    z-index: 100000;
+}
+.dropdown-scroll-build {
+    height: auto;
+    max-height: 150px;
+    cursor: pointer;
+    overflow-x: hidden;
+}
+.dropdown-scroll-result {
+    height: auto;
+    max-height: 125px;
+    cursor: pointer;
+    overflow-x: hidden;
 }
 /*.dropdown-scroll-block {*/
     /*height: auto;*/
@@ -485,7 +499,7 @@ p {
     overflow: hidden;
 }
 .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-    min-height: 250px;
+    min-height: 200px;
 }
 /*VALUATION BASE*/
 .valuation-base-inner {
@@ -522,21 +536,16 @@ p {
 }
 .results-left {
     width:65%;
-    text-align: left;
-    vertical-align: middle;
 }
-.results-left div {
-    width: 100%;
+.results-left p {
+    text-align: left;
 }
 .results-right {
     width:35%;
+    padding-left: 2px;
 }
 .results-right p {
     text-align: right;
-    vertical-align: middle;
-}
-.results-right button {
-    vertical-align: top;
 }
 /*VALUATION BAR*/
 .valuation-base-bar {
@@ -644,7 +653,7 @@ svg {
     width: 100%;
 }
 .valuation-results div {
-    overflow: auto;
+    /*overflow: auto;*/
 }
 .valuation-results-content {
     width: 100%;

@@ -10,8 +10,19 @@ Template.GalleryItemUsersActive.events({
 });
 
 Template.GalleryItemUsersActive.helpers({
-    active: function() {
+    status: function() {
         var userId = Template.parentData(0)._id;
-        return Meteor.users.findOne({_id: userId}).profile.active;
+        var currentUsername = Meteor.user().username;
+        if(currentUsername == "workshop" || currentUsername == "Workshop") {
+            var userStatus = Meteor.users.findOne({_id: userId}).profile.active;
+            switch(userStatus) {
+                case "A":
+                    return "Active";
+                    break;
+                case "B":
+                    return "Inactive";
+                    break;
+            }
+        }
     }
 });

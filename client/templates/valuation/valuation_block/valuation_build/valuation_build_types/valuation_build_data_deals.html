@@ -10,7 +10,7 @@
                     <span class="caret"></span>
                 </div>
             </button>
-            <ul class="dropdown-menu dropdown-right dropdown-scroll" aria-labelledby="dropdownBuildDealSector">
+            <ul class="dropdown-menu dropdown-right dropdown-scroll-build" aria-labelledby="dropdownBuildDealSector">
                 <li><a class="build-deal-sector">Healthcare</a></li>
                 <li><a class="build-deal-sector">Materials</a></li>
                 <li><a class="build-deal-sector">Industrials</a></li>
@@ -37,7 +37,7 @@
                         <span class="caret"></span>
                     </div>
                 </button>
-                <ul class="dropdown-menu dropdown-scroll deal-options {{disableOptionGallery}}" aria-labelledby="dropdownBuildDeal">
+                <ul class="dropdown-menu dropdown-scroll-build dropdown-right deal-options {{disableOptionGallery}}" aria-labelledby="dropdownBuildDeal">
                     {{#each deals}}
                         <li><a class="build-deal-deal">{{companyName}} ({{dealTerms.acquirerName}})</a></li>
                     {{/each}}

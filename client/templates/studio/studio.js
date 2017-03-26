@@ -4,7 +4,7 @@ Template.Studio.helpers({
         var currentUser = Meteor.users.findOne({_id:currentUserId});
         var username = currentUser.username;
         var active = currentUser.profile.active;
-        if(username == "workshop") {
+        if(username == "workshop" || username == "Workshop") {
             return true
         } else {
             if(active == "A") {
