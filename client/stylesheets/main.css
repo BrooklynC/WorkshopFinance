@@ -973,7 +973,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     }
     #controls-scroll {
         height: 210px;
-        overflow-y: auto;
+        overflow-y: scroll;
     }
     #gallery-menu-inner > .panel > .in {
         height:320px;
@@ -1011,7 +1011,7 @@ and (min-resolution: 192dpi) {
     }
     #controls-scroll {
         height: 210px;
-        overflow-y: auto;
+        overflow-y: scroll;
     }
 }
 /*iPhone 5*/
@@ -1045,10 +1045,10 @@ and (orientation : portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:230px;
+        height:250px;
     }
     #controls-scroll {
-        height: 115px;
+        height: 140px;
         overflow-y: scroll;
     }
 }
@@ -1103,10 +1103,10 @@ and (orientation: portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:285px;
+        height:275px;
     }
     #controls-scroll {
-        height: 180px;
+        height: 165px;
         overflow-y: scroll;
     }
 }
@@ -1162,7 +1162,7 @@ and (orientation: portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height: 310px;
+        height: 300px;
     }
     #controls-scroll {
         height:190px;
