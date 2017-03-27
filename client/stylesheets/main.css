@@ -46,15 +46,8 @@ p {
 .panel-heading {
     padding: 0;
 }
-.input-group {
-    border-radius: 3px;
-}
-/*This needs proper calculation*/
-.gu-mirror {
-    left: 27.2%  !important;
-}
-.online {
-    background-color: chartreuse;
+.collapsing {
+    transition: height 1s;
 }
 /*BUTTONS*/
 .btn-full {
@@ -90,6 +83,7 @@ p {
 .button-row-two, .button-row-three {
     padding-left: 2px;
 }
+/*DROPDOWNS*/
 .btn-dropdown, .btn-dropdown button {
     width:100%;
 }
@@ -111,13 +105,6 @@ p {
     cursor: pointer;
     overflow-x: hidden;
 }
-/*.dropdown-scroll-block {*/
-/*height: auto;*/
-/*max-height: 160px;*/
-/*cursor: pointer;*/
-/*overflow-x: hidden;*/
-/*z-index: 100000;*/
-/*}*/
 .dropdown-right {
     left: -126px;
     right: 0;
@@ -155,9 +142,9 @@ p {
     padding-bottom: 10px;
 }
 #workspace-inner {
-    width: 95%;
     height:100%;
-    margin: auto;
+    padding-left: 2.5%;
+    padding-right: 2.5%;
 }
 /*GALLERY*/
 #gallery, #gallery-inner {
@@ -170,9 +157,6 @@ p {
 #gallery-football-add {
     position: absolute;
     width:100%;
-}
-.collapsing {
-    transition: height 1s;
 }
 /*GALLERY MENU*/
 #gallery-menu {
@@ -194,6 +178,8 @@ p {
 .gallery-menu-base {
     padding: 2px;
     border-radius:0;
+    height:35px;
+    cursor: pointer;
 }
 .gallery-block {
     border-radius: 0;
@@ -212,35 +198,10 @@ p {
 .gallery-block-controls {
     height:30px;
 }
-.input-gallery {
-    width:30%;
-    margin:0;
-}
-.gallery-menu-base {
-    height:35px;
-    cursor: pointer;
-}
 .gallery-title-inner {
     text-align: center;
 }
-.output-text {
-    display: table;
-    height:100%;
-}
-.output-text p {
-    display: table-cell;
-    vertical-align: middle;
-}
-.visual-inc {
-    width:20%;
-}
-.visual-text {
-    width:60%;
-    text-align: center;
-}
-.control-half button, .control-half div {
-    width:100%;
-}
+/*GALLERY ITEMS*/
 .gallery-item  {
     cursor: pointer;
     margin-bottom:2px;
@@ -251,21 +212,10 @@ p {
     overflow-y: hidden;
 }
 .gallery-item-detail {
-    width: 87%;
+    width: 85%;
 }
 .gallery-item-action {
-    width: 13%;
-}
-.action-input {
-    width:50%;
-    padding-right: 1px
-}
-.action-button {
-    width:25%;
-    padding-left: 1px;
-}
-.action-button button {
-    width:100%;
+    width: 15%;
 }
 .gallery-item-open {
     height: 30px;
@@ -287,7 +237,6 @@ p {
 }
 #controls-top-inner {
     width:100%;
-    /*width: calc(100% - 17px);*/
 }
 .controls-top-left {
     width: calc(50% - 17px);
@@ -311,6 +260,9 @@ p {
 .control-half-value {
     width:65%;
 }
+.control-half button, .control-half div {
+    width:100%;
+}
 .control-scroll-left {
     width: calc(((100% + 17px) * 0.5) - 17px);
     padding-right: 1px;
@@ -326,11 +278,29 @@ p {
 #controls-scroll-inner {
     width: calc(100% - 17px);
 }
+.cushion-text {
+    margin: 0 auto;
+}
+.visual-inc {
+    width:20%;
+}
+.visual-text {
+    width:60%;
+    text-align: center;
+}
 #football-actions-input {
     height:35px;
 }
-.cushion-text {
-    margin: 0 auto;
+.action-input {
+    width:50%;
+    padding-right: 1px
+}
+.action-button {
+    width:25%;
+    padding-left: 1px;
+}
+.action-button button {
+    width:100%;
 }
 /*GALLERY LIBRARY*/
 .screen-full {
@@ -344,16 +314,7 @@ p {
     width:50%;
     padding-left: 1px;
 }
-.screen-left > .dropdown > button {
-    width: 100%;
-}
 /*GALLERY COVERAGE*/
-.gallery-heading-row div {
-    width:calc(100% / 3);
-    line-height: 30px;
-    text-align: center;
-    cursor: pointer;
-}
 /*GALLERY SETTINGS*/
 #settings-tier {
     margin-bottom: 10px;
@@ -406,10 +367,6 @@ p {
     position: relative;
     height:100%;
 }
-#football-details {
-    width:100%;
-    height:100%;
-}
 /*FOOTBALL BANNER - DETAILS*/
 #football-target {
     width:60%;
@@ -436,21 +393,14 @@ p {
 #table-range tr td {
     width: calc(100% / 9);
 }
-
 /*FOOTBALL FIELD*/
-#football-field-inner {
+#football-details, #football-field-inner, #football-field-area, #football-field-valuations, .football-field-item {
     width: 100%;
     height:100%;
 }
 #football-field-area, #football-field-valuations {
-    width: 100%;
-    height:100%;
     position: absolute;
     overflow-y: scroll;
-}
-.football-field-item {
-    width:100%;
-    height:100%;
 }
 #football-field-valuations {
     padding-top:5px;
@@ -465,7 +415,6 @@ p {
     font-size: 80%;
 }
 .football-right, .valuation-right {
-    /*width: 75%;*/
     width: calc(75% - 17px);
     height:100%;
 }
@@ -506,7 +455,6 @@ p {
 }
 .valuation-right {
     height:100%;
-    /*padding-bottom:10px;*/
 }
 .valuation-bar-frame {
     cursor: pointer;
@@ -565,9 +513,6 @@ p {
 }
 .results-left {
     width:65%;
-}
-.results-left p {
-    /*text-align: left;*/
 }
 .results-right {
     width:35%;
@@ -684,9 +629,6 @@ svg {
 .valuation-results {
     width: 100%;
 }
-.valuation-results div {
-    /*overflow: auto;*/
-}
 .valuation-results-content {
     width: 100%;
 }
@@ -728,7 +670,6 @@ svg {
 }
 .table-valuation tbody {
     max-height: 130px;
-    /*width: 100%;*/
     width: calc(100% - 15px);
     overflow-y: scroll;
 }
@@ -792,7 +733,6 @@ svg {
 .table-gallery a, .table-valuation a {
     color: rgba(51, 51, 51, 1);
 }
-
 /*COLORS - CONSTANT*/
 .navbar-default {
     background-color: rgba(12, 11, 43, 1);
@@ -886,6 +826,9 @@ svg {
 .border-bottom-light {
     border-bottom: solid rgba(0, 0, 0, 0.5) 1px;
 }
+.border-football-light {
+    border-bottom: solid rgba(0, 0, 0, 0.5) 1px;
+}
 .border-light {
     border: solid rgba(0, 0, 0, 0.5) 1px !important;
 }
@@ -926,6 +869,9 @@ svg {
     border-top: solid 1px rgba(255, 255, 255, 1);
 }
 .border-bottom-dark {
+    border-bottom: solid 1px rgba(255, 255, 255, 1);
+}
+.border-football-dark {
     border-bottom: solid 1px rgba(255, 255, 255, 1);
 }
 .border-dark {
@@ -979,7 +925,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     #workspace-inner-football {
         width: 75%;
         margin: auto;
-        height: 100%;
+        height: 85%;
         padding-left: 1%;
     }
     #gallery-menu-inner > .panel > .in {
@@ -1056,10 +1002,10 @@ and (orientation : portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:250px;
+        height:240px;
     }
     #controls-scroll {
-        height: 145px;
+        height: 135px;
         overflow-y: scroll;
     }
 }
@@ -1173,10 +1119,10 @@ and (orientation: portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height: 300px;
+        height: 320px;
     }
     #controls-scroll {
-        height:195px;
+        height:215px;
         overflow-y: scroll;
     }
 }
@@ -1268,11 +1214,10 @@ and (orientation : landscape) {
         padding-left: 1%;
     }
     #gallery-menu-inner > .panel > .in {
-        height:320px;
+        height:410px;
     }
     #controls-scroll {
-        height: 215px;
+        height: 305px;
         overflow-y: scroll;
     }
 }
-
