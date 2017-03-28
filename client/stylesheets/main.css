@@ -265,7 +265,8 @@ p {
 }
 .control-scroll-left {
     width: calc(((100% + 17px) * 0.5) - 17px);
-    padding-right: 1px;
+    padding-left: 3px;
+    /*padding-right: 1px;*/
 }
 .control-scroll-right {
     width: calc((100% + 17px) * 0.5);
@@ -998,14 +999,11 @@ and (orientation : portrait) {
     #workspace-inner-football {
         display: none;
     }
-    #football-field-valuations {
-        display: none;
-    }
     #gallery-menu-inner > .panel > .in {
-        height:240px;
+        height:220px;
     }
     #controls-scroll {
-        height: 135px;
+        height: 115px;
         overflow-y: scroll;
     }
 }
@@ -1047,6 +1045,14 @@ and (-webkit-min-device-pixel-ratio: 2)
 and (orientation: portrait) {
     .navbar-brand {
         padding: 0;
+    }
+    #workspace {
+        height: calc(100% - 50px);
+        top: 50px;
+    }
+    #cover {
+        height:calc(100% - 100px);
+        top: 50px;
     }
     .footer-login {
         display: none;
@@ -1106,6 +1112,14 @@ and (orientation: portrait) {
     .navbar-brand {
         padding: 0;
     }
+    #workspace {
+        height: calc(100% - 50px);
+        top: 50px;
+    }
+    #cover {
+        height:calc(100% - 100px);
+        top: 50px;
+    }
     .footer-login {
         display: none;
     }
@@ -1113,7 +1127,6 @@ and (orientation: portrait) {
         width: 100%;
         margin: auto;
         height: 100%;
-        padding-left: 1%;
     }
     #workspace-inner-football {
         display: none;

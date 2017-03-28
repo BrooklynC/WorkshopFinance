@@ -1,6 +1,6 @@
 //Changes documents to show depending on which Gallery is active.
 //One Gallery Item template, content changes depending on active.
-Template.LibraryContentList.helpers({
+Template.LibraryContent.helpers({
     library: function() {
         var sessionLibraryType = Session.get('sessionLibraryType');
         switch (sessionLibraryType) {
@@ -30,4 +30,14 @@ Template.LibraryContentList.helpers({
                 break;
         }
     }
+});
+
+Template.LibraryContent.onCreated (function () {
+    var self = this;
+    self.autorun(function() {
+        self.subscribe('galleryCompanies');
+        self.subscribe('galleryCompaniesIndices');
+        self.subscribe('galleryDeals');
+        self.subscribe('galleryDealsIndices');
+    });
 });

@@ -1,5 +1,5 @@
 //This is used once by user "workshop" after database reset
-Template.GalleryAddData.events({
+Template.GalleryDataAdd.events({
     'submit form': function(e) {
         e.preventDefault();
 
@@ -35,7 +35,7 @@ Template.GalleryAddData.events({
     }
 });
 
-Template.GalleryAddData.helpers({
+Template.GalleryDataAdd.helpers({
     data: function() {
         var comps = FeedCompanies.find({});
         if(comps.count() === 0) {

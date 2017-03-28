@@ -1,5 +1,5 @@
 //Private Company Add form - only appears if Target tab is active.  Not currently used.
-Template.GalleryPrivateAdd.events({
+Template.GalleryTargetPrivateAdd.events({
     'submit form': function(e) {
         e.preventDefault();
 

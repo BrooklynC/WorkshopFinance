@@ -13,7 +13,7 @@ Template.GallerySettings.helpers({
         if (username == "workshop" || username == "Workshop") {
             var teams = FeedTeams.find({});
             if(teams.count() === 0) {
-                return Template.GalleryAddData;
+                return Template.GalleryDataAdd;
             } else {
                 return Template.FootballBlank;
             }

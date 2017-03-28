@@ -1,10 +1,10 @@
 <!--Drop-down menu to change Library-->
 <template name="LibraryMenu">
-    <div class="left screen-left">
+    <div class="screen-left left">
         <div class="btn-group btn-dropdown">
             <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownLibraryFilter" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="left">
-                    {{libraryFilter}}
+                    {{libraryType}}
                 </div>
                 <div class="right">
                     <span class="caret"></span>
@@ -19,6 +19,6 @@
         </div>
     </div>
     <div class="left screen-right">
-        {{>GalleryLibraryMenuScreen}}
+        {{>sectorScreen}}
     </div>
 </template>

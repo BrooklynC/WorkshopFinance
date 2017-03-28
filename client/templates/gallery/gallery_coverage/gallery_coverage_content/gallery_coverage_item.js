@@ -67,18 +67,6 @@ Template.CoverageItem.helpers({
                 break;
         }
     },
-    select: function() {
-        var currentUserId = Meteor.userId();
-        var theme = Options.findOne({ownerId:currentUserId}).theme;
-        switch(theme) {
-            case "light":
-                return this._id === Template.instance().state.get('isSelectedId') ? 'is-selected-light' : 'is-notselected-light';
-                break;
-            case "dark":
-                return this._id === Template.instance().state.get('isSelectedId') ? 'is-selected-dark' : 'is-notselected-dark';
-                break;
-        }
-    },
     itemAction: function() {
         var coverage = Session.get('sessionCoverageType');
         switch(coverage) {
