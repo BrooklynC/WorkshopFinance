@@ -3,8 +3,6 @@ Template.GalleryValuationAdd.events({
     'click #valuation-new': function(e) {
         e.preventDefault();
 
-        var field = $(e.target).find('[id=galleryValuationAdd]');
-
         var marketType = this.marketType;
 
         var type = getValuationSelect().type;
@@ -30,19 +28,22 @@ Template.GalleryValuationAdd.events({
         var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
 
 
-        if(marketType == "company") {
-            if(ownerId == currentUserId) {
-                if(length > 0) {
-                    Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, function(error, result) {
-                    });
-                    field.val('');
-                    localSelections.remove({});
-                } else {
-                    alert("You haven't selected any comps.")
-                }
+        if(ownerId == currentUserId) {
+            if(length > 0) {
+                Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, function(error, result) {
+                });
+                localSelections.remove({});
             }
-        } else {
-            alert("You can't add these to this Football.")
+        }
+    }
+});
+
+Template.GalleryValuationAdd.helpers({
+    disableNoSelections: function() {
+        var selections = localSelections.find().fetch();
+        var length = selections.length;
+        if(length == 0) {
+            return "disabled"
         }
     }
 });
