@@ -93,22 +93,15 @@ p {
     cursor: pointer;
     overflow-x: hidden;
 }
-.dropdown-scroll-build {
-    height: auto;
-    max-height: 150px;
-    cursor: pointer;
-    overflow-x: hidden;
-}
-.dropdown-scroll-result {
-    height: auto;
-    max-height: 100px;
-    cursor: pointer;
-    overflow-x: hidden;
-}
 .dropdown-right {
     left: -126px;
     right: 0;
     text-align: right;
+}
+.dropdown-scroll-build, .dropdown-scroll-result {
+    height: auto;
+    cursor: pointer;
+    overflow-x: hidden;
 }
 /*HEADER*/
 #logo {
@@ -462,11 +455,8 @@ p {
 }
 .valuation-block {
     width: calc(100% - 17px);
-    margin-top:5px;
+    margin-top:15px;
     overflow: hidden;
-}
-.valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-    min-height: 200px;
 }
 /*VALUATION BASE*/
 .valuation-base {
@@ -670,7 +660,6 @@ svg {
     width: calc(100% - 15px);
 }
 .table-valuation tbody {
-    max-height: 130px;
     width: calc(100% - 15px);
     overflow-y: scroll;
 }
@@ -939,6 +928,18 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .detail-left {
         float: left;
     }
+    .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+        min-height: 350px;
+    }
+    .dropdown-scroll-build {
+        max-height: 300px;
+    }
+    .dropdown-scroll-result {
+        max-height: 175px;
+    }
+    .table-valuation tbody {
+        max-height: 225px;
+    }
 }
 @media screen
 and (min-device-width: 1200px)
@@ -976,6 +977,18 @@ and (min-resolution: 192dpi) {
     }
     .detail-left {
         float: left;
+    }
+    .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+        min-height: 350px;
+    }
+    .dropdown-scroll-build {
+        max-height: 300px;
+    }
+    .dropdown-scroll-result {
+        max-height: 175px;
+    }
+    .table-valuation tbody {
+        max-height: 225px;
     }
 }
 /*iPhone 5*/
@@ -1041,6 +1054,18 @@ and (orientation : landscape) {
         margin: auto;
         height: 100%;
         padding-left: 1%;
+    }
+    .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+        min-height: 190px;
+    }
+    .dropdown-scroll-build {
+        max-height: 150px;
+    }
+    .dropdown-scroll-result {
+        max-height: 100px;
+    }
+    .table-valuation tbody {
+        max-height: 110px;
     }
 }
 /*iPhone 6*/
@@ -1109,6 +1134,18 @@ and (orientation: landscape) {
         height: 100%;
         padding-left: 1%;
     }
+    .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+        min-height: 190px;
+    }
+    .dropdown-scroll-build {
+        max-height: 150px;
+    }
+    .dropdown-scroll-result {
+        max-height: 100px;
+    }
+    .table-valuation tbody {
+        max-height: 110px;
+    }
 }
 /*iPhone 6 Plus*/
 @media only screen
@@ -1174,6 +1211,18 @@ and (orientation : landscape) {
         height: 100%;
         padding-left: 1%;
     }
+    .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+        min-height: 190px;
+    }
+    .dropdown-scroll-build {
+        max-height: 150px;
+    }
+    .dropdown-scroll-result {
+        max-height: 100px;
+    }
+    .table-valuation tbody {
+        max-height: 110px;
+    }
 }
 /*iPad*/
 @media only screen
@@ -1205,6 +1254,18 @@ and (orientation : portrait) {
         height: 100%;
         padding-left: 1%;
     }
+    .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+        min-height: 400px;
+    }
+    .dropdown-scroll-build {
+        max-height: 325px;
+    }
+    .dropdown-scroll-result {
+        max-height: 200px;
+    }
+    .table-valuation tbody {
+        max-height: 175px;
+    }
 }
 @media only screen
 and (min-device-width : 768px)
@@ -1233,10 +1294,22 @@ and (orientation : landscape) {
         padding-left: 1%;
     }
     #gallery-menu-inner > .panel > .in {
-        height:410px;
+        height:330px;
     }
     #controls-scroll {
-        height: 305px;
+        height: 225px;
         overflow-y: scroll;
+    }
+    .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
+        min-height: 385px;
+    }
+    .dropdown-scroll-build {
+        max-height: 325px;
+    }
+    .dropdown-scroll-result {
+        max-height: 200px;
+    }
+    .table-valuation tbody {
+        max-height: 240px;
     }
 }

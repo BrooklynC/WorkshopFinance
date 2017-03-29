@@ -1,6 +1,6 @@
 <!--Holds array of Valuations-->
 <template name="FootballFieldValuations">
-    {{#if isDesktop}}
+    {{#if isArray}}
         <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item">
             {{#each valuations}}
                 <div class="wrapper valuation">
@@ -8,28 +8,15 @@
                 </div>
             {{/each}}
         </div>
-    {{/if}}
-    {{#if isPhone}}
-        {{#if isArray}}
-            <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item">
-                {{#each valuations}}
-                    <div class="wrapper valuation">
-                        {{> Valuation}}
-                    </div>
-                {{/each}}
-            </div>
-        {{else}}
-            <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item">
-                {{#with activeValuation}}
-                    <div class="wrapper valuation">
-                        {{>Valuation}}
-                    </div>
-                {{/with}}
-            </div>
-        {{/if}}
-    {{/if}}
-    {{#if isArray}}
         <div id={{valuationsDrag.new}} class="wrapper">
+        </div>
+    {{else}}
+        <div role="tablist" class="wrapper football-field-item">
+            {{#with activeValuation}}
+                <div class="wrapper valuation">
+                    {{>Valuation}}
+                </div>
+            {{/with}}
         </div>
     {{/if}}
 </template>
