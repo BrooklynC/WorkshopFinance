@@ -1,8 +1,10 @@
 <!--Series of Items within Data Library-->
 <template name="LibraryContent">
-    {{#each library}}
-        <div class="gallery-item">
-            {{> LibraryItem}}
-        </div>
-    {{/each}}
+    {{#if Template.subscriptionsReady}}
+        {{#each library}}
+            <div class="gallery-item">
+                {{> LibraryItem}}
+            </div>
+        {{/each}}
+    {{/if}}
 </template>

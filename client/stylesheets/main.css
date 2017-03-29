@@ -382,10 +382,10 @@ p {
     margin-bottom: 10px;
 }
 #football-currency {
-    width: 25%;
+    width: 20%;
 }
 #football-range-full {
-    width: calc(75% - 17px);
+    width: calc(80% - 17px);
 }
 #football-range-full table {
     margin: auto;
@@ -408,7 +408,7 @@ p {
     z-index: 10000;
 }
 .football-left, .valuation-left {
-    width: 25%;
+    width: 20%;
     height:100%;
 }
 .valuation-detail-text {
@@ -416,7 +416,7 @@ p {
     font-size: 80%;
 }
 .football-right, .valuation-right {
-    width: calc(75% - 17px);
+    width: calc(80% - 17px);
     height:100%;
 }
 .football-field-content, .bar-content {
@@ -488,9 +488,9 @@ p {
 .valuation-detail-name, .valuation-detail-results {
     display: inline-block;
 }
-.valuation-metric {
-    clear: both;
-}
+/*.valuation-metric {*/
+    /*clear: both;*/
+/*}*/
 .valuation-name-value, .valuation-note-value {
     cursor: pointer;
 }
@@ -936,6 +936,9 @@ and (-webkit-min-device-pixel-ratio: 1) {
         height: 215px;
         overflow-y: scroll;
     }
+    .detail-left {
+        float: left;
+    }
 }
 @media screen
 and (min-device-width: 1200px)
@@ -970,6 +973,9 @@ and (min-resolution: 192dpi) {
     #controls-scroll {
         height: 215px;
         overflow-y: scroll;
+    }
+    .detail-left {
+        float: left;
     }
 }
 /*iPhone 5*/
