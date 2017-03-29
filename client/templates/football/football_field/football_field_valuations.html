@@ -1,7 +1,7 @@
 <!--Holds array of Valuations-->
 <template name="FootballFieldValuations">
     {{#if isDesktop}}
-        <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item {{themeStyle.borderBottom}}">
+        <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item">
             {{#each valuations}}
                 <div class="wrapper valuation">
                     {{> Valuation}}
@@ -11,7 +11,7 @@
     {{/if}}
     {{#if isPhone}}
         {{#if isArray}}
-            <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item {{themeStyle.borderBottom}}">
+            <div id={{valuationsDrag.old}} role="tablist" class="wrapper football-field-item">
                 {{#each valuations}}
                     <div class="wrapper valuation">
                         {{> Valuation}}
