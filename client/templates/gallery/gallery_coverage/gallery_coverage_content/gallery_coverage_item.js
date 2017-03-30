@@ -1,9 +1,12 @@
+Session.set('sessionIsSelectedId', null);
+
 Template.CoverageItem.events({
     'click .gallery-item-detail': function() {
         var coverage = Session.get('sessionCoverageType');
 
         if(coverage == "Footballs") {
             var currentFootballId = this._id;
+            Session.set('sessionIsSelectedId', currentFootballId);
 
             Meteor.call('footballOpen', currentFootballId, function() {
             });
@@ -75,12 +78,12 @@ Template.CoverageItem.helpers({
                 var currentFootballId = Template.parentData(0)._id;
                 var notification = Notifications.findOne({receiverId:currentUserId,itemId:currentFootballId});
                 if(!notification) {
-                    return Template.FootballBlank;
+                    return Template.GalleryItemSelect;
                 } else {
                     var read = notification.read;
                     switch(read) {
                         case true:
-                            return Template.FootballBlank;
+                            return Template.GalleryItemSelect;
                             break;
                         case false:
                             return Template.GalleryItemFootballReceive;
@@ -94,6 +97,27 @@ Template.CoverageItem.helpers({
             case "Targets":
                 return Template.GalleryItemFootballAdd;
                 break;
+        }
+    },
+    isSelected: function() {
+        var currentUserId = Meteor.userId();
+        var id = this._id;
+        var selected = Session.get('sessionIsSelectedId');
+        var theme = Options.findOne({ownerId:currentUserId}).theme;
+        switch(theme) {
+            case "light":
+                if (id == selected) {
+                    return "is-selected-light"
+                } else {
+                    return "is-notselected-light"
+                }
+                break;
+            case "dark":
+                if (id == selected) {
+                    return "is-selected-dark"
+                } else {
+                    return "is-notselected-dark"
+                }
         }
     }
 });

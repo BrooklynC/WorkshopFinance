@@ -16,7 +16,8 @@ Template.FootballValuationAdd.events({
                 valuationSelections: {$size: 0}
             });
             if(existingValuationsEmpty) {
-                alert("You should add some selections to the existing Valuation first.");
+                var existingId = existingValuationsEmpty._id;
+                Session.set('sessionValuations', existingId);
             } else {
                 var marketType = this.marketType;
                 var type = "comps";
