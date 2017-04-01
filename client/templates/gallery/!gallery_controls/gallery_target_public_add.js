@@ -20,37 +20,37 @@ Template.GalleryTargetPublicAdd.events({
 });
 
 Template.GalleryTargetPublicAdd.helpers({
-    //targetSettings: function() {
-    //    var marketType = Session.get('sessionCoverageScreenType');
-    //    switch(marketType) {
-    //        case "company":
-    //            return {
-    //                position: "top",
-    //                limit: 5,
-    //                rules: [
-    //                    {
-    //                        token: "",
-    //                        collection: FeedCompanies,
-    //                        field: "ticker",
-    //                        template: Template.GalleryPillCompany
-    //                    }
-    //                ]
-    //            };
-    //            break;
-    //        case "team":
-    //            return {
-    //                position: "top",
-    //                limit: 5,
-    //                rules: [
-    //                    {
-    //                        token: "",
-    //                        collection: FeedTeams,
-    //                        field: "teamName",
-    //                        template: Template.GalleryPillTeam
-    //                    }
-    //                ]
-    //            };
-    //            break;
-    //    }
-    //}
+    targetSettings: function() {
+        var marketType = Session.get('sessionCoverageScreenType');
+        switch(marketType) {
+            case "company":
+                return {
+                    position: "top",
+                    limit: 5,
+                    rules: [
+                        {
+                            token: "",
+                            collection: FeedCompanies,
+                            field: "ticker",
+                            template: Template.GalleryPillCompany
+                        }
+                    ]
+                };
+                break;
+            case "team":
+                return {
+                    position: "top",
+                    limit: 5,
+                    rules: [
+                        {
+                            token: "",
+                            collection: FeedTeams,
+                            field: "teamName",
+                            template: Template.GalleryPillTeam
+                        }
+                    ]
+                };
+                break;
+        }
+    }
 });

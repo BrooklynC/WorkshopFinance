@@ -1,26 +1,14 @@
 Template.CoverageControls.helpers({
-    targetAdd: function() {
+    isTargets: function() {
         var coverage = Session.get('sessionCoverageType');
         if(coverage == "Targets") {
-            return Template.GalleryTargetPublicAdd;
-        } else {
-            return Template.FootballBlank;
+            return true
         }
     },
-    footballExpand: function() {
+    isValuations: function() {
         var coverage = Session.get('sessionCoverageType');
         if(coverage == "Valuations") {
-            return Template.GalleryValuationsFootballExpand;
-        } else {
-            return Template.FootballBlank;
-        }
-    },
-    footballNew: function() {
-        var coverage = Session.get('sessionCoverageType');
-        if(coverage == "Valuations") {
-            return Template.GalleryValuationsFootballNew;
-        } else {
-            return Template.FootballBlank;
+            return true
         }
     }
 });
