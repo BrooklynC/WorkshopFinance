@@ -10,7 +10,7 @@ Template.ValuationBuildTableData.events ({
 
         if(currentUserId == ownerId) {
             if (confirm("Delete this comp?")) {
-                Meteor.call('valuationBuildPull', currentValuationId, currentSelection, function(error, result) {
+                Meteor.call('valuationBuildPull', currentUserId, currentValuationId, currentSelection, function(error, result) {
                 });
             }
         }

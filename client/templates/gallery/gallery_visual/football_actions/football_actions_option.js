@@ -43,72 +43,72 @@ Template.FootballActionsOption.helpers({
         if(sessionActions == "delete") {
             return true
         }
-    },
-    settings: function() {
-        var marketType = this.marketType;
-        var action = Session.get('sessionActions');
-        switch(action) {
-            case "save":
-                switch(marketType) {
-                    case "company":
-                        return {
-                            position: "bottom",
-                            limit: 5,
-                            rules: [
-                                {
-                                    token: "",
-                                    collection: FeedCompanies,
-                                    field: "ticker",
-                                    template: Template.GalleryPillCompany
-                                }
-                            ]
-                        };
-                        break;
-                    case "team":
-                        return {
-                            position: "bottom",
-                            limit: 5,
-                            rules: [
-                                {
-                                    token: "",
-                                    collection: FeedTeams,
-                                    field: "teamName",
-                                    template: Template.GalleryPillTeam
-                                }
-                            ]
-                        };
-                        break;
-                }
-                break;
-            case "send":
-                return {
-                    position: "bottom",
-                    limit: 5,
-                    rules: [
-                        {
-                            token: "",
-                            collection: Meteor.users,
-                            field: "username",
-                            template: Template.GalleryPillUser
-                        }
-                    ]
-                };
-                break;
-            case "share":
-                return {
-                    position: "bottom",
-                    limit: 5,
-                    rules: [
-                        {
-                            token: "",
-                            collection: Meteor.users,
-                            field: "username",
-                            template: Template.GalleryPillUser
-                        }
-                    ]
-                };
-                break;
-        }
+    //},
+    //settings: function() {
+    //    var marketType = this.marketType;
+    //    var action = Session.get('sessionActions');
+    //    switch(action) {
+    //        case "save":
+    //            switch(marketType) {
+    //                case "company":
+    //                    return {
+    //                        position: "bottom",
+    //                        limit: 5,
+    //                        rules: [
+    //                            {
+    //                                token: "",
+    //                                collection: FeedCompanies,
+    //                                field: "ticker",
+    //                                template: Template.GalleryPillCompany
+    //                            }
+    //                        ]
+    //                    };
+    //                    break;
+    //                case "team":
+    //                    return {
+    //                        position: "bottom",
+    //                        limit: 5,
+    //                        rules: [
+    //                            {
+    //                                token: "",
+    //                                collection: FeedTeams,
+    //                                field: "teamName",
+    //                                template: Template.GalleryPillTeam
+    //                            }
+    //                        ]
+    //                    };
+    //                    break;
+    //            }
+    //            break;
+    //        case "send":
+    //            return {
+    //                position: "bottom",
+    //                limit: 5,
+    //                rules: [
+    //                    {
+    //                        token: "",
+    //                        collection: Meteor.users,
+    //                        field: "username",
+    //                        template: Template.GalleryPillUser
+    //                    }
+    //                ]
+    //            };
+    //            break;
+    //        case "share":
+    //            return {
+    //                position: "bottom",
+    //                limit: 5,
+    //                rules: [
+    //                    {
+    //                        token: "",
+    //                        collection: Meteor.users,
+    //                        field: "username",
+    //                        template: Template.GalleryPillUser
+    //                    }
+    //                ]
+    //            };
+    //            break;
+    //    }
     },
     //Text for button in new template
     action: function() {

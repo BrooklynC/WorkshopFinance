@@ -1,4 +1,9 @@
 Template.GalleryVisual.helpers({
+    currentFootballId: function () {
+        var currentUserId = Meteor.userId();
+        var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
+        return Footballs.findOne({_id:footballActive});
+    },
     targetName: function() {
         var footballType = this.footballType;
         if(footballType == "market") {
@@ -14,7 +19,9 @@ Template.GalleryVisual.helpers({
 Template.GalleryVisual.onCreated (function () {
     var self = this;
     self.autorun(function() {
-        var currentFootballId = Template.parentData(0)._id;
+        var currentUserId = Meteor.userId();
+        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+        //var currentFootballId = Template.parentData(0)._id;
         self.subscribe('footballActive', currentFootballId);
     });
 });

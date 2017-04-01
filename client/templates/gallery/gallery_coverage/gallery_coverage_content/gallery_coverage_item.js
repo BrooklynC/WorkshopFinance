@@ -10,8 +10,6 @@ Template.CoverageItem.events({
             var newFootballId = this._id;
             Session.set('sessionIsSelectedId', newFootballId);
 
-            console.log("CurrentFootballId: ", currentFootballId);
-            console.log("NewFootballId: ", newFootballId);
             Meteor.call('footballOpen', currentFootballId, newFootballId, function() {
             });
         } else {
@@ -21,21 +19,6 @@ Template.CoverageItem.events({
             } else {
                 localSelections.insert({_id:id});
             }
-
-            //var state = Template.instance().state.get('isSelectedId');
-            //var id = this._id;
-            //switch (state) {
-            //    case null:
-            //        Template.instance().state.set('isSelectedId', this._id);
-            //        console.log(Template.instance().state.get('isSelectedId'));
-            //        localSelections.insert({_id:id});
-            //        break;
-            //    case id:
-            //        Template.instance().state.set('isSelectedId', null);
-            //        console.log(Template.instance().state.get('isSelectedId'));
-            //        localSelections.remove({_id:id});
-            //        break;
-            //}
         }
     }
 });
@@ -119,7 +102,8 @@ Template.CoverageItem.helpers({
         var coverage = Session.get('sessionCoverageType');
         switch (coverage) {
             case "Footballs":
-                var selected = Session.get('sessionIsSelectedId');
+                var selected = Options.findOne({ownerId:currentUserId}).footballActive;
+                //var selected = Session.get('sessionIsSelectedId');
                 switch (theme) {
                     case "light":
                         if (id == selected) {

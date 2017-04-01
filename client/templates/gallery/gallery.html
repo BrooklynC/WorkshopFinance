@@ -6,14 +6,12 @@
         </div>
         <div id="gallery-menu">
             <div class="panel-group wrapper {{themeStyle.main}}" id="gallery-menu-inner" role="tablist">
-                {{#with currentFootballId}}
-                    <div class="panel panel-default">
-                        {{>GalleryVisual}}
-                    </div>
-                    <div class="panel panel-default">
-                        {{>GalleryLibrary}}
-                    </div>
-                {{/with}}
+                <div class="panel panel-default">
+                    {{>GalleryVisual}}
+                </div>
+                <div class="panel panel-default">
+                    {{>GalleryLibrary}}
+                </div>
                 <div class="panel panel-default">
                     {{>GalleryCoverage}}
                 </div>

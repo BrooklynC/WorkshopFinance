@@ -1097,10 +1097,10 @@ and (orientation: portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:300px;
+        height:295px;
     }
     #controls-scroll {
-        height: 195px;
+        height: 190px;
         overflow-y: scroll;
     }
 }

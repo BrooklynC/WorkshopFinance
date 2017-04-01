@@ -57,7 +57,21 @@ Template.FootballActions.helpers({
         }
     },
     //Only the owner of football can Send, Share, or Remove, disable these options for others
-    disabledOn: function() {
+    disabledEmpty: function() {
+        var ownerId = this.ownerId;
+        var currentUserId = Meteor.userId();
+        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+        var activated = Footballs.findOne({_id:currentFootballId}).footballActivated;
+
+        if(currentUserId !== ownerId) {
+            return "disabled"
+        } else {
+            if(activated == false) {
+                return "disabled"
+            }
+        }
+    },
+    disabledOwner: function() {
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 

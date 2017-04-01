@@ -37,7 +37,6 @@ Template.FootballTarget.events({
 
         if(targetSelection !== null) {
             var targetObject = getTarget(currentFootballId, targetSelection);
-            console.log("Target Object: ", targetObject);
             var footballType = getFootballType(targetSelection);
 
             if(currentUserId == ownerId) {

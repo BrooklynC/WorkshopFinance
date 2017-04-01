@@ -1,4 +1,4 @@
-Template.Gallery.helpers({
+Template.Gallery.events({
     currentFootballId: function () {
         var currentUserId = Meteor.userId();
         var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;

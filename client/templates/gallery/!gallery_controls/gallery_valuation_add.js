@@ -3,10 +3,12 @@ Template.GalleryValuationAdd.events({
     'click #valuation-new': function(e) {
         e.preventDefault();
 
-        var marketType = this.marketType;
+        var currentUserId = Meteor.userId();
+        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+        var ownerId = Footballs.findOne({_id:currentFootballId}).ownerId;
+        var marketType = Footballs.findOne({_id:currentFootballId}).marketType;
 
         var type = getValuationSelect().type;
-        console.log("Type: ", type);
         var element = getValuationSelect().element;
 
         var metric = getValuationInfo(marketType).metric;
@@ -25,10 +27,6 @@ Template.GalleryValuationAdd.events({
             selections.push(compId);
         });
         var length = selections.length;
-        var ownerId = this.ownerId;
-        var currentUserId = Meteor.userId();
-        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
-
 
         if(ownerId == currentUserId) {
             if(length > 0) {
