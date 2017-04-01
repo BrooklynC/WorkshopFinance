@@ -6,7 +6,7 @@ Template.CoverageContent.helpers({
         switch (sessionCoverage) {
             case "Footballs":
                 return Footballs.find(
-                    {marketType: sessionCoverageScreen}
+                    {marketType: sessionCoverageScreen}, {sort: {timeCreated: 1}}
                 );
                 break;
             case "Valuations":

@@ -5,10 +5,14 @@ Template.CoverageItem.events({
         var coverage = Session.get('sessionCoverageType');
 
         if(coverage == "Footballs") {
-            var currentFootballId = this._id;
-            Session.set('sessionIsSelectedId', currentFootballId);
+            var currentUserId = Meteor.userId();
+            var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+            var newFootballId = this._id;
+            Session.set('sessionIsSelectedId', newFootballId);
 
-            Meteor.call('footballOpen', currentFootballId, function() {
+            console.log("CurrentFootballId: ", currentFootballId);
+            console.log("NewFootballId: ", newFootballId);
+            Meteor.call('footballOpen', currentFootballId, newFootballId, function() {
             });
         } else {
             var id = this._id;
