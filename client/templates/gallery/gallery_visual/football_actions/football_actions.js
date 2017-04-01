@@ -6,39 +6,12 @@ Template.FootballActions.events({
     'click .btn-send': function(e) {
         e.preventDefault();
 
-        return Session.set('sessionActions', "send");
-        //var existingValuations = this.footballValuations;
-        //var existingValuationsLength = existingValuations.length;
-        //var existingValuationsFull = Valuations.findOne({
-        //    _id: {$in: existingValuations},
-        //    $nor: [
-        //        {valuationSelections: {$size: 0}}
-        //    ]
-        //});
-        //if(existingValuationsLength > 0 && existingValuationsFull) {
-        //    return Session.set('sessionActions', "send");
-        //} else {
-        //    alert("You should add some valuations to this Football Field before sending.");
-        //    Session.set('sessionActions', "none");
-        //}
+        Session.set('sessionActions', "send");
     },
     'click .btn-share': function(e) {
         e.preventDefault();
 
-        var existingValuations = this.footballValuations;
-        var existingValuationsLength = existingValuations.length;
-        var existingValuationsFull = Valuations.findOne({
-            _id: {$in: existingValuations},
-            $nor: [
-                {valuationSelections: {$size: 0}}
-            ]
-        });
-        if(existingValuationsLength > 0 && existingValuationsFull) {
-            return Session.set('sessionActions', "share");
-        } else {
-            alert("You should add some valuations to this Football Field before sending.");
-            Session.set('sessionActions', "none");
-        }
+        Session.set('sessionActions', "share");
     },
     'click .btn-delete': function(e) {
         e.preventDefault();
