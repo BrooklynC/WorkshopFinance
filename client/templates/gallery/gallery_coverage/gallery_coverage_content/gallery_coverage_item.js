@@ -11,18 +11,27 @@ Template.CoverageItem.events({
             Meteor.call('footballOpen', currentFootballId, function() {
             });
         } else {
-            var state = Template.instance().state.get('isSelectedId');
             var id = this._id;
-            switch (state) {
-                case null:
-                    Template.instance().state.set('isSelectedId', this._id);
-                    localSelections.insert({_id:id});
-                    break;
-                case id:
-                    Template.instance().state.set('isSelectedId', null);
-                    localSelections.remove({_id:id});
-                    break;
+            if(localSelections.findOne({_id:id})) {
+                localSelections.remove({_id:id});
+            } else {
+                localSelections.insert({_id:id});
             }
+
+            //var state = Template.instance().state.get('isSelectedId');
+            //var id = this._id;
+            //switch (state) {
+            //    case null:
+            //        Template.instance().state.set('isSelectedId', this._id);
+            //        console.log(Template.instance().state.get('isSelectedId'));
+            //        localSelections.insert({_id:id});
+            //        break;
+            //    case id:
+            //        Template.instance().state.set('isSelectedId', null);
+            //        console.log(Template.instance().state.get('isSelectedId'));
+            //        localSelections.remove({_id:id});
+            //        break;
+            //}
         }
     }
 });
@@ -102,22 +111,55 @@ Template.CoverageItem.helpers({
     isSelected: function() {
         var currentUserId = Meteor.userId();
         var id = this._id;
-        var selected = Session.get('sessionIsSelectedId');
-        var theme = Options.findOne({ownerId:currentUserId}).theme;
-        switch(theme) {
-            case "light":
-                if (id == selected) {
-                    return "is-selected-light"
-                } else {
-                    return "is-notselected-light"
+        var theme = Options.findOne({ownerId: currentUserId}).theme;
+        var coverage = Session.get('sessionCoverageType');
+        switch (coverage) {
+            case "Footballs":
+                var selected = Session.get('sessionIsSelectedId');
+                switch (theme) {
+                    case "light":
+                        if (id == selected) {
+                            return "is-selected-light"
+                        } else {
+                            return "is-notselected-light"
+                        }
+                        break;
+                    case "dark":
+                        if (id == selected) {
+                            return "is-selected-dark"
+                        } else {
+                            return "is-notselected-dark"
+                        }
                 }
                 break;
-            case "dark":
-                if (id == selected) {
-                    return "is-selected-dark"
-                } else {
-                    return "is-notselected-dark"
+            case "Valuations":
+                switch(theme) {
+                    case "light":
+                        if (localSelections.findOne({_id: id})) {
+                            return "is-selected-light"
+                        } else {
+                            return "is-notselected-light"
+                        }
+                        break;
+                    case "dark":
+                        if (localSelections.findOne({_id: id})) {
+                            return "is-selected-dark"
+                        } else {
+                            return "is-notselected-dark"
+                        }
                 }
+                //switch (theme) {
+                //    case "light":
+                //        return this._id === Template.instance().state.get('isSelectedId') ? 'is-selected-light' : 'is-notselected-light';
+                //        break;
+                //    case "dark":
+                //        return this._id === Template.instance().state.get('isSelectedId') ? 'is-selected-dark' : 'is-notselected-dark';
+                //        break;
+                //}
+                break;
+            case "Targets":
+                return "";
+                break;
         }
     }
 });

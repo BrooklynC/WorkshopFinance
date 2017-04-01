@@ -7,7 +7,10 @@ Template.GalleryItemFootballAdd.events({
         var valuations = [];
         var footballType = "target";
 
-        Meteor.call('footballAdd', marketType, target, valuations, footballType, function(error, result) {
+        var currentUserId = Meteor.userId();
+        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+
+        Meteor.call('footballAdd', marketType, target, valuations, footballType, currentFootballId, function(error, result) {
         });
     }
 });

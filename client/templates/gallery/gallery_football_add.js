@@ -16,7 +16,21 @@ Template.GalleryFootballAdd.events({
 
         var footballType = "market";
 
-        Meteor.call('footballAdd', marketType, target, valuations, footballType, function(error, result) {
+        var currentUserId = Meteor.userId();
+        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+
+        Meteor.call('footballAdd', marketType, target, valuations, footballType, currentFootballId, function(error, result) {
         });
+    }
+});
+
+Template.GalleryFootballAdd.helpers({
+    disableInactive: function() {
+        var currentUserId = Meteor.userId();
+        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+        var currentFootballActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
+        if(currentFootballActive == false) {
+            return "disabled";
+        }
     }
 });

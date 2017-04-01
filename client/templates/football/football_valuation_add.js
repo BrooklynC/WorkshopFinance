@@ -27,7 +27,8 @@ Template.FootballValuationAdd.events({
                 var output = getValuationInfo(marketType).output;
                 var outputPeriod = getValuationInfo(marketType).outputPeriod;
                 var selections = [];
-                Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, function () {
+                var activated = false;
+                Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, activated, function () {
                 });
             }
         }

@@ -1,6 +1,6 @@
 //Add selected Valuations to active Football
-Template.GalleryFootballExpand.events({
-    'click #football-expand': function(e) {
+Template.GalleryValuationsFootballNew.events({
+    'click #football-new': function(e) {
         e.preventDefault();
 
         var marketType = Session.get('sessionCoverageScreenType');
@@ -11,7 +11,7 @@ Template.GalleryFootballExpand.events({
             var valuationId = v._id;
             selections.push(valuationId);
         });
-        Meteor.call('footballValuationsExpand', marketType, selections, function(error, result) {
+        Meteor.call('footballValuationsNew', marketType, selections, function(error, result) {
         });
         localSelections.remove({});
     }

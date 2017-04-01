@@ -4,10 +4,8 @@ Template.LibraryItem.events({
 
         var id = this._id;
         if(localSelections.findOne({_id:id})) {
-            console.log("REMOVE");
             localSelections.remove({_id:id});
         } else {
-            console.log("INSERT");
             localSelections.insert({_id:id});
         }
     }
