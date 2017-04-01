@@ -256,21 +256,24 @@ p {
 .control-half button, .control-half div {
     width:100%;
 }
+#controls-scroll {
+    width:100%;
+    margin-top:5px;
+    margin-bottom:10px;
+}
+#controls-scroll-inner {
+    width: calc(100% - 17px);
+}
 .control-scroll-left {
     width: calc(((100% + 17px) * 0.5) - 17px);
     padding-left: 3px;
-    /*padding-right: 1px;*/
 }
 .control-scroll-right {
     width: calc((100% + 17px) * 0.5);
     padding-left: 1px;
 }
-#controls-scroll {
-    width:100%;
-    margin-top:5px;
-}
-#controls-scroll-inner {
-    width: calc(100% - 17px);
+#controls-actions {
+    height:70px;
 }
 .cushion-text {
     margin: 0 auto;
@@ -922,7 +925,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
         height:320px;
     }
     #controls-scroll {
-        height: 215px;
+        height: 145px;
         overflow-y: scroll;
     }
     .detail-left {
@@ -972,7 +975,7 @@ and (min-resolution: 192dpi) {
         height:320px;
     }
     #controls-scroll {
-        height: 215px;
+        height: 145px;
         overflow-y: scroll;
     }
     .detail-left {
@@ -1022,7 +1025,7 @@ and (orientation : portrait) {
         height:220px;
     }
     #controls-scroll {
-        height: 115px;
+        height: 45px;
         overflow-y: scroll;
     }
 }
@@ -1100,7 +1103,7 @@ and (orientation: portrait) {
         height:295px;
     }
     #controls-scroll {
-        height: 190px;
+        height: 120px;
         overflow-y: scroll;
     }
 }
@@ -1178,7 +1181,7 @@ and (orientation: portrait) {
         height: 320px;
     }
     #controls-scroll {
-        height:215px;
+        height:145px;
         overflow-y: scroll;
     }
 }
@@ -1297,7 +1300,7 @@ and (orientation : landscape) {
         height:330px;
     }
     #controls-scroll {
-        height: 225px;
+        height: 155px;
         overflow-y: scroll;
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
