@@ -431,9 +431,11 @@ Template.registerHelper('disableOption',function() {
 //Disables editing if the current user is not the owner
 Template.registerHelper('disableOptionGallery',function() {
     var ownerId = this.ownerId;
-    var currentUserId = Meteor.userId();
-    if(currentUserId !== ownerId) {
-        return "disabled";
+    if(ownerId) {
+        var currentUserId = Meteor.userId();
+        if(currentUserId !== ownerId) {
+            return "disabled";
+        }
     }
 });
 
