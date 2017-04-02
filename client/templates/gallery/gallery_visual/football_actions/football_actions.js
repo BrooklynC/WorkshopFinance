@@ -6,12 +6,20 @@ Template.FootballActions.events({
     'click .btn-send': function(e) {
         e.preventDefault();
 
-        Session.set('sessionActions', "send");
+        var currentFootballId = this._id;
+        var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
+        if(currentActive == true) {
+            Session.set('sessionActions', "send");
+        }
     },
     'click .btn-share': function(e) {
         e.preventDefault();
 
-        Session.set('sessionActions', "share");
+        var currentFootballId = this._id;
+        var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
+        if(currentActive == true) {
+            Session.set('sessionActions', "share");
+        }
     },
     'click .btn-delete': function(e) {
         e.preventDefault();
@@ -22,14 +30,6 @@ Template.FootballActions.events({
 
 Template.FootballActions.helpers({
     //Toggle to add input for sending or sharing football
-    actionsInput: function() {
-        var sessionActions = Session.get('sessionActions');
-        if(sessionActions == "none") {
-            return Template.FootballBlank;
-        } else {
-            return Template.FootballActionsOption;
-        }
-    },
     //Only the owner of football can Send, Share, or Remove, disable these options for others
     disabledEmpty: function() {
         var ownerId = this.ownerId;

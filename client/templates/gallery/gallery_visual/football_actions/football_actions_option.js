@@ -21,7 +21,7 @@ Template.FootballActionsOption.events({
                 });
                 break;
             case "delete":
-                return Meteor.call('footballRemove', currentFootballId, selection, function () {
+                return Meteor.call('footballRemove', currentFootballId, function () {
                     Session.set('sessionActions', "none");
                     Session.set('sessionValuations',"array");
                 });
@@ -39,6 +39,12 @@ Template.FootballActionsOption.events({
 //Select new target to attach to new Football
 //Different method will be run depending on whether target is selected
 Template.FootballActionsOption.helpers({
+    isNotNone: function() {
+        var sessionActions = Session.get('sessionActions');
+        if(sessionActions !== "none") {
+            return true
+        }
+    },
     isDelete: function() {
         var sessionActions = Session.get('sessionActions');
         if(sessionActions == "delete") {

@@ -15,12 +15,3 @@ Template.GalleryVisual.helpers({
         }
     }
 });
-
-Template.GalleryVisual.onCreated (function () {
-    var self = this;
-    self.autorun(function() {
-        var currentUserId = Meteor.userId();
-        var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
-        self.subscribe('footballActive', currentFootballId);
-    });
-});
