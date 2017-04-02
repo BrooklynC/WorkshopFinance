@@ -518,158 +518,160 @@ getBuildFinancial = function(footballId, valuationId) {
     var targetId = football.footballTarget.targetId;
 
     var valuation = Valuations.findOne({_id:valuationId});
-    var valuationSelections = valuation.valuationSelections;
-    var valuationMetric = valuation.valuationMetric;
-    var valuationPeriod = valuation.valuationPeriod;
-    var valuationMultiples = valuation.multiples;
+    if(valuation) {
+        var valuationSelections = valuation.valuationSelections;
+        var valuationMetric = valuation.valuationMetric;
+        var valuationPeriod = valuation.valuationPeriod;
+        var valuationMultiples = valuation.multiples;
 
-    if(valuationSelections.length > 0) {
-        if(valuationMultiples) {
-            if (footballType == "target") {
-                switch (targetType) {
-                    case "company":
-                        var feedCompany = FeedCompanies.findOne({_id: targetId});
+        if(valuationSelections.length > 0) {
+            if(valuationMultiples) {
+                if (footballType == "target") {
+                    switch (targetType) {
+                        case "company":
+                            var feedCompany = FeedCompanies.findOne({_id: targetId});
 
-                        var feedCompanyData = {
-                            revenueLtm: feedCompany.financial.ltm.revenue,
-                            revenueFy1: feedCompany.financial.fy1.revenue,
-                            revenueFy2: feedCompany.financial.fy2.revenue,
-                            ebitdaLtm: feedCompany.financial.ltm.ebitda,
-                            ebitdaFy1: feedCompany.financial.fy1.ebitda,
-                            ebitdaFy2: feedCompany.financial.fy2.ebitda,
-                            epsLtm: feedCompany.financial.ltm.eps,
-                            epsFy1: feedCompany.financial.fy1.eps,
-                            epsFy2: feedCompany.financial.fy2.eps,
-                            sharesOs: feedCompany.capTable.sharesOs,
-                            netDebt: feedCompany.capTable.netDebt
-                        };
-                        var valuationType = valuation.valuationType;
-                        switch(valuationType) {
-                            case "comps":
-                                switch (valuationMetric) {
-                                    case "EV/Revenue":
-                                        switch (valuationPeriod) {
-                                            case "LTM":
-                                                return feedCompanyData.revenueLtm;
-                                                break;
-                                            case "FY1":
-                                                return feedCompanyData.revenueFy1;
-                                                break;
-                                            case "FY2":
-                                                return feedCompanyData.revenueFy2;
-                                                break;
-                                        }
-                                        break;
-                                    case "EV/EBITDA":
-                                        switch (valuationPeriod) {
-                                            case "LTM":
-                                                return feedCompanyData.ebitdaLtm;
-                                                break;
-                                            case "FY1":
-                                                return feedCompanyData.ebitdaFy1;
-                                                break;
-                                            case "FY2":
-                                                return feedCompanyData.ebitdaFy2;
-                                                break;
-                                        }
-                                        break;
-                                    case "Price/Earnings":
-                                        switch (valuationPeriod) {
-                                            case "LTM":
-                                                return feedCompanyData.epsLtm;
-                                                break;
-                                            case "FY1":
-                                                return feedCompanyData.epsFy1;
-                                                break;
-                                            case "FY2":
-                                                return feedCompanyData.epsFy2;
-                                                break;
-                                        }
-                                        break;
-                                }
-                                break;
-                            case "deals":
-                                switch (valuationMetric) {
-                                    case "EV/Revenue":
-                                        switch (valuationPeriod) {
-                                            case "LTM":
-                                                return feedCompanyData.revenueLtm;
-                                                break;
-                                            case "FY1":
-                                                return feedCompanyData.revenueFy1;
-                                                break;
-                                            case "FY2":
-                                                return feedCompanyData.revenueFy2;
-                                                break;
-                                        }
-                                        break;
-                                    case "EV/EBITDA":
-                                        switch (valuationPeriod) {
-                                            case "LTM":
-                                                return feedCompanyData.ebitdaLtm;
-                                                break;
-                                            case "FY1":
-                                                return feedCompanyData.ebitdaFy1;
-                                                break;
-                                            case "FY2":
-                                                return feedCompanyData.ebitdaFy2;
-                                                break;
-                                        }
-                                        break;
-                                    case "Price/Earnings":
-                                        switch (valuationPeriod) {
-                                            case "LTM":
-                                                return feedCompanyData.epsLtm;
-                                                break;
-                                            case "FY1":
-                                                return feedCompanyData.epsFy1;
-                                                break;
-                                            case "FY2":
-                                                return feedCompanyData.epsFy2;
-                                                break;
-                                        }
-                                        break;
-                                }
-                                break;
-                            case "models":
-                                switch(footballOutput) {
-                                    case "Enterprise Value":
-                                        return 1;
-                                        break;
-                                    case "Price per Share":
-                                        return 1;
-                                        break;
-                                }
-                                break;
-                            case "custom":
-                                return 1;
-                                break;
-                        }
-                        break;
-                    case "team":
-                        var feedTeam = FeedTeams.findOne({_id: target.targetId});
+                            var feedCompanyData = {
+                                revenueLtm: feedCompany.financial.ltm.revenue,
+                                revenueFy1: feedCompany.financial.fy1.revenue,
+                                revenueFy2: feedCompany.financial.fy2.revenue,
+                                ebitdaLtm: feedCompany.financial.ltm.ebitda,
+                                ebitdaFy1: feedCompany.financial.fy1.ebitda,
+                                ebitdaFy2: feedCompany.financial.fy2.ebitda,
+                                epsLtm: feedCompany.financial.ltm.eps,
+                                epsFy1: feedCompany.financial.fy1.eps,
+                                epsFy2: feedCompany.financial.fy2.eps,
+                                sharesOs: feedCompany.capTable.sharesOs,
+                                netDebt: feedCompany.capTable.netDebt
+                            };
+                            var valuationType = valuation.valuationType;
+                            switch(valuationType) {
+                                case "comps":
+                                    switch (valuationMetric) {
+                                        case "EV/Revenue":
+                                            switch (valuationPeriod) {
+                                                case "LTM":
+                                                    return feedCompanyData.revenueLtm;
+                                                    break;
+                                                case "FY1":
+                                                    return feedCompanyData.revenueFy1;
+                                                    break;
+                                                case "FY2":
+                                                    return feedCompanyData.revenueFy2;
+                                                    break;
+                                            }
+                                            break;
+                                        case "EV/EBITDA":
+                                            switch (valuationPeriod) {
+                                                case "LTM":
+                                                    return feedCompanyData.ebitdaLtm;
+                                                    break;
+                                                case "FY1":
+                                                    return feedCompanyData.ebitdaFy1;
+                                                    break;
+                                                case "FY2":
+                                                    return feedCompanyData.ebitdaFy2;
+                                                    break;
+                                            }
+                                            break;
+                                        case "Price/Earnings":
+                                            switch (valuationPeriod) {
+                                                case "LTM":
+                                                    return feedCompanyData.epsLtm;
+                                                    break;
+                                                case "FY1":
+                                                    return feedCompanyData.epsFy1;
+                                                    break;
+                                                case "FY2":
+                                                    return feedCompanyData.epsFy2;
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                    break;
+                                case "deals":
+                                    switch (valuationMetric) {
+                                        case "EV/Revenue":
+                                            switch (valuationPeriod) {
+                                                case "LTM":
+                                                    return feedCompanyData.revenueLtm;
+                                                    break;
+                                                case "FY1":
+                                                    return feedCompanyData.revenueFy1;
+                                                    break;
+                                                case "FY2":
+                                                    return feedCompanyData.revenueFy2;
+                                                    break;
+                                            }
+                                            break;
+                                        case "EV/EBITDA":
+                                            switch (valuationPeriod) {
+                                                case "LTM":
+                                                    return feedCompanyData.ebitdaLtm;
+                                                    break;
+                                                case "FY1":
+                                                    return feedCompanyData.ebitdaFy1;
+                                                    break;
+                                                case "FY2":
+                                                    return feedCompanyData.ebitdaFy2;
+                                                    break;
+                                            }
+                                            break;
+                                        case "Price/Earnings":
+                                            switch (valuationPeriod) {
+                                                case "LTM":
+                                                    return feedCompanyData.epsLtm;
+                                                    break;
+                                                case "FY1":
+                                                    return feedCompanyData.epsFy1;
+                                                    break;
+                                                case "FY2":
+                                                    return feedCompanyData.epsFy2;
+                                                    break;
+                                            }
+                                            break;
+                                    }
+                                    break;
+                                case "models":
+                                    switch(footballOutput) {
+                                        case "Enterprise Value":
+                                            return 1;
+                                            break;
+                                        case "Price per Share":
+                                            return 1;
+                                            break;
+                                    }
+                                    break;
+                                case "custom":
+                                    return 1;
+                                    break;
+                            }
+                            break;
+                        case "team":
+                            var feedTeam = FeedTeams.findOne({_id: target.targetId});
 
-                        var feedTeamData = {
-                            revenueFy0: feedTeam.financial.fy0.revenue,
-                            attendanceFy0: feedTeam.financial.fy0.attendance
-                        };
-                        switch (valuationMetric) {
-                            case "EV/Revenue":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return feedTeamData.revenueFy0;
-                                        break;
-                                }
-                                break;
-                            case "EV/Attendance":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return feedTeamData.attendanceFy0;
-                                        break;
-                                }
-                                break;
-                        }
-                        break;
+                            var feedTeamData = {
+                                revenueFy0: feedTeam.financial.fy0.revenue,
+                                attendanceFy0: feedTeam.financial.fy0.attendance
+                            };
+                            switch (valuationMetric) {
+                                case "EV/Revenue":
+                                    switch (valuationPeriod) {
+                                        case "FY0":
+                                            return feedTeamData.revenueFy0;
+                                            break;
+                                    }
+                                    break;
+                                case "EV/Attendance":
+                                    switch (valuationPeriod) {
+                                        case "FY0":
+                                            return feedTeamData.attendanceFy0;
+                                            break;
+                                    }
+                                    break;
+                            }
+                            break;
+                    }
                 }
             }
         }
