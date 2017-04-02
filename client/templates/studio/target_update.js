@@ -11,13 +11,6 @@ Template.TargetUpdate.events({
         var targetObject = getTarget(currentFootballId, targetSelection);
         var footballType = getFootballType(targetSelection);
 
-        console.log(targetSelection);
-        console.log(currentFootballId);
-        console.log(currentUserId);
-        console.log(ownerId);
-        console.log(targetObject);
-        console.log(footballType);
-
         if(currentUserId == ownerId) {
             Meteor.call('footballTargetUpdate', currentFootballId, targetObject, footballType, function (error, result) {
             });
@@ -30,8 +23,6 @@ Template.TargetUpdate.events({
 
         var targetSelection = Session.get('sessionTargetSelection');
         var currentFootballId = Session.get('sessionTargetFootballId');
-
-        var currentFootball = Footballs.findOne({_id: currentFootballId});
 
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();

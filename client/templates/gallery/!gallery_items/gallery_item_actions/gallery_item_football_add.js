@@ -10,7 +10,8 @@ Template.GalleryItemFootballAdd.events({
         var currentUserId = Meteor.userId();
         var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
 
-        Meteor.call('footballAdd', marketType, target, valuations, footballType, currentFootballId, function(error, result) {
+        Meteor.call('footballAdd', marketType, target, valuations, footballType, currentFootballId, function() {
+            Session.set('sessionValuations', "array");
         });
     }
 });

@@ -119,7 +119,6 @@ getRangeCaps = function(footballId) {
                 var valuationType = valuation.valuationType;
                 var activeResult = getResultValue(footballId, valuationId);
                 if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
-                    //var activeResult = valuation.valuationActive;
                     if (activeResult) {
                         results.push(activeResult);
                     }
@@ -431,10 +430,32 @@ Template.registerHelper('disableOption',function() {
 
 //Disables editing if the current user is not the owner
 Template.registerHelper('disableOptionGallery',function() {
-    var ownerId = Template.parentData(0).ownerId;
+    var ownerId = this.ownerId;
     var currentUserId = Meteor.userId();
     if(currentUserId !== ownerId) {
         return "disabled";
+    }
+});
+
+Template.registerHelper('disableValuationAdd', function() {
+    var ownerId = this.ownerId;
+    var currentUserId = Meteor.userId();
+    if(currentUserId !== ownerId) {
+        return "disabled";
+    } else {
+        var currentFootballId = Options.findOne({ownerId: currentUserId}).footballActive;
+        var footballValuations = Footballs.findOne({_id: currentFootballId}).footballValuations;
+        var valuationEmpty = Valuations.findOne(
+            {
+                $and: [
+                    {_id: {$in: footballValuations}},
+                    {valuationSelections: {$size: 0}}
+                ]
+            }
+        );
+        if (valuationEmpty) {
+            return "disabled"
+        }
     }
 });
 
@@ -484,6 +505,18 @@ Template.registerHelper('disableOptionFull',function() {
     var count = selections.length;
     if(count > 0) {
         return "disabled";
+    }
+});
+
+Template.registerHelper('disableInactive',function() {
+    var currentUserId = Meteor.userId();
+    var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
+    var football = Footballs.findOne({_id:currentFootballId});
+    if(football) {
+        var currentFootballActive = football.footballActivated;
+        if(currentFootballActive == false) {
+            return "disabled";
+        }
     }
 });
 

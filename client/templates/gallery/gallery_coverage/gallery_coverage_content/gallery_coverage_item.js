@@ -11,6 +11,7 @@ Template.CoverageItem.events({
             Session.set('sessionIsSelectedId', newFootballId);
 
             Meteor.call('footballOpen', currentFootballId, newFootballId, function() {
+                Session.set('sessionValuations', "array");
             });
         } else {
             var id = this._id;

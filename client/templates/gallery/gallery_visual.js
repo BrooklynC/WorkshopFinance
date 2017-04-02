@@ -21,7 +21,6 @@ Template.GalleryVisual.onCreated (function () {
     self.autorun(function() {
         var currentUserId = Meteor.userId();
         var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
-        //var currentFootballId = Template.parentData(0)._id;
         self.subscribe('footballActive', currentFootballId);
     });
 });

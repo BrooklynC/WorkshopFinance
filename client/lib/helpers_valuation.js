@@ -314,195 +314,197 @@ getBuildMultiple = function(footballId, valuationId) {
     var marketType = football.marketType;
 
     var valuation = Valuations.findOne({_id: valuationId});
-    var valuationMetric = valuation.valuationMetric;
-    var valuationPeriod = valuation.valuationPeriod;
-    var valuationSelections = valuation.valuationSelections;
-    var valuationMultiples = valuation.multiples;
+    if(valuation) {
+        var valuationMetric = valuation.valuationMetric;
+        var valuationPeriod = valuation.valuationPeriod;
+        var valuationSelections = valuation.valuationSelections;
+        var valuationMultiples = valuation.multiples;
 
-    var val = getVal(footballId, valuationId);
-    var scaleAdjust = getScale(footballId);
+        var val = getVal(footballId, valuationId);
+        var scaleAdjust = getScale(footballId);
 
-    if (valuationSelections.length > 0) {
-        if (valuationMultiples) {
-            switch (marketType) {
-                case "company":
-                    var valuationType = valuation.valuationType;
-                    switch (valuationType) {
-                        case "comps":
-                            switch (valuationMetric) {
-                                case "EV/Revenue":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            return val.evRevLtm;
-                                            break;
-                                        case "FY1":
-                                            return val.evRevFy1;
-                                            break;
-                                        case "FY2":
-                                            return val.evRevFy2;
-                                            break;
-                                    }
-                                    break;
-                                case "EV/EBITDA":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            return val.evEbitdaLtm;
-                                            break;
-                                        case "FY1":
-                                            return val.evEbitdaFy1;
-                                            break;
-                                        case "FY2":
-                                            return val.evEbitdaFy2;
-                                            break;
-                                    }
-                                    break;
-                                case "Price/Earnings":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            return val.peLtm;
-                                            break;
-                                        case "FY1":
-                                            return val.peFy1;
-                                            break;
-                                        case "FY2":
-                                            return val.peFy2;
-                                            break;
-                                    }
-                                    break;
-                            }
-                            break;
-                        case "deals":
-                            switch (valuationMetric) {
-                                case "EV/Revenue":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            return val.evRevLtm;
-                                            break;
-                                        case "FY1":
-                                            return val.evRevFy1;
-                                            break;
-                                        case "FY2":
-                                            return val.evRevFy2;
-                                            break;
-                                    }
-                                    break;
-                                case "EV/EBITDA":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            return val.evEbitdaLtm;
-                                            break;
-                                        case "FY1":
-                                            return val.evEbitdaFy1;
-                                            break;
-                                        case "FY2":
-                                            return val.evEbitdaFy2;
-                                            break;
-                                    }
-                                    break;
-                                case "Price/Earnings":
-                                    switch (valuationPeriod) {
-                                        case "LTM":
-                                            return val.peLtm;
-                                            break;
-                                        case "FY1":
-                                            return val.peFy1;
-                                            break;
-                                        case "FY2":
-                                            return val.peFy2;
-                                            break;
-                                    }
-                                    break;
-                            }
-                            break;
-                        case "models":
-                            switch (footballOutput) {
-                                case "Enterprise Value":
-                                    return val.enterpriseValue;
-                                    break;
-                                case "Price per Share":
-                                    return val.pricePerShare;
-                                    break;
-                                case "Multiple":
-                                    switch (valuationMetric) {
-                                        case "EV/Revenue":
-                                            switch (valuationPeriod) {
-                                                case "LTM":
-                                                    return val.evRevLtm;
-                                                    break;
-                                                case "FY1":
-                                                    return val.evRevFy1;
-                                                    break;
-                                                case "FY2":
-                                                    return val.evRevFy2;
-                                                    break;
-                                            }
-                                            break;
-                                        case "EV/EBITDA":
-                                            switch (valuationPeriod) {
-                                                case "LTM":
-                                                    return val.evEbitdaLtm;
-                                                    break;
-                                                case "FY1":
-                                                    return val.evEbitdaFy1;
-                                                    break;
-                                                case "FY2":
-                                                    return val.evEbitdaFy2;
-                                                    break;
-                                            }
-                                            break;
-                                        case "Price/Earnings":
-                                            switch (valuationPeriod) {
-                                                case "LTM":
-                                                    return val.peLtm;
-                                                    break;
-                                                case "FY1":
-                                                    return val.peFy1;
-                                                    break;
-                                                case "FY2":
-                                                    return val.peFy2;
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                    break;
-                            }
-                            break;
-                        case "custom":
-                            var existingCustom = this.existingCustom;
-                            if (existingCustom == "customValue") {
-                                var scale = football.footballScale;
-                                switch (scale) {
-                                    case "millions":
-                                        return val.customValue;
+        if (valuationSelections.length > 0) {
+            if (valuationMultiples) {
+                switch (marketType) {
+                    case "company":
+                        var valuationType = valuation.valuationType;
+                        switch (valuationType) {
+                            case "comps":
+                                switch (valuationMetric) {
+                                    case "EV/Revenue":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                return val.evRevLtm;
+                                                break;
+                                            case "FY1":
+                                                return val.evRevFy1;
+                                                break;
+                                            case "FY2":
+                                                return val.evRevFy2;
+                                                break;
+                                        }
                                         break;
-                                    case "billions":
-                                        return val.customValue / scaleAdjust;
+                                    case "EV/EBITDA":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                return val.evEbitdaLtm;
+                                                break;
+                                            case "FY1":
+                                                return val.evEbitdaFy1;
+                                                break;
+                                            case "FY2":
+                                                return val.evEbitdaFy2;
+                                                break;
+                                        }
+                                        break;
+                                    case "Price/Earnings":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                return val.peLtm;
+                                                break;
+                                            case "FY1":
+                                                return val.peFy1;
+                                                break;
+                                            case "FY2":
+                                                return val.peFy2;
+                                                break;
+                                        }
                                         break;
                                 }
-                            } else {
-                                return val.customValue;
-                            }
-                            break;
-                    }
-                    break;
-                case "team":
-                    switch (valuationMetric) {
-                        case "EV/Revenue":
-                            switch (valuationPeriod) {
-                                case "FY0":
-                                    return val.evRevFy0;
-                                    break;
-                            }
-                            break;
-                        case "EV/Attendance":
-                            switch (valuationPeriod) {
-                                case "FY0":
-                                    return val.evAttendanceFy0;
-                                    break;
-                            }
-                            break;
-                    }
-                    break;
+                                break;
+                            case "deals":
+                                switch (valuationMetric) {
+                                    case "EV/Revenue":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                return val.evRevLtm;
+                                                break;
+                                            case "FY1":
+                                                return val.evRevFy1;
+                                                break;
+                                            case "FY2":
+                                                return val.evRevFy2;
+                                                break;
+                                        }
+                                        break;
+                                    case "EV/EBITDA":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                return val.evEbitdaLtm;
+                                                break;
+                                            case "FY1":
+                                                return val.evEbitdaFy1;
+                                                break;
+                                            case "FY2":
+                                                return val.evEbitdaFy2;
+                                                break;
+                                        }
+                                        break;
+                                    case "Price/Earnings":
+                                        switch (valuationPeriod) {
+                                            case "LTM":
+                                                return val.peLtm;
+                                                break;
+                                            case "FY1":
+                                                return val.peFy1;
+                                                break;
+                                            case "FY2":
+                                                return val.peFy2;
+                                                break;
+                                        }
+                                        break;
+                                }
+                                break;
+                            case "models":
+                                switch (footballOutput) {
+                                    case "Enterprise Value":
+                                        return val.enterpriseValue;
+                                        break;
+                                    case "Price per Share":
+                                        return val.pricePerShare;
+                                        break;
+                                    case "Multiple":
+                                        switch (valuationMetric) {
+                                            case "EV/Revenue":
+                                                switch (valuationPeriod) {
+                                                    case "LTM":
+                                                        return val.evRevLtm;
+                                                        break;
+                                                    case "FY1":
+                                                        return val.evRevFy1;
+                                                        break;
+                                                    case "FY2":
+                                                        return val.evRevFy2;
+                                                        break;
+                                                }
+                                                break;
+                                            case "EV/EBITDA":
+                                                switch (valuationPeriod) {
+                                                    case "LTM":
+                                                        return val.evEbitdaLtm;
+                                                        break;
+                                                    case "FY1":
+                                                        return val.evEbitdaFy1;
+                                                        break;
+                                                    case "FY2":
+                                                        return val.evEbitdaFy2;
+                                                        break;
+                                                }
+                                                break;
+                                            case "Price/Earnings":
+                                                switch (valuationPeriod) {
+                                                    case "LTM":
+                                                        return val.peLtm;
+                                                        break;
+                                                    case "FY1":
+                                                        return val.peFy1;
+                                                        break;
+                                                    case "FY2":
+                                                        return val.peFy2;
+                                                        break;
+                                                }
+                                                break;
+                                        }
+                                        break;
+                                }
+                                break;
+                            case "custom":
+                                var existingCustom = this.existingCustom;
+                                if (existingCustom == "customValue") {
+                                    var scale = football.footballScale;
+                                    switch (scale) {
+                                        case "millions":
+                                            return val.customValue;
+                                            break;
+                                        case "billions":
+                                            return val.customValue / scaleAdjust;
+                                            break;
+                                    }
+                                } else {
+                                    return val.customValue;
+                                }
+                                break;
+                        }
+                        break;
+                    case "team":
+                        switch (valuationMetric) {
+                            case "EV/Revenue":
+                                switch (valuationPeriod) {
+                                    case "FY0":
+                                        return val.evRevFy0;
+                                        break;
+                                }
+                                break;
+                            case "EV/Attendance":
+                                switch (valuationPeriod) {
+                                    case "FY0":
+                                        return val.evAttendanceFy0;
+                                        break;
+                                }
+                                break;
+                        }
+                        break;
+                }
             }
         }
     }

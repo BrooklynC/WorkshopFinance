@@ -5,7 +5,6 @@ Template.ValuationNotes.events({
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
         var noteState = Template.instance().showNote.get();
-        console.log(ownerId);
 
         if(currentUserId == ownerId) {
             if(noteState == true) {
@@ -18,7 +17,6 @@ Template.ValuationNotes.events({
 
         var currentValuationId = this._id;
         var valuationNote = $(e.target).find('[name=valuation-note-edit]').val();
-        console.log(valuationNote);
 
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();

@@ -23,7 +23,7 @@ Template.ValuationControls.events({
             if (confirm("Delete this valuation?")) {
                 var currentFootballId = Template.parentData(1)._id;
                 var currentValuationId = this._id;
-                Meteor.call('valuationRemove', currentFootballId, currentValuationId, function (error, result) {
+                Meteor.call('valuationRemove', currentFootballId, currentValuationId, function () {
                 })
             }
         }

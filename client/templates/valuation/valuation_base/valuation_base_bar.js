@@ -2,13 +2,30 @@ Template.ValuationBaseBar.events({
     'click .valuation-bar-frame': function(e) {
         e.preventDefault();
 
-        var valuationId = this._id;
+        var currentFootballId = Template.parentData(1)._id;
+        var currentValuationId = this._id;
 
         var sessionValuations = Session.get('sessionValuations');
         if(sessionValuations == "array") {
-            Session.set('sessionValuations', valuationId);
+            Session.set('sessionValuations', currentValuationId);
         } else {
-            Session.set('sessionValuations', "array");
+            var footballValuations = Footballs.findOne({_id:currentFootballId}).footballValuations;
+            var valuationsEmpty = Valuations.find(
+                {
+                    $and: [
+                        {_id: {$in: footballValuations}},
+                        {valuationSelections: {$size: 0}}
+                    ]
+                }
+            ).fetch();
+            var count = valuationsEmpty.length;
+            if(count == 2) {
+                Meteor.call('valuationRemove', currentFootballId, currentValuationId, function () {
+                    Session.set('sessionValuations', "array");
+                });
+            } else {
+                Session.set('sessionValuations', "array");
+            }
         }
     }
 });

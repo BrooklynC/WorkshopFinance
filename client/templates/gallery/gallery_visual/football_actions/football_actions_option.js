@@ -23,6 +23,7 @@ Template.FootballActionsOption.events({
             case "delete":
                 return Meteor.call('footballRemove', currentFootballId, selection, function () {
                     Session.set('sessionActions', "none");
+                    Session.set('sessionValuations',"array");
                 });
                 break;
         }
