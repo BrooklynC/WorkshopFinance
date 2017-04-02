@@ -41,9 +41,15 @@ Template.ValuationBaseBar.helpers({
             return Template.ValuationBaseBarEmpty;
         } else {
             var valuationType = this.valuationType;
+            var currentFootballId = Template.parentData(1)._id;
+            var spread = Footballs.findOne({_id:currentFootballId}).footballSpread;
             switch(valuationType) {
                 case "comps":
-                    return Template.ValuationBaseBarFull;
+                    if(spread == 0) {
+                        return Template.ValuationBaseBarFullSpot;
+                    } else {
+                        return Template.ValuationBaseBarFull;
+                    }
                     break;
                 case "deals":
                     return Template.ValuationBaseBarFull;

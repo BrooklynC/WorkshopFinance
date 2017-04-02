@@ -1343,11 +1343,20 @@ getValuationCalcs = function(footballId, valuationId) {
     }
 };
 
+getTextSpace = function(footballId) {
+    var spread = Footballs.findOne({_id:footballId}).footballSpread;
+    if(spread == 0) {
+        return 3
+    } else {
+        return 0.5
+    }
+};
+
 getValuationText = function(footballId, valuationId) {
     var valuationStartPct = getValuationCalcs(footballId, valuationId).startPct;
     var valuationEndPct = getValuationCalcs(footballId, valuationId).endPct;
 
-    var textSpace = 0.5;
+    var textSpace = getTextSpace(footballId);
     var scaleSwitch = UI._globalHelpers.scaleSwitch(footballId);
 
     var valuationLow = getValuationLowHigh(footballId, valuationId).valuationLow;
