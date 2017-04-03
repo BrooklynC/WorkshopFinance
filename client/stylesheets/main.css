@@ -580,7 +580,7 @@ svg {
     padding-right: 2px;
 }
 .valuation-results-inner {
-    padding: 1% 10% 1% 1%;
+    padding: 0% 5% 1% 1%;
     width:100%;
 }
 .custom-add-menu {
@@ -599,12 +599,27 @@ svg {
     width: 100%;
 }
 .valuation-results-scroll {
-    padding-bottom: 3px;
+    padding-top: 5px;
+    padding-bottom: 10px;
 }
 .results-row {
     width:100%;
+}
+.valuation-results-top .results-row {
+    height: 30px;
+    line-height: 30px;
+}
+.valuation-results-scroll .results-row-short {
+    height: 20px;
+    line-height: 20px;
+}
+.valuation-results-scroll .results-row-tall {
     height: 35px;
     line-height: 35px;
+    margin-bottom:5px;
+}
+.valuation-results-controls {
+    padding-top:5px;
 }
 .results-result-left {
     width:20%;

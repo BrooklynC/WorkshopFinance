@@ -19,13 +19,13 @@
                 </div>
             </div>
         </div>
-        <div class="valuation-results-scroll">
-            <div class="wrapper results-row">
+        <div class="valuation-results-scroll {{themeStyle.borderBottom}}">
+            <div class="wrapper results-row results-row-short">
                 <div class="left results-full">
                     <strong>Based on</strong>
                 </div>
             </div>
-            <div class="wrapper results-row">
+            <div class="wrapper results-row results-row-tall">
                 <div class="left results-left">
                     {{>ValuationCalc}}
                 </div>
@@ -33,7 +33,7 @@
                     {{>valuationResultsBuild}}
                 </div>
             </div>
-            <div class="wrapper results-row">
+            <div class="wrapper results-row results-row-tall">
                 <div class="left results-left">
                     <strong>As of</strong>
                 </div>
@@ -41,7 +41,7 @@
                     {{> dateOption}}
                 </div>
             </div>
-            <div class="wrapper results-row">
+            <div class="wrapper results-row results-row-short">
                 <div class="left results-left">
                     <strong>+/-</strong>
                 </div>
