@@ -419,91 +419,52 @@ Template.registerHelper('scaleSwitch', function(footballId) {
 
 ////THE NEXT SET OF HELPERS DISABLE THE ABILITY TO EDIT A FOOTBALL FIELD OR VALUATION, DEPENDING ON CERTAIN VARIABLES
 
-//Disables editing if the current user is not the owner
-Template.registerHelper('disableOption',function() {
-    var ownerId = Template.parentData(0).ownerId;
-    var ownerIdTwo = Template.parentData(1).ownerId;
+Template.registerHelper('disableOwner',function() {
     var currentUserId = Meteor.userId();
+    var ownerId = this.ownerId;
+    var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
+    var ownerIdTwo = Footballs.findOne({_id:footballActive}).ownerId;
     if(currentUserId !== ownerId && currentUserId !== ownerIdTwo) {
         return "disabled";
     }
 });
 
-//Disables editing if the current user is not the owner
-Template.registerHelper('disableOptionGallery',function() {
-    var ownerId = this.ownerId;
-    if(ownerId) {
-        var currentUserId = Meteor.userId();
-        if(currentUserId !== ownerId) {
-            return "disabled";
-        }
+Template.registerHelper('disableEmpty',function() {
+    var selections = localSelections.find().fetch();
+    var selectionsCount = selections.length;
+    console.log("Empty: ", selectionsCount);
+    if(selectionsCount == 0) {
+        return "disabled";
     }
 });
 
 Template.registerHelper('disableValuationAdd', function() {
-    var ownerId = this.ownerId;
     var currentUserId = Meteor.userId();
-    if(currentUserId !== ownerId) {
-        return "disabled";
-    } else {
-        var currentFootballId = Options.findOne({ownerId: currentUserId}).footballActive;
-        var footballValuations = Footballs.findOne({_id: currentFootballId}).footballValuations;
-        var valuationEmpty = Valuations.findOne(
-            {
-                $and: [
-                    {_id: {$in: footballValuations}},
-                    {valuationSelections: {$size: 0}}
-                ]
-            }
-        );
-        if (valuationEmpty) {
-            return "disabled"
+    var currentFootballId = Options.findOne({ownerId: currentUserId}).footballActive;
+    var footballValuations = Footballs.findOne({_id: currentFootballId}).footballValuations;
+    var valuationEmpty = Valuations.findOne(
+        {
+            $and: [
+                {_id: {$in: footballValuations}},
+                {valuationSelections: {$size: 0}}
+            ]
         }
+    );
+    if (valuationEmpty) {
+        return "disabled"
     }
 });
 
 //Disables ability to add current or trading values if company is not public
-Template.registerHelper('disableOptionPublic',function() {
-    var currentUserId = Meteor.userId();
-    var ownerId = this.ownerId;
-    if(currentUserId !== ownerId) {
+Template.registerHelper('disableMarket',function() {
+    var footballType = this.footballType;
+    if(footballType == "market") {
         return "disabled";
-    } else {
-        var footballType = this.footballType;
-        switch(footballType) {
-            case "market":
-                return "disabled";
-                break;
-            case "target":
-                var target = this.footballTarget;
-                switch(target.targetType) {
-                    case "company":
-                        switch(target.targetData) {
-                            case "feed":
-                                var statusCompany = FeedCompanies.findOne({_id:target.targetId}).status;
-                                if(statusCompany == "private") {
-                                    return "disabled";
-                                }
-                                break;
-                        }
-                        break;
-                    case "team":
-                        switch(target.targetData) {
-                            case "feed":
-                                var statusTeam = "private";
-                                if(statusTeam == "private") {
-                                    return "disabled";
-                                }
-                                break;
-                        }
-
-                }
-        }
     }
 });
 
 //Disables ability to change Valuation Type or Element if selections have already been made
-Template.registerHelper('disableOptionFull',function() {
+Template.registerHelper('disableBuild',function() {
     var selections = this.valuationSelections;
     var count = selections.length;
     if(count > 0) {

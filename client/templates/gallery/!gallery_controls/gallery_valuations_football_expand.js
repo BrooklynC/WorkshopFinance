@@ -12,7 +12,6 @@ Template.GalleryValuationsFootballExpand.events({
             selections.push(valuationId);
         });
         Meteor.call('footballValuationsExpand', marketType, selections, function() {
-            Session.set('sessionValuations', "array");
         });
         localSelections.remove({});
     }

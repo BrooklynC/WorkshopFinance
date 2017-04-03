@@ -2,7 +2,7 @@
 <template name="ValuationBuildDataComps">
     <div class="build-select-sector left">
         <div class="btn-group btn-dropdown">
-            <button class="btn btn-info btn-sm dropdown-toggle wrapper {{disableOption}}" type="button" id="dropdownBuildCompSector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <button class="btn btn-info btn-sm dropdown-toggle wrapper {{disableOwner}}" type="button" id="dropdownBuildCompSector" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 <div class="left">
                     {{sectorTitle}}
                 </div>
@@ -35,7 +35,7 @@
                         <span class="caret"></span>
                     </div>
                 </button>
-                <ul class="dropdown-menu dropdown-scroll-build dropdown-right comp-options {{disableOptionGallery}}" aria-labelledby="dropdownBuildComp">
+                <ul class="dropdown-menu dropdown-scroll-build dropdown-right comp-options {{disableOwner}}" aria-labelledby="dropdownBuildComp">
                     {{#each comps}}
                         <li><a class="build-comp-comp">{{companyName}} ({{ticker}})</a></li>
                     {{/each}}

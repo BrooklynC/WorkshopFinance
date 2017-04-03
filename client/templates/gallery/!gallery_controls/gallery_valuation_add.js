@@ -37,13 +37,3 @@ Template.GalleryValuationAdd.events({
         }
     }
 });
-
-Template.GalleryValuationAdd.helpers({
-    disableNoSelections: function() {
-        var selections = localSelections.find().fetch();
-        var length = selections.length;
-        if(length == 0) {
-            return "disabled"
-        }
-    }
-});
