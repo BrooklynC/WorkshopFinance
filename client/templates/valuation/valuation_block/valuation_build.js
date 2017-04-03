@@ -57,6 +57,8 @@ Template.ValuationBuild.helpers({
                     return Template.ValuationBuildCustom;
                     break;
             }
+        } else {
+            return Template.FootballBlank;
         }
     },
     valuationBuildTable: function() {

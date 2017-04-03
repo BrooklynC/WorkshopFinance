@@ -1,27 +1,25 @@
 <!--Form to add selection to Valuation, searches using autocomplete for Comp Ticker or Deal Target-->
 <template name="ValuationBuildDataDealsIndices">
-    {{#if isOwner}}
-        <div class="build-select-selection-index wrapper left">
-            <form>
-                <div class="btn-group btn-dropdown select-index left">
-                    <button class="btn btn-info btn-sm dropdown-toggle {{disableOptionGallery}} wrapper" type="button" id="dropdownBuildDealIndex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                        <div class="left">
-                            {{indexTitle}}
-                        </div>
-                        <div class="right">
-                            <span class="caret"></span>
-                        </div>
-                    </button>
-                    <ul class="dropdown-menu dropdown-scroll-build dropdown-right deal-options" aria-labelledby="dropdownBuildDealIndex">
-                        {{#each indices}}
-                            <li><a class="build-deal-index">{{indexName}}</a></li>
-                        {{/each}}
-                    </ul>
-                </div>
-                <div class="select-button left">
-                    <button type="submit" class="btn btn-info btn-sm btn-full">Add</button>
-                </div>
-            </form>
-        </div>
-    {{/if}}
+    <div class="build-select-selection-index wrapper left">
+        <form>
+            <div class="btn-group btn-dropdown select-index left">
+                <button class="btn btn-info btn-sm dropdown-toggle {{disableOptionGallery}} wrapper" type="button" id="dropdownBuildDealIndex" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <div class="left">
+                        {{indexTitle}}
+                    </div>
+                    <div class="right">
+                        <span class="caret"></span>
+                    </div>
+                </button>
+                <ul class="dropdown-menu dropdown-scroll-build dropdown-right deal-options" aria-labelledby="dropdownBuildDealIndex">
+                    {{#each indices}}
+                        <li><a class="build-deal-index">{{indexName}}</a></li>
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="select-button left">
+                <button type="submit" class="btn btn-info btn-sm btn-full">Add</button>
+            </div>
+        </form>
+    </div>
 </template>
