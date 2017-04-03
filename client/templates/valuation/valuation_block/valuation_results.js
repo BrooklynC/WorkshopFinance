@@ -52,27 +52,6 @@ Template.ValuationResults.helpers({
             case "models":
                 return Template.ValuationResultsBuild;
                 break;
-                //var footballType = Template.parentData(1).footballType;
-                //switch(footballType) {
-                //    case "target":
-                //        var footballOutput = Template.parentData(1).footballOutput;
-                //        switch(footballOutput) {
-                //            case "Enterprise Value":
-                //                return Template.FootballBlank;
-                //                break;
-                //            case "Price per Share":
-                //                return Template.FootballBlank;
-                //                break;
-                //            case "Multiple":
-                //                return Template.FootballBlank;
-                //                break;
-                //        }
-                //        break;
-                //    case "market":
-                //        return Template.FootballBlank;
-                //        break;
-                //}
-                //break;
             case "custom":
                 return Template.FootballBlank;
                 break;
@@ -85,7 +64,7 @@ Template.ValuationResults.helpers({
                 return "As of";
                 break;
             case "deals":
-                return "As of";
+                return "";
                 break;
             case "models":
                 return "";

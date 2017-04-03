@@ -1400,3 +1400,10 @@ Template.registerHelper('valuationText',function(footballId, valuationId) {
     return getValuationText(footballId, valuationId);
 });
 
+Template.registerHelper('isOwner',function() {
+    var currentUserId = Meteor.userId();
+    var ownerId = this.ownerId;
+    if(currentUserId == ownerId) {
+        return true
+    }
+});
