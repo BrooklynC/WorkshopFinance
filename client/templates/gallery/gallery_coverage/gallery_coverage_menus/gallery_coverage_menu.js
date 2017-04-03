@@ -7,6 +7,7 @@ Template.CoverageMenu.events({
         var coverage = $(e.target).text();
 
         Session.set('sessionCoverageType', coverage);
+        localSelections.remove({})
     }
 });
 

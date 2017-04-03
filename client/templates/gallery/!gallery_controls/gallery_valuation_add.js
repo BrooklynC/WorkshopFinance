@@ -17,7 +17,7 @@ Template.GalleryValuationAdd.events({
         var output = getValuationInfo(marketType).output;
         var outputPeriod = getValuationInfo(marketType).outputPeriod;
 
-        var activated = true;
+        var live = true;
 
         var selections = [];
         var compsSelect = localSelections.find({});
@@ -30,7 +30,7 @@ Template.GalleryValuationAdd.events({
 
         if(ownerId == currentUserId) {
             if(length > 0) {
-                Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, activated, function(error, result) {
+                Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, live, function(error, result) {
                 });
                 localSelections.remove({});
             }

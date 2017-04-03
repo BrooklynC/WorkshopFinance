@@ -10,7 +10,7 @@ Template.FootballActions.events({
         var ownerId = this.ownerId;
         if(currentUserId == ownerId) {
             var currentFootballId = this._id;
-            var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
+            var currentActive = Footballs.findOne({_id:currentFootballId}).footballLive;
             if(currentActive == true) {
                 Session.set('sessionActions', "send");
             }
@@ -23,7 +23,7 @@ Template.FootballActions.events({
         var ownerId = this.ownerId;
         if(currentUserId == ownerId) {
             var currentFootballId = this._id;
-            var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
+            var currentActive = Footballs.findOne({_id:currentFootballId}).footballLive;
             if(currentActive == true) {
                 Session.set('sessionActions', "share");
             }

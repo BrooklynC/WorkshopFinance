@@ -476,8 +476,8 @@ Template.registerHelper('disableInactive',function() {
     var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;
     var football = Footballs.findOne({_id:currentFootballId});
     if(football) {
-        var currentFootballActive = football.footballActivated;
-        if(currentFootballActive == false) {
+        var currentFootballLive = football.footballLive;
+        if(currentFootballLive == false) {
             return "disabled";
         }
     }

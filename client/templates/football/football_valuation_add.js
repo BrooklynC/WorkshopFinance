@@ -27,8 +27,8 @@ Template.FootballValuationAdd.events({
                 var output = getValuationInfo(marketType).output;
                 var outputPeriod = getValuationInfo(marketType).outputPeriod;
                 var selections = [];
-                var activated = Footballs.findOne({_id:currentFootballId}).footballActivated;
-                Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, activated, function () {
+                var live = Footballs.findOne({_id:currentFootballId}).footballLive;
+                Meteor.call('valuationAdd', marketType, type, element, metric, period, output, outputPeriod, selections, currentFootballId, live, function () {
                 });
             }
         }
