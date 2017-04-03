@@ -26,6 +26,3 @@ Template.FootballSpread.events({
         }
     }
 });
-
-Template.FootballSpread.helpers({
-});

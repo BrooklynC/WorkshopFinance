@@ -1312,14 +1312,13 @@ getResultValue = function(footballId, valuationId) {
 
 
 getValuationLowHigh = function(footballId, valuationId) {
-    var football = Footballs.findOne({_id:footballId});
-    var footballSpread = football.footballSpread;
+    var valuationSpread = Valuations.findOne({_id:valuationId}).valuationSpread;
 
     var valuationActive = getResultValue(footballId, valuationId);
 
     return {
-        valuationLow: valuationActive * (1 - (footballSpread / 100)),
-        valuationHigh: valuationActive * (1 + (footballSpread / 100))
+        valuationLow: valuationActive * (1 - (valuationSpread / 100)),
+        valuationHigh: valuationActive * (1 + (valuationSpread / 100))
     };
 };
 
@@ -1343,10 +1342,10 @@ getValuationCalcs = function(footballId, valuationId) {
     }
 };
 
-getTextSpace = function(footballId) {
-    var spread = Footballs.findOne({_id:footballId}).footballSpread;
+getTextSpace = function(valuationId) {
+    var spread = Valuations.findOne({_id:valuationId}).valuationSpread;
     if(spread == 0) {
-        return 3
+        return 2.5
     } else {
         return 0.5
     }
@@ -1356,7 +1355,7 @@ getValuationText = function(footballId, valuationId) {
     var valuationStartPct = getValuationCalcs(footballId, valuationId).startPct;
     var valuationEndPct = getValuationCalcs(footballId, valuationId).endPct;
 
-    var textSpace = getTextSpace(footballId);
+    var textSpace = getTextSpace(valuationId);
     var scaleSwitch = UI._globalHelpers.scaleSwitch(footballId);
 
     var valuationLow = getValuationLowHigh(footballId, valuationId).valuationLow;

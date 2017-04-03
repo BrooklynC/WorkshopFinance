@@ -20,51 +20,16 @@ Template.ValuationBuildTableModel.events ({
 Template.ValuationBuildTableModel.helpers({
     selections: function() {
         //Changes cursor used to display selections depending on valuationType and valuationElement
-        var valuationSelections = this.valuationSelections;
-        return Models.find({_id: {$in: valuationSelections}});
+        var selections = this.valuationSelections;
+        return Models.find({_id: {$in: selections}});
     },
     modelStat: function() {
-        var stat = this.values.stat;
-        switch(stat) {
-            case "enterpriseValue":
-                return "Enterprise Value";
-                break;
-            case "pricePerShare":
-                return "Price per Share";
-                break;
-            case "evRevenueLtm":
-                return "EV/Revenue (LTM)";
-                break;
-            case "evRevenueFy1":
-                return "EV/Revenue (FY1)";
-                break;
-            case "evRevenueFy2":
-                return "EV/Revenue (FY2)";
-                break;
-            case "evEbitdaLtm":
-                return "EV/EBITDA (LTM)";
-                break;
-            case "evEbitdaFy1":
-                return "EV/EBITDA (FY1)";
-                break;
-            case "evEbitdaFy2":
-                return "EV/EBITDA (FY2)";
-                break;
-            case "priceEarningsLtm":
-                return "P/E (LTM)";
-                break;
-            case "priceEarningsFy1":
-                return "P/E (FY1)";
-                break;
-            case "priceEarningsFy2":
-                return "P/E (FY2)";
-                break;
-        }
+        return this.values.stat;
     },
     modelValue: function() {
         var stat = this.values.stat;
         switch(stat) {
-            case "enterpriseValue":
+            case "Enterprise Value":
                 var scale = Template.parentData(2).footballScale;
                 switch(scale) {
                     case "millions":
@@ -75,34 +40,34 @@ Template.ValuationBuildTableModel.helpers({
                         break;
                 }
                 break;
-            case "pricePerShare":
+            case "Price per Share":
                 return this.values.pricePerShare;
                 break;
-            case "evRevenueLtm":
+            case "EV/Revenue (LTM)":
                 return this.values.evRevenueLtm;
                 break;
-            case "evRevenueFy1":
+            case "EV/Revenue (FY1)":
                 return this.values.evRevenueFy1;
                 break;
-            case "evRevenueFy2":
+            case "EV/Revenue (FY2)":
                 return this.values.evRevenueFy2;
                 break;
-            case "evEbitdaLtm":
+            case "EV/EBITDA (LTM)":
                 return this.values.evEbitdaLtm;
                 break;
-            case "evEbitdaFy1":
+            case "EV/EBITDA (FY1)":
                 return this.values.evEbitdaFy1;
                 break;
-            case "evEbitdaFy2":
+            case "EV/EBITDA (FY2)":
                 return this.values.evEbitdaFy2;
                 break;
-            case "priceEarningsLtm":
+            case "P/E (LTM)":
                 return this.values.priceEarningsLtm;
                 break;
-            case "priceEarningsFy1":
+            case "P/E (FY1)":
                 return this.values.priceEarningsFy1;
                 break;
-            case "priceEarningsFy2":
+            case "P/E (FY2)":
                 return this.values.priceEarningsFy2;
                 break;
         }
@@ -174,7 +139,7 @@ Template.ValuationBuildTableModel.helpers({
     },
     modelCurrency: function() {
         var stat = this.values.stat;
-        if(stat == "enterpriseValue" || stat == "pricePerShare") {
+        if(stat == "Enterprise Value" || stat == "Price per Share") {
             return "$";
         } else {
             return "";
@@ -182,7 +147,7 @@ Template.ValuationBuildTableModel.helpers({
     },
     modelFormat: function(a) {
         var stat = this.values.stat;
-        if(stat === "pricePerShare") {
+        if(stat === "Price per Share") {
             return numeral(a).format('0,0.00');
         } else {
             return numeral(a).format('0,0.0');
@@ -190,7 +155,7 @@ Template.ValuationBuildTableModel.helpers({
     },
     modelMultiple: function() {
         var stat = this.values.stat;
-        if(stat == "enterpriseValue" || stat == "pricePerShare") {
+        if(stat == "Enterprise Value" || stat == "Price per Share") {
             return "";
         } else {
             return "x";
@@ -240,20 +205,10 @@ Template.ValuationBuildTableModel.helpers({
         var valuationSelections = this.valuationSelections;
         var scaleAdjust = getScale(footballId);
         if (valuationSelections.length > 0) {
-            var valuationType = this.valuationType;
-            if (valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
-                if (output == "Enterprise Value") {
-                    return getResultValue(footballId, valuationId) / scaleAdjust;
-                } else {
-                    return getResultValue(footballId, valuationId);
-                }
+            if (output == "Enterprise Value") {
+                return getResultValue(footballId, valuationId) / scaleAdjust;
             } else {
-                var existingCustom = this.existingCustom;
-                if(existingCustom == "customValue") {
-                    return getResultValue(footballId, valuationId) / scaleAdjust;
-                } else {
-                    return getResultValue(footballId, valuationId);
-                }
+                return getResultValue(footballId, valuationId);
             }
         }
     }

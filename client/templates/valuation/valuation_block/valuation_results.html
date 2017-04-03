@@ -1,18 +1,10 @@
 <!--Full summary of results, including Build value and transformed value, if applicable-->
 <template name="ValuationResults">
     <div class="valuation-results-inner">
-        <div class="valuation-results-scroll">
+        <div class="valuation-results-top {{themeStyle.borderBottom}}">
             <div class="wrapper results-row">
                 <div class="left results-left">
-                    <strong>Implied:</strong>
-                </div>
-                <div class="right results-right">
-                    <p><strong>{{resultFormat result}}{{resultMultiple}}</strong></p>
-                </div>
-            </div>
-            <div class="wrapper results-row">
-                <div class="left results-left">
-                    <strong>Output:</strong>
+                    <strong>Implied</strong>
                 </div>
                 <div class="right results-right">
                     {{>output}}
@@ -20,26 +12,28 @@
             </div>
             <div class="wrapper results-row">
                 <div class="left results-left">
-                    <strong>Based on:</strong>
+                    <strong>of</strong>
                 </div>
                 <div class="right results-right">
-                    {{>ValuationCalc}}
+                    <p><strong>{{resultFormat result}}{{resultMultiple}}</strong></p>
                 </div>
+            </div>
+        </div>
+        <div class="valuation-results-scroll">
+            <div class="wrapper results-row">
+                <div class="left results-full">
+                    <strong>Based on</strong>
+                </div>
+                <!--<div class="right results-right">-->
+                    <!--{{>ValuationCalc}}-->
+                <!--</div>-->
             </div>
             <div class="wrapper results-row">
                 <div class="left results-left">
-                    <strong>Methodology:</strong>
+                    {{>ValuationCalc}}
                 </div>
                 <div class="right results-right">
                     {{>valuationResultsBuild}}
-                </div>
-            </div>
-            <div class="wrapper results-row">
-                <div class="left results-left">
-                    <strong>+/- Spread of:</strong>
-                </div>
-                <div class="right results-right wrapper">
-                    {{>ValuationSpread}}
                 </div>
             </div>
             <div class="wrapper results-row">
@@ -48,6 +42,14 @@
                 </div>
                 <div class="right results-right">
                     {{> dateOption}}
+                </div>
+            </div>
+            <div class="wrapper results-row">
+                <div class="left results-left">
+                    <strong>+/-</strong>
+                </div>
+                <div class="right results-right wrapper">
+                    {{>ValuationSpread}}
                 </div>
             </div>
         </div>

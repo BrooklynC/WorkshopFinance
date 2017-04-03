@@ -11,8 +11,10 @@ Template.Football.onCreated (function () {
         self.subscribe('feedDealsAll');
         self.subscribe('feedDealsIndicesAll');
         self.subscribe('feedTeamsAll');
-        self.subscribe('feedModelsUser');
-        self.subscribe('customs');
+        self.subscribe('modelsUser');
+        self.subscribe('modelsShared');
+        self.subscribe('customsUser');
+        self.subscribe('customsShared');
         //self.subscribe('footballTarget', footballId);
         //self.subscribe('footballTargetFeed', footballId);
         //self.subscribe('footballValuations', footballId);

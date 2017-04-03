@@ -78,27 +78,38 @@ Template.ValuationResults.helpers({
                 break;
         }
     },
-    dateOption: function() {
-        var ownerId = Template.parentData(0).ownerId;
-        var currentUserId = Meteor.userId();
+    asOfOption: function() {
         var valuationType = this.valuationType;
-        if(currentUserId == ownerId) {
-            switch(valuationType) {
-                case "comps":
-                    return Template.ValuationDate;
-                    break;
-                case "deals":
-                    return Template.FootballBlank;
-                    break;
-                case "models":
-                    return Template.FootballBlank;
-                    break;
-                case "custom":
-                    return Template.FootballBlank;
-                    break;
-            }
-        } else {
-            return Template.FootballBlank;
+        switch(valuationType) {
+            case "comps":
+                return "As of";
+                break;
+            case "deals":
+                return "As of";
+                break;
+            case "models":
+                return "";
+                break;
+            case "custom":
+                return "";
+                break;
+        }
+    },
+    dateOption: function() {
+        var valuationType = this.valuationType;
+        switch(valuationType) {
+            case "comps":
+                return Template.ValuationDate;
+                break;
+            case "deals":
+                return Template.FootballBlank;
+                break;
+            case "models":
+                return Template.FootballBlank;
+                break;
+            case "custom":
+                return Template.FootballBlank;
+                break;
         }
     },
     result: function() {

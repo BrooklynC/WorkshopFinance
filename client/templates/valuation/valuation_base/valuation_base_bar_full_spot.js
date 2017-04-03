@@ -32,8 +32,8 @@ Template.ValuationBaseBarFullSpot.onRendered (function () {
 
     var valuationStartPct = getValuationCalcs(footballId, valuationId).startPct;
 
-    var valuationLowSpace = getValuationText(footballId, valuationId).valuationLowSpace;
-    var valuationLowText = getValuationText(footballId, valuationId).valuationLowText;
+    var valuationHighSpace = getValuationText(footballId, valuationId).valuationHighSpace;
+    var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
     var barFormat = UI._globalHelpers.barFormat(footballId);
     var symCurrency = UI._globalHelpers.symCurrency(footballId);
@@ -42,53 +42,54 @@ Template.ValuationBaseBarFullSpot.onRendered (function () {
 
     var barContainer = d3.select("#spot" + valuationId)
         .append("svg")
-        .attr("id", "svg-spot");
+        .attr("id", "svg-bar");
 
-    var bar = barContainer.append("circle")
+    var barSpot = barContainer.append("circle")
         .attr("cx", valuationStartPct + "%")
         .attr("cy", 50+"%")
         .attr("r", 10)
-        .attr("id", "spot" + valuationId);
+        .attr("id", "bar-spot" + valuationId);
 
-    var barLow = barContainer.append("text")
-        .attr("x", valuationLowSpace + "%")
-        .attr("y", 50+"%")
-        .text(symCurrency + barFormat(valuationLowText) + symMultiple)
-        .attr("text-anchor", "end")
+    var barSpotHigh = barContainer.append("text")
+        .attr("x", valuationHighSpace + "%")
+        .attr("y", "25px")
+        .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+        .attr("text-anchor", "start")
         .attr("font-size", "12px")
         .attr("fill", themeText)
         .style("left", "5px")
-        .attr("id", "low" + valuationId);
+        .attr("id", "bar-spot-high" + valuationId);
 
     self.autorun(function() {
         var footballId = Template.parentData(1)._id;
         var valuationId = Template.parentData(0)._id;
         var valuationStartPct = getValuationCalcs(footballId, valuationId).startPct;
 
-        var valuationLowSpace = getValuationText(footballId, valuationId).valuationLowSpace;
-        var valuationLowText = getValuationText(footballId, valuationId).valuationLowText;
+        var valuationHighSpace = getValuationText(footballId, valuationId).valuationHighSpace;
+        var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
         var themeText = UI._globalHelpers.themeStyle().barText;
         var barFormat = UI._globalHelpers.barFormat(footballId);
         var symCurrency = UI._globalHelpers.symCurrency(footballId);
         var symMultiple = UI._globalHelpers.symMultiple(footballId);
 
-        barContainer.select("#spot" + valuationId)
+        barContainer.select("#bar-spot" + valuationId)
             .transition()
             .duration(0)
             .attr("cx", valuationStartPct + "%")
             .attr("cy", 50+"%")
             .attr("r", 10);
 
-        barContainer.select("#low" + valuationId)
+        barContainer.select("#bar-spot-high" + valuationId)
             .transition()
             .duration(0)
-            .attr("x", valuationLowSpace + "%")
-            .attr("y", 50+"%")
-            .text(symCurrency + barFormat(valuationLowText) + symMultiple)
-            .attr("text-anchor", "end")
+            .attr("x", valuationHighSpace + "%")
+            .attr("y", "25px")
+            .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+            .attr("text-anchor", "start")
             .attr("font-size", "12px")
             .attr("fill", themeText)
             .style("left", "5px");
+
     });
 });

@@ -41,8 +41,7 @@ Template.ValuationBaseBar.helpers({
             return Template.ValuationBaseBarEmpty;
         } else {
             var valuationType = this.valuationType;
-            var currentFootballId = Template.parentData(1)._id;
-            var spread = Footballs.findOne({_id:currentFootballId}).footballSpread;
+            var spread = this.valuationSpread;
             switch(valuationType) {
                 case "comps":
                     if(spread == 0) {
@@ -52,15 +51,15 @@ Template.ValuationBaseBar.helpers({
                     }
                     break;
                 case "deals":
-                    return Template.ValuationBaseBarFull;
+                    if(spread == 0) {
+                        return Template.ValuationBaseBarFullSpot;
+                    } else {
+                        return Template.ValuationBaseBarFull;
+                    }
                     break;
                 case "models":
-                    if(currentUserId == ownerId) {
-                        //if(tier == "B") {
-                            return Template.ValuationBaseBarFull;
-                        //} else {
-                        //    return Template.ValuationBaseBarHold;
-                        //}
+                    if(spread == 0) {
+                        return Template.ValuationBaseBarFullSpot;
                     } else {
                         return Template.ValuationBaseBarFull;
                     }
@@ -74,7 +73,11 @@ Template.ValuationBaseBar.helpers({
                             switch(footballOutput) {
                                 case "Enterprise Value":
                                     if (existingCustom == "Value") {
-                                        return Template.ValuationBaseBarFull;
+                                        if(spread == 0) {
+                                            return Template.ValuationBaseBarFullSpot;
+                                        } else {
+                                            return Template.ValuationBaseBarFull;
+                                        }
                                     } else {
                                         if (count > 0) {
                                             return Template.ValuationBaseBarHold;
@@ -85,7 +88,11 @@ Template.ValuationBaseBar.helpers({
                                     break;
                                 case "Price per Share":
                                     if (existingCustom == "Price") {
-                                        return Template.ValuationBaseBarFull;
+                                        if(spread == 0) {
+                                            return Template.ValuationBaseBarFullSpot;
+                                        } else {
+                                            return Template.ValuationBaseBarFull;
+                                        }
                                     } else {
                                         if (count > 0) {
                                             return Template.ValuationBaseBarHold;
@@ -96,7 +103,11 @@ Template.ValuationBaseBar.helpers({
                                     break;
                                 case "Multiple":
                                     if (existingCustom == "Multiple") {
-                                        return Template.ValuationBaseBarFull;
+                                        if(spread == 0) {
+                                            return Template.ValuationBaseBarFullSpot;
+                                        } else {
+                                            return Template.ValuationBaseBarFull;
+                                        }
                                     } else {
                                         if (count > 0) {
                                             return Template.ValuationBaseBarHold;

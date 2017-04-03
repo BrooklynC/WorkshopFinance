@@ -299,6 +299,12 @@ p {
 .action-button button {
     width:100%;
 }
+.valuation-controls-inner > div {
+    width: calc(100% / 3);
+}
+.valuation-controls-inner > div > button {
+    width: 100%;
+}
 /*GALLERY LIBRARY*/
 .screen-full {
     width:100%;
@@ -481,9 +487,6 @@ p {
 .valuation-detail-name, .valuation-detail-results {
     display: inline-block;
 }
-/*.valuation-metric {*/
-    /*clear: both;*/
-/*}*/
 .valuation-name-value, .valuation-note-value {
     cursor: pointer;
 }
@@ -492,41 +495,6 @@ p {
 }
 .valuation-note, .valuation-note-value {
     min-height: 30px;
-}
-.results-row {
-    width:100%;
-    height: 35px;
-    line-height: 35px;
-}
-.results-result-left {
-    width:20%;
-}
-.results-result-right {
-    width:80%;
-    text-align: right;
-}
-.results-value {
-    text-align: left;
-}
-.results-left {
-    width:40%;
-}
-.results-right {
-    width:60%;
-    padding-left: 2px;
-}
-.results-spread-text p {
-    text-align: center;
-}
-.results-spread-inc {
-    width:25%;
-}
-.results-spread-text {
-    width:50%;
-    text-align: center;
-}
-.results-full {
-    width:100%;
 }
 /*VALUATION BAR*/
 .valuation-base-bar {
@@ -633,15 +601,56 @@ svg {
 .valuation-results {
     width: 100%;
 }
-.valuation-results-scroll, .valuation-results-controls {
+.valuation-results-top, .valuation-results-scroll, .valuation-results-controls {
     width: 100%;
 }
 .valuation-results-scroll {
     padding-bottom: 3px;
 }
+.results-row {
+    width:100%;
+    height: 35px;
+    line-height: 35px;
+}
+.results-result-left {
+    width:20%;
+}
+.results-result-right {
+    width:80%;
+    text-align: right;
+}
+.results-value {
+    text-align: left;
+}
+.valuation-results-top .results-row .results-left {
+    width:30%;
+}
+.valuation-results-top .results-row .results-right {
+    width:70%;
+    padding-left: 2px;
+}
+.valuation-results-scroll .results-row .results-left {
+    width: 30%;
+}
+.valuation-results-scroll .results-row .results-right {
+    width: 70%;
+    padding-left: 2px;
+}
+.results-spread-text p {
+    text-align: center;
+}
+.results-spread-inc {
+    width:25%;
+}
+.results-spread-text {
+    width:50%;
+    text-align: center;
+}
+.results-full {
+    width:100%;
+}
 .spread-text p {
     margin:auto;
-
 }
 .valuation-results-controls {
     height: 35px;
@@ -960,6 +969,12 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .table-valuation tbody {
         max-height: 225px;
     }
+    .switch-left {
+        float: left;
+    }
+    .switch-right {
+        float: right;
+    }
 }
 @media screen
 and (min-device-width: 1200px)
@@ -1009,6 +1024,12 @@ and (min-resolution: 192dpi) {
     }
     .table-valuation tbody {
         max-height: 225px;
+    }
+    .switch-left {
+        float: left;
+    }
+    .switch-right {
+        float: right;
     }
 }
 /*iPhone 5*/

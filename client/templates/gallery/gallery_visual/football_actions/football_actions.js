@@ -6,25 +6,37 @@ Template.FootballActions.events({
     'click .btn-send': function(e) {
         e.preventDefault();
 
-        var currentFootballId = this._id;
-        var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
-        if(currentActive == true) {
-            Session.set('sessionActions', "send");
+        var currentUserId = Meteor.userId();
+        var ownerId = this.ownerId;
+        if(currentUserId == ownerId) {
+            var currentFootballId = this._id;
+            var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
+            if(currentActive == true) {
+                Session.set('sessionActions', "send");
+            }
         }
     },
     'click .btn-share': function(e) {
         e.preventDefault();
 
-        var currentFootballId = this._id;
-        var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
-        if(currentActive == true) {
-            Session.set('sessionActions', "share");
+        var currentUserId = Meteor.userId();
+        var ownerId = this.ownerId;
+        if(currentUserId == ownerId) {
+            var currentFootballId = this._id;
+            var currentActive = Footballs.findOne({_id:currentFootballId}).footballActivated;
+            if(currentActive == true) {
+                Session.set('sessionActions', "share");
+            }
         }
     },
     'click .btn-delete': function(e) {
         e.preventDefault();
 
-        Session.set('sessionActions', "delete");
+        var currentUserId = Meteor.userId();
+        var ownerId = this.ownerId;
+        if(currentUserId == ownerId) {
+            Session.set('sessionActions', "delete");
+        }
     }
 });
 

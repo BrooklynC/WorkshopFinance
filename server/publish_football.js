@@ -34,18 +34,29 @@ Meteor.publish('feedDealsAll', function() {
 Meteor.publish('feedDealsIndicesAll', function() {
     return FeedDealsIndices.find({});
 });
+
 Meteor.publish('feedTeamsAll', function() {
     return FeedTeams.find({});
 });
 
-Meteor.publish('feedModelsUser', function() {
+Meteor.publish('modelsUser', function() {
     var currentUserId = this.userId;
     return Models.find({ownerId:currentUserId});
 });
 
-Meteor.publish('customs', function() {
+Meteor.publish('modelsShared', function() {
+    var currentUserId = this.userId;
+    return Models.find({viewers:{$in:[currentUserId]}});
+});
+
+Meteor.publish('customsUser', function() {
     var currentUserId = this.userId;
     return Customs.find({ownerId:currentUserId});
+});
+
+Meteor.publish('customsShared', function() {
+    var currentUserId = this.userId;
+    return Customs.find({viewers:{$in:[currentUserId]}});
 });
 
 //Meteor.publish('footballTarget', function(footballId) {

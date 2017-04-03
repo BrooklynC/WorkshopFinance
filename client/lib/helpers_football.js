@@ -166,7 +166,8 @@ getRangeCaps = function(footballId) {
     var resultsWithCurrent = [];
     if(resultsLength > 0) {
         //Applies footballSpread to low and high valuation multiples
-        var spread = football.footballSpread;
+        var spread = 10;
+        //var spread = football.footballSpread;
         var rangeLowSpread = resultLow * (1 - spread/100);
         var rangeHighSpread = resultHigh * (1 + spread/100);
         //Push low and high into resultsWithCurrent array
