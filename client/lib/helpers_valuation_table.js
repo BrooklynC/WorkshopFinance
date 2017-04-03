@@ -211,7 +211,7 @@ Template.registerHelper('headingValueOne', function() {
         case "EV/Attendance":
             return "EV";
             break;
-        case "Price/Earnings":
+        case "P/E":
             return "Price";
             break;
     }
@@ -258,7 +258,7 @@ Template.registerHelper('headingValueTwo', function() {
                     break;
             }
             break;
-        case "Price/Earnings":
+        case "P/E":
             switch (valuationPeriod) {
                 case "LTM":
                     return "EPS (LTM)";
@@ -289,7 +289,7 @@ Template.registerHelper('valueOneFormat', function(a) {
             case "EV/Attendance":
                 return numeral(a).format('$0,0.0');
                 break;
-            case "Price/Earnings":
+            case "P/E":
                 return numeral(a).format('$0,0.00');
                 break;
         }
@@ -311,7 +311,7 @@ Template.registerHelper('valueTwoFormat', function(a) {
             case "EV/Attendance":
                 return numeral(a).format('0,0');
                 break;
-            case "Price/Earnings":
+            case "P/E":
                 return numeral(a).format('$0,0.00');
                 break;
         }
@@ -337,7 +337,7 @@ Template.registerHelper('buildOneFormat', function(a) {
                 case "EV/Attendance":
                     return numeral(a).format('$0,0.0');
                     break;
-                case "Price/Earnings":
+                case "P/E":
                     return numeral(a).format('$0,0.00');
                     break;
             }
@@ -364,7 +364,7 @@ Template.registerHelper('buildTwoFormat', function(a) {
                 case "EV/Attendance":
                     return numeral(a).format('0,0');
                     break;
-                case "Price/Earnings":
+                case "P/E":
                     return numeral(a).format('$0,0.00');
                     break;
             }
@@ -386,7 +386,7 @@ Template.registerHelper('selectSymCurrency', function() {
         case "EV/Attendance":
             return "";
             break;
-        case "Price/Earnings":
+        case "P/E":
             return "";
             break;
     }
@@ -406,7 +406,7 @@ Template.registerHelper('selectSymMultiple', function() {
         case "EV/Attendance":
             return "x";
             break;
-        case "Price/Earnings":
+        case "P/E":
             return "x";
             break;
     }
@@ -431,7 +431,7 @@ Template.registerHelper('buildSymCurrency', function() {
                 case "EV/Attendance":
                     return "";
                     break;
-                case "Price/Earnings":
+                case "P/E":
                     return "";
                     break;
             }
@@ -447,7 +447,7 @@ Template.registerHelper('buildSymCurrency', function() {
                 case "EV/Attendance":
                     return "";
                     break;
-                case "Price/Earnings":
+                case "P/E":
                     return "";
                     break;
             }
@@ -464,7 +464,7 @@ Template.registerHelper('buildSymCurrency', function() {
                     case "EV/Attendance":
                         return "";
                         break;
-                    case "Price/Earnings":
+                    case "P/E":
                         return "";
                         break;
                 }
@@ -506,7 +506,7 @@ Template.registerHelper('buildSymMultiple', function() {
                 case "EV/Attendance":
                     return "x";
                     break;
-                case "Price/Earnings":
+                case "P/E":
                     return "x";
                     break;
             }
@@ -522,7 +522,7 @@ Template.registerHelper('buildSymMultiple', function() {
                 case "EV/Attendance":
                     return "x";
                     break;
-                case "Price/Earnings":
+                case "P/E":
                     return "x";
                     break;
             }
@@ -539,7 +539,7 @@ Template.registerHelper('buildSymMultiple', function() {
                     case "EV/Attendance":
                         return "x";
                         break;
-                    case "Price/Earnings":
+                    case "P/E":
                         return "x";
                         break;
                 }
@@ -645,7 +645,7 @@ Template.registerHelper('valuationIndex',function(){
                     break;
             }
             break;
-        case "Price/Earnings":
+        case "P/E":
             switch(valuationPeriod) {
                 case "LTM":
                     return getValuationIndex(indexId, valuationId).priceEarningsLtm;

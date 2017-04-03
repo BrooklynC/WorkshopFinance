@@ -340,7 +340,7 @@ Template.registerHelper('targetCurrent',function(footballId){
                                                 break;
                                         }
                                         break;
-                                    case "Price/Earnings":
+                                    case "P/E":
                                         switch (currentPeriod) {
                                             case "LTM":
                                                 return targetPrice / feedCompany.financial.ltm.eps;

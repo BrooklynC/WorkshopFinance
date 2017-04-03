@@ -51,13 +51,13 @@ Template.ValuationBuildTableModel.helpers({
                 return "EV/EBITDA (FY2)";
                 break;
             case "priceEarningsLtm":
-                return "Price/Earnings (LTM)";
+                return "P/E (LTM)";
                 break;
             case "priceEarningsFy1":
-                return "Price/Earnings (FY1)";
+                return "P/E (FY1)";
                 break;
             case "priceEarningsFy2":
-                return "Price/Earnings (FY2)";
+                return "P/E (FY2)";
                 break;
         }
     },
@@ -154,7 +154,7 @@ Template.ValuationBuildTableModel.helpers({
                                 break;
                         }
                         break;
-                    case "Price/Earnings":
+                    case "P/E":
                         switch(valuationPeriod) {
                             case "LTM":
                                 return this.values.priceEarningsLtm;

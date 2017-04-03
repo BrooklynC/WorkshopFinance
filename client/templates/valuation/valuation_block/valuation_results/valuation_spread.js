@@ -26,3 +26,14 @@ Template.ValuationSpread.events({
         }
     }
 });
+
+Template.ValuationSpread.helpers({
+    spreadPct: function() {
+        var valuationSpread = this.valuationSpread;
+        if(valuationSpread > 0) {
+            return "%"
+        } else {
+            return ""
+        }
+    }
+});

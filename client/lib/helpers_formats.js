@@ -48,7 +48,7 @@ Template.registerHelper('dateFormal', function(a) {
 
 //Abbreviated date format
 Template.registerHelper('dateAbbrev', function(a) {
-    return moment(a).format('MM/DD/YY');
+    return moment(a).format('MM-DD-YY');
 });
 
 //Abbreviated date format for Comps valuation
@@ -86,7 +86,7 @@ Template.registerHelper('divideSelect', function(a, b) {
                 return numeral(r3).format('0,0.0');
             }
             break;
-        case "Price/Earnings":
+        case "P/E":
             var result4 = a / b;
             if(result4 >= 0 || result4 <= 0) {
                 var r4 = result4.toFixed(1);

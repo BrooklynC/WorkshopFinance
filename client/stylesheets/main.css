@@ -505,21 +505,23 @@ p {
     width:80%;
     text-align: right;
 }
-.results-left {
-    width:25%;
+.results-value {
+    text-align: left;
 }
-.results-center {
-    width:35%;
-    padding-left: 5px;
+.results-left {
+    width:40%;
 }
 .results-right {
-    width:40%;
-    padding-left: 5px;
+    width:60%;
+    padding-left: 2px;
 }
-.results-inc {
+.results-spread-text p {
+    text-align: center;
+}
+.results-spread-inc {
     width:25%;
 }
-.results-text {
+.results-spread-text {
     width:50%;
     text-align: center;
 }
@@ -631,23 +633,30 @@ svg {
 .valuation-results {
     width: 100%;
 }
-.valuation-results-content {
+.valuation-results-scroll, .valuation-results-controls {
     width: 100%;
 }
-.result-value p {
-    margin:auto;
+.valuation-results-scroll {
+    padding-bottom: 3px;
 }
-.valuation-controls-inner {
+.spread-text p {
+    margin:auto;
+
+}
+.valuation-results-controls {
     height: 35px;
 }
-.valuation-controls-inner div {
+.valuation-results-controls div {
     width: calc(100% / 3);
 }
-.valuation-controls-inner div .btn {
+.valuation-results-controls div .btn {
     width:100%;
 }
 .date {
     margin-bottom: 5px;
+}
+.date input {
+    text-align: center;
 }
 /*VALUATION BUILD*/
 .valuation-build {

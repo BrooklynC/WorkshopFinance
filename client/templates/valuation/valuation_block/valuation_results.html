@@ -1,39 +1,57 @@
 <!--Full summary of results, including Build value and transformed value, if applicable-->
 <template name="ValuationResults">
     <div class="valuation-results-inner">
-        <div class="wrapper results-row">
-            <div class="left results-result-left">
-                <strong>Implied:</strong>
+        <div class="valuation-results-scroll">
+            <div class="wrapper results-row">
+                <div class="left results-left">
+                    <strong>Implied:</strong>
+                </div>
+                <div class="right results-right">
+                    <p><strong>{{resultFormat result}}{{resultMultiple}}</strong></p>
+                </div>
             </div>
-            <div class="right results-result-right">
-                <p><strong>{{resultFormat result}}{{resultMultiple}}</strong></p>
+            <div class="wrapper results-row">
+                <div class="left results-left">
+                    <strong>Output:</strong>
+                </div>
+                <div class="right results-right">
+                    {{>output}}
+                </div>
+            </div>
+            <div class="wrapper results-row">
+                <div class="left results-left">
+                    <strong>Based on:</strong>
+                </div>
+                <div class="right results-right">
+                    {{>ValuationCalc}}
+                </div>
+            </div>
+            <div class="wrapper results-row">
+                <div class="left results-left">
+                    <strong>Methodology:</strong>
+                </div>
+                <div class="right results-right">
+                    {{>valuationResultsBuild}}
+                </div>
+            </div>
+            <div class="wrapper results-row">
+                <div class="left results-left">
+                    <strong>+/- Spread of:</strong>
+                </div>
+                <div class="right results-right wrapper">
+                    {{>ValuationSpread}}
+                </div>
+            </div>
+            <div class="wrapper results-row">
+                <div class="left results-left">
+                    <strong>As of:</strong>
+                </div>
+                <div class="right results-right">
+                    {{> dateOption}}
+                </div>
             </div>
         </div>
-        <div class="wrapper results-row">
-            <div class="left results-full">
-                {{>output}}
-            </div>
-        </div>
-        <div class="wrapper results-row">
-            <div class="left results-left">
-                <strong>Based on:</strong>
-            </div>
-            <div class="left results-center">
-                {{>ValuationCalc}}
-            </div>
-            <div class="left results-right wrapper">
-                {{>ValuationSpread}}
-            </div>
-        </div>
-        <div class="wrapper results-row">
-            <div class="results-full left">
-                {{>valuationResultsBuild}}
-            </div>
-        </div>
-        <div class="valuation-results-content">
-            {{> dateOption}}
-        </div>
-        <div class="valuation-results-content">
+        <div class="valuation-results-controls wrapper">
             {{> ValuationControls}}
         </div>
         <!--<div class="valuation-results-content">-->
@@ -41,3 +59,47 @@
         <!--</div>-->
     </div>
 </template>
+
+<!--&lt;!&ndash;Full summary of results, including Build value and transformed value, if applicable&ndash;&gt;-->
+<!--<template name="ValuationResults">-->
+    <!--<div class="valuation-results-inner">-->
+        <!--<div class="wrapper results-row">-->
+            <!--<div class="left results-result-left">-->
+                <!--<strong>Implied:</strong>-->
+            <!--</div>-->
+            <!--<div class="right results-result-right">-->
+                <!--<p><strong>{{resultFormat result}}{{resultMultiple}}</strong></p>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="wrapper results-row">-->
+            <!--<div class="left results-full">-->
+                <!--{{>output}}-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="wrapper results-row">-->
+            <!--<div class="left results-left">-->
+                <!--<strong>Based on:</strong>-->
+            <!--</div>-->
+            <!--<div class="left results-center">-->
+                <!--{{>ValuationCalc}}-->
+            <!--</div>-->
+            <!--<div class="left results-right wrapper">-->
+                <!--{{>ValuationSpread}}-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="wrapper results-row">-->
+            <!--<div class="results-full left">-->
+                <!--{{>valuationResultsBuild}}-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="valuation-results-content">-->
+            <!--{{> dateOption}}-->
+        <!--</div>-->
+        <!--<div class="valuation-results-content">-->
+            <!--{{> ValuationControls}}-->
+        <!--</div>-->
+        <!--&lt;!&ndash;<div class="valuation-results-content">&ndash;&gt;-->
+        <!--&lt;!&ndash;{{> ValuationNotes}}&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+<!--</template>-->

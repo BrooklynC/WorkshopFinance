@@ -357,7 +357,7 @@ getBuildMultiple = function(footballId, valuationId) {
                                                 break;
                                         }
                                         break;
-                                    case "Price/Earnings":
+                                    case "P/E":
                                         switch (valuationPeriod) {
                                             case "LTM":
                                                 return val.peLtm;
@@ -400,7 +400,7 @@ getBuildMultiple = function(footballId, valuationId) {
                                                 break;
                                         }
                                         break;
-                                    case "Price/Earnings":
+                                    case "P/E":
                                         switch (valuationPeriod) {
                                             case "LTM":
                                                 return val.peLtm;
@@ -451,7 +451,7 @@ getBuildMultiple = function(footballId, valuationId) {
                                                         break;
                                                 }
                                                 break;
-                                            case "Price/Earnings":
+                                            case "P/E":
                                                 switch (valuationPeriod) {
                                                     case "LTM":
                                                         return val.peLtm;
@@ -574,7 +574,7 @@ getBuildFinancial = function(footballId, valuationId) {
                                                     break;
                                             }
                                             break;
-                                        case "Price/Earnings":
+                                        case "P/E":
                                             switch (valuationPeriod) {
                                                 case "LTM":
                                                     return feedCompanyData.epsLtm;
@@ -617,7 +617,7 @@ getBuildFinancial = function(footballId, valuationId) {
                                                     break;
                                             }
                                             break;
-                                        case "Price/Earnings":
+                                        case "P/E":
                                             switch (valuationPeriod) {
                                                 case "LTM":
                                                     return feedCompanyData.epsLtm;
@@ -766,7 +766,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
@@ -819,7 +819,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
@@ -872,7 +872,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
@@ -929,7 +929,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
@@ -982,7 +982,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
@@ -1035,7 +1035,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return (buildValue - feedCompanyData.netDebt) / feedCompanyData.sharesOs / feedCompanyData.epsLtm;
@@ -1054,7 +1054,7 @@ getResultValue = function(footballId, valuationId) {
                                                 break;
                                         }
                                         break;
-                                    case "Price/Earnings":
+                                    case "P/E":
                                         switch (valuationPeriod) {
                                             case "LTM":
                                                 switch (footballOutput) {
@@ -1092,7 +1092,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return buildValue / feedCompanyData.epsLtm;
@@ -1145,7 +1145,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return buildValue / feedCompanyData.epsLtm;
@@ -1198,7 +1198,7 @@ getResultValue = function(footballId, valuationId) {
                                                                         break;
                                                                 }
                                                                 break;
-                                                            case "Price/Earnings":
+                                                            case "P/E":
                                                                 switch (valuationOutputPeriod) {
                                                                     case "LTM":
                                                                         return buildValue / feedCompanyData.epsLtm;

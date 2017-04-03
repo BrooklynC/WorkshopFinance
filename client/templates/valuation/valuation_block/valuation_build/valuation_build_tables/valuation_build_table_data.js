@@ -122,7 +122,7 @@ Template.ValuationBuildTableData.helpers({
                                     case "EV/EBITDA":
                                         return evComp / scaleAdjust;
                                         break;
-                                    case "Price/Earnings":
+                                    case "P/E":
                                         return stockPrice;
                                         break;
                                 }
@@ -213,7 +213,7 @@ Template.ValuationBuildTableData.helpers({
                                         break;
                                 }
                                 break;
-                            case "Price/Earnings":
+                            case "P/E":
                                 switch (valuationPeriod) {
                                     case "LTM":
                                         return this.financial.ltm.eps;
@@ -298,7 +298,7 @@ Template.ValuationBuildTableData.helpers({
                             break;
                     }
                     break;
-                case "Price/Earnings":
+                case "P/E":
                     return value;
                     break;
             }
@@ -351,7 +351,7 @@ Template.ValuationBuildTableData.helpers({
                                                     break;
                                             }
                                             break;
-                                        case "Price/Earnings":
+                                        case "P/E":
                                             switch (valuationPeriod) {
                                                 case "LTM":
                                                     return feedCompany.financial.ltm.eps;
@@ -395,7 +395,7 @@ Template.ValuationBuildTableData.helpers({
                                                     break;
                                             }
                                             break;
-                                        case "Price/Earnings":
+                                        case "P/E":
                                             switch (valuationPeriod) {
                                                 case "LTM":
                                                     return customCompany.financial.ltm.eps;
