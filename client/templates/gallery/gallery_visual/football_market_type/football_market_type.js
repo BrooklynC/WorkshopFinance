@@ -35,21 +35,5 @@ Template.FootballMarketType.helpers({
         if(marketType == "team") {
             return "selected";
         }
-    },
-    disableMarketType: function() {
-        //Changes can only be made by owner
-        var ownerId = this.ownerId;
-        var currentUserId = Meteor.userId();
-
-        var targetType = this.footballTarget.targetType;
-
-        var currentFootballId = this._id;
-        var currentFootball = Footballs.findOne({_id:currentFootballId});
-        var valuations = currentFootball.footballValuations;
-        var valuationsCount = valuations.length;
-
-        if(currentUserId !== ownerId || valuationsCount > 0) {
-            return "disabled";
-        }
     }
 });

@@ -54,12 +54,6 @@ Template.ValuationBuildDataDeals.helpers({
     deals: function() {
         var sector = Template.instance().state.get('sector');
         return FeedDeals.find({sector:sector});
-    },
-    disableNoSector: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == null) {
-            return "disabled";
-        }
     }
 });
 

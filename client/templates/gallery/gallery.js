@@ -1,3 +1,5 @@
+Session.set('sessionGallery', null);
+
 Template.Gallery.events({
     currentFootballId: function () {
         var currentUserId = Meteor.userId();

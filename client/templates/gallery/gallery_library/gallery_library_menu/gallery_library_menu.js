@@ -7,6 +7,7 @@ Template.LibraryMenu.events({
         var library = $(e.target).text();
 
         Session.set('sessionLibraryType', library);
+        localSelections.remove({})
     }
 });
 

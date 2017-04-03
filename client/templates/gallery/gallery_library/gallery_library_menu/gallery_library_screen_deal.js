@@ -7,7 +7,7 @@ Template.GalleryLibraryScreenDeal.events({
         var sector = $(e.target).text();
 
         Session.set('sessionScreenDealsSector', sector);
-    }
+        localSelections.remove({})    }
 });
 
 Template.GalleryLibraryScreenDeal.helpers({

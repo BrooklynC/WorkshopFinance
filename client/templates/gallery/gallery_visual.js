@@ -1,3 +1,17 @@
+Template.GalleryVisual.events({
+    'click #gallery-visual-accordion': function(e) {
+        e.preventDefault();
+
+        var sessionGalleryExisting = Session.get('sessionGallery');
+        Session.set('sessionGallery', "visual");
+        var sessionGalleryNew = Session.get('sessionGallery');
+
+        if(sessionGalleryExisting !== sessionGalleryNew) {
+            localSelections.remove({})
+        }
+    }
+});
+
 Template.GalleryVisual.helpers({
     currentFootballId: function () {
         var currentUserId = Meteor.userId();

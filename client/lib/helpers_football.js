@@ -432,7 +432,6 @@ Template.registerHelper('disableOwner',function() {
 Template.registerHelper('disableEmpty',function() {
     var selections = localSelections.find().fetch();
     var selectionsCount = selections.length;
-    console.log("Empty: ", selectionsCount);
     if(selectionsCount == 0) {
         return "disabled";
     }
@@ -481,6 +480,31 @@ Template.registerHelper('disableInactive',function() {
         if(currentFootballActive == false) {
             return "disabled";
         }
+    }
+});
+
+Template.registerHelper('disableNoSector',function() {
+    var sector = Template.instance().state.get('sector');
+    if (sector == null) {
+        return "disabled";
+    }
+});
+
+Template.registerHelper('disableNoTarget',function() {
+    var target = Template.instance().state.get('target');
+    if (target == null) {
+        return "disabled";
+    }
+});
+
+Template.registerHelper('disableValuations',function() {
+    var currentFootballId = this._id;
+    var currentFootball = Footballs.findOne({_id:currentFootballId});
+    var valuations = currentFootball.footballValuations;
+    var valuationsCount = valuations.length;
+
+    if(valuationsCount > 0) {
+        return "disabled";
     }
 });
 

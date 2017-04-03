@@ -52,12 +52,6 @@ Template.ValuationBuildDataComps.helpers({
     comps: function() {
         var sector = Template.instance().state.get('sector');
         return FeedCompanies.find({sector:sector});
-    },
-    disableNoSector: function() {
-        var sector = Template.instance().state.get('sector');
-        if(sector == null) {
-            return "disabled";
-        }
     }
 });
 

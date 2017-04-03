@@ -7,7 +7,7 @@ Template.GalleryLibraryScreenComp.events({
         var sector = $(e.target).text();
 
         Session.set('sessionScreenCompsSector', sector);
-    }
+        localSelections.remove({})    }
 });
 
 Template.GalleryLibraryScreenComp.helpers({

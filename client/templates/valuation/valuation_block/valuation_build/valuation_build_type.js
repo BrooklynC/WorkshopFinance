@@ -39,27 +39,5 @@ Template.ValuationBuildType.helpers({
                 return "Custom";
                 break;
         }
-    },
-    disableMarket: function() {
-        var marketType = this.marketType;
-        switch(marketType) {
-            case "company":
-                return "";
-                break;
-            case "team":
-                return "disabled";
-                break;
-        }
-    },
-    disableType: function() {
-        var footballType = Template.parentData(1).footballType;
-        switch(footballType) {
-            case "target":
-                return "";
-                break;
-            case "market":
-                return "disabled";
-                break;
-        }
     }
 });

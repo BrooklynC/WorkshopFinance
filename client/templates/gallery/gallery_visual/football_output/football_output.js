@@ -16,13 +16,3 @@ Template.FootballOutput.events({
         }
     }
 });
-
-Template.FootballOutput.helpers({
-    //These options (Enterprise Value, Price per Share) are disabled if there is no target.  Multiple is only option
-    noTargetDisable: function() {
-        var footballType = this.footballType;
-        if(footballType == "market") {
-            return "disabled";
-        }
-    }
-});

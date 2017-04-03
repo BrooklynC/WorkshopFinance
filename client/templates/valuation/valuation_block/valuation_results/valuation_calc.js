@@ -1,6 +1,4 @@
 //Toggle between millions and billions
-//BC-NOTE: need to change values in Valuation Build and Results to reflect
-//BC-NOTE: add disable option
 Template.ValuationCalc.events({
     'click .btn-calc': function(e) {
         e.preventDefault();

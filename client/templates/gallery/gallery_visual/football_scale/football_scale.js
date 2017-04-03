@@ -1,5 +1,4 @@
 //Toggle between millions and billions
-//BC-NOTE: add disable option
 Template.FootballScale.events({
     'click #scale-toggle': function(e) {
         e.preventDefault();

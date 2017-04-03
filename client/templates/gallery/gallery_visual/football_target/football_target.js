@@ -162,20 +162,6 @@ Template.FootballTarget.helpers({
                 };
                 break;
         }
-    },
-    disableNoSelection: function() {
-        var selection = Template.instance().state.get('target');
-        if(selection == null) {
-            return "disabled"
-        }
-    //},
-    //isValuations: function() {
-    //    var currentFootballId = this._id;
-    //    var valuations = Footballs.findOne({_id:currentFootballId}).footballValuations;
-    //    var count = valuations.length;
-    //    if(count > 0) {
-    //        return true
-    //    }
     }
 });
 

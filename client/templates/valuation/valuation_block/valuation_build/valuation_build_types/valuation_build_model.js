@@ -47,12 +47,6 @@ Template.ValuationBuildModel.helpers({
         } else {
             return stat
         }
-    },
-    disabledMarket: function() {
-        var footballType = Template.parentData(1).footballType;
-        if(footballType == "market") {
-            return "disabled";
-        }
     }
 });
 

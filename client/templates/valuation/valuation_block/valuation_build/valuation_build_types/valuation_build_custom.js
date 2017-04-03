@@ -104,12 +104,6 @@ Template.ValuationBuildCustom.helpers({
         if(count > 0) {
             return true;
         }
-    },
-    disabledMarket: function() {
-        var footballType = Template.parentData(1).footballType;
-        if(footballType == "market") {
-            return "disabled";
-        }
     }
 });
 

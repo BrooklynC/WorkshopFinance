@@ -1,4 +1,15 @@
 Template.GallerySettings.events({
+    'click #gallery-settings-accordion': function(e) {
+        e.preventDefault();
+
+        var sessionGalleryExisting = Session.get('sessionGallery');
+        Session.set('sessionGallery', "settings");
+        var sessionGalleryNew = Session.get('sessionGallery');
+
+        if(sessionGalleryExisting !== sessionGalleryNew) {
+            localSelections.remove({})
+        }
+    },
     'click #theme-toggle': function(e) {
         e.preventDefault();
 
