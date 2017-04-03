@@ -1,5 +1,5 @@
-//Session.set('sessionLibraryType', "Comps");
-//
+Session.set('sessionLibraryType', "Comps");
+
 Template.LibraryMenu.events({
     'click .menu-library-filter': function(e) {
         e.preventDefault();
