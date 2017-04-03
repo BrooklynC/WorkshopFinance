@@ -536,12 +536,6 @@ svg {
     padding-top:5px;
     overflow: hidden;
 }
-.valuation-block-results {
-    width: 35%;
-}
-.valuation-block-build {
-    width: 65%;
-}
 .valuation-build-inner {
     width:100%;
 }
@@ -635,6 +629,9 @@ svg {
 .valuation-results-scroll .results-row .results-right {
     width: 70%;
     padding-left: 2px;
+}
+.results-row > .results-left > button {
+    width:100%;
 }
 .results-spread-text p {
     text-align: center;
@@ -960,6 +957,12 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 350px;
     }
+    .valuation-block-results {
+        width: 35%;
+    }
+    .valuation-block-build {
+        width: 65%;
+    }
     .dropdown-scroll-build {
         max-height: 300px;
     }
@@ -1015,6 +1018,12 @@ and (min-resolution: 192dpi) {
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 350px;
+    }
+    .valuation-block-results {
+        width: 35%;
+    }
+    .valuation-block-build {
+        width: 65%;
     }
     .dropdown-scroll-build {
         max-height: 300px;
@@ -1099,6 +1108,16 @@ and (orientation : landscape) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 190px;
     }
+    .valuation-block-results {
+        width: 40%;
+    }
+    .valuation-block-build {
+        width: 60%;
+    }
+    .valuation-results-scroll {
+        overflow: auto;
+        max-height: 70px;
+    }
     .dropdown-scroll-build {
         max-height: 150px;
     }
@@ -1178,6 +1197,16 @@ and (orientation: landscape) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 190px;
     }
+    .valuation-block-results {
+        width: 40%;
+    }
+    .valuation-block-build {
+        width: 60%;
+    }
+    .valuation-results-scroll {
+        overflow: auto;
+        max-height: 70px;
+    }
     .dropdown-scroll-build {
         max-height: 150px;
     }
@@ -1255,6 +1284,16 @@ and (orientation : landscape) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 190px;
     }
+    .valuation-block-results {
+        width: 35%;
+    }
+    .valuation-block-build {
+        width: 65%;
+    }
+    .valuation-results-scroll {
+        overflow: auto;
+        max-height: 70px;
+    }
     .dropdown-scroll-build {
         max-height: 150px;
     }
@@ -1297,6 +1336,12 @@ and (orientation : portrait) {
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 400px;
+    }
+    .valuation-block-results {
+        width: 35%;
+    }
+    .valuation-block-build {
+        width: 65%;
     }
     .dropdown-scroll-build {
         max-height: 325px;
@@ -1343,6 +1388,12 @@ and (orientation : landscape) {
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 385px;
+    }
+    .valuation-block-results {
+        width: 35%;
+    }
+    .valuation-block-build {
+        width: 65%;
     }
     .dropdown-scroll-build {
         max-height: 325px;

@@ -2,7 +2,7 @@
 //BC-NOTE: need to change values in Valuation Build and Results to reflect
 //BC-NOTE: add disable option
 Template.ValuationCalc.events({
-    'click #calc-toggle': function(e) {
+    'click .btn-calc': function(e) {
         e.preventDefault();
 
         var currentValuationId = this._id;
