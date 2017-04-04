@@ -8,7 +8,7 @@ Template.ValuationDate.onRendered (function () {
     var dateId = Template.parentData(0)._id;
 
     $("#date" + dateId).datepicker({
-        todayBtn: "linked",
+        //todayBtn: "linked",
         orientation: "bottom auto",
         daysOfWeekDisabled: "0,6",
         todayHighlight: true,

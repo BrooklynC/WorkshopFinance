@@ -33,14 +33,16 @@
                     {{>valuationResultsBuild}}
                 </div>
             </div>
-            <div class="wrapper results-row results-row-tall">
-                <div class="left results-left">
-                    <strong>As of</strong>
+            {{#if isCompsDeals}}
+                <div class="wrapper results-row results-row-tall">
+                    <div class="left results-left">
+                        <strong>{{asOfOption}}</strong>
+                    </div>
+                    <div class="right results-right">
+                        {{> dateOption}}
+                    </div>
                 </div>
-                <div class="right results-right">
-                    {{> dateOption}}
-                </div>
-            </div>
+            {{/if}}
             <div class="wrapper results-row results-row-short">
                 <div class="left results-left">
                     <strong>+/-</strong>

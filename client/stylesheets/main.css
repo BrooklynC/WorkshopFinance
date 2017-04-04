@@ -580,7 +580,7 @@ svg {
     padding-right: 2px;
 }
 .valuation-results-inner {
-    padding: 0% 5% 1% 1%;
+    padding: 0 5% 1% 1%;
     width:100%;
 }
 .custom-add-menu {
@@ -628,19 +628,19 @@ svg {
 .valuation-results-top .results-row .results-left {
     width:30%;
     height:30px;
+    padding-right: 2px;
 }
 .valuation-results-top .results-row .results-right {
     width:70%;
     height:30px;
-    padding-right: 2px;
 }
 .valuation-results-scroll .results-row .results-left {
     width: 30%;
     height:35px;
+    padding-right: 2px;
 }
 .valuation-results-scroll .results-row .results-right {
     width: 70%;
-    padding-right: 2px;
 }
 .results-row > .results-left > button {
     width:100%;

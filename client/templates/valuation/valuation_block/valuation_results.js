@@ -57,6 +57,12 @@ Template.ValuationResults.helpers({
                 break;
         }
     },
+    isCompsDeals: function() {
+        var type = this.valuationType;
+        if(type == "comps" || type == "deals") {
+            return true
+        }
+    },
     asOfOption: function() {
         var valuationType = this.valuationType;
         switch(valuationType) {
@@ -64,7 +70,7 @@ Template.ValuationResults.helpers({
                 return "As of";
                 break;
             case "deals":
-                return "";
+                return "As of";
                 break;
             case "models":
                 return "";
@@ -81,7 +87,7 @@ Template.ValuationResults.helpers({
                 return Template.ValuationDate;
                 break;
             case "deals":
-                return Template.FootballBlank;
+                return Template.ValuationDate;
                 break;
             case "models":
                 return Template.FootballBlank;
