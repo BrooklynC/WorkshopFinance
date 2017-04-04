@@ -592,18 +592,12 @@ svg {
     text-align: center;
 }
 /*VALUATION RESULTS*/
-.valuation-results {
-    width: 100%;
-}
-.valuation-results-top, .valuation-results-scroll, .valuation-results-controls {
+.valuation-results, .valuation-results-top, .valuation-results-scroll, .valuation-results-controls, .results-row {
     width: 100%;
 }
 .valuation-results-scroll {
     padding-top: 5px;
     padding-bottom: 10px;
-}
-.results-row {
-    width:100%;
 }
 .valuation-results-top .results-row {
     height: 30px;
@@ -633,17 +627,20 @@ svg {
 }
 .valuation-results-top .results-row .results-left {
     width:30%;
+    height:30px;
 }
 .valuation-results-top .results-row .results-right {
     width:70%;
-    padding-left: 2px;
+    height:30px;
+    padding-right: 2px;
 }
 .valuation-results-scroll .results-row .results-left {
     width: 30%;
+    height:35px;
 }
 .valuation-results-scroll .results-row .results-right {
     width: 70%;
-    padding-left: 2px;
+    padding-right: 2px;
 }
 .results-row > .results-left > button {
     width:100%;
