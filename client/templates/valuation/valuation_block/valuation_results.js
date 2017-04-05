@@ -53,7 +53,7 @@ Template.ValuationResults.helpers({
                 return Template.ValuationResultsBuild;
                 break;
             case "custom":
-                return Template.FootballBlank;
+                return Template.Blank;
                 break;
         }
     },
@@ -90,10 +90,10 @@ Template.ValuationResults.helpers({
                 return Template.ValuationDate;
                 break;
             case "models":
-                return Template.FootballBlank;
+                return Template.Blank;
                 break;
             case "custom":
-                return Template.FootballBlank;
+                return Template.Blank;
                 break;
         }
     },

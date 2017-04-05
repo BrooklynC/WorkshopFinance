@@ -16,12 +16,9 @@ body {
 .right {
     float: right;
 }
-p {
-    margin:0;
-}
 .blank-width {
     width:100%;
-    height:1px;
+    height:0;
 }
 /*tpl class is used to clearly show template boundaries (for prototyping)*/
 .tpl {
@@ -39,9 +36,6 @@ p {
 }
 .panel-heading {
     padding: 0;
-}
-.gallery-block-items .panel-group .panel {
-    margin:0;
 }
 .collapsing {
     transition: height 1s;
@@ -176,6 +170,9 @@ p {
     height:35px;
     cursor: pointer;
 }
+.gallery-base-title {
+    text-align: center;
+}
 .gallery-block {
     border-radius: 0;
     padding-top:5px;
@@ -184,17 +181,17 @@ p {
 .gallery-block-menu {
     height:40px;
 }
-.gallery-block-items {
+.gallery-block-content {
     width:100%;
     height:calc(100% - 70px);
     margin-bottom:5px;
     overflow-y: scroll;
 }
+.gallery-block-content .panel-group .panel {
+    margin:0;
+}
 .gallery-block-controls {
     height:30px;
-}
-.gallery-base-title {
-    text-align: center;
 }
 /*GALLERY ITEMS*/
 .gallery-item-inner  {
@@ -287,9 +284,6 @@ p {
 #visual-actions-inner {
     margin-bottom: 3px;
 }
-#football-actions-input {
-    height:35px;
-}
 .action-input {
     width:50%;
     padding-right: 1px
@@ -319,10 +313,9 @@ p {
     width:50%;
     padding-left: 1px;
 }
-/*GALLERY COVERAGE*/
 /*GALLERY SETTINGS*/
-#settings-tier {
-    margin-bottom: 10px;
+#gallery-settings-block > div {
+    margin-bottom: 5px;
 }
 /*FOOTBALL*/
 #football {
@@ -335,6 +328,7 @@ p {
     height:100%;
     padding-bottom: 5px;
 }
+/*FOOTBALL BANNER*/
 #football-banner {
     width:100%;
     height:35px;
@@ -342,45 +336,30 @@ p {
     top:0;
     display: inline-block;
 }
-#banner-target {
-    width: 40%;
-}
-#banner-valuation {
-    width: 20%;
-}
-#banner-name {
-    width: 40%;
+#football-banner-inner {
+    position: relative;
+    height:100%;
 }
 #football-details h5 {
     margin-top: 5px;
     margin-bottom:5px;
 }
+#football-target {
+    width: 40%;
+}
+#football-valuation {
+    width: 20%;
+}
+#football-name {
+    width: 40%;
+}
+/*FOOTBALL RANGE*/
 #football-range {
     width:100%;
     height:25px;
     position: absolute;
     top:45px;
 }
-#football-field {
-    width:100%;
-    height:calc(100% - 75px);
-    position: absolute;
-    top: 65px;
-}
-/*FOOTBALL BANNER - DETAILS*/
-#football-banner-inner {
-    position: relative;
-    height:100%;
-}
-/*FOOTBALL BANNER - DETAILS*/
-#football-target {
-    width:60%;
-}
-#football-name {
-    width:40%;
-    cursor: pointer;
-}
-/*FOOTBALL RANGE*/
 #football-range-inner {
     width: 100%;
     margin-bottom: 10px;
@@ -399,6 +378,12 @@ p {
     width: calc(100% / 9);
 }
 /*FOOTBALL FIELD*/
+#football-field {
+    width:100%;
+    height:calc(100% - 75px);
+    position: absolute;
+    top: 65px;
+}
 #football-details, #football-field-inner, #football-field-area, #football-field-valuations, .football-field-item {
     width: 100%;
     height:100%;
@@ -414,10 +399,6 @@ p {
 .football-left, .valuation-left {
     width: 20%;
     height:100%;
-}
-.valuation-detail-text {
-    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-    font-size: 80%;
 }
 .football-right, .valuation-right {
     width: calc(80% - 17px);
@@ -458,17 +439,6 @@ p {
 .valuation-inner .in, .valuation-inner .collapsing {
     display: inline-block;
 }
-.valuation-right {
-    height:100%;
-}
-.valuation-bar-frame {
-    cursor: pointer;
-}
-.valuation-block {
-    width: calc(100% - 17px);
-    margin-top:15px;
-    overflow: hidden;
-}
 /*VALUATION BASE*/
 .valuation-base {
     height:100%;
@@ -477,14 +447,15 @@ p {
     width:100%;
     height:100%;
 }
-.valuation-right {
-    overflow: hidden;
-}
 .valuation-detail-inner, .valuation-detail-name, .valuation-detail-results {
     width:100%;
 }
 .valuation-detail-inner {
     font-size:14px;
+}
+.valuation-detail-text {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 80%;
 }
 .valuation-detail-name, .valuation-detail-results {
     display: inline-block;
@@ -492,11 +463,12 @@ p {
 .valuation-name-value, .valuation-note-value {
     cursor: pointer;
 }
-.valuation-note-value {
-    padding:2px;
+.valuation-right {
+    height:100%;
+    overflow: hidden;
 }
-.valuation-note, .valuation-note-value {
-    min-height: 30px;
+.valuation-bar-frame {
+    cursor: pointer;
 }
 /*VALUATION BAR*/
 .valuation-base-bar {
@@ -506,6 +478,19 @@ p {
 }
 .bar-space {
     width:calc(100% / 18);
+    color: rgba(0, 0, 0, 0.2);
+}
+.valuation-base-bar .bar-space {
+    opacity: 0;
+    transition: none;
+}
+.valuation-base-bar:hover .bar-space {
+    opacity: 1;
+    transition: all 0.2s ease-in-out;
+}
+.bar-content {
+    height: 35px;
+    position: relative;
 }
 .bar-content svg {
     position: absolute;
@@ -517,26 +502,103 @@ svg {
 .bar-content, .bar-content rect, .glyphicon-drag {
     cursor: pointer;
 }
-.bar-content {
-    height: 35px;
-    position: relative;
-}
-.bar-space {
-    color: rgba(0, 0, 0, 0.2);
-}
-.valuation-base-bar .bar-space {
-    opacity: 0;
-    transition: none;
-}
-.valuation-base-bar:hover .bar-space {
-    opacity: 1;
-    transition: all 0.2s ease-in-out;
-}
 /*VALUATION BLOCK*/
+.valuation-block {
+    width: calc(100% - 17px);
+    margin-top:15px;
+    overflow: hidden;
+}
 .valuation-block-inner {
     width:100%;
     padding-top:5px;
     overflow: hidden;
+}
+/*VALUATION RESULTS*/
+.valuation-results, .valuation-results-top, .valuation-results-scroll, .valuation-results-controls, .results-row {
+    width: 100%;
+}
+.valuation-results-inner {
+    padding: 0 5% 1% 1%;
+    width:100%;
+}
+.valuation-results-top .results-row {
+    height: 30px;
+    line-height: 30px;
+}
+.valuation-results-top .results-row .results-left {
+    width:30%;
+    height:30px;
+    padding-right: 2px;
+}
+.valuation-results-top .results-row .results-right {
+    width:70%;
+    height:30px;
+}
+.valuation-results-scroll {
+    padding-top: 5px;
+    padding-bottom: 10px;
+}
+.valuation-results-scroll .results-row .results-left {
+    width: 30%;
+    height:35px;
+    padding-right: 2px;
+}
+.valuation-results-scroll .results-row .results-right {
+    width: 70%;
+}
+.valuation-results-scroll .results-row-short {
+    height: 20px;
+    line-height: 20px;
+}
+.valuation-results-scroll .results-row-tall {
+    height: 35px;
+    line-height: 35px;
+    margin-bottom:5px;
+}
+.valuation-results-controls {
+    height: 35px;
+    padding-top:5px;
+}
+.valuation-results-controls div {
+    width: calc(100% / 3);
+}
+.valuation-results-controls div .btn {
+    width:100%;
+}
+.results-row > .results-left > button {
+    width:100%;
+}
+.results-full {
+    width:100%;
+}
+.results-spread-text p {
+    text-align: center;
+}
+.results-spread-inc {
+    width:25%;
+}
+.results-spread-text {
+    width:50%;
+    text-align: center;
+}
+.spread-text p {
+    margin:auto;
+}
+.date {
+    margin-bottom: 5px;
+}
+.date input {
+    text-align: center;
+}
+.valuation-note-value {
+    padding:2px;
+}
+.valuation-note, .valuation-note-value {
+    min-height: 30px;
+}
+/*VALUATION BUILD*/
+.valuation-build {
+    width: 100%;
 }
 .valuation-build-inner {
     width:100%;
@@ -581,10 +643,6 @@ svg {
     width:25%;
     padding-right: 2px;
 }
-.valuation-results-inner {
-    padding: 0 5% 1% 1%;
-    width:100%;
-}
 .custom-add-menu {
     height: 40px;
     line-height: 40px;
@@ -593,95 +651,7 @@ svg {
 .custom-add-menu p {
     text-align: center;
 }
-/*VALUATION RESULTS*/
-.valuation-results, .valuation-results-top, .valuation-results-scroll, .valuation-results-controls, .results-row {
-    width: 100%;
-}
-.valuation-results-scroll {
-    padding-top: 5px;
-    padding-bottom: 10px;
-}
-.valuation-results-top .results-row {
-    height: 30px;
-    line-height: 30px;
-}
-.valuation-results-scroll .results-row-short {
-    height: 20px;
-    line-height: 20px;
-}
-.valuation-results-scroll .results-row-tall {
-    height: 35px;
-    line-height: 35px;
-    margin-bottom:5px;
-}
-.valuation-results-controls {
-    padding-top:5px;
-}
-.results-result-left {
-    width:20%;
-}
-.results-result-right {
-    width:80%;
-    text-align: right;
-}
-.results-value {
-    text-align: left;
-}
-.valuation-results-top .results-row .results-left {
-    width:30%;
-    height:30px;
-    padding-right: 2px;
-}
-.valuation-results-top .results-row .results-right {
-    width:70%;
-    height:30px;
-}
-.valuation-results-scroll .results-row .results-left {
-    width: 30%;
-    height:35px;
-    padding-right: 2px;
-}
-.valuation-results-scroll .results-row .results-right {
-    width: 70%;
-}
-.results-row > .results-left > button {
-    width:100%;
-}
-.results-spread-text p {
-    text-align: center;
-}
-.results-spread-inc {
-    width:25%;
-}
-.results-spread-text {
-    width:50%;
-    text-align: center;
-}
-.results-full {
-    width:100%;
-}
-.spread-text p {
-    margin:auto;
-}
-.valuation-results-controls {
-    height: 35px;
-}
-.valuation-results-controls div {
-    width: calc(100% / 3);
-}
-.valuation-results-controls div .btn {
-    width:100%;
-}
-.date {
-    margin-bottom: 5px;
-}
-.date input {
-    text-align: center;
-}
-/*VALUATION BUILD*/
-.valuation-build {
-    width: 100%;
-}
+/*VALUATION BUILD TABLE*/
 .table-valuation {
     width: 100%;
     margin-bottom: 10px;
@@ -788,8 +758,7 @@ svg {
 .btn-remove span {
     color: rgba(255,255,255,1);
 }
-.library-active, .
--active, .heading-left-selected, .heading-right-selected {
+.library-active, .coverage-active, .heading-left-selected, .heading-right-selected {
     background-color: rgba(211, 211, 211, 0.4);
 }
 .valuation-favorite-selected {

@@ -7,10 +7,10 @@ Template.FootballFieldArea.helpers({
             if(includeCurrent == true) {
                 return Template.FootballFieldCurrent;
             } else {
-                return Template.FootballBlank;
+                return Template.Blank;
             }
         } else {
-            return Template.FootballBlank;
+            return Template.Blank;
         }
     },
     //Toggled template for showing Trading Value d3
@@ -21,10 +21,10 @@ Template.FootballFieldArea.helpers({
             if (includeTrading == true) {
                 return Template.FootballFieldTrading;
             } else {
-                return Template.FootballBlank;
+                return Template.Blank;
             }
         } else {
-            return Template.FootballBlank;
+            return Template.Blank;
         }
     }
 });

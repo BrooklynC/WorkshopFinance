@@ -423,7 +423,6 @@ Template.registerHelper('disableOwner',function() {
     var currentUserId = Meteor.userId();
     var ownerIdOne = this.ownerId;
     if(ownerIdOne) {
-        console.log(ownerIdOne);
         if(currentUserId !== ownerIdOne) {
             return "disabled";
         }
@@ -431,14 +430,12 @@ Template.registerHelper('disableOwner',function() {
         var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
         var ownerIdTwo = Footballs.findOne({_id:footballActive}).ownerId;
         if(ownerIdTwo) {
-            console.log(ownerIdTwo);
             if(currentUserId !== ownerIdTwo) {
                 return "disabled";
             }
         } else {
             var ownerIdThree = Template.parentData(1).ownerId;
             if(ownerIdThree) {
-                console.log(ownerIdThree);
                 if(currentUserId !== ownerIdThree) {
                     return "disabled";
                 }

@@ -20,7 +20,7 @@ Template.ValuationBuild.helpers({
     //                break;
     //        }
     //    } else {
-    //        return Template.FootballBlank;
+    //        return Template.Blank;
     //    }
     //},
     valuationBuildAdd: function() {
@@ -58,7 +58,7 @@ Template.ValuationBuild.helpers({
                     break;
             }
         } else {
-            return Template.FootballBlank;
+            return Template.Blank;
         }
     },
     valuationBuildTable: function() {

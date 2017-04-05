@@ -14,7 +14,7 @@ Template.ValuationDate.onRendered (function () {
         todayHighlight: true,
         autoclose: true,
         format: 'yyyy-mm-dd',
-        defaultViewDate: {year: 2015, month: 12, day: 31 },
+        defaultViewDate: { year: 2015, month: 12, day: 31 },
         startDate: '2015-12-01',
         endDate: '2015-12-31'
     });

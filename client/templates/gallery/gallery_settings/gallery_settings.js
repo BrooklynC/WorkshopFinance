@@ -26,10 +26,10 @@ Template.GallerySettings.helpers({
             if(teams.count() === 0) {
                 return Template.GalleryDataAdd;
             } else {
-                return Template.FootballBlank;
+                return Template.Blank;
             }
         } else {
-            return Template.FootballBlank;
+            return Template.Blank;
         }
     },
     membership: function() {

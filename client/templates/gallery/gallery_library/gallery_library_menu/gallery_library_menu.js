@@ -22,13 +22,13 @@ Template.LibraryMenu.helpers({
                 return Template.GalleryLibraryScreenComp;
                 break;
             case "Comps Indices":
-                return Template.FootballBlank;
+                return Template.Blank;
                 break;
             case "Deals":
                 return Template.GalleryLibraryScreenDeal;
                 break;
             case "Deals Indices":
-                return Template.FootballBlank;
+                return Template.Blank;
                 break;
         }
     }
