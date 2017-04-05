@@ -1,6 +1,6 @@
 //Creates new Valuation in Gallery using selected Comps or Deals
 Template.GalleryValuationAdd.events({
-    'click #valuation-new': function(e) {
+    'click #gallery-valuation-add': function(e) {
         e.preventDefault();
 
         var currentUserId = Meteor.userId();

@@ -1,5 +1,5 @@
 Template.GalleryVisual.events({
-    'click #gallery-visual-accordion': function(e) {
+    'click #gallery-visual-base': function(e) {
         e.preventDefault();
 
         var sessionGalleryExisting = Session.get('sessionGallery');

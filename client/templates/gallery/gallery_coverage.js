@@ -1,5 +1,5 @@
 Template.GalleryCoverage.events({
-    'click #gallery-coverage-accordion': function(e) {
+    'click #gallery-coverage': function(e) {
         e.preventDefault();
 
         var sessionGalleryExisting = Session.get('sessionGallery');

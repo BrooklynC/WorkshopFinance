@@ -40,6 +40,9 @@ p {
 .panel-heading {
     padding: 0;
 }
+.gallery-block-items .panel-group .panel {
+    margin:0;
+}
 .collapsing {
     transition: height 1s;
 }
@@ -146,7 +149,7 @@ p {
 #gallery-inner {
     position: relative;
 }
-#gallery-football-add {
+#gallery-add {
     position: absolute;
     width:100%;
 }
@@ -167,7 +170,7 @@ p {
     margin-bottom:1px;
     border-radius:0;
 }
-.gallery-menu-base {
+.gallery-base {
     padding: 2px;
     border-radius:0;
     height:35px;
@@ -190,13 +193,13 @@ p {
 .gallery-block-controls {
     height:30px;
 }
-.gallery-title-inner {
+.gallery-base-title {
     text-align: center;
 }
 /*GALLERY ITEMS*/
-.gallery-item  {
+.gallery-item-inner  {
     cursor: pointer;
-    margin-bottom:2px;
+    margin: 0 0 2px 0 !important;
     width: calc(100% - 17px);
 }
 .gallery-item-base  {
@@ -213,9 +216,6 @@ p {
     height: 30px;
     cursor: pointer;
 }
-.gallery-item-inner  {
-    margin: 0;
-}
 .gallery-item-open button[aria-expanded=true] .glyphicon-chevron-down {
     display: none;
 }
@@ -223,55 +223,55 @@ p {
     display: none;
 }
 /*GALLERY VISUAL*/
-#controls-top {
+#visual-result {
     margin-top:3px;
     height:40px;
 }
-#controls-top-inner {
+#visual-result-inner {
     width:100%;
 }
-.controls-top-left {
+.visual-result-left {
     width: calc(50% - 17px);
     padding-right:1px;
 }
-.controls-top-right {
+.visual-result-right {
     width: calc(50% + 17px);
     padding-left: 1px;
 }
-.control-row {
+.gallery-row {
     width:100%;
     display: inline-block;
     margin-bottom: 1px;
 }
-.control-half {
+.gallery-row-half {
     width:50%;
 }
-.control-half-title {
+.gallery-row-title {
     width:35%;
 }
-.control-half-value {
+.gallery-row-value {
     width:65%;
 }
-.control-half button, .control-half div {
+.gallery-row-half button, .gallery-row-half div {
     width:100%;
 }
-#controls-scroll {
+#visual-scroll {
     width:100%;
     margin-top:5px;
     margin-bottom:10px;
 }
-#controls-scroll-inner {
+#visual-scroll-inner {
     width: calc(100% - 17px);
 }
-.control-scroll-left {
+.visual-scroll-left {
     width: calc(((100% + 17px) * 0.5) - 17px);
     padding-left: 3px;
 }
-.control-scroll-right {
+.visual-scroll-right {
     width: calc((100% + 17px) * 0.5);
     padding-left: 1px;
 }
-#controls-actions {
+#visual-actions {
     height:70px;
 }
 .cushion-text {
@@ -284,7 +284,7 @@ p {
     width:60%;
     text-align: center;
 }
-#controls-actions-buttons{
+#visual-actions-inner {
     margin-bottom: 3px;
 }
 #football-actions-input {
@@ -301,10 +301,10 @@ p {
 .action-button button {
     width:100%;
 }
-#controls-actions-buttons > div {
+#visual-actions-inner > div > div {
     width: calc(100% / 3);
 }
-#controls-actions-buttons > div > button {
+#visual-actions-inner > div > div > button {
     width: 100%;
 }
 /*GALLERY LIBRARY*/
@@ -778,17 +778,18 @@ svg {
 .navbar-right {
     padding-right: 20px;
 }
-.gallery-menu-base {
+.gallery-base {
     background-color: rgba(58, 38, 19, 1) !important;
     color: rgba(204, 204, 204, 1);
 }
-.gallery-menu-base h5 {
+.gallery-base h5 {
     color: rgba(204, 204, 204, 1);
 }
 .btn-remove span {
     color: rgba(255,255,255,1);
 }
-.library-active, .coverage-active, .heading-left-selected, .heading-right-selected {
+.library-active, .
+-active, .heading-left-selected, .heading-right-selected {
     background-color: rgba(211, 211, 211, 0.4);
 }
 .valuation-favorite-selected {
@@ -961,7 +962,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     #gallery-menu-inner > .panel > .in {
         height:320px;
     }
-    #controls-scroll {
+    #visual-scroll {
         height: 145px;
         overflow-y: scroll;
     }
@@ -1023,7 +1024,7 @@ and (min-resolution: 192dpi) {
     #gallery-menu-inner > .panel > .in {
         height:320px;
     }
-    #controls-scroll {
+    #visual-scroll {
         height: 145px;
         overflow-y: scroll;
     }
@@ -1085,7 +1086,7 @@ and (orientation : portrait) {
     #gallery-menu-inner > .panel > .in {
         height:220px;
     }
-    #controls-scroll {
+    #visual-scroll {
         height: 45px;
         overflow-y: scroll;
     }
@@ -1173,7 +1174,7 @@ and (orientation: portrait) {
     #gallery-menu-inner > .panel > .in {
         height:295px;
     }
-    #controls-scroll {
+    #visual-scroll {
         height: 120px;
         overflow-y: scroll;
     }
@@ -1261,7 +1262,7 @@ and (orientation: portrait) {
     #gallery-menu-inner > .panel > .in {
         height: 320px;
     }
-    #controls-scroll {
+    #visual-scroll {
         height:145px;
         overflow-y: scroll;
     }
@@ -1396,7 +1397,7 @@ and (orientation : landscape) {
     #gallery-menu-inner > .panel > .in {
         height:330px;
     }
-    #controls-scroll {
+    #visual-scroll {
         height: 155px;
         overflow-y: scroll;
     }

@@ -1,7 +1,7 @@
 //Adds new Comps valuation by default, valuationType can be changed within Valuation
 //Will not add new Valuation if empty Valuation exists
 Template.FootballValuationAdd.events({
-    'click #valuation-add': function(e) {
+    'click #football-valuation-add': function(e) {
         e.preventDefault();
 
         var currentFootballId = this._id;
@@ -33,7 +33,4 @@ Template.FootballValuationAdd.events({
             }
         }
     }
-});
-
-Template.FootballValuationAdd.helpers({
 });

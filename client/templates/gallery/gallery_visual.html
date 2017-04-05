@@ -1,105 +1,107 @@
 <!--Controls for active Football Field-->
 <template name="GalleryVisual">
-    <div class="panel-heading gallery-menu-base" id="gallery-visual-accordion" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-visual-inner" aria-expanded="true" aria-controls="gallery-visual-inner">
-        <div class="gallery-title-inner">
+    <div class="panel-heading gallery-base" id="gallery-visual-base" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-visual-block" aria-expanded="true" aria-controls="gallery-visual-block">
+        <div class="gallery-base-title">
             <h5>Football Field Controls</h5>
         </div>
     </div>
-    <div class="panel-collapse collapse gallery-block" id="gallery-visual-inner" role="tabpanel">
+    <div class="panel-collapse collapse gallery-block" id="gallery-visual-block" role="tabpanel">
         {{#with currentFootballId}}
-            <div class="{{themeStyle.borderShadedBottom}}" id="controls-details">
-                <div id="controls-details-inner">
-                    <div class="control-row">
-                        <div class="control-half-title left">
+            <div class="{{themeStyle.borderShadedBottom}}" id="visual-details">
+                <div id="visual-details-inner">
+                    <div class="gallery-row">
+                        <div class="gallery-row-title left">
                             Target (if any):
                         </div>
-                        <div class="control-half-value right">
+                        <div class="gallery-row-value right">
                             {{targetName}}
                         </div>
                     </div>
-                    <div class="control-row">
-                        <div class="control-half-title left">
+                    <div class="gallery-row">
+                        <div class="gallery-row-title left">
                             Football Name:
                         </div>
-                        <div class="control-half-value right">
+                        <div class="gallery-row-value right">
                             {{footballName}}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="{{themeStyle.borderShadedBottom}}" id="controls-top">
-                <div id="controls-top-inner wrapper">
-                    <div class="control-row wrapper">
+            <div class="{{themeStyle.borderShadedBottom}}" id="visual-result">
+                <div id="visual-result-inner wrapper">
+                    <div class="gallery-row wrapper">
                         {{>FootballTarget}}
                     </div>
                 </div>
             </div>
-            <div class="wrapper" id="controls-scroll">
-                <div id="controls-scroll-inner">
-                    <div class="wrapper control-row">
-                        <div class="control-scroll-left left">
+            <div class="wrapper" id="visual-scroll">
+                <div id="visual-scroll-inner">
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
                             Change Output Type
                         </div>
-                        <div class="control-scroll-right right">
+                        <div class="visual-scroll-right right">
                             {{>FootballOutput}}
                         </div>
                     </div>
-                    <div class="wrapper control-row">
-                        <div class="control-scroll-left left">
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
                             Change Scale
                         </div>
-                        <div class="control-scroll-right right">
+                        <div class="visual-scroll-right right">
                             {{>FootballScale}}
                         </div>
                     </div>
-                    <div class="wrapper control-row">
-                        <div class="control-scroll-left left">
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
                             Re-sort Valuations
                         </div>
-                        <div class="control-scroll-right right">
+                        <div class="visual-scroll-right right">
                             {{>FootballSort}}
                         </div>
                     </div>
-                    <!--<div class="wrapper control-row">-->
-                        <!--<div class="control-scroll-left left">-->
+                    <!--<div class="wrapper gallery-row">-->
+                        <!--<div class="visual-scroll-left left">-->
                             <!--Change Spread-->
                         <!--</div>-->
-                        <!--<div class="control-scroll-right right">-->
+                        <!--<div class="visual-scroll-right right">-->
                             <!--{{>FootballSpread}}-->
                         <!--</div>-->
                     <!--</div>-->
-                    <div class="wrapper control-row">
-                        <div class="control-scroll-left left">
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
                             Change Cushion
                         </div>
-                        <div class="control-scroll-right right">
+                        <div class="visual-scroll-right right">
                             {{>FootballCushion}}
                         </div>
                     </div>
-                    <div class="wrapper control-row">
-                        <div class="control-scroll-left left">
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
                             Current Trading Level
                         </div>
-                        <div class="control-scroll-right right">
+                        <div class="visual-scroll-right right">
                             {{>FootballCurrentToggle}}
                         </div>
                     </div>
-                    <div class="wrapper control-row">
-                        <div class="control-scroll-left left">
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
                             52-Week High/Low
                         </div>
-                        <div class="control-scroll-right right">
+                        <div class="visual-scroll-right right">
                             {{>FootballTradingToggle}}
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="control-row-last" id="controls-actions">
-                <div id="controls-actions-buttons">
-                    {{>FootballActions}}
-                </div>
-                <div id="controls-actions-input">
-                    {{>FootballActionsOption}}
+            <div class="wrapper" id="visual-actions">
+                <div class="wrapper" id="visual-actions-inner">
+                    <div class="gallery-row wrapper">
+                        {{>FootballActions}}
+                    </div>
+                    <div class="gallery-row wrapper">
+                        {{>FootballActionsOption}}
+                    </div>
                 </div>
             </div>
         {{/with}}
@@ -108,39 +110,39 @@
 
 <!--&lt;!&ndash;Controls for active Football Field&ndash;&gt;-->
 <!--<template name="GalleryVisual">-->
-    <!--<div class="panel-heading gallery-menu-base" id="gallery-visual-accordion" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-visual-inner" aria-expanded="true" aria-controls="gallery-visual-inner">-->
-        <!--<div class="gallery-title-inner">-->
+    <!--<div class="panel-heading gallery-base" id="gallery-visual-accordion" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-visual-block" aria-expanded="true" aria-controls="gallery-visual-block">-->
+        <!--<div class="gallery-base-title">-->
             <!--<h5>Football Field Controls</h5>-->
         <!--</div>-->
     <!--</div>-->
     <!--{{#if Template.subscriptionsReady}}-->
-        <!--<div class="panel-collapse collapse in gallery-block" id="gallery-visual-inner" role="tabpanel">-->
-            <!--<div class="{{themeStyle.borderShadedBottom}}" id="controls-details">-->
-                <!--<div id="controls-details-inner">-->
-                    <!--<div class="control-row">-->
-                        <!--<div class="control-half-title left">-->
+        <!--<div class="panel-collapse collapse in gallery-block" id="gallery-visual-block" role="tabpanel">-->
+            <!--<div class="{{themeStyle.borderShadedBottom}}" id="visual-details">-->
+                <!--<div id="visual-details-inner">-->
+                    <!--<div class="gallery-row">-->
+                        <!--<div class="gallery-row-title left">-->
                             <!--Target (if any):-->
                         <!--</div>-->
-                        <!--<div class="control-half-value right">-->
+                        <!--<div class="gallery-row-value right">-->
                             <!--{{targetName}}-->
                         <!--</div>-->
                     <!--</div>-->
-                    <!--<div class="control-row">-->
-                        <!--<div class="control-half-title left">-->
+                    <!--<div class="gallery-row">-->
+                        <!--<div class="gallery-row-title left">-->
                             <!--Football Name:-->
                         <!--</div>-->
-                        <!--<div class="control-half-value right">-->
+                        <!--<div class="gallery-row-value right">-->
                             <!--{{footballName}}-->
                         <!--</div>-->
                     <!--</div>-->
                 <!--</div>-->
             <!--</div>-->
-            <!--<div class="{{themeStyle.borderShadedBottom}}" id="controls-top">-->
-                <!--<div id="controls-top-inner">-->
-                    <!--<div class="control-row">-->
+            <!--<div class="{{themeStyle.borderShadedBottom}}" id="visual-result">-->
+                <!--<div id="visual-result-inner">-->
+                    <!--<div class="gallery-row">-->
                         <!--{{>FootballTarget}}-->
                     <!--</div>-->
-                    <!--<div class="control-row">-->
+                    <!--<div class="gallery-row">-->
                         <!--<div class="output-text control-scroll-half left">-->
                             <!--<p>Change Output Type</p>-->
                         <!--</div>-->
@@ -150,9 +152,9 @@
                     <!--</div>-->
                 <!--</div>-->
             <!--</div>-->
-            <!--<div class="wrapper" id="controls-scroll">-->
-                <!--<div id="controls-scroll-inner">-->
-                    <!--<div class="wrapper control-row">-->
+            <!--<div class="wrapper" id="visual-scroll">-->
+                <!--<div id="visual-scroll-inner">-->
+                    <!--<div class="wrapper gallery-row">-->
                         <!--<div class="control-scroll-half left">-->
                             <!--{{>FootballScale}}-->
                         <!--</div>-->
@@ -160,7 +162,7 @@
                             <!--{{>FootballSort}}-->
                         <!--</div>-->
                     <!--</div>-->
-                    <!--<div class="wrapper control-row">-->
+                    <!--<div class="wrapper gallery-row">-->
                         <!--<div class="control-scroll-half left">-->
                             <!--{{>FootballSpread}}-->
                         <!--</div>-->
@@ -168,7 +170,7 @@
                             <!--{{>FootballCushion}}-->
                         <!--</div>-->
                     <!--</div>-->
-                    <!--<div class="wrapper control-row">-->
+                    <!--<div class="wrapper gallery-row">-->
                         <!--<div class="control-scroll-half left">-->
                             <!--{{>FootballCurrentToggle}}-->
                         <!--</div>-->
@@ -176,7 +178,7 @@
                             <!--{{>FootballTradingToggle}}-->
                         <!--</div>-->
                     <!--</div>-->
-                    <!--<div class="control-row-last">-->
+                    <!--<div class="gallery-row-last">-->
                         <!--{{>FootballActions}}-->
                     <!--</div>-->
                 <!--</div>-->

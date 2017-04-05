@@ -1,6 +1,6 @@
 //Add selected Valuations to active Football
 Template.GalleryValuationsFootballExpand.events({
-    'click #football-expand': function(e) {
+    'click #gallery-football-expand': function(e) {
         e.preventDefault();
 
         var marketType = Session.get('sessionCoverageScreenType');

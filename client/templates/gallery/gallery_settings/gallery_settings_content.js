@@ -1,10 +1,9 @@
 Template.SettingsContent.helpers({
-    settingsPage: function() {
-        var users = Meteor.users.find({});
-        if (!users) {
-            return Template.SettingsContentMessage;
-        } else {
-            return Template.SettingsContentList;
+    users: function() {
+        var currentUserId = Meteor.userId();
+        var currentUsername = Meteor.users.findOne({_id:currentUserId}).username;
+        if(currentUsername == "workshop" || currentUsername == "Workshop") {
+            return Meteor.users.find({});
         }
     }
 });

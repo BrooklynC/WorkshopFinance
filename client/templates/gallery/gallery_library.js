@@ -1,5 +1,5 @@
 Template.GalleryLibrary.events({
-    'click #gallery-library-accordion': function(e) {
+    'click #gallery-library-base': function(e) {
         e.preventDefault();
 
         var sessionGalleryExisting = Session.get('sessionGallery');

@@ -1,6 +1,10 @@
 <!--Chooses between items and message-->
 <template name="SettingsContent">
-    <div>
-        {{>settingsPage}}
-    </div>
+    {{#if Template.subscriptionsReady}}
+        <div class="panel-group" id="gallery-settings-items">
+            {{#each users}}
+                {{> SettingsItem}}
+            {{/each}}
+        </div>
+    {{/if}}
 </template>

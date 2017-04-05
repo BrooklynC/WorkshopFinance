@@ -1,22 +1,22 @@
-<!--Item used in Data Library, used in Comps, Deals and Indices-->
-<template name="LibraryItem">
+<!--Item used in Settings, used for Users-->
+<template name="SettingsItem">
     <div class="panel panel-default gallery-item-inner" id="gallery-item{{this._id}}">
         <div class="panel-heading gallery-item-base {{themeStyle.main}} {{themeStyle.borderShaded}} wrapper">
             <div class="gallery-item-detail left">
                 <div class="left">
-                    {{>itemBase}}
+                    {{>GalleryItemBaseUsers}}
                 </div>
-                <div class="right {{isSelected}}">
-                    {{>GalleryItemSelect}}
+                <div class="right {{select}}">
+                    {{>GalleryItemUsersActive}}
                 </div>
             </div>
             <div class="gallery-item-action left">
-                {{>GalleryItemOpenLibrary}}
+                {{>GalleryItemOpenSettings}}
             </div>
         </div>
-        <div class="panel-collapse collapse gallery-item-block {{themeStyle.main}} {{themeStyle.borderShaded}}" id="collapse{{this._id}}" role="tabpanel">
+        <div class="panel-collapse collapse {{themeStyle.main}} {{themeStyle.borderShaded}}" id="collapse{{collapseId}}" role="tabpanel">
             <div>
-                {{>itemBlock}}
+                {{>GalleryItemBlockUsers}}
             </div>
         </div>
     </div>

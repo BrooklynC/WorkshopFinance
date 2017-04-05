@@ -1,5 +1,5 @@
 Template.GalleryItemFootballAdd.events({
-    'click .football-add': function(e) {
+    'click #gallery-football-add': function(e) {
         e.preventDefault();
 
         var marketType = Session.get('sessionCoverageScreenType');
