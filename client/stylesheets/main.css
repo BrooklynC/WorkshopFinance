@@ -196,11 +196,12 @@ body {
 /*GALLERY ITEMS*/
 .gallery-item-inner  {
     cursor: pointer;
-    margin: 0 0 2px 0 !important;
+    margin: 0;
     width: calc(100% - 17px);
 }
 .gallery-item-base  {
     height: 40px;
+    border-radius: 0;
     overflow-y: hidden;
 }
 .gallery-item-detail {
