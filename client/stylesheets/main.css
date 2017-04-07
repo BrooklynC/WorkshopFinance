@@ -506,7 +506,7 @@ svg {
 /*VALUATION BLOCK*/
 .valuation-block {
     width: calc(100% - 17px);
-    margin-top:15px;
+    margin-top:10px;
     overflow: hidden;
 }
 .valuation-block-inner {
@@ -537,7 +537,7 @@ svg {
 }
 .valuation-results-scroll {
     padding-top: 5px;
-    padding-bottom: 10px;
+    padding-bottom: 5px;
 }
 .valuation-results-scroll .results-row .results-left {
     width: 30%;
@@ -1054,10 +1054,10 @@ and (orientation : portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:220px;
+        height:285px;
     }
     #visual-scroll {
-        height: 45px;
+        height: 105px;
         overflow-y: scroll;
     }
 }
@@ -1091,7 +1091,7 @@ and (orientation : landscape) {
         padding-left: 1%;
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-        min-height: 190px;
+        min-height: 200px;
     }
     .valuation-block-results {
         width: 40%;
@@ -1101,16 +1101,16 @@ and (orientation : landscape) {
     }
     .valuation-results-scroll {
         overflow: auto;
-        max-height: 70px;
+        max-height: 95px;
     }
     .dropdown-scroll-build {
         max-height: 150px;
     }
     .dropdown-scroll-result {
-        max-height: 100px;
+        max-height: 95px;
     }
     .table-valuation tbody {
-        max-height: 110px;
+        max-height: 90px;
     }
 }
 /*iPhone 6*/
@@ -1142,10 +1142,10 @@ and (orientation: portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height:295px;
+        height:375px;
     }
     #visual-scroll {
-        height: 120px;
+        height: 195px;
         overflow-y: scroll;
     }
 }
@@ -1180,7 +1180,7 @@ and (orientation: landscape) {
         padding-left: 1%;
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-        min-height: 190px;
+        height: 200px;
     }
     .valuation-block-results {
         width: 40%;
@@ -1190,16 +1190,16 @@ and (orientation: landscape) {
     }
     .valuation-results-scroll {
         overflow: auto;
-        max-height: 70px;
+        max-height: 95px;
     }
     .dropdown-scroll-build {
         max-height: 150px;
     }
     .dropdown-scroll-result {
-        max-height: 100px;
+        max-height: 95px;
     }
     .table-valuation tbody {
-        max-height: 110px;
+        max-height: 90px;
     }
 }
 /*iPhone 6 Plus*/
@@ -1230,10 +1230,10 @@ and (orientation: portrait) {
         display: none;
     }
     #gallery-menu-inner > .panel > .in {
-        height: 320px;
+        height: 395px;
     }
     #visual-scroll {
-        height:145px;
+        height:210px;
         overflow-y: scroll;
     }
 }
@@ -1267,7 +1267,7 @@ and (orientation : landscape) {
         padding-left: 1%;
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-        min-height: 190px;
+        min-height: 200px;
     }
     .valuation-block-results {
         width: 35%;
@@ -1277,7 +1277,7 @@ and (orientation : landscape) {
     }
     .valuation-results-scroll {
         overflow: auto;
-        max-height: 70px;
+        max-height: 95px;
     }
     .dropdown-scroll-build {
         max-height: 150px;
@@ -1286,7 +1286,7 @@ and (orientation : landscape) {
         max-height: 100px;
     }
     .table-valuation tbody {
-        max-height: 110px;
+        max-height: 90px;
     }
 }
 /*iPad*/
