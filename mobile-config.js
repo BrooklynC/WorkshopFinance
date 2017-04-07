@@ -6,4 +6,11 @@ App.info({
     website: 'http://workshopfinance.com'
 });
 
+App.icons({
+    'iphone': 'public/workshop_finance_icon_4.7.17.png',
+    'iphone_2x': 'public/workshop_finance_icon_4.7.17.png',
+    'iphone_3x': 'public/workshop_finance_icon_4.7.17.png'
+    // More screen sizes and platforms...
+});
+
 App.setPreference('Orientation', 'all', 'ios');
