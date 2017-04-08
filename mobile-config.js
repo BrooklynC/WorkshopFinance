@@ -7,9 +7,9 @@ App.info({
 });
 
 App.icons({
-    'iphone': 'public/workshop_finance_icon_4.7.17.png',
-    'iphone_2x': 'public/workshop_finance_icon_4.7.17.png',
-    'iphone_3x': 'public/workshop_finance_icon_4.7.17.png'
+    'iphone': 'public/workshop_finance_icon_4_7_17.png',
+    'iphone_2x': 'public/workshop_finance_icon_4_7_17.png',
+    'iphone_3x': 'public/workshop_finance_icon_4_7_17.png'
     // More screen sizes and platforms...
 });
 
