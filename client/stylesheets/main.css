@@ -68,12 +68,6 @@ body {
     color: rgba(255,255,255,1);
     border: solid 1px rgba(255, 0, 0, 0.5);
 }
-.button-row-one, .button-row-two {
-    padding-right: 2px;
-}
-.button-row-two, .button-row-three {
-    padding-left: 2px;
-}
 /*DROPDOWNS*/
 .btn-dropdown, .btn-dropdown button {
     width:100%;
@@ -389,13 +383,17 @@ body {
     width: 100%;
     height:100%;
 }
-#football-field-area, #football-field-valuations {
+#football-field-area {
     position: absolute;
     overflow-y: scroll;
 }
 #football-field-valuations {
+    position: absolute;
     padding-top:5px;
     z-index: 10000;
+}
+.football-field-valuations-scroll {
+    overflow-y: scroll;
 }
 .football-left, .valuation-left {
     width: 20%;
@@ -556,16 +554,6 @@ svg {
     line-height: 35px;
     margin-bottom:5px;
 }
-.valuation-results-controls {
-    height: 35px;
-    padding-top:5px;
-}
-.valuation-results-controls div {
-    width: calc(100% / 3);
-}
-.valuation-results-controls div .btn {
-    width:100%;
-}
 .results-row > .results-left > button {
     width:100%;
 }
@@ -598,51 +586,66 @@ svg {
     min-height: 30px;
 }
 /*VALUATION BUILD*/
+.select-strong {
+    background-color: rgba(170, 170, 170, 1);
+}
 .valuation-build {
     width: 100%;
 }
 .valuation-build-inner {
     width:100%;
 }
-.valuation-build-type {
-    width:30%;
+.build-type {
+    width:20%;
     padding-right: 2px;
 }
-.valuation-build-type > select {
-    width:100%;
-}
-.valuation-build-select {
-    width:70%;
-}
-.valuation-build-select .build-select-sector {
-    width: calc(100%/3);
+.build-sector {
+    width: 25%;
     padding-right: 2px;
 }
-.valuation-build-select .build-select-selection {
-    width: calc(100%/3 * 2);
+.build-selection-security {
+    width: 55%;
 }
-.valuation-build-select .build-select-selection-index {
+.build-options-security {
+    width: calc(100%/55 * 40);
+    padding-right: 2px;
+}
+.build-add-security {
+    width: calc(100%/55 * 15);
+}
+.build-selection-index {
+    width: 80%;
+}
+.build-options-index {
+    width: calc(100%/80 * 65);
+    padding-right: 2px;
+}
+.build-add-index {
+    width: calc(100%/80 * 15);
+}
+.build-prop {
+    width: 80%;
+}
+.build-prop-select {
+    width: calc(100% / 80 * 65);
+}
+.build-prop-select > div {
+    padding-right: 2px;
+}
+.prop-name {
+    width: 25%;
+}
+.prop-stat {
+    width: 35%;
+}
+.prop-value {
+    width: 40%;
+}
+.build-prop-add {
+    width: calc(100% / 80 * 15);
+}
+.build-prop-add button{
     width: 100%;
-}
-.build-select-selection form > div {
-    width: 50%;
-    padding-right: 2px;
-}
-.build-select-selection-index form .select-index {
-    width: calc(100%/3 * 2);
-}
-.build-select-selection-index form .select-button {
-    width: calc(100%/3);
-}
-.build-select-selection-index form div {
-    padding-right: 2px;
-}
-.build-select-inner {
-    width:100%;
-}
-.build-select-inner > form > div > div {
-    width:25%;
-    padding-right: 2px;
 }
 .custom-add-menu {
     height: 40px;
@@ -942,6 +945,36 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 350px;
     }
+    .valuation-block-mobile {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+    .block-mobile {
+        display: none;
+        height:0;
+        width:0;
+    }
+    .valuation-results-controls {
+        height: 35px;
+        padding-top:5px;
+        clear: both;
+    }
+    .valuation-results-controls div {
+        width: calc(100% / 3);
+    }
+    .controls-left {
+        float: left;
+    }
+    .controls-left .btn {
+        width:100%;
+    }
+    .button-row-one, .button-row-two {
+        padding-right: 2px;
+    }
+    .button-row-two, .button-row-three {
+        padding-left: 2px;
+    }
     .valuation-block-results {
         width: 35%;
     }
@@ -1004,8 +1037,38 @@ and (min-resolution: 192dpi) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 350px;
     }
+    .valuation-block-mobile {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+    .block-mobile {
+        display: none;
+        height:0;
+        width:0;
+    }
     .valuation-block-results {
         width: 35%;
+    }
+    .valuation-results-controls {
+        height: 35px;
+        padding-top:5px;
+        clear: both;
+    }
+    .valuation-results-controls div {
+        width: calc(100% / 3);
+    }
+    .controls-left {
+        float: left;
+    }
+    .controls-left .btn {
+        width:100%;
+    }
+    .button-row-one, .button-row-two {
+        padding-right: 2px;
+    }
+    .button-row-two, .button-row-three {
+        padding-left: 2px;
     }
     .valuation-block-build {
         width: 65%;
@@ -1091,17 +1154,43 @@ and (orientation : landscape) {
         padding-left: 1%;
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-        min-height: 200px;
+        height: 175px;
+    }
+    .valuation-block-mobile {
+        width: 20%;
+    }
+    .block-desktop {
+        display: none;
+        height:0;
+        width:0;
+    }
+    .valuation-mobile-toggle, .valuation-mobile-controls {
+        width:75%;
+    }
+    .valuation-mobile-controls div .btn, .valuation-mobile-toggle div .btn {
+        width:100%;
+    }
+    .controls-left {
+        width:100%;
+        margin-bottom:5px;
     }
     .valuation-block-results {
-        width: 40%;
+        width: 80%;
+    }
+    .results-left {
+        float: left;
+    }
+    .valuation-results-controls {
+        display: none;
+        width: 0;
+        height: 0;
     }
     .valuation-block-build {
-        width: 60%;
+        width: 80%;
     }
     .valuation-results-scroll {
         overflow: auto;
-        max-height: 95px;
+        height: 100px;
     }
     .dropdown-scroll-build {
         max-height: 150px;
@@ -1110,7 +1199,7 @@ and (orientation : landscape) {
         max-height: 95px;
     }
     .table-valuation tbody {
-        max-height: 90px;
+        max-height: 70px;
     }
 }
 /*iPhone 6*/
@@ -1180,17 +1269,43 @@ and (orientation: landscape) {
         padding-left: 1%;
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-        height: 200px;
+        height: 175px;
+    }
+    .valuation-block-mobile {
+        width: 20%;
+    }
+    .block-desktop {
+        display: none;
+        height:0;
+        width:0;
+    }
+    .valuation-mobile-toggle, .valuation-mobile-controls {
+        width:75%;
+    }
+    .valuation-mobile-controls div .btn, .valuation-mobile-toggle div .btn {
+        width:100%;
+    }
+    .controls-left {
+        width:100%;
+        margin-bottom:5px;
     }
     .valuation-block-results {
-        width: 40%;
+        width: 80%;
+    }
+    .results-left {
+        float: left;
+    }
+    .valuation-results-controls {
+        display: none;
+        width: 0;
+        height: 0;
     }
     .valuation-block-build {
-        width: 60%;
+        width: 80%;
     }
     .valuation-results-scroll {
         overflow: auto;
-        max-height: 95px;
+        max-height: 150px;
     }
     .dropdown-scroll-build {
         max-height: 150px;
@@ -1267,17 +1382,43 @@ and (orientation : landscape) {
         padding-left: 1%;
     }
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
-        min-height: 200px;
+        min-height: 220px;
+    }
+    .valuation-block-mobile {
+        width: 20%;
+    }
+    .block-desktop {
+        display: none;
+        height:0;
+        width:0;
+    }
+    .valuation-mobile-toggle, .valuation-mobile-controls {
+        width:75%;
+    }
+    .valuation-mobile-controls div .btn, .valuation-mobile-toggle div .btn {
+        width:100%;
+    }
+    .controls-left {
+        width:100%;
+        margin-bottom:5px;
     }
     .valuation-block-results {
-        width: 35%;
+        width: 80%;
+    }
+    .results-left {
+        float: left;
+    }
+    .valuation-results-controls {
+        display: none;
+        width: 0;
+        height: 0;
     }
     .valuation-block-build {
-        width: 65%;
+        width: 80%;
     }
     .valuation-results-scroll {
         overflow: auto;
-        max-height: 95px;
+        max-height: 150px;
     }
     .dropdown-scroll-build {
         max-height: 150px;
@@ -1322,8 +1463,32 @@ and (orientation : portrait) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 400px;
     }
+    .valuation-block-mobile {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+    .block-mobile {
+        display: none;
+        height:0;
+        width:0;
+    }
     .valuation-block-results {
         width: 35%;
+    }
+    .valuation-results-controls {
+        height: 35px;
+        padding-top:5px;
+        clear: both;
+    }
+    .valuation-results-controls div {
+        width: calc(100% / 3);
+    }
+    .controls-left {
+        float: left;
+    }
+    .controls-left .btn {
+        width:100%;
     }
     .valuation-block-build {
         width: 65%;
@@ -1374,8 +1539,32 @@ and (orientation : landscape) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 385px;
     }
+    .valuation-block-mobile {
+        display: none;
+        height: 0;
+        width: 0;
+    }
+    .block-mobile {
+        display: none;
+        height:0;
+        width:0;
+    }
     .valuation-block-results {
         width: 35%;
+    }
+    .valuation-results-controls {
+        height: 35px;
+        padding-top:5px;
+        clear: both;
+    }
+    .valuation-results-controls div {
+        width: calc(100% / 3);
+    }
+    .controls-left {
+        float: left;
+    }
+    .controls-left .btn {
+        width:100%;
     }
     .valuation-block-build {
         width: 65%;

@@ -499,9 +499,12 @@ Template.registerHelper('disableInactive',function() {
 });
 
 Template.registerHelper('disableNoSector',function() {
-    var sector = Template.instance().state.get('sector');
-    if (sector == null) {
-        return "disabled";
+    var element = this.valuationElement;
+    if(element == "security") {
+        var sector = Template.instance().state.get('sector');
+        if (sector == null) {
+            return "disabled";
+        }
     }
 });
 
@@ -522,6 +525,21 @@ Template.registerHelper('disableValuations',function() {
         return "disabled";
     }
 });
+
+Template.registerHelper('disableNoSelection',function() {
+    var selection = Template.instance().state.get('selection');
+    if(selection == null) {
+        return "disabled"
+    }
+});
+
+Template.registerHelper('disablePropAdd',function() {
+    var stat = Template.instance().state.get('stat');
+    if(stat == null) {
+        return "disabled"
+    }
+});
+
 
 //Toggle calc between average, median, high and low
 Template.registerHelper('calc',function(){

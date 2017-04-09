@@ -2,12 +2,7 @@
 <!--Build is simple valuation using average/median/high/low valuation and target reference value-->
 <template name="ValuationBuild">
     <div class="valuation-build-inner wrapper">
-        <div class="valuation-build-type left">
-            {{>ValuationBuildType}}
-        </div>
-        <div class="valuation-build-select left wrapper">
-            {{>valuationBuildAdd}}
-        </div>
+        {{>ValuationBuildSelect}}
     </div>
     <div>
         {{>valuationBuildTable}}

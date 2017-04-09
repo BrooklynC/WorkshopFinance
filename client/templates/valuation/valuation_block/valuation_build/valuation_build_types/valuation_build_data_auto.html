@@ -1,6 +1,6 @@
 <!--Form to add selection to Valuation, searches using autocomplete for Comp Ticker or Deal Target-->
 <template name="ValuationBuildDataAuto">
-    <div class="build-select-inner wrapper">
+    <div class="build-select-prop wrapper">
         <form>
             <div class="left {{themeStyle.formInput}}">
                 {{#if isComps}}
@@ -18,7 +18,9 @@
                 {{/if}}
             </div>
             <div class="left">
-                <button type="submit" class="btn btn-info btn-full">Add</button>
+                <button type="submit" class="btn btn-info btn-full">
+                    <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                </button>
             </div>
         </form>
     </div>
