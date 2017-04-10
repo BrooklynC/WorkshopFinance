@@ -1432,7 +1432,13 @@ and (orientation : landscape) {
         width:75%;
     }
     .valuation-mobile-toggle {
-        margin-bottom:10px;
+        margin-bottom: 5px;
+    }
+    .valuation-mobile-toggle div button {
+        margin-bottom: 5px;
+    }
+    .valuation-mobile-toggle div .text-bold {
+        font-weight:bold;
     }
     .valuation-mobile-controls div .btn, .valuation-mobile-toggle div .btn {
         width:100%;

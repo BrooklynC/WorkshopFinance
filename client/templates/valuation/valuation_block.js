@@ -1,16 +1,13 @@
 Template.ValuationBlock.events({
-    'click .btn-block-toggle': function(e) {
+    'click .btn-block-build': function(e) {
         e.preventDefault();
 
-        var state = Template.instance().state.get('block');
-        switch(state) {
-            case "results":
-                Template.instance().state.set('block', "build");
-                break;
-            case "build":
-                Template.instance().state.set('block', "results");
-                break;
-        }
+        Template.instance().state.set('block', "build");
+    },
+    'click .btn-block-results': function(e) {
+        e.preventDefault();
+
+        Template.instance().state.set('block', "results");
     },
     'click .menu-result-build': function(e) {
         e.preventDefault();
@@ -24,17 +21,6 @@ Template.ValuationBlock.events({
 });
 
 Template.ValuationBlock.helpers({
-    blockToggle: function() {
-        var state = Template.instance().state.get('block');
-        switch(state) {
-            case "results":
-                return "Show Build";
-                break;
-            case "build":
-                return "Show Results";
-                break;
-        }
-    },
     isResults: function() {
         var state = Template.instance().state.get('block');
         if(state == "results") {
@@ -45,6 +31,18 @@ Template.ValuationBlock.helpers({
         var state = Template.instance().state.get('block');
         if(state == "build") {
             return true;
+        }
+    },
+    mobileBuild: function() {
+        var state = Template.instance().state.get('block');
+        if(state == "build") {
+            return "text-bold"
+        }
+    },
+    mobileResult: function() {
+        var state = Template.instance().state.get('block');
+        if(state == "results") {
+            return "text-bold"
         }
     }
 });
