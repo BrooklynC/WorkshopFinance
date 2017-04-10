@@ -513,7 +513,7 @@ svg {
     overflow: hidden;
 }
 /*VALUATION RESULTS*/
-.valuation-results, .valuation-results-top, .valuation-results-scroll, .valuation-results-controls, .results-row {
+.valuation-results-top, .valuation-results-scroll, .valuation-results-controls, .results-row {
     width: 100%;
 }
 .valuation-results-inner {
@@ -600,18 +600,18 @@ svg {
     padding-right: 2px;
 }
 .build-sector {
-    width: 25%;
+    width: 20%;
     padding-right: 2px;
 }
 .build-selection-security {
-    width: 55%;
+    width: 60%;
 }
 .build-options-security {
-    width: calc(100%/55 * 40);
+    width: calc(100%/60 * 45);
     padding-right: 2px;
 }
 .build-add-security {
-    width: calc(100%/55 * 15);
+    width: calc(100%/60 * 15);
 }
 .build-selection-index {
     width: 80%;
@@ -969,23 +969,26 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .controls-left .btn {
         width:100%;
     }
-    .button-row-one, .button-row-two {
+    .button-row-one, .button-row-two, .button-control-one, .button-control-two {
         padding-right: 2px;
     }
-    .button-row-two, .button-row-three {
+    .button-row-two, .button-row-three, .button-control-two, .button-control-three {
         padding-left: 2px;
     }
     .valuation-block-results {
         width: 35%;
     }
+    .valuation-results {
+        width: 100%;
+    }
     .valuation-block-build {
         width: 65%;
     }
     .dropdown-scroll-build {
-        height: 100px;
+        height: 275px;
     }
     .dropdown-scroll-result {
-        height: 100px;
+        height: 200px;
     }
     .table-valuation tbody {
         max-height: 225px;
@@ -1050,6 +1053,9 @@ and (min-resolution: 192dpi) {
     .valuation-block-results {
         width: 35%;
     }
+    .valuation-results {
+        width: 100%;
+    }
     .valuation-results-controls {
         height: 35px;
         padding-top:5px;
@@ -1064,20 +1070,20 @@ and (min-resolution: 192dpi) {
     .controls-left .btn {
         width:100%;
     }
-    .button-row-one, .button-row-two {
+    .button-row-one, .button-row-two, .button-control-one, .button-control-two {
         padding-right: 2px;
     }
-    .button-row-two, .button-row-three {
+    .button-row-two, .button-row-three, .button-control-two, .button-control-three {
         padding-left: 2px;
     }
     .valuation-block-build {
         width: 65%;
     }
     .dropdown-scroll-build {
-        height: 100px;
+        height: 275px;
     }
     .dropdown-scroll-result {
-        height: 100px;
+        height: 200px;
     }
     .table-valuation tbody {
         max-height: 225px;
@@ -1123,6 +1129,12 @@ and (orientation : portrait) {
         height: 105px;
         overflow-y: scroll;
     }
+    .button-row-one, .button-row-two {
+        padding-right: 2px;
+    }
+    .button-row-two, .button-row-three {
+        padding-left: 2px;
+    }
 }
 @media only screen
 and (min-device-width : 320px)
@@ -1167,6 +1179,9 @@ and (orientation : landscape) {
     .valuation-mobile-toggle, .valuation-mobile-controls {
         width:75%;
     }
+    .valuation-mobile-toggle {
+        margin-bottom:20px;
+    }
     .valuation-mobile-controls div .btn, .valuation-mobile-toggle div .btn {
         width:100%;
     }
@@ -1175,6 +1190,9 @@ and (orientation : landscape) {
         margin-bottom:5px;
     }
     .valuation-block-results {
+        width: 80%;
+    }
+    .valuation-results {
         width: 80%;
     }
     .results-left {
@@ -1193,7 +1211,7 @@ and (orientation : landscape) {
         height: 100px;
     }
     .dropdown-scroll-build {
-        height: 75px;
+        height: 120px;
     }
     .dropdown-scroll-result {
         max-height: 75px;
@@ -1236,6 +1254,12 @@ and (orientation: portrait) {
     #visual-scroll {
         height: 195px;
         overflow-y: scroll;
+    }
+    .button-row-one, .button-row-two {
+        padding-right: 2px;
+    }
+    .button-row-two, .button-row-three {
+        padding-left: 2px;
     }
 }
 @media only screen
@@ -1282,6 +1306,9 @@ and (orientation: landscape) {
     .valuation-mobile-toggle, .valuation-mobile-controls {
         width:75%;
     }
+    .valuation-mobile-toggle {
+        margin-bottom:10px;
+    }
     .valuation-mobile-controls div .btn, .valuation-mobile-toggle div .btn {
         width:100%;
     }
@@ -1290,6 +1317,9 @@ and (orientation: landscape) {
         margin-bottom:5px;
     }
     .valuation-block-results {
+        width: 80%;
+    }
+    .valuation-results {
         width: 80%;
     }
     .results-left {
@@ -1304,11 +1334,11 @@ and (orientation: landscape) {
         width: 80%;
     }
     .valuation-results-scroll {
-        overflow: auto;
-        height: 175px;
+        overflow: hidden;
+        height: 135px;
     }
     .dropdown-scroll-build {
-        max-height: 75px;
+        max-height: 160px;
     }
     .dropdown-scroll-result {
         max-height: 75px;
@@ -1350,6 +1380,12 @@ and (orientation: portrait) {
     #visual-scroll {
         height:210px;
         overflow-y: scroll;
+    }
+    .button-row-one, .button-row-two {
+        padding-right: 2px;
+    }
+    .button-row-two, .button-row-three {
+        padding-left: 2px;
     }
 }
 @media only screen
@@ -1395,6 +1431,9 @@ and (orientation : landscape) {
     .valuation-mobile-toggle, .valuation-mobile-controls {
         width:75%;
     }
+    .valuation-mobile-toggle {
+        margin-bottom:10px;
+    }
     .valuation-mobile-controls div .btn, .valuation-mobile-toggle div .btn {
         width:100%;
     }
@@ -1403,6 +1442,9 @@ and (orientation : landscape) {
         margin-bottom:5px;
     }
     .valuation-block-results {
+        width: 80%;
+    }
+    .valuation-results {
         width: 80%;
     }
     .results-left {
@@ -1417,11 +1459,11 @@ and (orientation : landscape) {
         width: 80%;
     }
     .valuation-results-scroll {
-        overflow: scroll;
-        height: 175px;
+        overflow: hidden;
+        height: 135px;
     }
     .dropdown-scroll-build {
-        max-height: 75px;
+        max-height: 160px;
     }
     .dropdown-scroll-result {
         max-height: 75px;
@@ -1476,6 +1518,9 @@ and (orientation : portrait) {
     .valuation-block-results {
         width: 35%;
     }
+    .valuation-results {
+        width: 100%;
+    }
     .valuation-results-controls {
         height: 35px;
         padding-top:5px;
@@ -1494,10 +1539,10 @@ and (orientation : portrait) {
         width: 65%;
     }
     .dropdown-scroll-build {
-        max-height: 125px;
+        max-height: 275px;
     }
     .dropdown-scroll-result {
-        max-height: 200px;
+        max-height: 250px;
     }
     .table-valuation tbody {
         max-height: 125px;
@@ -1552,6 +1597,9 @@ and (orientation : landscape) {
     .valuation-block-results {
         width: 35%;
     }
+    .valuation-results {
+        width: 100%;
+    }
     .valuation-results-controls {
         height: 35px;
         padding-top:5px;
@@ -1570,10 +1618,10 @@ and (orientation : landscape) {
         width: 65%;
     }
     .dropdown-scroll-build {
-        max-height: 100px;
+        max-height: 275px;
     }
     .dropdown-scroll-result {
-        max-height: 100px;
+        max-height: 250px;
     }
     .table-valuation tbody {
         max-height: 240px;

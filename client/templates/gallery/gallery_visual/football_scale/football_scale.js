@@ -15,3 +15,17 @@ Template.FootballScale.events({
     }
 });
 
+Template.FootballScale.helpers({
+    toggleScale: function() {
+        var scale = this.footballScale;
+        switch(scale) {
+            case "millions":
+                return "Display Billions";
+                break;
+            case "billions":
+                return "Display Millions";
+                break;
+        }
+    }
+});
+
