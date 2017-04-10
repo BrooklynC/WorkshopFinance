@@ -292,6 +292,13 @@ Template.ValuationBuildSelect.helpers({
                     break;
             }
         }
+    },
+    highlight: function() {
+        var id = this._id;
+        var selection = Template.instance().state.get('selection');
+        if(id == selection) {
+            return "select-highlight"
+        }
     }
 });
 
