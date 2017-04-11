@@ -6,7 +6,23 @@ Template.CoverageContent.helpers({
         switch (sessionCoverage) {
             case "Footballs":
                 return Footballs.find(
-                    {marketType: sessionCoverageScreen}, {sort: {timeCreated: 1}}
+                    {marketType: sessionCoverageScreen,
+                    $and: [
+                        {
+                            $or: [
+                                {
+                                    ownerId: currentUserId
+                                },
+                                {
+                                    viewers:{$in:[currentUserId]}
+                                }
+
+                            ]
+                        }
+                    ]
+                    }, {
+                        sort: {timeCreated: 1}
+                    }
                 );
                 break;
             case "Valuations":

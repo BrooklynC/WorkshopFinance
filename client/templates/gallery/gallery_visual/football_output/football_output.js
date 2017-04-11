@@ -4,13 +4,14 @@ Template.FootballOutput.events({
         e.preventDefault();
 
         var newFootballOutput = $(e.target).text();
+        var footballType = this.footballType;
 
         var currentFootballId = this._id;
 
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 
-        if(currentUserId == ownerId) {
+        if(currentUserId == ownerId && footballType == "target") {
             Meteor.call('footballOutputUpdate', currentFootballId, newFootballOutput, function(error, result) {
             });
         }
