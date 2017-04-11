@@ -1213,7 +1213,7 @@ and (orientation : landscape) {
         width: 80%;
     }
     .valuation-results-scroll {
-        overflow: scroll;
+        /*overflow: scroll;*/
         height: 100px;
     }
     .dropdown-scroll-build {
@@ -1346,7 +1346,7 @@ and (orientation: landscape) {
         width: 80%;
     }
     .valuation-results-scroll {
-        overflow: hidden;
+        /*overflow: hidden;*/
         height: 135px;
     }
     .dropdown-scroll-build {
