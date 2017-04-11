@@ -415,45 +415,19 @@ Template.registerHelper('selectSymMultiple', function() {
 //Format for multiples in active values at bottom of Valuation table
 //Redundant right now, but keeping in case I expand options
 Template.registerHelper('buildSymCurrency', function() {
+    var footballId = Template.parentData(1)._id;
+    var valuationId = this._id;
     var valuationType = this.valuationType;
     var valuationMetric = this.valuationMetric;
+    //var selections = this.valuationSelections;
+    //var selectionsCount = selections.count;
     var existingCustom = this.existingCustom;
     var footballOutput = Template.parentData(1).footballOutput;
-    switch(valuationType) {
-        case "comps":
-            switch (valuationMetric) {
-                case "EV/Revenue":
-                    return "";
-                    break;
-                case "EV/EBITDA":
-                    return "";
-                    break;
-                case "EV/Attendance":
-                    return "";
-                    break;
-                case "P/E":
-                    return "";
-                    break;
-            }
-            break;
-        case "deals":
-            switch (valuationMetric) {
-                case "EV/Revenue":
-                    return "";
-                    break;
-                case "EV/EBITDA":
-                    return "";
-                    break;
-                case "EV/Attendance":
-                    return "";
-                    break;
-                case "P/E":
-                    return "";
-                    break;
-            }
-            break;
-        case "models":
-            if(footballOutput == "Multiple") {
+    var buildMultiple = getBuildMultiple(footballId, valuationId);
+    if(buildMultiple) {
+    //if(selectionsCount > 0) {
+        switch(valuationType) {
+            case "comps":
                 switch (valuationMetric) {
                     case "EV/Revenue":
                         return "";
@@ -468,67 +442,75 @@ Template.registerHelper('buildSymCurrency', function() {
                         return "";
                         break;
                 }
-            } else {
-                return "$";
-            }
-            break;
-        case "custom":
-            switch(existingCustom) {
-                case "Value":
+                break;
+            case "deals":
+                switch (valuationMetric) {
+                    case "EV/Revenue":
+                        return "";
+                        break;
+                    case "EV/EBITDA":
+                        return "";
+                        break;
+                    case "EV/Attendance":
+                        return "";
+                        break;
+                    case "P/E":
+                        return "";
+                        break;
+                }
+                break;
+            case "models":
+                if(footballOutput == "Multiple") {
+                    switch (valuationMetric) {
+                        case "EV/Revenue":
+                            return "";
+                            break;
+                        case "EV/EBITDA":
+                            return "";
+                            break;
+                        case "EV/Attendance":
+                            return "";
+                            break;
+                        case "P/E":
+                            return "";
+                            break;
+                    }
+                } else {
                     return "$";
-                    break;
-                case "Price":
-                    return "$";
-                    break;
-                case "Multiple":
-                    return "";
-                    break;
-            }
+                }
+                break;
+            case "custom":
+                switch(existingCustom) {
+                    case "Value":
+                        return "$";
+                        break;
+                    case "Price":
+                        return "$";
+                        break;
+                    case "Multiple":
+                        return "";
+                        break;
+                }
+        }
     }
 });
 
 //Format for multiples in active values at bottom of Valuation table
 //Redundant right now, but keeping in case I expand options
 Template.registerHelper('buildSymMultiple', function() {
+    var footballId = Template.parentData(1)._id;
+    var valuationId = this._id;
     var valuationType = this.valuationType;
     var valuationMetric = this.valuationMetric;
+    //var selections = this.valuationSelections;
+    //var selectionsCount = selections.length;
     var existingCustom = this.existingCustom;
     var footballOutput = Template.parentData(1).footballOutput;
-    switch(valuationType) {
-        case "comps":
-            switch (valuationMetric) {
-                case "EV/Revenue":
-                    return "x";
-                    break;
-                case "EV/EBITDA":
-                    return "x";
-                    break;
-                case "EV/Attendance":
-                    return "x";
-                    break;
-                case "P/E":
-                    return "x";
-                    break;
-            }
-            break;
-        case "deals":
-            switch (valuationMetric) {
-                case "EV/Revenue":
-                    return "x";
-                    break;
-                case "EV/EBITDA":
-                    return "x";
-                    break;
-                case "EV/Attendance":
-                    return "x";
-                    break;
-                case "P/E":
-                    return "x";
-                    break;
-            }
-            break;
-        case "models":
-            if(footballOutput == "Multiple") {
+    var buildMultiple = getBuildMultiple(footballId, valuationId);
+    if(buildMultiple) {
+        //if(selectionsCount > 0) {
+        switch(valuationType) {
+            case "comps":
                 switch (valuationMetric) {
                     case "EV/Revenue":
                         return "x";
@@ -543,22 +525,56 @@ Template.registerHelper('buildSymMultiple', function() {
                         return "x";
                         break;
                 }
-            } else {
-                return "";
-            }
-            break;
-        case "custom":
-            switch(existingCustom) {
-                case "Value":
+                break;
+            case "deals":
+                switch (valuationMetric) {
+                    case "EV/Revenue":
+                        return "x";
+                        break;
+                    case "EV/EBITDA":
+                        return "x";
+                        break;
+                    case "EV/Attendance":
+                        return "x";
+                        break;
+                    case "P/E":
+                        return "x";
+                        break;
+                }
+                break;
+            case "models":
+                if(footballOutput == "Multiple") {
+                    switch (valuationMetric) {
+                        case "EV/Revenue":
+                            return "x";
+                            break;
+                        case "EV/EBITDA":
+                            return "x";
+                            break;
+                        case "EV/Attendance":
+                            return "x";
+                            break;
+                        case "P/E":
+                            return "x";
+                            break;
+                    }
+                } else {
                     return "";
-                    break;
-                case "Price":
-                    return "";
-                    break;
-                case "Multiple":
-                    return "x";
-                    break;
-            }
+                }
+                break;
+            case "custom":
+                switch(existingCustom) {
+                    case "Value":
+                        return "";
+                        break;
+                    case "Price":
+                        return "";
+                        break;
+                    case "Multiple":
+                        return "x";
+                        break;
+                }
+        }
     }
 });
 

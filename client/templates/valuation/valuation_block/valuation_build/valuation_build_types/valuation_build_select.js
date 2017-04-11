@@ -3,11 +3,24 @@ Template.ValuationBuildSelect.events({
         e.preventDefault();
 
         var currentValuationId = this._id;
+        var footballType = Template.parentData(1).footballType;
+
         var option = $(e.target).text();
 
-        Template.instance().state.set('sector', null);
-        Template.instance().state.set('selection', null);
-        Meteor.call('valuationBuildOptions', currentValuationId, option, function(error, result) {});
+        switch(footballType) {
+            case "target":
+                Template.instance().state.set('sector', null);
+                Template.instance().state.set('selection', null);
+                Meteor.call('valuationBuildType', currentValuationId, option, function(error, result) {});
+                break;
+            case "market":
+                if(option !== "Models") {
+                    Template.instance().state.set('sector', null);
+                    Template.instance().state.set('selection', null);
+                    Meteor.call('valuationBuildType', currentValuationId, option, function(error, result) {});
+                }
+                break;
+        }
     },
     'click .build-sector-select': function(e) {
         e.preventDefault();

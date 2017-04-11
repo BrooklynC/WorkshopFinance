@@ -33,7 +33,9 @@ Template.registerHelper('sharesFormat', function(a) {
 
 //Format with one decimal and no currency sign for multiples
 Template.registerHelper('multipleFormat', function(a) {
-    return numeral(a).format('0,0.0');
+    if(a) {
+        return numeral(a).format('0,0.0');
+    }
 });
 
 //Format to capitalize first letter
@@ -98,21 +100,25 @@ Template.registerHelper('divideSelect', function(a, b) {
 
 //Format for valuation table - Models
 Template.registerHelper('modelValueFormat', function(a) {
-    var footballOutput = Template.parentData(1).footballOutput;
-    if(footballOutput == "Price per Share") {
-        return numeral(a).format('0,0.00');
-    } else {
-        return numeral(a).format('0,0.0');
+    if(a) {
+        var footballOutput = Template.parentData(1).footballOutput;
+        if(footballOutput == "Price per Share") {
+            return numeral(a).format('0,0.00');
+        } else {
+            return numeral(a).format('0,0.0');
+        }
     }
 });
 
 //Format for valuation table - Custom
 Template.registerHelper('customValueFormat', function(a) {
-    var customStat = this.existingCustom;
-    if(customStat == "Price") {
-        return numeral(a).format('0,0.00');
-    } else {
-        return numeral(a).format('0,0.0');
+    if(a) {
+        var customStat = this.existingCustom;
+        if(customStat == "Price") {
+            return numeral(a).format('0,0.00');
+        } else {
+            return numeral(a).format('0,0.0');
+        }
     }
 });
 

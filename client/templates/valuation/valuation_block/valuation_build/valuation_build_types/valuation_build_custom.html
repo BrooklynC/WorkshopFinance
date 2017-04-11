@@ -12,18 +12,18 @@
             {{else}}
                 <div class="prop-stat left">
                     <div class="btn-group btn-dropdown">
-                        <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownBuildElement" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-info btn-sm dropdown-toggle wrapper" type="button" id="dropdownBuildStat" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             <div class="left">
-                                {{buildElement}}
+                                {{buildStat}}
                             </div>
                             <div class="right">
                                 <span class="caret"></span>
                             </div>
                         </button>
-                        <ul class="dropdown-menu dropdown-scroll-build {{disableOwner}}" aria-labelledby="dropdownBuildElement">
-                            <li class="{{disabledMarket}}"><a class="menu-build-element">Value</a></li>
-                            <li class="{{disabledMarket}}"><a class="menu-build-element">Price</a></li>
-                            <li><a class="menu-build-element">Multiple</a></li>
+                        <ul class="dropdown-menu dropdown-scroll-build {{disableOwner}}" aria-labelledby="dropdownBuildStat">
+                            {{#each customStat}}
+                                <li class="{{highlight}} {{disableMarket}}"><a class="menu-build-stat">{{this}}</a></li>
+                            {{/each}}
                         </ul>
                     </div>
                 </div>

@@ -636,10 +636,10 @@ svg {
     width: 25%;
 }
 .prop-stat {
-    width: 35%;
+    width: 40%;
 }
 .prop-value {
-    width: 40%;
+    width: 35%;
 }
 .build-prop-add {
     width: calc(100% / 80 * 15);

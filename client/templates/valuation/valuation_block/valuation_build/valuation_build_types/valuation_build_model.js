@@ -47,6 +47,19 @@ Template.ValuationBuildModel.helpers({
         } else {
             return stat
         }
+    },
+    modelStatValues: function() {
+        return ["Enterprise Value","Price per Share"];
+    },
+    modelStatMultiples: function() {
+        return ["EV/Revenue (LTM)","EV/Revenue (FY1)","EV/Revenue (FY2)","EV/EBITDA (LTM)","EV/EBITDA (FY1)","EV/EBITDA (FY2)", "P/E (LTM)", "P/E (FY1)", "P/E (FY2)"];
+    },
+    highlight: function() {
+        var id = this;
+        var selection = Template.instance().state.get('stat');
+        if(id == selection) {
+            return "select-highlight"
+        }
     }
 });
 

@@ -1371,8 +1371,13 @@ getValuationText = function(footballId, valuationId) {
 
 Template.registerHelper('buildMultiple',function(){
     var valuationId = this._id;
+    var selections = this.valuationSelections;
     var footballId = Template.parentData(1)._id;
-    return getBuildMultiple(footballId, valuationId);
+    if(selections == 0) {
+        return ""
+    } else {
+        return getBuildMultiple(footballId, valuationId)
+    }
 });
 
 Template.registerHelper('buildValue',function(){
