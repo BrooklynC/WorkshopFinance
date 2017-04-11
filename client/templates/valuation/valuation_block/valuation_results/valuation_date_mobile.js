@@ -21,7 +21,7 @@ Template.ValuationDateMobile.onRendered (function () {
     var self = this;
     $("#date-mobile" + dateId).datepicker().on('changeDate', function () {
         var currentValuationId = self.data._id;
-        var valuationDate = $("#selectedDate" + dateId).val();
+        var valuationDate = $("#selectedDate-mobile" + dateId).val();
 
         Meteor.call('valuationDateUpdate', currentValuationId, valuationDate, function (error, result) {
         });
