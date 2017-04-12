@@ -917,8 +917,12 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .navbar-brand {
         padding: 0 0 0 10px;
     }
-    #cover, #workspace {
+    #workspace {
         height: calc(100% - 100px);
+        top: 50px;
+    }
+    #cover {
+        height: 100%;
         top: 50px;
     }
     #workspace-inner-gallery {
@@ -929,7 +933,7 @@ and (-webkit-min-device-pixel-ratio: 1) {
     #workspace-inner-football {
         width: 75%;
         margin: auto;
-        height: 85%;
+        height: 100%;
         padding-left: 1%;
     }
     #gallery-menu-inner > .panel > .in {
@@ -955,6 +959,12 @@ and (-webkit-min-device-pixel-ratio: 1) {
         height:0;
         width:0;
     }
+    .valuation-block-results {
+        width: 30%;
+    }
+    .valuation-results {
+        width: 100%;
+    }
     .valuation-results-controls {
         height: 35px;
         padding-top:5px;
@@ -975,14 +985,8 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .button-row-two, .button-row-three, .button-control-two, .button-control-three {
         padding-left: 2px;
     }
-    .valuation-block-results {
-        width: 35%;
-    }
-    .valuation-results {
-        width: 100%;
-    }
     .valuation-block-build {
-        width: 65%;
+        width: 70%;
     }
     .dropdown-scroll-build {
         height: 275px;
@@ -1051,7 +1055,7 @@ and (min-resolution: 192dpi) {
         width:0;
     }
     .valuation-block-results {
-        width: 35%;
+        width: 30%;
     }
     .valuation-results {
         width: 100%;
@@ -1077,7 +1081,7 @@ and (min-resolution: 192dpi) {
         padding-left: 2px;
     }
     .valuation-block-build {
-        width: 65%;
+        width: 70%;
     }
     .dropdown-scroll-build {
         height: 275px;
@@ -1534,7 +1538,7 @@ and (orientation : portrait) {
         width:0;
     }
     .valuation-block-results {
-        width: 35%;
+        width: 30%;
     }
     .valuation-results {
         width: 100%;
@@ -1554,7 +1558,7 @@ and (orientation : portrait) {
         width:100%;
     }
     .valuation-block-build {
-        width: 65%;
+        width: 70%;
     }
     .dropdown-scroll-build {
         max-height: 275px;
@@ -1613,7 +1617,7 @@ and (orientation : landscape) {
         width:0;
     }
     .valuation-block-results {
-        width: 35%;
+        width: 30%;
     }
     .valuation-results {
         width: 100%;
@@ -1633,7 +1637,7 @@ and (orientation : landscape) {
         width:100%;
     }
     .valuation-block-build {
-        width: 65%;
+        width: 70%;
     }
     .dropdown-scroll-build {
         max-height: 275px;
