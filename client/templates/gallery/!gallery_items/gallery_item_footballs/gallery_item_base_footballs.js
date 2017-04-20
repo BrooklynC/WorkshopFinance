@@ -8,8 +8,7 @@ Template.GalleryItemBaseFootballs.onCreated (function () {
     var self = this;
     self.autorun(function() {
         var footballId = Template.parentData(0)._id;
-        self.subscribe('galleryFootballsItem', footballId);
-        self.subscribe('galleryFootballsItemTargetCompanyFeed', footballId);
-        self.subscribe('galleryFootballsItemTargetTeamFeed', footballId);
+        self.subscribe('galleryFootballsItemTargetCompany', footballId);
+        self.subscribe('galleryFootballsItemTargetTeam', footballId);
     });
 });

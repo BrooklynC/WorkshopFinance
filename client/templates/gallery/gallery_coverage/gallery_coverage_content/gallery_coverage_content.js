@@ -71,12 +71,8 @@ Template.CoverageContent.onCreated (function () {
     var self = this;
     self.autorun(function() {
         //Footballs needs to be refined
-        self.subscribe('galleryFootballs');
         self.subscribe('galleryFootballsUser');
         self.subscribe('galleryFootballsShared');
-        self.subscribe('galleryTargetsUser');
-        self.subscribe('galleryTargetsShared');
-        self.subscribe('galleryValuationsUser');
-        self.subscribe('galleryValuationsShared');
+        self.subscribe('galleryValuations');
     });
 });

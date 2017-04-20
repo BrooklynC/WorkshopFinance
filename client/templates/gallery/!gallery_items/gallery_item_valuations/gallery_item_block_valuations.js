@@ -10,9 +10,3 @@ Template.GalleryItemBlockValuations.helpers({
         }
     }
 });
-
-Template.GalleryItemBlockValuations.onCreated (function () {
-    var self = this;
-    self.autorun(function() {
-    });
-});

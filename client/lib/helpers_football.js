@@ -471,9 +471,15 @@ Template.registerHelper('disableValuationAdd', function() {
 
 //Disables ability to add current or trading values if company is not public
 Template.registerHelper('disableMarket',function() {
+    var footballType = Template.parentData(1).footballType;
+    if(footballType == "market") {
+        return "disabled";
+    }
+});
+
+Template.registerHelper('disableMarketGallery',function() {
     var footballType = this.footballType;
-    var footballType2 = Template.parentData(1).footballType;
-    if(footballType == "market" || footballType2 == "market") {
+    if(footballType == "market") {
         return "disabled";
     }
 });

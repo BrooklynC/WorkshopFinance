@@ -19,6 +19,6 @@ Template.GalleryItemBlockTargets.onCreated (function () {
     var self = this;
     self.autorun(function() {
         var targetId = Template.parentData(0)._id;
-        self.subscribe('galleryTargetsItemFeed', targetId);
+        self.subscribe('galleryTargetsItemBlock', targetId);
     });
 });

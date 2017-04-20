@@ -1,17 +1,15 @@
 <!--Item Block for Deals in Data Library-->
 <template name="GalleryItemBlockDeals">
-    {{#if Template.subscriptionsReady}}
-        <div>
-            Announced: {{dateAbbrev annDate}}
-        </div>
-        <div>
-            Sector: {{sector}}
-        </div>
-        <div>
-            Sub-Sector: {{subSector}}
-        </div>
-        <div>
-            Deal EV: {{financialFormat dealTerms.enterpriseValueDeal}} million
-        </div>
-    {{/if}}
+    <div>
+        Announced: {{dateAbbrev annDate}}
+    </div>
+    <div>
+        Sector: {{sector}}
+    </div>
+    <div>
+        Sub-Sector: {{subSector}}
+    </div>
+    <div>
+        Deal EV: {{financialFormat dealTerms.enterpriseValueDeal}} million
+    </div>
 </template>

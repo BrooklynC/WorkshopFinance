@@ -9,8 +9,6 @@ Template.WorkspaceFootball.helpers({
 Template.WorkspaceFootball.onCreated (function () {
     var self = this;
     self.autorun(function() {
-        self.subscribe('footballs');
-        self.subscribe('targetsUserAll');
-        self.subscribe('targetsSharedAll');
+        self.subscribe('football');
     });
 });

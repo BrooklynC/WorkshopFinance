@@ -14,17 +14,7 @@ Meteor.publish('options', function() {
     return Options.find({ownerId:currentUserId});
 });
 
-Meteor.publish('footballs', function() {
-    var currentUserId = this.userId;
-    return Footballs.find({ownerId:currentUserId},{fields:{_id:1}});
-});
-
-//Meteor.publish('targetsUserAll', function() {
+//Meteor.publish('football', function() {
 //    var currentUserId = this.userId;
-//    return TargetsCompanies.find({ownerId:currentUserId});
-//});
-//
-//Meteor.publish('targetsSharedAll', function() {
-//    var currentUserId = this.userId;
-//    return TargetsCompanies.find({viewers:{$in:[currentUserId]}});
+//    return Footballs.find({ownerId:currentUserId},{fields:{_id:1}});
 //});

@@ -1,11 +1,9 @@
 <!--Item Base for Companies in Data Library-->
 <template name="GalleryItemBaseComps">
-    {{#if Template.subscriptionsReady}}
-        <div>
-            {{companyName}}
-        </div>
-        <div>
-            <em>{{capitalizeOne status}} {{paren.open}}{{compTicker}}{{paren.close}}</em>
-        </div>
-    {{/if}}
+    <div>
+        {{companyName}}
+    </div>
+    <div>
+        <em>{{capitalizeOne status}} {{paren.open}}{{compTicker}}{{paren.close}}</em>
+    </div>
 </template>

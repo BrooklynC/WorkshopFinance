@@ -11,7 +11,5 @@ Template.Gallery.events({
 Template.Gallery.onCreated (function () {
     var self = this;
     self.autorun(function() {
-        self.subscribe('feedCompanies');
-        self.subscribe('feedTeams');
     });
 });

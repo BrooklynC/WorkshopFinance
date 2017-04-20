@@ -18,7 +18,7 @@ Template.GalleryItemBlockUsers.onCreated (function () {
     var self = this;
     self.autorun(function() {
         var ownerId = Template.parentData(0)._id;
-        self.subscribe('galleryFootballsOwner', ownerId);
+        self.subscribe('galleryUsersFootballs', ownerId);
         self.subscribe('galleryValuationsOwner', ownerId);
     });
 });

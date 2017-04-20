@@ -1,6 +1,3 @@
-////GALLERY - FOOTBALLS
-//THESE ARE USED IN THE GALLERY - FOOTBALLS, BOTH IN THE BASE AND BLOCK TEMPLATES
-
 //Values to display in Football item in Gallery
 Template.registerHelper('galleryFootballTarget',function(){
     var footballType = Template.parentData(0).footballType;
