@@ -1,6 +1,5 @@
 <!--Only holds other templates-->
 <template name="Football">
-    {{#if Template.subscriptionsReady}}
         <div class="wrapper" id="football-inner">
             <div id="football-banner">
                 {{> FootballBanner}}
@@ -12,7 +11,4 @@
                 {{> FootballField}}
             </div>
         </div>
-    {{else}}
-        {{> spinner}}
-    {{/if}}
 </template>

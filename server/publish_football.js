@@ -4,19 +4,14 @@ Meteor.publish('football', function(footballId) {
     return Footballs.find({_id:footballId});
 });
 
-Meteor.publish('valuationsUser', function() {
+Meteor.publish('footballValuations', function() {
     var currentUserId = this.userId;
     return Valuations.find({ownerId: currentUserId});
 });
 
-Meteor.publish('valuationsShared', function() {
+Meteor.publish('footballValuationsShared', function() {
     var currentUserId = this.userId;
     return Valuations.find({viewers:{$in:[currentUserId]}});
-});
-
-Meteor.publish('galleryValuationsOwner', function(ownerId) {
-    check(ownerId, String);
-    return Valuations.find({ownerId: ownerId});
 });
 
 Meteor.publish('feedCompaniesAll', function() {
@@ -59,23 +54,9 @@ Meteor.publish('customsShared', function() {
     return Customs.find({viewers:{$in:[currentUserId]}});
 });
 
-//Meteor.publish('footballTarget', function(footballId) {
-//    check(footballId, String);
-//    var targetId = Footballs.findOne({_id:footballId}).targetId;
-//    return TargetsCompanies.find({_id: targetId});
-//});
-//
-//Meteor.publish('footballTargetFeed', function(footballId) {
-//    check(footballId, String);
-//    var targetId = Footballs.findOne({_id:footballId}).targetId;
-//    var target = TargetsCompanies.findOne({_id:targetId});
-//    var feedId = target.feedId;
-//    return FeedCompanies.find({_id:feedId});
-//});
-//
 //Meteor.publish('footballValuations', function(footballId) {
 //    check(footballId, String);
-//    var valuations = Footballs.findOne({_id:footballId}).footballValuations;
-//    return Valuations.find({_id: {$in: valuations}});
+//    var footballValuations = Footballs.findOne({_id:footballId}).footballValuations;
+//    return Valuations.find({_id: {$in: footballValuations}});
 //});
-//
+

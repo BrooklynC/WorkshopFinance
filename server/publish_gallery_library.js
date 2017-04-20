@@ -32,11 +32,7 @@ Meteor.publish('galleryDeals', function() {
             annDate: 1,
             sector: 1,
             subSector: 1,
-            dealTerms: {
-                dealType: 1,
-                acquirerName: 1,
-                enterpriseValueDeal: 1
-            }
+            dealTerms: 1
         }
     });
 });

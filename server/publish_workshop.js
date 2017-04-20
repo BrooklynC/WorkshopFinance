@@ -14,7 +14,8 @@ Meteor.publish('options', function() {
     return Options.find({ownerId:currentUserId});
 });
 
-//Meteor.publish('football', function() {
-//    var currentUserId = this.userId;
-//    return Footballs.find({ownerId:currentUserId},{fields:{_id:1}});
-//});
+Meteor.publish('footballActive', function() {
+    var currentUserId = this.userId;
+    var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
+    return Footballs.find({_id:footballActive});
+});

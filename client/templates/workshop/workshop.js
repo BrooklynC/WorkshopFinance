@@ -1,4 +1,4 @@
-Template.Studio.helpers({
+Template.Workshop.helpers({
     isActive: function() {
         var currentUserId = Meteor.userId();
         var currentUser = Meteor.users.findOne({_id:currentUserId});
@@ -30,10 +30,11 @@ Template.Studio.helpers({
     }
 });
 
-Template.Studio.onCreated (function () {
+Template.Workshop.onCreated (function () {
     var self = this;
     self.autorun(function() {
         self.subscribe('options');
         self.subscribe('users');
+        self.subscribe('footballActive');
     });
 });

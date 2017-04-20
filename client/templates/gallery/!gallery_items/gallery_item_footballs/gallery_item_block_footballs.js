@@ -1,6 +1,7 @@
 Template.GalleryItemBlockFootballs.helpers({
     valuationCount: function () {
-        var valuations = Footballs.findOne({_id:this._id}).footballValuations;
+        var footballId = this._id;
+        var valuations = Footballs.findOne({_id:footballId}).footballValuations;
         if(valuations) {
             return valuations.length;
         }
@@ -14,9 +15,9 @@ Template.GalleryItemBlockFootballs.helpers({
 Template.GalleryItemBlockFootballs.onCreated (function () {
     var self = this;
     self.autorun(function() {
-        var footballId = Template.parentData(0)._id;
-        self.subscribe('galleryFootballsItemTargetCompanyFeed', footballId);
-        self.subscribe('galleryFootballsItemTargetTeamFeed', footballId);
-        self.subscribe('users');
+        //var footballId = Template.parentData(0)._id;
+        //self.subscribe('galleryItemFootballsTargetCompany', footballId);
+        //self.subscribe('galleryItemFootballsTargetTeam', footballId);
+        //self.subscribe('users');
     });
 });

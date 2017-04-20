@@ -9,6 +9,8 @@ Template.WorkspaceFootball.helpers({
 Template.WorkspaceFootball.onCreated (function () {
     var self = this;
     self.autorun(function() {
-        self.subscribe('football');
+        var currentUserId = Meteor.userId();
+        var footballId = Options.findOne({ownerId:currentUserId}).footballActive;
+        self.subscribe('football', footballId);
     });
 });

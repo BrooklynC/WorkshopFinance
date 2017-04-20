@@ -276,57 +276,10 @@ Template.registerHelper('headingValueTwo', function() {
 
 //Format for value one in Valuation table based on valuationMetric
 Template.registerHelper('valueOneFormat', function(a) {
-    var valuationElement = Template.parentData(1).valuationElement;
-    var valuationMetric = Template.parentData(1).valuationMetric;
-    if(valuationElement === "security") {
-        switch(valuationMetric) {
-            case "EV/Revenue":
-                return numeral(a).format('$0,0.0');
-                break;
-            case "EV/EBITDA":
-                return numeral(a).format('$0,0.0');
-                break;
-            case "EV/Attendance":
-                return numeral(a).format('$0,0.0');
-                break;
-            case "P/E":
-                return numeral(a).format('$0,0.00');
-                break;
-        }
-    }
-});
-
-//Format for value two in Valuation table based on valuationMetric
-Template.registerHelper('valueTwoFormat', function(a) {
-    var valuationElement = Template.parentData(1).valuationElement;
-    var valuationMetric = Template.parentData(1).valuationMetric;
-    if(valuationElement === "security") {
-        switch(valuationMetric) {
-            case "EV/Revenue":
-                return numeral(a).format('$0,0.0');
-                break;
-            case "EV/EBITDA":
-                return numeral(a).format('$0,0.0');
-                break;
-            case "EV/Attendance":
-                return numeral(a).format('0,0');
-                break;
-            case "P/E":
-                return numeral(a).format('$0,0.00');
-                break;
-        }
-    }
-});
-
-//Format for active value one at bottom of Valuation selections table. Differs from above because of different data context
-Template.registerHelper('buildOneFormat', function(a) {
-    var valuationId = this._id;
-    var footballId = Template.parentData(1)._id;
-    var footballType = Template.parentData(1).footballType;
-    if(footballType == "target") {
-        var multiple = getBuildMultiple(footballId, valuationId);
-        if(multiple) {
-            var valuationMetric = this.valuationMetric;
+    if(a) {
+        var valuationElement = Template.parentData(1).valuationElement;
+        var valuationMetric = Template.parentData(1).valuationMetric;
+        if(valuationElement === "security") {
             switch(valuationMetric) {
                 case "EV/Revenue":
                     return numeral(a).format('$0,0.0');
@@ -345,15 +298,12 @@ Template.registerHelper('buildOneFormat', function(a) {
     }
 });
 
-//Format for active value one at bottom of Valuation selections table. Differs from above because of different data context
-Template.registerHelper('buildTwoFormat', function(a) {
-    var valuationId = this._id;
-    var footballId = Template.parentData(1)._id;
-    var footballType = Template.parentData(1).footballType;
-    if(footballType == "target") {
-        var multiple = getBuildMultiple(footballId, valuationId);
-        if(multiple) {
-            var valuationMetric = this.valuationMetric;
+//Format for value two in Valuation table based on valuationMetric
+Template.registerHelper('valueTwoFormat', function(a) {
+    if(a) {
+        var valuationElement = Template.parentData(1).valuationElement;
+        var valuationMetric = Template.parentData(1).valuationMetric;
+        if(valuationElement === "security") {
             switch(valuationMetric) {
                 case "EV/Revenue":
                     return numeral(a).format('$0,0.0');
@@ -367,6 +317,64 @@ Template.registerHelper('buildTwoFormat', function(a) {
                 case "P/E":
                     return numeral(a).format('$0,0.00');
                     break;
+            }
+        }
+    }
+});
+
+//Format for active value one at bottom of Valuation selections table. Differs from above because of different data context
+Template.registerHelper('buildOneFormat', function(a) {
+    if(a) {
+        var valuationId = this._id;
+        var footballId = Template.parentData(1)._id;
+        var footballType = Template.parentData(1).footballType;
+        if(footballType == "target") {
+            var multiple = getBuildMultiple(footballId, valuationId);
+            if(multiple) {
+                var valuationMetric = this.valuationMetric;
+                switch(valuationMetric) {
+                    case "EV/Revenue":
+                        return numeral(a).format('$0,0.0');
+                        break;
+                    case "EV/EBITDA":
+                        return numeral(a).format('$0,0.0');
+                        break;
+                    case "EV/Attendance":
+                        return numeral(a).format('$0,0.0');
+                        break;
+                    case "P/E":
+                        return numeral(a).format('$0,0.00');
+                        break;
+                }
+            }
+        }
+    }
+});
+
+//Format for active value one at bottom of Valuation selections table. Differs from above because of different data context
+Template.registerHelper('buildTwoFormat', function(a) {
+    if(a) {
+        var valuationId = this._id;
+        var footballId = Template.parentData(1)._id;
+        var footballType = Template.parentData(1).footballType;
+        if(footballType == "target") {
+            var multiple = getBuildMultiple(footballId, valuationId);
+            if(multiple) {
+                var valuationMetric = this.valuationMetric;
+                switch(valuationMetric) {
+                    case "EV/Revenue":
+                        return numeral(a).format('$0,0.0');
+                        break;
+                    case "EV/EBITDA":
+                        return numeral(a).format('$0,0.0');
+                        break;
+                    case "EV/Attendance":
+                        return numeral(a).format('0,0');
+                        break;
+                    case "P/E":
+                        return numeral(a).format('$0,0.00');
+                        break;
+                }
             }
         }
     }

@@ -106,50 +106,56 @@ getRangeOutput = function(footballId) {
 //Max/min are rounded using helper above
 getRangeCaps = function(footballId) {
     var football = Footballs.findOne({_id:footballId});
-    var footballType = football.footballType;
-    var footballOutput = football.footballOutput;
-    var valuations = football.footballValuations;
-    var results = [];
-    //Push result from each valuation into results array
-    if(valuations) {
-        valuations.forEach(function(valuationId) {
-            var valuation = Valuations.findOne({_id:valuationId});
-            var valuationSelections = valuation.valuationSelections;
-            if(valuationSelections.length > 0) {
-                var valuationType = valuation.valuationType;
-                var activeResult = getResultValue(footballId, valuationId);
-                if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
-                    if (activeResult) {
-                        results.push(activeResult);
-                    }
-                } else {
-                    var existingCustom = valuation.existingCustom;
-                    switch (footballOutput) {
-                        case "Enterprise Value":
-                            if (existingCustom == "Value") {
-                                if (activeResult) {
-                                    results.push(activeResult);
-                                }
+    if(football) {
+        var footballType = football.footballType;
+        var footballOutput = football.footballOutput;
+        var valuations = football.footballValuations;
+        var valuationsCount = valuations.length;
+        var results = [];
+        //Push result from each valuation into results array
+        if(valuationsCount > 0) {
+            valuations.forEach(function(valuationId) {
+                var valuation = Valuations.findOne({_id:valuationId});
+                if(valuation) {
+                    var valuationSelections = valuation.valuationSelections;
+                    var valuationSelectionsCount = valuationSelections.length;
+                    if(valuationSelectionsCount > 0) {
+                        var valuationType = valuation.valuationType;
+                        var activeResult = getResultValue(footballId, valuationId);
+                        if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
+                            if (activeResult) {
+                                results.push(activeResult);
                             }
-                            break;
-                        case "Price per Share":
-                            if (existingCustom == "Price") {
-                                if (activeResult) {
-                                    results.push(activeResult);
-                                }
+                        } else {
+                            var existingCustom = valuation.existingCustom;
+                            switch (footballOutput) {
+                                case "Enterprise Value":
+                                    if (existingCustom == "Value") {
+                                        if (activeResult) {
+                                            results.push(activeResult);
+                                        }
+                                    }
+                                    break;
+                                case "Price per Share":
+                                    if (existingCustom == "Price") {
+                                        if (activeResult) {
+                                            results.push(activeResult);
+                                        }
+                                    }
+                                    break;
+                                case "Multiple":
+                                    if (existingCustom == "Multiple") {
+                                        if (activeResult) {
+                                            results.push(activeResult);
+                                        }
+                                    }
+                                    break;
                             }
-                            break;
-                        case "Multiple":
-                            if (existingCustom == "Multiple") {
-                                if (activeResult) {
-                                    results.push(activeResult);
-                                }
-                            }
-                            break;
+                        }
                     }
                 }
-            }
-        });
+            });
+        }
     }
     //Push result from each includeCurrent, if it exists, into results array
     var includeCurrent = football.includeCurrent;
