@@ -36,5 +36,6 @@ Template.GalleryVisual.onCreated (function () {
         var currentUserId = Meteor.userId();
         var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
         self.subscribe('galleryFootballActive', footballActive);
+        self.subscribe('feedCompaniesAll');
     });
 });

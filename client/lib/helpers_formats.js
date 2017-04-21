@@ -123,7 +123,7 @@ Template.registerHelper('customValueFormat', function(a) {
 });
 
 //Format for values in Football range, depends on footballType
-Template.registerHelper('rangeFormat', function(a) {
+Template.registerHelper('rangeNumber', function(a) {
     var footballId = this._id;
     var footballOutput = this.footballOutput;
     var max = getRangeCaps(footballId).max;
@@ -143,7 +143,7 @@ Template.registerHelper('rangeFormat', function(a) {
 });
 
 //Format for multiples in Football range
-Template.registerHelper('footballMultiple', function() {
+Template.registerHelper('rangeMultiple', function() {
     var footballId = this._id;
     var footballOutput = this.footballOutput;
     var max = getRangeCaps(footballId).max;
@@ -162,56 +162,40 @@ Template.registerHelper('footballMultiple', function() {
     }
 });
 
-//Format for d3 data labels
-Template.registerHelper('barFormat', function(footballId) {
+getBarFormat = function(footballId) {
     var footballOutput = Footballs.findOne({_id:footballId}).footballOutput;
     switch (footballOutput) {
         case "Enterprise Value":
-            return d3.format(",.1f");
+            return {
+                number: d3.format(",.1f"),
+                currency: "$",
+                multiple: ""
+            };
             break;
         case "Price per Share":
-            return d3.format(",.2f");
+            return {
+                number: d3.format(",.2f"),
+                currency: "$",
+                multiple: ""
+            };
             break;
         case "Multiple":
-            return d3.format(",.1f");
+            return {
+                number: d3.format(",.1f"),
+                currency: "",
+                multiple: "x"
+            };
             break;
     }
-});
+};
 
 //Format for currency symbols in d3 data labels
-Template.registerHelper('symCurrency', function(footballId) {
-    var footballOutput = Footballs.findOne({_id:footballId}).footballOutput;
-    switch (footballOutput) {
-        case "Enterprise Value":
-            return "$";
-            break;
-        case "Price per Share":
-            return "$";
-            break;
-        case "Multiple":
-            return "";
-            break;
-    }
-});
-
-//Format for multiples in d3 data labels
-Template.registerHelper('symMultiple', function(footballId) {
-    var footballOutput = Footballs.findOne({_id:footballId}).footballOutput;
-    switch (footballOutput) {
-        case "Enterprise Value":
-            return "";
-            break;
-        case "Price per Share":
-            return "";
-            break;
-        case "Multiple":
-            return "x";
-            break;
-    }
+Template.registerHelper('barFormat', function(footballId) {
+    return getBarFormat(footballId);
 });
 
 //Format for value in Results based on footballOutput
-Template.registerHelper('resultFormat', function(a) {
+Template.registerHelper('resultNumber', function(a) {
     var footballOutput = Template.parentData(1).footballOutput;
     var valuationSelections = this.valuationSelections;
     var valuationType = this.valuationType;

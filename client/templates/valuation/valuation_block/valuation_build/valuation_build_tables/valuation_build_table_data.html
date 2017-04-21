@@ -61,9 +61,9 @@
                 </td>
                 <td class="table-right table-value-three">
                     {{#if isSecurity}}
-                        <a>{{selectSymCurrency}}{{divideSelect valueOne valueTwo}}{{selectSymMultiple}}</a>
+                        <a>{{select.currency}}{{divideSelect valueOne valueTwo}}{{select.multiple}}</a>
                     {{else}}
-                        <a>{{fixedOne valuationIndex}}{{selectSymMultiple}}</a>
+                        <a>{{fixedOne valuationIndex}}{{select.multiple}}</a>
                     {{/if}}
                     </td>
                 </tr>
@@ -93,7 +93,7 @@
                     <a>{{buildTwoFormat targetReferenceValue}}</a>
                 </th>
                 <th class="table-right table-value-three">
-                    <a><strong>{{buildSymCurrency}}{{multipleFormat buildMultiple}}{{buildSymMultiple}}</strong></a>
+                    <a><strong>{{build.currency}}{{multipleFormat buildMultiple}}{{build.multiple}}</strong></a>
                 </th>
             </tr>
         </tfoot>

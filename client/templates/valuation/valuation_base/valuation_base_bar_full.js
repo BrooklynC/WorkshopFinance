@@ -38,9 +38,9 @@ Template.ValuationBaseBarFull.onRendered (function () {
     var valuationLowText = getValuationText(footballId, valuationId).valuationLowText;
     var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
-    var barFormat = UI._globalHelpers.barFormat(footballId);
-    var symCurrency = UI._globalHelpers.symCurrency(footballId);
-    var symMultiple = UI._globalHelpers.symMultiple(footballId);
+    var numberFormat = getBarFormat(footballId).number;
+    var symCurrency = getBarFormat(footballId).currency;
+    var symMultiple = getBarFormat(footballId).multiple;
     var themeText = UI._globalHelpers.themeStyle().barText;
 
     var barContainer = d3.select("#bar" + valuationId)
@@ -59,7 +59,7 @@ Template.ValuationBaseBarFull.onRendered (function () {
         var barLow = barContainer.append("text")
             .attr("x", valuationLowSpace + "%")
             .attr("y", "20px")
-            .text(symCurrency + barFormat(valuationLowText) + symMultiple)
+            .text(symCurrency + numberFormat(valuationLowText) + symMultiple)
             .attr("text-anchor", "end")
             .attr("font-size", "12px")
             .attr("fill", themeText)
@@ -69,7 +69,7 @@ Template.ValuationBaseBarFull.onRendered (function () {
         var barHigh = barContainer.append("text")
             .attr("x", valuationHighSpace + "%")
             .attr("y", "20px")
-            .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+            .text(symCurrency + numberFormat(valuationHighText) + symMultiple)
             .attr("text-anchor", "start")
             .attr("font-size", "12px")
             .attr("fill", themeText)
@@ -85,7 +85,7 @@ Template.ValuationBaseBarFull.onRendered (function () {
         var barSpotHigh = barContainer.append("text")
             .attr("x", valuationHighSpace + "%")
             .attr("y", "25px")
-            .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+            .text(symCurrency + numberFormat(valuationHighText) + symMultiple)
             .attr("text-anchor", "start")
             .attr("font-size", "12px")
             .attr("fill", themeText)
@@ -104,10 +104,10 @@ Template.ValuationBaseBarFull.onRendered (function () {
         var valuationLowText = getValuationText(footballId, valuationId).valuationLowText;
         var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
+        var numberFormat = getBarFormat(footballId).number;
+        var symCurrency = getBarFormat(footballId).currency;
+        var symMultiple = getBarFormat(footballId).multiple;
         var themeText = UI._globalHelpers.themeStyle().barText;
-        var barFormat = UI._globalHelpers.barFormat(footballId);
-        var symCurrency = UI._globalHelpers.symCurrency(footballId);
-        var symMultiple = UI._globalHelpers.symMultiple(footballId);
 
         var spread = Valuations.findOne({_id:valuationId}).valuationSpread;
         if(spread > 0) {
@@ -124,7 +124,7 @@ Template.ValuationBaseBarFull.onRendered (function () {
                 .duration(0)
                 .attr("x", valuationLowSpace + "%")
                 .attr("y", "20px")
-                .text(symCurrency + barFormat(valuationLowText) + symMultiple)
+                .text(symCurrency + numberFormat(valuationLowText) + symMultiple)
                 .attr("text-anchor", "end")
                 .attr("font-size", "12px")
                 .style("left", "5px")
@@ -135,7 +135,7 @@ Template.ValuationBaseBarFull.onRendered (function () {
                 .duration(0)
                 .attr("x", valuationHighSpace + "%")
                 .attr("y", "20px")
-                .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+                .text(symCurrency + numberFormat(valuationHighText) + symMultiple)
                 .attr("text-anchor", "start")
                 .attr("font-size", "12px")
                 .style("right", "5px")
@@ -153,7 +153,7 @@ Template.ValuationBaseBarFull.onRendered (function () {
                 .duration(0)
                 .attr("x", valuationHighSpace + "%")
                 .attr("y", "25px")
-                .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+                .text(symCurrency + numberFormat(valuationHighText) + symMultiple)
                 .attr("text-anchor", "end")
                 .attr("font-size", "12px")
                 .attr("fill", themeText)

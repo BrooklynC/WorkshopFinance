@@ -70,12 +70,8 @@ Template.CoverageContent.helpers({
 Template.CoverageContent.onCreated (function () {
     var self = this;
     self.autorun(function() {
-        var id = Template.parentData(0);
-        //Footballs needs to be refined
         self.subscribe('galleryFootballsUser');
         self.subscribe('galleryFootballsShared');
-        self.subscribe('galleryItemFootballsTargetCompany', id);
-        self.subscribe('galleryItemFootballsTargetTeam', id);
         self.subscribe('galleryValuations');
     });
 });

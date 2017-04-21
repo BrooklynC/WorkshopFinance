@@ -1357,7 +1357,6 @@ getValuationText = function(footballId, valuationId) {
 
     var textSpace = getTextSpace(valuationId);
     var scaleSwitch = getRangeScale(footballId);
-    //var scaleSwitch = UI._globalHelpers.scaleSwitch(footballId);
 
     var valuationLow = getValuationLowHigh(footballId, valuationId).valuationLow;
     var valuationHigh = getValuationLowHigh(footballId, valuationId).valuationHigh;
@@ -1369,42 +1368,6 @@ getValuationText = function(footballId, valuationId) {
         valuationHighText: valuationHigh / scaleSwitch
     }
 };
-
-Template.registerHelper('buildMultiple',function(){
-    var valuationId = this._id;
-    var selections = this.valuationSelections;
-    var footballId = Template.parentData(1)._id;
-    if(selections == 0) {
-        return ""
-    } else {
-        return getBuildMultiple(footballId, valuationId)
-    }
-});
-
-Template.registerHelper('buildValue',function(){
-    var footballId = Template.parentData(1)._id;
-    var valuationId = Template.parentData(0)._id;
-    return getBuildValue(footballId, valuationId);
-});
-
-Template.registerHelper('resultValue', function() {
-    var footballId = Template.parentData(1)._id;
-    var valuationId = Template.parentData(0)._id;
-    return getResultValue(footballId, valuationId);
-});
-
-Template.registerHelper('valuationLowHigh',function(footballId, valuationId) {
-    return getValuationLowHigh(footballId, valuationId);
-});
-
-//Uses high and low values from above to calculate values needed by d3 for valuation bar
-Template.registerHelper('valuationCalcs',function(footballId, valuationId) {
-    return getValuationCalcs(footballId, valuationId)
-});
-
-Template.registerHelper('valuationText',function(footballId, valuationId) {
-    return getValuationText(footballId, valuationId);
-});
 
 //Toggle calc between average, median, high and low
 Template.registerHelper('calc',function(){
@@ -1422,14 +1385,5 @@ Template.registerHelper('calc',function(){
         case "low":
             return "Low";
             break;
-    }
-});
-
-
-Template.registerHelper('isOwner',function() {
-    var currentUserId = Meteor.userId();
-    var ownerId = this.ownerId;
-    if(currentUserId == ownerId) {
-        return true
     }
 });

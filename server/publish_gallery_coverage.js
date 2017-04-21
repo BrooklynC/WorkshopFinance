@@ -11,9 +11,9 @@ Meteor.publish('galleryFootballsShared', function() {
     return Footballs.find({viewers:{$in:[currentUserId]}});
 });
 
-Meteor.publish('galleryItemFootballsTargetCompany', function(id) {
-    check(id, String);
-    var football = Footballs.findOne({_id:id});
+Meteor.publish('galleryItemFootballsTargetCompany', function(footballId) {
+    check(footballId, String);
+    var football = Footballs.findOne({_id:footballId});
     if(football) {
         var targetId = football.footballTarget.targetId;
         return FeedCompanies.find({_id: targetId}, {fields: {
@@ -23,9 +23,9 @@ Meteor.publish('galleryItemFootballsTargetCompany', function(id) {
         }});
     }
 });
-Meteor.publish('galleryItemFootballsTargetTeam', function(id) {
-    check(id, String);
-    var football = Footballs.findOne({_id:id});
+Meteor.publish('galleryItemFootballsTargetTeam', function(footballId) {
+    check(footballId, String);
+    var football = Footballs.findOne({_id:footballId});
     if(football) {
         var targetId = football.footballTarget.targetId;
         return FeedTeams.find({_id: targetId}, {

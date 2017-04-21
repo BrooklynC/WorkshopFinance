@@ -35,9 +35,9 @@ Template.ValuationBaseBarFullSpot.onRendered (function () {
     var valuationHighSpace = getValuationText(footballId, valuationId).valuationHighSpace;
     var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
-    var barFormat = UI._globalHelpers.barFormat(footballId);
-    var symCurrency = UI._globalHelpers.symCurrency(footballId);
-    var symMultiple = UI._globalHelpers.symMultiple(footballId);
+    var numberFormat = getBarFormat(footballId).number;
+    var symCurrency = getBarFormat(footballId).currency;
+    var symMultiple = getBarFormat(footballId).multiple;
     var themeText = UI._globalHelpers.themeStyle().barText;
 
     var barContainer = d3.select("#spot" + valuationId)
@@ -53,7 +53,7 @@ Template.ValuationBaseBarFullSpot.onRendered (function () {
     var barSpotHigh = barContainer.append("text")
         .attr("x", valuationHighSpace + "%")
         .attr("y", "25px")
-        .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+        .text(symCurrency + numberFormat(valuationHighText) + symMultiple)
         .attr("text-anchor", "start")
         .attr("font-size", "12px")
         .attr("fill", themeText)
@@ -68,10 +68,10 @@ Template.ValuationBaseBarFullSpot.onRendered (function () {
         var valuationHighSpace = getValuationText(footballId, valuationId).valuationHighSpace;
         var valuationHighText = getValuationText(footballId, valuationId).valuationHighText;
 
+        var numberFormat = getBarFormat(footballId).number;
+        var symCurrency = getBarFormat(footballId).currency;
+        var symMultiple = getBarFormat(footballId).multiple;
         var themeText = UI._globalHelpers.themeStyle().barText;
-        var barFormat = UI._globalHelpers.barFormat(footballId);
-        var symCurrency = UI._globalHelpers.symCurrency(footballId);
-        var symMultiple = UI._globalHelpers.symMultiple(footballId);
 
         barContainer.select("#bar-spot" + valuationId)
             .transition()
@@ -85,7 +85,7 @@ Template.ValuationBaseBarFullSpot.onRendered (function () {
             .duration(0)
             .attr("x", valuationHighSpace + "%")
             .attr("y", "25px")
-            .text(symCurrency + barFormat(valuationHighText) + symMultiple)
+            .text(symCurrency + numberFormat(valuationHighText) + symMultiple)
             .attr("text-anchor", "start")
             .attr("font-size", "12px")
             .attr("fill", themeText)

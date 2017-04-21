@@ -35,5 +35,6 @@ Template.Workshop.onCreated (function () {
     self.autorun(function() {
         self.subscribe('options');
         self.subscribe('users');
+        self.subscribe('footballActive');
     });
 });

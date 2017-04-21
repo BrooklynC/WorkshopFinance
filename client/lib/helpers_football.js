@@ -219,7 +219,10 @@ getRangeCaps = function(footballId) {
         var footballOutput = football.footballOutput;
         var valuations = football.footballValuations;
         var valuationsCount = valuations.length;
-        var results = [];
+        var results = {
+            low: [],
+            high: []
+        };
         //Push result from each valuation into results array
         if(valuationsCount > 0) {
             valuations.forEach(function(valuationId) {
@@ -229,10 +232,16 @@ getRangeCaps = function(footballId) {
                     var valuationSelectionsCount = valuationSelections.length;
                     if(valuationSelectionsCount > 0) {
                         var valuationType = valuation.valuationType;
+                        var valuationSpread = valuation.valuationSpread;
                         var activeResult = getResultValue(footballId, valuationId);
+                        var activeResultAdj = {
+                            low: activeResult * (1 - valuationSpread/100),
+                            high: activeResult * (1 + valuationSpread/100)
+                        };
                         if(valuationType == "comps" || valuationType == "deals" || valuationType == "models") {
                             if (activeResult) {
-                                results.push(activeResult);
+                                results.low.push(activeResultAdj.low);
+                                results.high.push(activeResultAdj.high);
                             }
                         } else {
                             var existingCustom = valuation.existingCustom;
@@ -240,21 +249,24 @@ getRangeCaps = function(footballId) {
                                 case "Enterprise Value":
                                     if (existingCustom == "Value") {
                                         if (activeResult) {
-                                            results.push(activeResult);
+                                            results.low.push(activeResultAdj.low);
+                                            results.high.push(activeResultAdj.high);
                                         }
                                     }
                                     break;
                                 case "Price per Share":
                                     if (existingCustom == "Price") {
                                         if (activeResult) {
-                                            results.push(activeResult);
+                                            results.low.push(activeResultAdj.low);
+                                            results.high.push(activeResultAdj.high);
                                         }
                                     }
                                     break;
                                 case "Multiple":
                                     if (existingCustom == "Multiple") {
                                         if (activeResult) {
-                                            results.push(activeResult);
+                                            results.low.push(activeResultAdj.low);
+                                            results.high.push(activeResultAdj.high);
                                         }
                                     }
                                     break;
@@ -269,23 +281,19 @@ getRangeCaps = function(footballId) {
     var includeCurrent = football.includeCurrent;
     var current = getTargetCurrent(footballId);
     if(includeCurrent) {
-        results.push(current);
+        results.low.push(current);
+        results.high.push(current);
     }
     //Find low and high valuation multiples of results array
-    var resultLow = Math.min.apply(null, results);
-    var resultHigh = Math.max.apply(null, results);
+    var resultLow = Math.min.apply(null, results.low);
+    var resultHigh = Math.max.apply(null, results.high);
 
     //Check if any results has any values
-    var resultsLength = results.length;
+    var resultsLowLength = results.low.length;
     var resultsWithCurrent = [];
-    if(resultsLength > 0) {
-        //Applies footballSpread to low and high valuation multiples
-        var spread = 10;
-        //var spread = football.footballSpread;
-        var rangeLowSpread = resultLow * (1 - spread/100);
-        var rangeHighSpread = resultHigh * (1 + spread/100);
+    if(resultsLowLength > 0) {
         //Push low and high into resultsWithCurrent array
-        resultsWithCurrent.push(rangeLowSpread, rangeHighSpread);
+        resultsWithCurrent.push(resultLow, resultHigh);
     }
 
     //Push includeTrading result, if it exists, into resultsWithCurrent array

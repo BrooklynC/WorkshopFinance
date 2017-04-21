@@ -15,9 +15,8 @@ Template.GalleryItemBlockFootballs.helpers({
 Template.GalleryItemBlockFootballs.onCreated (function () {
     var self = this;
     self.autorun(function() {
-        //var footballId = Template.parentData(0)._id;
-        //self.subscribe('galleryItemFootballsTargetCompany', footballId);
-        //self.subscribe('galleryItemFootballsTargetTeam', footballId);
-        //self.subscribe('users');
+        var footballId = Template.parentData(0)._id;
+        self.subscribe('galleryItemFootballsTargetCompany', footballId);
+        self.subscribe('galleryItemFootballsTargetTeam', footballId);
     });
 });
