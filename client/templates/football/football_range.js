@@ -6,7 +6,7 @@ Template.FootballRange.helpers({
         var rangeLow = getRangeCaps(footballId).min;
         var rangeHigh = getRangeCaps(footballId).max;
         var range = rangeHigh - rangeLow;
-        var scaleAdjust = getScaleRange(footballId);
+        var scaleAdjust = getRangeScale(footballId);
         return {
             low: rangeLow / scaleAdjust,
             interim1: (rangeLow + (range / 4)) /  scaleAdjust,

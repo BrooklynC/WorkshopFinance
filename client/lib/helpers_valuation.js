@@ -1356,7 +1356,8 @@ getValuationText = function(footballId, valuationId) {
     var valuationEndPct = getValuationCalcs(footballId, valuationId).endPct;
 
     var textSpace = getTextSpace(valuationId);
-    var scaleSwitch = UI._globalHelpers.scaleSwitch(footballId);
+    var scaleSwitch = getRangeScale(footballId);
+    //var scaleSwitch = UI._globalHelpers.scaleSwitch(footballId);
 
     var valuationLow = getValuationLowHigh(footballId, valuationId).valuationLow;
     var valuationHigh = getValuationLowHigh(footballId, valuationId).valuationHigh;
@@ -1404,6 +1405,26 @@ Template.registerHelper('valuationCalcs',function(footballId, valuationId) {
 Template.registerHelper('valuationText',function(footballId, valuationId) {
     return getValuationText(footballId, valuationId);
 });
+
+//Toggle calc between average, median, high and low
+Template.registerHelper('calc',function(){
+    var valuationCalc = this.valuationCalc;
+    switch(valuationCalc) {
+        case "average":
+            return "Average";
+            break;
+        case "median":
+            return "Median";
+            break;
+        case "high":
+            return "High";
+            break;
+        case "low":
+            return "Low";
+            break;
+    }
+});
+
 
 Template.registerHelper('isOwner',function() {
     var currentUserId = Meteor.userId();

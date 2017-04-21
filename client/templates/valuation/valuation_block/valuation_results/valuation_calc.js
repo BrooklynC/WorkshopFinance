@@ -14,24 +14,3 @@ Template.ValuationCalc.events({
         }
     }
 });
-
-Template.ValuationCalc.helpers({
-    calc: function() {
-        var valuationCalc = this.valuationCalc;
-        switch(valuationCalc) {
-            case "average":
-                return "Average";
-                break;
-            case "median":
-                return "Median";
-                break;
-            case "high":
-                return "High";
-                break;
-            case "low":
-                return "Low";
-                break;
-        }
-    }
-});
-

@@ -10,7 +10,7 @@ Template.FootballFieldCurrent.helpers({
         var footballRangeHigh = getRangeCaps(footballId).max;
         var footballRange = footballRangeHigh - footballRangeLow;
 
-        var targetCurrent = UI._globalHelpers.targetCurrent(footballId);
+        var targetCurrent = getTargetCurrent(footballId);
         var start = targetCurrent - footballRangeLow;
         return start / footballRange * 100;
     }
@@ -21,7 +21,7 @@ Template.FootballFieldCurrent.onRendered (function () {
     const self = this;
 
     var footballId = Template.parentData(0)._id;
-    var startPct = UI._globalHelpers.currentCalcs(footballId).startPct;
+    var startPct = getCurrentCalcs(footballId).startPct;
 
     var colorCurrent = "rgba(38, 106, 46, 1)";
 
@@ -40,7 +40,7 @@ Template.FootballFieldCurrent.onRendered (function () {
 
     self.autorun(function() {
         var footballId = Template.parentData(0)._id;
-        var startPct = UI._globalHelpers.currentCalcs(footballId).startPct;
+        var startPct = getCurrentCalcs(footballId).startPct;
 
         currentContainer.select("line")
             .transition()

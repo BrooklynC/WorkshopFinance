@@ -11,8 +11,8 @@ Template.FootballFieldTrading.helpers({
 Template.FootballFieldTrading.onRendered (function () {
     const self = this;
     var footballId = Template.parentData(0)._id;
-    var startPct = UI._globalHelpers.tradingCalcs(footballId).startPct;
-    var widthPct = UI._globalHelpers.tradingCalcs(footballId).widthPct;
+    var startPct = getTradingCalcs(footballId).startPct;
+    var widthPct = getTradingCalcs(footballId).widthPct;
 
     var colorTrading = "rgba(128, 128, 128, 0.2)"
     var tradingContainer = d3.select("#football-trading-svg" + footballId)
@@ -30,8 +30,8 @@ Template.FootballFieldTrading.onRendered (function () {
 
     self.autorun(function() {
         var footballId = Template.parentData(0)._id;
-        var startPct = UI._globalHelpers.tradingCalcs(footballId).startPct;
-        var widthPct = UI._globalHelpers.tradingCalcs(footballId).widthPct;
+        var startPct = getTradingCalcs(footballId).startPct;
+        var widthPct = getTradingCalcs(footballId).widthPct;
 
         tradingContainer.select("rect")
             .transition()
