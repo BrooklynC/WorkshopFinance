@@ -68,9 +68,9 @@ Template.ValuationBuildTableData.helpers({
                 }
             }
     },
-    twoColumn: function() {
-        var valuationType = Template.parentData(1).valuationType;
-        var valuationElement = Template.parentData(1).valuationElement;
+    twoColumnHeader: function() {
+        var valuationType = this.valuationType;
+        var valuationElement = this.valuationElement;
         switch(valuationType) {
             case "comps":
                 switch(valuationElement) {
@@ -94,9 +94,9 @@ Template.ValuationBuildTableData.helpers({
                 break;
         }
     },
-    twoColumnHeader: function() {
-        var valuationType = this.valuationType;
-        var valuationElement = this.valuationElement;
+    twoColumn: function() {
+        var valuationType = Template.parentData(1).valuationType;
+        var valuationElement = Template.parentData(1).valuationElement;
         switch(valuationType) {
             case "comps":
                 switch(valuationElement) {
@@ -146,7 +146,7 @@ Template.ValuationBuildTableData.helpers({
                 break;
         }
     },
-    headingNameOne: function() {
+    headingName: function() {
         var marketType = this.marketType;
         var valuationType = this.valuationType;
         var valuationElement = this.valuationElement;
@@ -156,20 +156,32 @@ Template.ValuationBuildTableData.helpers({
                     case "comps":
                         switch(valuationElement) {
                             case "security":
-                                return "Ticker";
+                                return {
+                                    one: "Ticker",
+                                    two: "Company"
+                                };
                                 break;
                             case "index":
-                                return '';
+                                return {
+                                    one: '',
+                                    two: "Index"
+                                };
                                 break;
                         }
                         break;
                     case "deals":
                         switch(valuationElement) {
                             case "security":
-                                return '';
+                                return {
+                                    one: '',
+                                    two: "Deal"
+                                };
                                 break;
                             case "index":
-                                return '';
+                                return {
+                                    one: '',
+                                    two: "Index"
+                                };
                                 break;
                         }
                         break;
@@ -180,7 +192,10 @@ Template.ValuationBuildTableData.helpers({
                     case "comps":
                         switch(valuationElement) {
                             case "security":
-                                return "League";
+                                return {
+                                    one: "League",
+                                    two: "Team"
+                                };
                                 break;
                         }
                         break;
@@ -188,48 +203,90 @@ Template.ValuationBuildTableData.helpers({
                 break;
         }
     },
-    headingNameTwo: function() {
-        var marketType = this.marketType;
-        var valuationType = this.valuationType;
-        var valuationElement = this.valuationElement;
-        switch(marketType) {
-            case "company":
-                switch(valuationType) {
-                    case "comps":
-                        switch(valuationElement) {
-                            case "security":
-                                return "Company";
-                                break;
-                            case "index":
-                                return "Index";
-                                break;
-                        }
-                        break;
-                    case "deals":
-                        switch(valuationElement) {
-                            case "security":
-                                return "Deal";
-                                break;
-                            case "index":
-                                return "Index";
-                                break;
-                        }
-                        break;
-                }
-                break;
-            case "team":
-                switch(valuationType) {
-                    case "comps":
-                        switch(valuationElement) {
-                            case "security":
-                                return "Team";
-                                break;
-                        }
-                        break;
-                }
-                break;
-        }
-    },
+    //headingNameOne: function() {
+    //    var marketType = this.marketType;
+    //    var valuationType = this.valuationType;
+    //    var valuationElement = this.valuationElement;
+    //    switch(marketType) {
+    //        case "company":
+    //            switch(valuationType) {
+    //                case "comps":
+    //                    switch(valuationElement) {
+    //                        case "security":
+    //                            return "Ticker";
+    //                            break;
+    //                        case "index":
+    //                            return '';
+    //                            break;
+    //                    }
+    //                    break;
+    //                case "deals":
+    //                    switch(valuationElement) {
+    //                        case "security":
+    //                            return '';
+    //                            break;
+    //                        case "index":
+    //                            return '';
+    //                            break;
+    //                    }
+    //                    break;
+    //            }
+    //            break;
+    //        case "team":
+    //            switch(valuationType) {
+    //                case "comps":
+    //                    switch(valuationElement) {
+    //                        case "security":
+    //                            return "League";
+    //                            break;
+    //                    }
+    //                    break;
+    //            }
+    //            break;
+    //    }
+    //},
+    //headingNameTwo: function() {
+    //    var marketType = this.marketType;
+    //    var valuationType = this.valuationType;
+    //    var valuationElement = this.valuationElement;
+    //    switch(marketType) {
+    //        case "company":
+    //            switch(valuationType) {
+    //                case "comps":
+    //                    switch(valuationElement) {
+    //                        case "security":
+    //                            return "Company";
+    //                            break;
+    //                        case "index":
+    //                            return "Index";
+    //                            break;
+    //                    }
+    //                    break;
+    //                case "deals":
+    //                    switch(valuationElement) {
+    //                        case "security":
+    //                            return "Deal";
+    //                            break;
+    //                        case "index":
+    //                            return "Index";
+    //                            break;
+    //                    }
+    //                    break;
+    //            }
+    //            break;
+    //        case "team":
+    //            switch(valuationType) {
+    //                case "comps":
+    //                    switch(valuationElement) {
+    //                        case "security":
+    //                            return "Team";
+    //                            break;
+    //                    }
+    //                    break;
+    //            }
+    //            break;
+    //    }
+    //},
     headingValueOne: function() {
         var valuationMetric = this.valuationMetric;
         switch (valuationMetric) {
@@ -861,4 +918,3 @@ Template.ValuationBuildTableData.helpers({
         }
     }
 });
-
