@@ -20,6 +20,9 @@ body {
     width:100%;
     height:0;
 }
+#login-other-options {
+    display: none;
+}
 /*tpl class is used to clearly show template boundaries (for prototyping)*/
 .tpl {
     border: dashed thin blue;
@@ -28,8 +31,12 @@ body {
     text-align: center;
     height: 100%;
     margin:0;
-    color: rgba(255,255,255,1);
+    color: rgba(0, 0, 0, 1);
     background-color: rgba(159, 182, 205, 1);
+}
+#cover-text div {
+    font-size: larger;
+    margin:0 20px 10px 20px;
 }
 .panel, .panel-heading {
     border:0;
@@ -96,7 +103,10 @@ body {
     margin:0;
     box-shadow: 2px 2px;
 }
-#logo:hover {
+.logo-login {
+    cursor: pointer;
+}
+.logo-login:hover {
     background-color: rgba(211, 211, 211, 0.25);
 }
 #tagline {
@@ -177,9 +187,14 @@ body {
 }
 .gallery-block-content {
     width:100%;
-    height:calc(100% - 70px);
     margin-bottom:5px;
     overflow-y: scroll;
+}
+.gallery-items {
+    height:calc(100% - 70px);
+}
+.gallery-items-settings {
+    height:calc(100% - 160px);
 }
 .gallery-block-content .panel-group .panel {
     margin:0;
@@ -311,6 +326,9 @@ body {
 /*GALLERY SETTINGS*/
 #gallery-settings-block > div {
     margin-bottom: 5px;
+}
+#settings-create div {
+    width:50%;
 }
 /*FOOTBALL*/
 #football {
@@ -745,7 +763,6 @@ svg {
     color: rgba(255,255,255,1) !important;
 }
 .navbar-brand {
-    cursor: pointer;
     width: 225px;
     height:100%;
 }

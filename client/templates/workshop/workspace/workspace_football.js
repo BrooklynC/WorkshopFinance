@@ -1,8 +1,10 @@
 Template.WorkspaceFootball.helpers({
     currentFootballId: function () {
         var currentUserId = Meteor.userId();
-        var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
-        return Footballs.findOne({_id:footballActive});
+        if(currentUserId) {
+            var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
+            return Footballs.findOne({_id:footballActive});
+        }
     }
 });
 

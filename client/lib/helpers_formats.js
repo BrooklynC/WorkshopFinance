@@ -269,49 +269,51 @@ Template.registerHelper('resultMultiple', function() {
 //Formats for light and dark theme
 Template.registerHelper('themeStyle', function() {
     var currentUserId = Meteor.userId();
-    var theme = Options.findOne({ownerId:currentUserId}).theme;
-    switch(theme) {
-        case "light":
-            return {
-                main: "main-light",
+    if(currentUserId) {
+        var theme = Options.findOne({ownerId:currentUserId}).theme;
+        switch(theme) {
+            case "light":
+                return {
+                    main: "main-light",
 
-                borderTop: "border-top-light",
-                borderBottom: "border-bottom-light",
-                border: "border-light",
-                borderShaded: "border-shaded-light",
-                borderShadedBottom: "border-shaded-bottom-light",
-                borderCalendar: "border-calendar-light",
+                    borderTop: "border-top-light",
+                    borderBottom: "border-bottom-light",
+                    border: "border-light",
+                    borderShaded: "border-shaded-light",
+                    borderShadedBottom: "border-shaded-bottom-light",
+                    borderCalendar: "border-calendar-light",
 
-                btnDefault: "btn-default-light",
-                formDropdown: "form-dropdown-light",
-                formInput: "form-input-light",
-                formDate: "form-date-light",
+                    btnDefault: "btn-default-light",
+                    formDropdown: "form-dropdown-light",
+                    formInput: "form-input-light",
+                    formDate: "form-date-light",
 
-                calendar: "calendar-light",
+                    calendar: "calendar-light",
 
-                barText: "rgba(0, 0, 0, 1)"
-            };
-            break;
-        case "dark":
-            return {
-                main: "main-dark",
+                    barText: "rgba(0, 0, 0, 1)"
+                };
+                break;
+            case "dark":
+                return {
+                    main: "main-dark",
 
-                borderTop: "border-top-dark",
-                borderBottom: "border-bottom-dark",
-                border: "border-dark",
-                borderShaded: "border-shaded-dark",
-                borderShadedBottom: "border-shaded-bottom-dark",
-                borderCalendar: "border-calendar-dark",
+                    borderTop: "border-top-dark",
+                    borderBottom: "border-bottom-dark",
+                    border: "border-dark",
+                    borderShaded: "border-shaded-dark",
+                    borderShadedBottom: "border-shaded-bottom-dark",
+                    borderCalendar: "border-calendar-dark",
 
-                btnDefault: "btn-default-dark",
-                formDropdown: "form-dropdown-dark",
-                formInput: "form-input-dark",
-                formDate: "form-date-dark",
+                    btnDefault: "btn-default-dark",
+                    formDropdown: "form-dropdown-dark",
+                    formInput: "form-input-dark",
+                    formDate: "form-date-dark",
 
-                calendar: "calendar-dark",
+                    calendar: "calendar-dark",
 
-                barText: "rgba(170, 170, 170, 1)"
-            };
-            break;
+                    barText: "rgba(170, 170, 170, 1)"
+                };
+                break;
+        }
     }
 });

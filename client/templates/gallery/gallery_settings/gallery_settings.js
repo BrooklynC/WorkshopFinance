@@ -76,6 +76,16 @@ Template.GallerySettings.helpers({
                 return "Light Theme";
                 break;
         }
+    },
+    userAdd: function() {
+        var currentUserId = Meteor.userId();
+        var user = Meteor.users.findOne({_id:currentUserId});
+        var username = user.username;
+        if(username == "workshop" || username == "Workshop") {
+            return Template.GalleryUserAdd;
+        } else {
+            return Template.Blank;
+        }
     }
 });
 
