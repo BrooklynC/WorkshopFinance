@@ -34,9 +34,18 @@ body {
     color: rgba(0, 0, 0, 1);
     background-color: rgba(159, 182, 205, 1);
 }
+.cover-space {
+    float: left;
+}
+#cover-text {
+    float: left;
+    border-top: solid rgba(0, 0, 0, 0.5) 1px;
+}
 #cover-text div {
     font-size: larger;
-    margin:0 20px 10px 20px;
+    border-bottom: solid rgba(0, 0, 0, 0.5) 1px;
+    padding-top: 10px;
+    padding-bottom: 10px;
 }
 .panel, .panel-heading {
     border:0;
@@ -942,6 +951,12 @@ and (-webkit-min-device-pixel-ratio: 1) {
         height: 100%;
         top: 50px;
     }
+    #cover-text {
+        width:60%;
+    }
+    .cover-space {
+        width:20%;
+    }
     #workspace-inner-gallery {
         width: 25%;
         margin: auto;
@@ -1036,6 +1051,12 @@ and (min-resolution: 192dpi) {
     #cover {
         height: 100%;
         top: 50px;
+    }
+    #cover-text {
+        width:60%;
+    }
+    .cover-space {
+        width:20%;
     }
     #workspace-inner-gallery {
         width: 25%;
@@ -1132,6 +1153,12 @@ and (orientation : portrait) {
         height:calc(100% - 100px);
         top: 50px;
     }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
+    }
     .footer-login {
         display: none;
     }
@@ -1170,6 +1197,12 @@ and (orientation : landscape) {
     #cover {
         top:50px;
         height:100%;
+    }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
     }
     .footer-login {
         display: none;
@@ -1264,6 +1297,12 @@ and (orientation: portrait) {
         height:calc(100% - 100px);
         top: 50px;
     }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
+    }
     .footer-login {
         display: none;
     }
@@ -1303,6 +1342,12 @@ and (orientation: landscape) {
     #cover {
         top:50px;
         height:100%;
+    }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
     }
     .footer-login {
         display: none;
@@ -1396,6 +1441,12 @@ and (orientation: portrait) {
         height:calc(100% - 100px);
         top: 50px;
     }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
+    }
     .footer-login {
         display: none;
     }
@@ -1434,6 +1485,12 @@ and (orientation : landscape) {
     #cover {
         top:50px;
         height:100%;
+    }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
     }
     .footer-login {
         display: none;
@@ -1526,6 +1583,12 @@ and (orientation : portrait) {
         top:50px;
         height:100%;
     }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
+    }
     .footer-login {
         display: none;
     }
@@ -1601,6 +1664,12 @@ and (orientation : landscape) {
     #cover {
         height: 100%;
         top: 50px;
+    }
+    #cover-text {
+        width:80%;
+    }
+    .cover-space {
+        width:10%;
     }
     #workspace-inner-gallery {
         width: 35%;
