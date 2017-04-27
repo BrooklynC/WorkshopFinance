@@ -1,4 +1,11 @@
 Template.ValuationDate.helpers({
+    isOwner: function() {
+        var currentUserId = Meteor.userId();
+        var ownerId = this.ownerId;
+        if(currentUserId == ownerId) {
+            return true
+        }
+    },
     dateId: function() {
         return this._id;
     }
