@@ -72,6 +72,14 @@ Template.registerHelper('disableBuild',function() {
     }
 });
 
+Template.registerHelper('disableRepeat',function() {
+    var selections = this.valuationSelections;
+    var selectionsCount = selections.length;
+    if(selectionsCount == 0) {
+        return "disabled";
+    }
+});
+
 Template.registerHelper('disableInactive',function() {
     var currentUserId = Meteor.userId();
     var currentFootballId = Options.findOne({ownerId:currentUserId}).footballActive;

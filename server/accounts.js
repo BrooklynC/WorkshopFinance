@@ -8,3 +8,4 @@ ServiceConfiguration.configurations.upsert(
         }
     }
 );
+

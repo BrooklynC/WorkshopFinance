@@ -5,10 +5,13 @@ Template.ValuationControls.events({
         var currentValuationId = this._id;
         var currentFootballId = Template.parentData(1)._id;
 
+        var selections = Valuations.findOne({_id:currentValuationId}).valuationSelections;
+        var selectionsCount = selections.length;
+
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 
-        if(currentUserId == ownerId) {
+        if(currentUserId == ownerId && selectionsCount > 0) {
             Meteor.call('valuationRepeat', currentValuationId, currentFootballId, function(valuationId) {
             });
         }
