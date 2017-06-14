@@ -72,7 +72,7 @@ Template.registerHelper('disableBuild',function() {
     }
 });
 
-Template.registerHelper('disableRepeat',function() {
+Template.registerHelper('disableNoSelections',function() {
     var selections = this.valuationSelections;
     var selectionsCount = selections.length;
     if(selectionsCount == 0) {

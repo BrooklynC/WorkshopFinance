@@ -791,9 +791,6 @@ svg {
 .library-active, .coverage-active, .heading-left-selected, .heading-right-selected {
     background-color: rgba(211, 211, 211, 0.4);
 }
-.valuation-favorite-selected {
-    background-color: rgba(0, 255, 0, 0.4) !important;
-}
 .bar-content div span {
     color: rgba(170, 170, 170, 1);
 }

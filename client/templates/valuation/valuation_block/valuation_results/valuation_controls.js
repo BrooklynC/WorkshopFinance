@@ -45,11 +45,3 @@ Template.ValuationControls.events({
         }
     }
 });
-Template.ValuationControls.helpers({
-    isFavorite: function() {
-        var fav = this.valuationFavorite;
-        if(fav) {
-            return "valuation-favorite-selected";
-        }
-    }
-});
