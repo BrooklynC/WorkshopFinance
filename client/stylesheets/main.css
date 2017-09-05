@@ -250,6 +250,9 @@ body {
     width: calc(50% - 17px);
     padding-right:1px;
 }
+.visual-result-left .target-options {
+    width: calc(200% + 34px);
+}
 .visual-result-right {
     width: calc(50% + 17px);
     padding-left: 1px;
