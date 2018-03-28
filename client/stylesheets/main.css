@@ -357,7 +357,7 @@ body {
 /*FOOTBALL BANNER*/
 #football-banner {
     width:100%;
-    height:35px;
+    height:45px;
     position: absolute;
     top:0;
     display: inline-block;
@@ -370,15 +370,23 @@ body {
     margin-top: 5px;
     margin-bottom:5px;
 }
-#football-target {
-    width: 35%;
+#football-details {
+    width: 50%;
+    height:100%;
 }
 #football-banner-buttons {
-    width: 30%;
+    width: 50%;
+    height: 100%;
 }
-#football-name {
-    width: 35%;
-}
+/*#football-target {*/
+    /*width: 35%;*/
+/*}*/
+/*#football-banner-buttons {*/
+    /*width: 30%;*/
+/*}*/
+/*#football-name {*/
+    /*width: 35%;*/
+/*}*/
 .buttons-mobile {
     float: left;
     margin: 0 2px 0 2px;
@@ -394,7 +402,7 @@ body {
     width:100%;
     height:25px;
     position: absolute;
-    top:45px;
+    top:55px;
 }
 #football-range-inner {
     width: 100%;
@@ -418,9 +426,14 @@ body {
     width:100%;
     height:calc(100% - 75px);
     position: absolute;
-    top: 65px;
 }
-#football-details, #football-field-inner, #football-field-area, #football-field-valuations, .football-field-item {
+.football-content-field {
+    top: 75px;
+}
+.football-content-controls {
+    top: 50px;
+}
+#football-field-inner, #football-field-area, #football-field-valuations, .football-field-item {
     width: 100%;
     height:100%;
 }
@@ -1182,6 +1195,9 @@ and (orientation : portrait) {
     }
     .footer-login {
         display: none;
+    }
+    #workspace {
+        top: 50px;
     }
     #workspace-inner-gallery {
         width: 100%;
