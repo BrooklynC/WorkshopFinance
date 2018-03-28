@@ -126,9 +126,9 @@ Template.FootballTarget.helpers({
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
         if(ownerId == currentUserId) {
-            return "Save as New / Update"
+            return "New / Update"
         } else {
-            return "Save as New"
+            return "New"
         }
     }
 });

@@ -1,0 +1,79 @@
+<!--Controls for active Football Field-->
+<template name="GalleryVisualMobile">
+    <div id="football-mobile-gallery">
+        <div class="{{themeStyle.borderShadedBottom}} mobile-visual" id="visual-result">
+            <div id="visual-result-inner wrapper">
+                <div class="gallery-row wrapper">
+                    {{>FootballTarget}}
+                </div>
+            </div>
+        </div>
+        <div class="left mobile-visual">
+            <div class="wrapper" id="visual-scroll">
+                <div id="visual-scroll-inner">
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
+                            Output Type
+                        </div>
+                        <div class="visual-scroll-right right">
+                            {{>FootballOutput}}
+                        </div>
+                    </div>
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
+                            Scale
+                        </div>
+                        <div class="visual-scroll-right right">
+                            {{>FootballScale}}
+                        </div>
+                    </div>
+                    <div class="gallery-row wrapper">
+                        <div class="visual-scroll-left left">
+                            Re-sort
+                        </div>
+                        <div class="visual-scroll-right right">
+                            {{>FootballSort}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="right mobile-visual">
+            <div class="gallery-row wrapper">
+                <div class="visual-scroll-left left">
+                    Cushion
+                </div>
+                <div class="visual-scroll-right right">
+                    {{>FootballCushion}}
+                </div>
+            </div>
+            <div class="gallery-row wrapper">
+                <div class="visual-scroll-left left">
+                    Current Trading
+                </div>
+                <div class="visual-scroll-right right">
+                    {{>FootballCurrentToggle}}
+                </div>
+            </div>
+            <div class="gallery-row wrapper">
+                <div class="visual-scroll-left left">
+                    52-Week High/Low
+                </div>
+                <div class="visual-scroll-right right">
+                    {{>FootballTradingToggle}}
+                </div>
+            </div>
+            <div class="wrapper" id="visual-actions">
+                <div class="wrapper" id="visual-actions-inner">
+                    <div class="gallery-row wrapper">
+                        {{>FootballActions}}
+                    </div>
+                    <div class="gallery-row wrapper">
+                        {{>FootballActionsOption}}
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</template>

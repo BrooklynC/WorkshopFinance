@@ -1,0 +1,2 @@
+Template.FootballOpenLibrary.events({
+});
