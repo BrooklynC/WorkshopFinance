@@ -26,11 +26,8 @@ getBuildMultipleAll = function(footballId, valuationId) {
                         customValue: val.customValue
                     };
                     break;
-                case "team":
-                    return {
-                        evRevFy0: val.evRevFy0,
-                        evAttendanceFy0: val.evAttendanceFy0
-                    };
+                case "marketTypeB":
+                    //
                     break;
             }
         }
@@ -144,21 +141,8 @@ getBuildValueAll = function(footballId, valuationId) {
                                 break;
                         }
                         break;
-                    case "team":
-                        switch(target.targetData) {
-                            case "feed":
-                                var feedTeam = FeedTeams.findOne({_id: target.targetId});
-
-                                var feedTeamData = {
-                                    revenueFy0: feedTeam.financial.fy0.revenue,
-                                    attendanceFy0: feedTeam.financial.fy0.attendance
-                                };
-                                return {
-                                    evEvRevFy0: feedTeamData.revenueFy0 * multiple.evRevFy0,
-                                    evEvAttendanceFy0: feedTeamData.attendanceFy0 * multiple.evAttendanceFy0
-                                };
-                                break;
-                        }
+                    case "marketTypeB":
+                        //
                         break;
                 }
             }
@@ -234,15 +218,8 @@ getResultAll = function(footballId, valuationId){
                                     break;
                             }
                             break;
-                        case "team":
-                            switch (valuationType) {
-                                case "comps":
-                                    return {
-                                        evRevFy0: multiple.evRevFy0,
-                                        evAttendanceFy0: multiple.evAttendanceFy0
-                                    };
-                                    break;
-                            }
+                        case "marketTypeB":
+                            //
                             break;
                     }
                 } else {
@@ -855,49 +832,8 @@ getResultAll = function(footballId, valuationId){
                                     break;
                             }
                             break;
-                        case "team":
-                            switch (targetData) {
-                                case "feed":
-                                    var feedTeam = FeedTeams.findOne({_id: targetId});
-                                    var feedTeamData = {
-                                        revenueFy0: feedTeam.financial.fy0.revenue,
-                                        attendanceFy0: feedTeam.financial.fy0.attendance
-                                    };
-                                    switch (valuationType) {
-                                        case "comps":
-                                            return {
-                                                evRev: {
-                                                    fy0: {
-                                                        ev: buildValue.evEvRevFy0,
-                                                        multiple: {
-                                                            evRev: {
-                                                                fy0: buildValue.evEvRevFy0 / feedTeamData.revenueFy0
-                                                            },
-                                                            evAttendance: {
-                                                                fy0: buildValue.evEvRevFy0 / feedTeamData.attendanceFy0
-                                                            }
-                                                        }
-                                                    }
-                                                },
-                                                evAttendance: {
-                                                    fy0: {
-                                                        ev: buildValue.evEvAttendanceFy0,
-                                                        multiple: {
-                                                            evRev: {
-                                                                fy0: buildValue.evEvAttendanceFy0 / feedTeamData.revenueFy0
-                                                            },
-                                                            evAttendance: {
-                                                                fy0: buildValue.evEvAttendanceFy0 / feedTeamData.attendanceFy0
-
-                                                            }
-                                                        }
-                                                    }
-                                                }
-                                            };
-                                            break;
-                                    }
-                                    break;
-                            }
+                        case "marketTypeB":
+                            //
                             break;
                     }
                 }

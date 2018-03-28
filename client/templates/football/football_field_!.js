@@ -16,7 +16,6 @@ Template.FootballField.onCreated (function () {
         self.subscribe('feedCompaniesIndicesAll');
         self.subscribe('feedDealsAll');
         self.subscribe('feedDealsIndicesAll');
-        self.subscribe('feedTeamsAll');
         self.subscribe('modelsUser');
         self.subscribe('modelsShared');
         self.subscribe('customsUser');

@@ -23,20 +23,6 @@ Meteor.publish('galleryItemFootballsTargetCompany', function(footballId) {
         }});
     }
 });
-Meteor.publish('galleryItemFootballsTargetTeam', function(footballId) {
-    check(footballId, String);
-    var football = Footballs.findOne({_id:footballId});
-    if(football) {
-        var targetId = football.footballTarget.targetId;
-        return FeedTeams.find({_id: targetId}, {
-            fields: {
-                _id: 1,
-                teamName: 1,
-                ticker: 1
-            }
-        });
-    }
-});
 
 //COVERAGE - VALUATIONS
 Meteor.publish('galleryValuations', function() {

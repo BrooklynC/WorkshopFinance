@@ -39,15 +39,8 @@ Template.FootballBanner.helpers({
                 case "company":
                     return '';
                     break;
-                case "team":
-                    switch (target.targetData) {
-                        case "feed":
-                            var feedTeam = FeedTeams.findOne({_id: target.targetId});
-                            return {
-                                targetCity: feedTeam.teamCity
-                            };
-                            break;
-                    }
+                case "marketTypeB":
+                    //
                     break;
             }
         }
@@ -79,16 +72,8 @@ Template.FootballBanner.helpers({
                             break;
                     }
                     break;
-                case "team":
-                    switch (target.targetData) {
-                        case "feed":
-                            var feedTeam = FeedTeams.findOne({_id: target.targetId});
-                            return {
-                                targetName: feedTeam.teamName,
-                                targetIden: feedTeam.leagueAbbrev
-                            };
-                            break;
-                    }
+                case "marketTypeB":
+                    //
                     break;
             }
         } else {

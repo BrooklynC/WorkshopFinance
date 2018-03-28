@@ -247,33 +247,8 @@ getValAll = function(footballId, valuationId) {
                             break;
                     }
                     break;
-                case "team":
-                    switch(valuationType) {
-                        case "comps":
-                            var evRevFy0 = valuation.multiples.evRevenueFy0;
-                            var evAttendanceFy0 = valuation.multiples.evAttendanceFy0;
-
-                            return {
-                                average: {
-                                    evRevFy0: getAverageVal(evRevFy0),
-                                    evAttendanceFy0: getAverageVal(evAttendanceFy0)
-                                },
-                                median: {
-                                    evRevFy0: getMedianVal(evRevFy0),
-                                    evAttendanceFy0: getMedianVal(evAttendanceFy0)
-                                },
-                                high: {
-                                    evRevFy0: getHighVal(evRevFy0),
-                                    evAttendanceFy0: getHighVal(evAttendanceFy0)
-                                },
-                                low: {
-                                    evRevFy0: getLowVal(evRevFy0),
-                                    evAttendanceFy0: getLowVal(evAttendanceFy0)
-                                }
-                            };
-                            break;
-                    }
-
+                case "marketTypeB":
+                    //
             }
         }
     }
@@ -486,23 +461,8 @@ getBuildMultiple = function(footballId, valuationId) {
                                 break;
                         }
                         break;
-                    case "team":
-                        switch (valuationMetric) {
-                            case "EV/Revenue":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return val.evRevFy0;
-                                        break;
-                                }
-                                break;
-                            case "EV/Attendance":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return val.evAttendanceFy0;
-                                        break;
-                                }
-                                break;
-                        }
+                    case "marketTypeB":
+                        //
                         break;
                 }
             }
@@ -647,29 +607,8 @@ getBuildFinancial = function(footballId, valuationId) {
                                     break;
                             }
                             break;
-                        case "team":
-                            var feedTeam = FeedTeams.findOne({_id: target.targetId});
-
-                            var feedTeamData = {
-                                revenueFy0: feedTeam.financial.fy0.revenue,
-                                attendanceFy0: feedTeam.financial.fy0.attendance
-                            };
-                            switch (valuationMetric) {
-                                case "EV/Revenue":
-                                    switch (valuationPeriod) {
-                                        case "FY0":
-                                            return feedTeamData.revenueFy0;
-                                            break;
-                                    }
-                                    break;
-                                case "EV/Attendance":
-                                    switch (valuationPeriod) {
-                                        case "FY0":
-                                            return feedTeamData.attendanceFy0;
-                                            break;
-                                    }
-                                    break;
-                            }
+                        case "marketTypeB":
+                            //
                             break;
                     }
                 }
@@ -1236,72 +1175,8 @@ getResultValue = function(footballId, valuationId) {
                                 }
                             }
                             break;
-                        case "team":
-                            var feedTeam = FeedTeams.findOne({_id: targetId});
-                            var feedTeamData = {
-                                revenueFy0: feedTeam.financial.fy0.revenue,
-                                attendanceFy0: feedTeam.financial.fy0.attendance
-                            };
-                            switch (valuationMetric) {
-                                case "EV/Revenue":
-                                    switch (valuationPeriod) {
-                                        case "FY0":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "FY0":
-                                                                    return buildValue / feedTeamData.revenueFy0;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/Attendance":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "FY0":
-                                                                    return buildValue / feedTeamData.attendanceFy0;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                    break;
-                                case "EV/Attendance":
-                                    switch (valuationPeriod) {
-                                        case "FY0":
-                                            switch (footballOutput) {
-                                                case "Enterprise Value":
-                                                    return buildValue;
-                                                    break;
-                                                case "Multiple":
-                                                    switch (valuationOutput) {
-                                                        case "EV/Revenue":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "FY0":
-                                                                    return buildValue / feedTeamData.revenueFy0;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                        case "EV/Attendance":
-                                                            switch (valuationOutputPeriod) {
-                                                                case "FY0":
-                                                                    return buildValue / feedTeamData.attendanceFy0;
-                                                                    break;
-                                                            }
-                                                            break;
-                                                    }
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                    break;
-                            }
+                        case "marketTypeB":
+                            //
                             break;
                     }
                 }
@@ -1368,22 +1243,3 @@ getValuationText = function(footballId, valuationId) {
         valuationHighText: valuationHigh / scaleSwitch
     }
 };
-
-//Toggle calc between average, median, high and low
-Template.registerHelper('calc',function(){
-    var valuationCalc = this.valuationCalc;
-    switch(valuationCalc) {
-        case "average":
-            return "Average";
-            break;
-        case "median":
-            return "Median";
-            break;
-        case "high":
-            return "High";
-            break;
-        case "low":
-            return "Low";
-            break;
-    }
-});

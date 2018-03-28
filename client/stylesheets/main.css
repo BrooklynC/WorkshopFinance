@@ -1607,15 +1607,10 @@ and (orientation : portrait) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 400px;
     }
-    .valuation-block-mobile {
+    .valuation-block-mobile, .block-mobile {
         display: none;
         height: 0;
         width: 0;
-    }
-    .block-mobile {
-        display: none;
-        height:0;
-        width:0;
     }
     .valuation-block-results {
         width: 30%;
@@ -1692,15 +1687,10 @@ and (orientation : landscape) {
     .valuation-inner .in, .valuation-inner .in .valuation-block-inner {
         min-height: 400px;
     }
-    .valuation-block-mobile {
+    .valuation-block-mobile, .block-mobile {
         display: none;
         height: 0;
         width: 0;
-    }
-    .block-mobile {
-        display: none;
-        height:0;
-        width:0;
     }
     .valuation-block-results {
         width: 30%;

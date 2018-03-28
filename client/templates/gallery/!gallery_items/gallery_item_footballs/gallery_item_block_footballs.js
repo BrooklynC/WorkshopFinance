@@ -17,6 +17,5 @@ Template.GalleryItemBlockFootballs.onCreated (function () {
     self.autorun(function() {
         var footballId = Template.parentData(0)._id;
         self.subscribe('galleryItemFootballsTargetCompany', footballId);
-        self.subscribe('galleryItemFootballsTargetTeam', footballId);
     });
 });

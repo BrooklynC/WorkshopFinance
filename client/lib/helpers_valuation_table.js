@@ -26,12 +26,6 @@ Template.registerHelper('build', function() {
                             multiple: "x"
                         };
                         break;
-                    case "EV/Attendance":
-                        return {
-                            currency: "",
-                            multiple: "x"
-                        };
-                        break;
                     case "P/E":
                         return {
                             currency: "",
@@ -49,12 +43,6 @@ Template.registerHelper('build', function() {
                         };
                         break;
                     case "EV/EBITDA":
-                        return {
-                            currency: "",
-                            multiple: "x"
-                        };
-                        break;
-                    case "EV/Attendance":
                         return {
                             currency: "",
                             multiple: "x"
@@ -78,12 +66,6 @@ Template.registerHelper('build', function() {
                             };
                             break;
                         case "EV/EBITDA":
-                            return {
-                                currency: "",
-                                multiple: "x"
-                            };
-                            break;
-                        case "EV/Attendance":
                             return {
                                 currency: "",
                                 multiple: "x"
@@ -134,18 +116,6 @@ getScale = function(footballId) {
     switch(scale) {
         case "millions":
             return 1;
-            break;
-        case "billions":
-            return 1000;
-    }
-};
-
-//Checks scale when Valuation Metric is EV/Attendance for a Team
-getAttend = function(footballId) {
-    var scale = Footballs.findOne({_id:footballId}).footballScale;
-    switch(scale) {
-        case "millions":
-            return 1000000;
             break;
         case "billions":
             return 1000;

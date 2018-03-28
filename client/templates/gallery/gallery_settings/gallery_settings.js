@@ -22,8 +22,8 @@ Template.GallerySettings.helpers({
     indicesCreate: function() {
         var username = Meteor.user().username;
         if (username == "workshop" || username == "Workshop") {
-            var teams = FeedTeams.find({});
-            if(teams.count() === 0) {
+            var dealsIndices = FeedDealsIndices.find({});
+            if(dealsIndices.count() === 0) {
                 return Template.GalleryDataAdd;
             } else {
                 return Template.Blank;

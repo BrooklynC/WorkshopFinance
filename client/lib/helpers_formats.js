@@ -10,12 +10,6 @@ Template.registerHelper('fixedTwo', function(a) {
     return a.toFixed(2);
 });
 
-//Format with no decimals for attendance figures
-Template.registerHelper('simpleAttendanceFormat', function(a) {
-    var b = a * 1000000;
-    return numeral(b).format('0,0');
-});
-
 //Format with $ and one decimal for financial statement figures
 Template.registerHelper('financialFormat', function(a) {
     return numeral(a).format('$0,0.0');
@@ -79,13 +73,6 @@ Template.registerHelper('divideSelect', function(a, b) {
             if(result2 >= 0 || result2 <= 0) {
                 var r2 = result2.toFixed(1);
                 return numeral(r2).format('0,0.0');
-            }
-            break;
-        case "EV/Attendance":
-            var result3 = a / b * 1000000;
-            if(result3 >= 0 || result3 <= 0) {
-                var r3 = result3.toFixed(1);
-                return numeral(r3).format('0,0.0');
             }
             break;
         case "P/E":
@@ -262,6 +249,25 @@ Template.registerHelper('resultMultiple', function() {
                     break;
             }
         }
+    }
+});
+
+//Toggle calc between average, median, high and low
+Template.registerHelper('calc',function(){
+    var valuationCalc = this.valuationCalc;
+    switch(valuationCalc) {
+        case "average":
+            return "Average";
+            break;
+        case "median":
+            return "Median";
+            break;
+        case "high":
+            return "High";
+            break;
+        case "low":
+            return "Low";
+            break;
     }
 });
 

@@ -93,26 +93,8 @@ Template.ValuationBuildDataAuto.helpers({
                         break;
                 }
                 break;
-            case "team":
-                switch(valuationType) {
-                    case "comps":
-                        switch(valuationElement) {
-                            case "security":
-                                return {
-                                    position: "bottom",
-                                    limit: 5,
-                                    rules: [
-                                        {
-                                            token: "",
-                                            collection: FeedTeams,
-                                            field: "teamName",
-                                            template: Template.GalleryPillTeam
-                                        }
-                                    ]
-                                };
-                                break;
-                        }
-                }
+            case "marketTypeB":
+                //
                 break;
         }
     },

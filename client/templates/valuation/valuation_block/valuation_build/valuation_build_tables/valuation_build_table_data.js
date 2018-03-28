@@ -54,16 +54,8 @@ Template.ValuationBuildTableData.helpers({
                                 break;
                     }
                     break;
-                case "team":
-                    switch (valuationType) {
-                        case "comps":
-                            switch (valuationElement) {
-                                case "security":
-                                    return FeedTeams.find({_id: {$in: valuationSelections}});
-                                    break;
-                            }
-                            break;
-                    }
+                case "marketTypeB":
+                    //
                     break;
                 }
             }
@@ -187,106 +179,11 @@ Template.ValuationBuildTableData.helpers({
                         break;
                 }
                 break;
-            case "team":
-                switch(valuationType) {
-                    case "comps":
-                        switch(valuationElement) {
-                            case "security":
-                                return {
-                                    one: "League",
-                                    two: "Team"
-                                };
-                                break;
-                        }
-                        break;
-                }
+            case "marketTypeB":
+                //
                 break;
         }
     },
-    //headingNameOne: function() {
-    //    var marketType = this.marketType;
-    //    var valuationType = this.valuationType;
-    //    var valuationElement = this.valuationElement;
-    //    switch(marketType) {
-    //        case "company":
-    //            switch(valuationType) {
-    //                case "comps":
-    //                    switch(valuationElement) {
-    //                        case "security":
-    //                            return "Ticker";
-    //                            break;
-    //                        case "index":
-    //                            return '';
-    //                            break;
-    //                    }
-    //                    break;
-    //                case "deals":
-    //                    switch(valuationElement) {
-    //                        case "security":
-    //                            return '';
-    //                            break;
-    //                        case "index":
-    //                            return '';
-    //                            break;
-    //                    }
-    //                    break;
-    //            }
-    //            break;
-    //        case "team":
-    //            switch(valuationType) {
-    //                case "comps":
-    //                    switch(valuationElement) {
-    //                        case "security":
-    //                            return "League";
-    //                            break;
-    //                    }
-    //                    break;
-    //            }
-    //            break;
-    //    }
-    //},
-    //headingNameTwo: function() {
-    //    var marketType = this.marketType;
-    //    var valuationType = this.valuationType;
-    //    var valuationElement = this.valuationElement;
-    //    switch(marketType) {
-    //        case "company":
-    //            switch(valuationType) {
-    //                case "comps":
-    //                    switch(valuationElement) {
-    //                        case "security":
-    //                            return "Company";
-    //                            break;
-    //                        case "index":
-    //                            return "Index";
-    //                            break;
-    //                    }
-    //                    break;
-    //                case "deals":
-    //                    switch(valuationElement) {
-    //                        case "security":
-    //                            return "Deal";
-    //                            break;
-    //                        case "index":
-    //                            return "Index";
-    //                            break;
-    //                    }
-    //                    break;
-    //            }
-    //            break;
-    //        case "team":
-    //            switch(valuationType) {
-    //                case "comps":
-    //                    switch(valuationElement) {
-    //                        case "security":
-    //                            return "Team";
-    //                            break;
-    //                    }
-    //                    break;
-    //            }
-    //            break;
-    //    }
-    //},
     headingValueOne: function() {
         var valuationMetric = this.valuationMetric;
         switch (valuationMetric) {
@@ -294,9 +191,6 @@ Template.ValuationBuildTableData.helpers({
                 return "EV";
                 break;
             case "EV/EBITDA":
-                return "EV";
-                break;
-            case "EV/Attendance":
                 return "EV";
                 break;
             case "P/E":
@@ -312,9 +206,6 @@ Template.ValuationBuildTableData.helpers({
                 switch (valuationPeriod) {
                     case "LTM":
                         return "Revenue (LTM)";
-                        break;
-                    case "FY0":
-                        return "Revenue (FY0)";
                         break;
                     case "FY1":
                         return "Revenue (FY1)";
@@ -334,13 +225,6 @@ Template.ValuationBuildTableData.helpers({
                         break;
                     case "FY2":
                         return "EBITDA (FY2)";
-                        break;
-                }
-                break;
-            case "EV/Attendance":
-                switch (valuationPeriod) {
-                    case "FY0":
-                        return "Attendance (FY0)";
                         break;
                 }
                 break;
@@ -371,9 +255,6 @@ Template.ValuationBuildTableData.helpers({
                     case "EV/EBITDA":
                         return numeral(a).format('$0,0.0');
                         break;
-                    case "EV/Attendance":
-                        return numeral(a).format('$0,0.0');
-                        break;
                     case "P/E":
                         return numeral(a).format('$0,0.00');
                         break;
@@ -392,9 +273,6 @@ Template.ValuationBuildTableData.helpers({
                         break;
                     case "EV/EBITDA":
                         return numeral(a).format('$0,0.0');
-                        break;
-                    case "EV/Attendance":
-                        return numeral(a).format('0,0');
                         break;
                     case "P/E":
                         return numeral(a).format('$0,0.00');
@@ -417,9 +295,6 @@ Template.ValuationBuildTableData.helpers({
                             return numeral(a).format('$0,0.0');
                             break;
                         case "EV/EBITDA":
-                            return numeral(a).format('$0,0.0');
-                            break;
-                        case "EV/Attendance":
                             return numeral(a).format('$0,0.0');
                             break;
                         case "P/E":
@@ -446,9 +321,6 @@ Template.ValuationBuildTableData.helpers({
                         case "EV/EBITDA":
                             return numeral(a).format('$0,0.0');
                             break;
-                        case "EV/Attendance":
-                            return numeral(a).format('0,0');
-                            break;
                         case "P/E":
                             return numeral(a).format('$0,0.00');
                             break;
@@ -471,12 +343,6 @@ Template.ValuationBuildTableData.helpers({
                     multiple: "x"
                 };
                 break;
-            case "EV/Attendance":
-                return {
-                    currency: "",
-                    multiple: "x"
-                };
-                break;
             case "P/E":
                 return {
                     currency: "",
@@ -494,11 +360,8 @@ Template.ValuationBuildTableData.helpers({
                     name: this.companyName
                 };
                 break;
-            case "team":
-                return {
-                    iden: this.leagueAbbrev,
-                    name: this.teamName
-                };
+            case "marketTypeB":
+                //
                 break;
         }
     },
@@ -508,8 +371,8 @@ Template.ValuationBuildTableData.helpers({
             case "company":
                 return '';
                 break;
-            case "team":
-                return this.teamCity;
+            case "marketTypeB":
+                //
                 break;
         }
     },
@@ -569,24 +432,8 @@ Template.ValuationBuildTableData.helpers({
                         break;
                 }
                 break;
-            case "team":
-                switch(valuationType) {
-                    case "comps":
-                        switch(valuationElement) {
-                            case "security":
-                                var evTeam = this.capTable.enterpriseValue;
-                                switch (valuationMetric) {
-                                    case "EV/Revenue":
-                                        return evTeam / scaleAdjust;
-                                        break;
-                                    case "EV/Attendance":
-                                        return evTeam / scaleAdjust;
-                                        break;
-                                }
-                                break;
-                        }
-                        break;
-                }
+            case "marketTypeB":
+                //
                 break;
         }
     },
@@ -597,7 +444,6 @@ Template.ValuationBuildTableData.helpers({
         var valuationPeriod = Template.parentData(1).valuationPeriod;
         var valuationElement = Template.parentData(1).valuationElement;
         var scaleAdjust = getScale(footballId);
-        var attendAdjust = getAttend(footballId);
 
         switch(marketType) {
             case "company":
@@ -652,27 +498,8 @@ Template.ValuationBuildTableData.helpers({
                         break;
                 }
                 break;
-            case "team":
-                switch (valuationElement) {
-                    case "security":
-                        switch (valuationMetric) {
-                            case "EV/Revenue":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return this.financial.fy0.revenue / scaleAdjust;
-                                        break;
-                                }
-                                break;
-                            case "EV/Attendance":
-                                switch (valuationPeriod) {
-                                    case "FY0":
-                                        return this.financial.fy0.attendance * attendAdjust;
-                                        break;
-                                }
-                                break;
-                        }
-                        break;
-                }
+            case "marketTypeB":
+                //
                 break;
         }
     },
@@ -762,16 +589,6 @@ Template.ValuationBuildTableData.helpers({
                             break;
                     }
                     break;
-                case "EV/Attendance":
-                    switch (scale) {
-                        case "millions":
-                            return value;
-                            break;
-                        case "billions":
-                            return value / 1000;
-                            break;
-                    }
-                    break;
                 case "P/E":
                     return value;
                     break;
@@ -790,7 +607,6 @@ Template.ValuationBuildTableData.helpers({
             var valuationMetric = this.valuationMetric;
             var valuationPeriod = this.valuationPeriod;
             var scaleAdjust = getScale(footballId);
-            var attendAdjust = getAttend(footballId);
             switch(marketType) {
                 case "company":
                     switch(targetType) {
@@ -887,32 +703,8 @@ Template.ValuationBuildTableData.helpers({
                             }
                     }
                     break;
-                case "team":
-                    switch(targetType) {
-                        case "team":
-                            switch(targetData) {
-                                case "feed":
-                                    var feedTeam = FeedTeams.findOne({_id:targetId});
-                                    switch (valuationMetric) {
-                                        case "EV/Revenue":
-                                            switch (valuationPeriod) {
-                                                case "FY0":
-                                                    return feedTeam.financial.fy0.revenue / scaleAdjust;
-                                                    break;
-                                            }
-                                            break;
-                                        case "EV/Attendance":
-                                            switch (valuationPeriod) {
-                                                case "FY0":
-                                                    return feedTeam.financial.fy0.attendance * attendAdjust;
-                                                    break;
-                                            }
-                                            break;
-                                    }
-                                    break;
-                            }
-                            break;
-                    }
+                case "marketTypeB":
+                    //
                     break;
             }
         }

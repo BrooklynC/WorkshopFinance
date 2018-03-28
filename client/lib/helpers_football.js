@@ -31,16 +31,8 @@ getTarget = function(currentFootballId, targetSelection) {
                             };
                     }
                     break;
-                case "team":
-                    switch(targetData) {
-                        case "feed":
-                            var feedTeamId = FeedTeams.findOne({ticker:targetSelection})._id;
-                            return {
-                                targetId: feedTeamId,
-                                targetType: "team",
-                                targetData: "feed"
-                            };
-                    }
+                case "marketTypeB":
+                    //
                     break;
             }
         }

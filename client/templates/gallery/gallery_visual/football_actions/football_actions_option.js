@@ -71,19 +71,8 @@ Template.FootballActionsOption.helpers({
                             ]
                         };
                         break;
-                    case "team":
-                        return {
-                            position: "bottom",
-                            limit: 5,
-                            rules: [
-                                {
-                                    token: "",
-                                    collection: FeedTeams,
-                                    field: "teamName",
-                                    template: Template.GalleryPillTeam
-                                }
-                            ]
-                        };
+                    case "marketTypeB":
+                        //
                         break;
                 }
                 break;

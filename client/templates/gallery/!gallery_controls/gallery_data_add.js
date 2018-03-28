@@ -22,12 +22,6 @@ Template.GalleryDataAdd.events({
                     if (indicesDeals.count() === 0) {
                         Meteor.call('addIndicesDeals', function (error, result) {
                         });
-                    } else {
-                        var teams = FeedTeams.find({});
-                        if(teams.count() === 0) {
-                            Meteor.call('addTeams', function (error, result) {
-                            });
-                        }
                     }
                 }
             }
@@ -52,13 +46,6 @@ Template.GalleryDataAdd.helpers({
                     var indicesDeals = FeedDealsIndices.find({});
                     if (indicesDeals.count() === 0) {
                         return "Deals Indices";
-                    } else {
-                        var teams = FeedTeams.find({});
-                        if(teams.count() === 0) {
-                            return "Teams";
-                        } else {
-                            return "";
-                        }
                     }
                 }
             }

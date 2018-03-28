@@ -30,10 +30,6 @@ Meteor.publish('feedDealsIndicesAll', function() {
     return FeedDealsIndices.find({});
 });
 
-Meteor.publish('feedTeamsAll', function() {
-    return FeedTeams.find({});
-});
-
 Meteor.publish('modelsUser', function() {
     var currentUserId = this.userId;
     return Models.find({ownerId:currentUserId});
