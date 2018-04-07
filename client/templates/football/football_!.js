@@ -16,7 +16,7 @@ Template.Football.helpers({
                 return Template.FootballField;
                 break;
             case "controls":
-                return Template.GalleryVisualMobile;
+                return Template.FootballGallery;
                 break;
         }
     },

@@ -378,15 +378,6 @@ body {
     width: 50%;
     height: 100%;
 }
-/*#football-target {*/
-    /*width: 35%;*/
-/*}*/
-/*#football-banner-buttons {*/
-    /*width: 30%;*/
-/*}*/
-/*#football-name {*/
-    /*width: 35%;*/
-/*}*/
 .buttons-mobile {
     float: left;
     margin: 0 2px 0 2px;
@@ -476,6 +467,21 @@ body {
 }
 #football-area-current {
     z-index: 1000;
+}
+/*FOOTBALL GALLERY*/
+#gallery-actions-inner > div > div {
+    width:calc(100% / 4);
+}
+#gallery-actions-inner > div > div > button {
+    width: 100%;
+}
+#football-gallery-buttons {
+    padding-bottom: 10px;
+    height:40px;
+}
+#football-gallery-buttons div {
+    width:25%;
+    padding-right:5px;
 }
 /*VALUATIONS*/
 .valuation {

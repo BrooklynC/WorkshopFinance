@@ -9,6 +9,8 @@ Template.FootballValuationAddMobile.events({
         var ownerId = this.ownerId;
         var currentUserId = Meteor.userId();
 
+        Session.set("footballContent", "field");
+
         if(currentUserId == ownerId) {
             var existingValuations = this.footballValuations;
             var existingValuationsEmpty = Valuations.findOne({
