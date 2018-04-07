@@ -38,7 +38,7 @@ Template.FootballBanner.helpers({
             case "coverage":
                 return Template.FootballBannerLogo;
                 break;
-            case "library":
+            case "profile":
                 return Template.FootballBannerLogo;
                 break;
         }

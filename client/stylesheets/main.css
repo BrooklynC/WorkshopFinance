@@ -387,7 +387,7 @@ body {
     margin: 0 2px 0 2px;
 }
 .buttons-mobile #new-football {
-    padding: 0 0 0 2px;
+    padding: 0 3px 0 3px;
 }
 #football-mobile-gallery {
     top: 5px;
@@ -489,6 +489,19 @@ body {
 #football-gallery-buttons div {
     width:25%;
     padding-right:5px;
+}
+/*FOOTBALL PROFILE*/
+#profile-content {
+    width:100%;
+    margin-top: 10px;
+}
+#profile-left {
+    width:50%;
+    padding-right: 3px;
+}
+#profile-right {
+    width:50%;
+    padding-left: 3px;
 }
 /*VALUATIONS*/
 .valuation {
