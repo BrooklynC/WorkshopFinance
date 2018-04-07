@@ -137,14 +137,6 @@ Template.CoverageItem.helpers({
                             return "is-notselected-dark"
                         }
                 }
-                //switch (theme) {
-                //    case "light":
-                //        return this._id === Template.instance().state.get('isSelectedId') ? 'is-selected-light' : 'is-notselected-light';
-                //        break;
-                //    case "dark":
-                //        return this._id === Template.instance().state.get('isSelectedId') ? 'is-selected-dark' : 'is-notselected-dark';
-                //        break;
-                //}
                 break;
             case "Targets":
                 return "";

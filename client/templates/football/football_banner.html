@@ -2,29 +2,18 @@
 <template name="FootballBanner">
     <div class="wrapper {{themeStyle.borderBottom}}" id="football-banner-inner">
         <div class="wrapper left" id="football-details">
-            <div id="football-target">
-                <h5>
-                    {{targetDetail.targetName}} <small><em class="ticker-text">{{paren.open}}{{targetDetail.targetIden}}{{paren.close}}</em></small>
-                </h5>
+            <div id="football-details-desktop">
+                {{> FootballBannerDetails}}
             </div>
-            <div class="wrapper" id="football-name">
-                {{#if showName}}
-                    <div id="football-name-value">
-                        <h5><em>{{footballName}}</em></h5>
-                    </div>
-                {{else}}
-                    <div>
-                        <form id="football-name-form">
-                            <div class="input-group-sm left">
-                                <input name="football-name-edit" id="football-name-edit" autocomplete="off" type="text" value="{{footballName}}" placeholder="{{footballName}}" class="form-control"/>
-                            </div>
-                        </form>
-                    </div>
-                {{/if}}
+            <div id="football-details-mobile">
+                {{> footballDetails}}
             </div>
         </div>
-        <div class="right wrapper" id="football-banner-buttons">
+        <div class="left wrapper" id="football-banner-buttons">
             {{>FootballBannerButtons}}
+        </div>
+        <div class="left wrapper" id="football-banner-workshop">
+            {{>FootballBannerWorkshop}}
         </div>
     </div>
 </template>

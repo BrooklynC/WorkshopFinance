@@ -1,13 +1,13 @@
 <template name="FootballGallery">
     <div id="gallery-actions-inner">
         <div class="wrapper gallery-row {{themeStyle.borderBottom}}" id="football-gallery-buttons">
-            <div class="left button-row-one wrapper">
-                <button type="button" class="btn btn-info btn-sm btn-controls">
+            <div class="left button-row-one wrapper {{controlsSelected}}">
+                <button type="button" class="btn btn-sm btn-controls">
                     Controls
                 </button>
             </div>
-            <div class="left button-row-one wrapper">
-                <button type="button" class="btn btn-info btn-sm btn-library">
+            <div class="left button-row-one wrapper {{librarySelected}}">
+                <button type="button" class="btn btn-sm btn-library">
                     Library
                 </button>
             </div>
