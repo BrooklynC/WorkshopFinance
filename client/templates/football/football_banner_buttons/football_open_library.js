@@ -1,17 +1,17 @@
-Template.FootballOpenField.events({
-    'click .open-field': function(e) {
+Template.FootballOpenLibrary.events({
+    'click .open-library': function(e) {
         e.preventDefault();
 
-        Session.set("footballContent", "field")
+        Session.set("footballContent", "library")
     }
 });
 
-Template.FootballOpenField.helpers({
-    fieldSelected: function() {
+Template.FootballOpenLibrary.helpers({
+    librarySelected: function() {
         var currentUserId = Meteor.userId();
         var theme = Options.findOne({ownerId: currentUserId}).theme;
         var footballContent = Session.get('footballContent');
-        if(footballContent == "field") {
+        if(footballContent == "library") {
             switch (theme) {
                 case "light":
                     return "is-selected-light";

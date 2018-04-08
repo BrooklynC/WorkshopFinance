@@ -15,8 +15,11 @@ Template.Football.helpers({
             case "field":
                 return Template.FootballField;
                 break;
-            case "gallery":
-                return Template.FootballGallery;
+            case "controls":
+                return Template.FootballControls;
+                break;
+            case "library":
+                return Template.FootballLibrary;
                 break;
             case "coverage":
                 return Template.FootballCoverage;

@@ -32,7 +32,10 @@ Template.FootballBanner.helpers({
             case "field":
                 return Template.FootballBannerDetails;
                 break;
-            case "gallery":
+            case "controls":
+                return Template.FootballBannerDetails;
+                break;
+            case "library":
                 return Template.FootballBannerDetails;
                 break;
             case "coverage":

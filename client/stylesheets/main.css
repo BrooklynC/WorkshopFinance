@@ -389,7 +389,7 @@ body {
 .buttons-mobile #new-football {
     padding: 0 3px 0 3px;
 }
-#football-mobile-gallery {
+#football-mobile-controls {
     top: 5px;
 }
 .mobile-visual {
@@ -482,14 +482,6 @@ body {
 #gallery-actions-inner > div > div > button {
     width: 100%;
 }
-#football-gallery-buttons {
-    padding-bottom: 10px;
-    height:40px;
-}
-#football-gallery-buttons div {
-    width:25%;
-    padding-right:5px;
-}
 /*FOOTBALL PROFILE*/
 #profile-content {
     width:100%;
@@ -499,9 +491,17 @@ body {
     width:50%;
     padding-right: 3px;
 }
+#profile-left > div {
+    height:36px;
+}
 #profile-right {
     width:50%;
     padding-left: 3px;
+}
+#profile-right > .gallery-items-settings {
+    margin-top: 5px;
+    overflow: auto;
+    height: 160px;;
 }
 /*VALUATIONS*/
 .valuation {
@@ -931,12 +931,12 @@ svg {
     color: rgba(0, 0, 0, 1) !important;
     border: solid 1px rgba(64, 64, 64, 0.5) !important;
 }
-.is-selected-light > .btn-select, .is-selected-light > .btn-controls, .is-selected-light > .btn-library {
+.is-selected-light > .btn-select, #football-buttons-mobile > div > .is-selected-light > .btn {
     background-color: rgba(0, 128, 0, 1) !important;
     color: rgba(255, 255, 255, 1);
     border-color: rgba(0, 128, 0, 1);
 }
-.is-notselected-light > .btn-select, .is-notselected-light > .btn-controls, .is-notselected-light > .btn-library {
+.is-notselected-light > .btn-select, #football-buttons-mobile > div > .is-notselected-light > .btn {
     background-color: rgba(255, 255, 255, 1) !important;
     color: rgba(0, 0, 0, 1) !important;
     border-color: rgba(0, 0, 0, 1);
@@ -977,12 +977,12 @@ svg {
     color: rgba(170, 170, 170, 1) !important;
     border: solid 1px rgba(64, 64, 64, 0.5) !important;
 }
-.is-selected-dark > .btn-select, .is-selected-dark > .btn-controls, .is-selected-dark > .btn-library {
+.is-selected-dark > .btn-select, #football-buttons-mobile > div > .is-selected-dark > .btn {
     background-color: rgba(0, 128, 0, 1) !important;
     color: rgba(0, 0, 0, 1);
     border-color: rgba(0, 128, 0, 1);
 }
-.is-notselected-dark > .btn-select, .is-notselected-dark > .btn-controls, .is-notselected-dark > .btn-library {
+.is-notselected-dark > .btn-select, #football-buttons-mobile > div > .is-notselected-dark > .btn {
     background-color: rgba(20, 20, 20, 1) !important;
     color: rgba(170, 170, 170, 1) !important;
     border-color: rgba(170, 170, 170, 1);
