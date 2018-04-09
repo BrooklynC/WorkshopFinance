@@ -144,7 +144,7 @@ body {
     padding-top: 10px;
     padding-bottom: 10px;
 }
-#workspace-inner {
+#workspace-inner, #workspace-inner-about {
     height:100%;
     padding-left: 2.5%;
     padding-right: 2.5%;
@@ -1078,6 +1078,11 @@ and (-webkit-min-device-pixel-ratio: 1) {
         height: 100%;
         padding-left: 1%;
     }
+    #workspace-inner-about {
+        display: none;
+        height: 0;
+        width: 0;
+    }
     #gallery-menu-inner > .panel > .in {
         height:320px;
     }
@@ -1188,6 +1193,11 @@ and (min-resolution: 192dpi) {
         margin: auto;
         height: 100%;
         padding-left: 1%;
+    }
+    #workspace-inner-about {
+        display: none;
+        height: 0;
+        width: 0;
     }
     #gallery-menu-inner > .panel > .in {
         height:320px;
@@ -1354,6 +1364,11 @@ and (orientation : landscape) {
         height: 100%;
         padding-left: 1%;
     }
+    #workspace-inner-about {
+        display: none;
+        height: 0;
+        width: 0;
+    }
     #football-buttons-desktop {
         display: none;
         height: 0;
@@ -1511,6 +1526,11 @@ and (orientation: landscape) {
         height: 100%;
         padding-left: 1%;
     }
+    #workspace-inner-about {
+        display: none;
+        height: 0;
+        width: 0;
+    }
     #football-buttons-desktop {
         display: none;
         height: 0;
@@ -1666,6 +1686,11 @@ and (orientation : landscape) {
         height: 100%;
         padding-left: 1%;
     }
+    #workspace-inner-about {
+        display: none;
+        height: 0;
+        width: 0;
+    }
     #football-buttons-desktop {
         display: none;
         height: 0;
@@ -1773,6 +1798,11 @@ and (orientation : portrait) {
         height: 100%;
         padding-left: 1%;
     }
+    #workspace-inner-about {
+        display: none;
+        height: 0;
+        width: 0;
+    }
     #football-buttons-mobile {
         display: none;
         height: 0;
@@ -1855,6 +1885,11 @@ and (orientation : landscape) {
         margin: auto;
         height: 100%;
         padding-left: 1%;
+    }
+    #workspace-inner-about {
+        display: none;
+        height: 0;
+        width: 0;
     }
     #gallery-menu-inner > .panel > .in {
         height:330px;

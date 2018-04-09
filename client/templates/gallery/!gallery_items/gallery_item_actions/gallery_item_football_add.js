@@ -13,5 +13,6 @@ Template.GalleryItemFootballAdd.events({
         Meteor.call('footballAdd', marketType, target, valuations, footballType, currentFootballId, function() {
             Session.set('sessionValuations', "array");
         });
+        Session.set('footballContent', "field");
     }
 });
