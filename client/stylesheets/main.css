@@ -31,19 +31,23 @@ body {
     text-align: center;
     height: 100%;
     margin:0;
-    color: rgba(0, 0, 0, 1);
-    background-color: rgba(159, 182, 205, 1);
+    color: rgba(255,255,255,1);
+    background-color: rgba(0, 0, 0, 1);
+}
+.jumbotron-login {
+    text-align: center;
+    height: 100%;
+    margin:0;
+    color: rgba(255,255,255,1);
 }
 .cover-space {
     float: left;
 }
 #cover-text {
     float: left;
-    border-top: solid rgba(0, 0, 0, 0.5) 1px;
 }
 #cover-text div {
-    font-size: larger;
-    border-bottom: solid rgba(0, 0, 0, 0.5) 1px;
+    font-size: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
 }
@@ -106,17 +110,17 @@ body {
     overflow-x: hidden;
 }
 /*HEADER*/
-#logo {
+.logo {
     width: 100%;
     height:100%;
     margin:0;
+    padding-left: 5px;
     /*box-shadow: 2px 2px;*/
 }
-.logo-login {
+.logo-modal {
     cursor: pointer;
-    padding-left: 5px;
 }
-.logo-login:hover {
+.logo-modal:hover {
     background-color: rgba(211, 211, 211, 0.25);
 }
 #tagline {
@@ -1067,6 +1071,11 @@ and (-webkit-min-device-pixel-ratio: 1) {
     .cover-space {
         width:20%;
     }
+    #logo-mobile {
+        display: none;
+        height: 0;
+        width: 0;
+    }
     #workspace-inner-gallery {
         width: 25%;
         margin: auto;
@@ -1182,6 +1191,11 @@ and (min-resolution: 192dpi) {
     }
     .cover-space {
         width:20%;
+    }
+    #logo-mobile {
+        display: none;
+        height: 0;
+        width: 0;
     }
     #workspace-inner-gallery {
         width: 25%;
@@ -1299,8 +1313,10 @@ and (orientation : portrait) {
     .cover-space {
         width:10%;
     }
-    .footer-login {
+    #logo-desktop {
         display: none;
+        height: 0;
+        width: 0;
     }
     #workspace {
         top: 50px;
@@ -1463,8 +1479,10 @@ and (orientation: portrait) {
     .cover-space {
         width:10%;
     }
-    .footer-login {
+    #logo-desktop {
         display: none;
+        height: 0;
+        width: 0;
     }
     #workspace-inner-gallery, #workspace-inner-football {
         display: none;
@@ -1624,8 +1642,10 @@ and (orientation: portrait) {
     .cover-space {
         width:10%;
     }
-    .footer-login {
+    #logo-desktop {
         display: none;
+        height: 0;
+        width: 0;
     }
     #workspace-inner-gallery, #workspace-inner-football {
         display: none;
@@ -1767,9 +1787,9 @@ and (orientation : landscape) {
 and (min-device-width : 768px)
 and (max-device-width : 1024px)
 and (orientation : portrait) {
-    .header-login {
-        display: none;
-    }
+    /*.header-login {*/
+        /*display: none;*/
+    /*}*/
     .navbar-brand {
         padding: 0;
     }
@@ -1783,11 +1803,14 @@ and (orientation : portrait) {
     .cover-space {
         width:10%;
     }
-    .footer-login {
+    #logo-mobile {
         display: none;
+        height: 0;
+        width: 0;
     }
     #workspace {
         height: 100%;
+        top:50px;
     }
     #workspace-inner-gallery {
         display: none;
@@ -1874,6 +1897,11 @@ and (orientation : landscape) {
     }
     .cover-space {
         width:10%;
+    }
+    #logo-mobile {
+        display: none;
+        height: 0;
+        width: 0;
     }
     #workspace-inner-gallery {
         width: 35%;
