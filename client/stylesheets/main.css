@@ -45,11 +45,13 @@ body {
 }
 #cover-text {
     float: left;
+    border-top: solid rgba(255,255,255,1) 1px;
 }
-#cover-text div {
+#cover-text > div {
     font-size: 100%;
     padding-top: 10px;
     padding-bottom: 10px;
+    border-bottom: solid rgba(255,255,255,1) 1px;
 }
 .panel, .panel-heading {
     border:0;
