@@ -13,6 +13,7 @@ Template.CoverageItem.events({
             Meteor.call('footballOpen', currentFootballId, newFootballId, function() {
                 Session.set('sessionValuations', "array");
             });
+            Session.set('footballContent', "field");
         } else {
             var id = this._id;
             if(localSelections.findOne({_id:id})) {

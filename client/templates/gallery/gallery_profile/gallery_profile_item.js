@@ -1,7 +1,7 @@
-Template.SettingsItem.events({
+Template.ProfileItem.events({
 });
 
-Template.SettingsItem.helpers({
+Template.ProfileItem.helpers({
     collapseId: function() {
         return this._id;
     }

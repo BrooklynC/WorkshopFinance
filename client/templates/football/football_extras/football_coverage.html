@@ -3,7 +3,34 @@
         <div class="{{themeStyle.borderBottom}}">
             <h5><strong>Coverage</strong></h5>
         </div>
-        <div class="wrapper tpl" id="football-coverage">
+        <div class="wrapper" id="coverage-content">
+            <div class="left" id="coverage-left">
+                <div class="wrapper">
+                    <button type="button" class="btn btn-sm btn-info btn-full" id="btn-footballs">
+                        Footballs
+                    </button>
+                </div>
+                <div class="wrapper">
+                    <button type="button" class="btn btn-sm btn-info btn-full" id="btn-targets">
+                        Targets
+                    </button>
+                </div>
+            </div>
+            <div class="left" id="coverage-right">
+                <div class="coverage-type-right {{themeStyle.borderBottom}}">
+                    <div id="coverage-type-name">
+                        <strong>{{coverageName}}</strong>
+                    </div>
+                </div>
+                <div class="gallery-block-content football-items-coverage">
+                    {{>CoverageContent}}
+                </div>
+                {{#if isTargets}}
+                    <div class="gallery-block-controls">
+                        {{>CoverageControls}}
+                    </div>
+                {{/if}}
+            </div>
         </div>
     </div>
 </template>

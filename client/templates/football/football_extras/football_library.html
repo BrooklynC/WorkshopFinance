@@ -3,7 +3,46 @@
         <div class="{{themeStyle.borderBottom}}">
             <h5><strong>Library</strong></h5>
         </div>
-        <div class="wrapper tpl" id="football-library">
+        <div class="wrapper" id="library-content">
+            <div class="left" id="library-left">
+                <div class="wrapper">
+                    <button type="button" class="btn btn-sm btn-info btn-full {{disableOwner}}" id="btn-comps">
+                        Comps
+                    </button>
+                </div>
+                <div class="wrapper">
+                    <button type="button" class="btn btn-sm btn-info btn-full {{disableOwner}}" id="btn-comps-indices">
+                        Comps Indices
+                    </button>
+                </div>
+                <div class="wrapper">
+                    <button type="button" class="btn btn-sm btn-info btn-full {{disableOwner}}" id="btn-deals">
+                        Deals
+                    </button>
+                </div>
+                <div class="wrapper">
+                    <button type="button" class="btn btn-sm btn-info btn-full {{disableOwner}}" id="btn-deals-indices">
+                        Deals Indices
+                    </button>
+                </div>
+            </div>
+            <div class="left" id="library-right">
+                <div class="football-screen-right {{themeStyle.borderBottom}}">
+                    {{#if indexTrue}}
+                        <div id="football-screen-name">
+                            <strong>{{indexName}}</strong>
+                        </div>
+                    {{else}}
+                        {{> sectorScreen}}
+                    {{/if}}
+                </div>
+                    <div class="gallery-block-content football-items-library">
+                        {{>LibraryContent}}
+                    </div>
+                <div class="gallery-block-controls">
+                    {{>LibraryControls}}
+                </div>
+            </div>
         </div>
     </div>
 </template>

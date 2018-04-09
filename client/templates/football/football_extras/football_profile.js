@@ -1,3 +1,12 @@
+Template.FootballProfile.events({
+    'click #profile-theme-toggle': function(e) {
+        e.preventDefault();
+
+        Meteor.call('optionsThemeToggle', function (error, result) {
+        });
+    }
+});
+
 Template.FootballProfile.helpers({
     indicesCreate: function() {
         var username = Meteor.user().username;

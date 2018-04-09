@@ -1,9 +1,9 @@
-Template.GallerySettings.events({
-    'click #gallery-settings-accordion': function(e) {
+Template.GalleryProfile.events({
+    'click #gallery-profile-accordion': function(e) {
         e.preventDefault();
 
         var sessionGalleryExisting = Session.get('sessionGallery');
-        Session.set('sessionGallery', "settings");
+        Session.set('sessionGallery', "profile");
         var sessionGalleryNew = Session.get('sessionGallery');
 
         if(sessionGalleryExisting !== sessionGalleryNew) {
@@ -18,7 +18,7 @@ Template.GallerySettings.events({
     }
 });
 
-Template.GallerySettings.helpers({
+Template.GalleryProfile.helpers({
     indicesCreate: function() {
         var username = Meteor.user().username;
         if (username == "workshop" || username == "Workshop") {
@@ -89,7 +89,7 @@ Template.GallerySettings.helpers({
     }
 });
 
-Template.GallerySettings.onCreated (function () {
+Template.GalleryProfile.onCreated (function () {
     var self = this;
     self.autorun(function() {
         self.subscribe('notifications');

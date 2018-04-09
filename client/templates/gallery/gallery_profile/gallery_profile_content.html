@@ -1,9 +1,9 @@
 <!--Chooses between items and message-->
-<template name="SettingsContent">
+<template name="ProfileContent">
     {{#if Template.subscriptionsReady}}
-        <div class="panel-group" id="gallery-settings-items">
+        <div class="panel-group" id="gallery-profile-items">
             {{#each users}}
-                {{> SettingsItem}}
+                {{> ProfileItem}}
             {{/each}}
         </div>
     {{/if}}
