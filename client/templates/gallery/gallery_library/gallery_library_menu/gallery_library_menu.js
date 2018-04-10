@@ -1,4 +1,5 @@
 Session.set('sessionLibraryType', "Comps");
+Session.set('sessionLibrarySource', "Public");
 
 Template.LibraryMenu.events({
     'click .menu-library-filter': function(e) {

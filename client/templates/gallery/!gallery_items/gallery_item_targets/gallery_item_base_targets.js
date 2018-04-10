@@ -15,7 +15,6 @@ Template.GalleryItemBaseTargets.onCreated (function () {
     var self = this;
     self.autorun(function() {
         var targetId = Template.parentData(0).targetId;
-        console.log(targetId);
         self.subscribe('galleryItemTargetsBase', targetId);
     });
 });

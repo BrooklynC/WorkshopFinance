@@ -13,6 +13,7 @@ Template.GalleryValuationsFootballNew.events({
         });
         Meteor.call('footballValuationsNew', marketType, selections, function(error, result) {
         });
+        Session.set('footballContent', "field");
         localSelections.remove({});
     }
 });
