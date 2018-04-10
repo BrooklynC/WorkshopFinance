@@ -39,8 +39,7 @@ Template.FootballLibrary.events({
         e.preventDefault();
 
         Session.set('sessionLibrarySource', "Private");
-        //Session.set('sessionLibraryType', "Valuations");
-        Session.set('sessionCoverageType', "Valuations");
+        Session.set('sessionLibraryType', "Valuations");
         localSelections.remove({})
     }
 });
@@ -49,9 +48,8 @@ Template.FootballLibrary.helpers({
     compsSelected: function() {
         var currentUserId = Meteor.userId();
         var theme = Options.findOne({ownerId: currentUserId}).theme;
-        var librarySource = Session.get('sessionLibrarySource');
         var libraryType = Session.get('sessionLibraryType');
-        if(librarySource == "Public" && libraryType == "Comps") {
+        if(libraryType == "Comps") {
             switch (theme) {
                 case "light":
                     return "is-selected-light";
@@ -74,9 +72,8 @@ Template.FootballLibrary.helpers({
     compsIndicesSelected: function() {
         var currentUserId = Meteor.userId();
         var theme = Options.findOne({ownerId: currentUserId}).theme;
-        var librarySource = Session.get('sessionLibrarySource');
         var libraryType = Session.get('sessionLibraryType');
-        if(librarySource == "Public" && libraryType == "Comps Indices") {
+        if(libraryType == "Comps Indices") {
             switch (theme) {
                 case "light":
                     return "is-selected-light";
@@ -99,9 +96,8 @@ Template.FootballLibrary.helpers({
     dealsSelected: function() {
         var currentUserId = Meteor.userId();
         var theme = Options.findOne({ownerId: currentUserId}).theme;
-        var librarySource = Session.get('sessionLibrarySource');
         var libraryType = Session.get('sessionLibraryType');
-        if(librarySource == "Public" && libraryType == "Deals") {
+        if(libraryType == "Deals") {
             switch (theme) {
                 case "light":
                     return "is-selected-light";
@@ -124,9 +120,8 @@ Template.FootballLibrary.helpers({
     dealsIndicesSelected: function() {
         var currentUserId = Meteor.userId();
         var theme = Options.findOne({ownerId: currentUserId}).theme;
-        var librarySource = Session.get('sessionLibrarySource');
         var libraryType = Session.get('sessionLibraryType');
-        if(librarySource == "Public" && libraryType == "Deals Indices") {
+        if(libraryType == "Deals Indices") {
             switch (theme) {
                 case "light":
                     return "is-selected-light";
@@ -149,8 +144,8 @@ Template.FootballLibrary.helpers({
     valuationsSelected: function() {
         var currentUserId = Meteor.userId();
         var theme = Options.findOne({ownerId: currentUserId}).theme;
-        var librarySource = Session.get('sessionLibrarySource');
-        if(librarySource == "Private") {
+        var libraryType = Session.get('sessionLibraryType');
+        if(libraryType == "Valuations") {
             switch (theme) {
                 case "light":
                     return "is-selected-light";
@@ -206,21 +201,7 @@ Template.FootballLibrary.helpers({
         }
     },
     libraryName: function() {
-        var librarySource = Session.get('sessionLibrarySource');
-        switch(librarySource) {
-            case "Public":
-                return Session.get('sessionLibraryType');
-                break;
-            case "Private":
-                return "Valuations"
-        }
-    },
-    privateTrue: function() {
-        var librarySource = Session.get('sessionLibrarySource');
-
-        if(librarySource == "Private") {
-            return true
-        }
+        return Session.get('sessionLibraryType');
     }
 });
 

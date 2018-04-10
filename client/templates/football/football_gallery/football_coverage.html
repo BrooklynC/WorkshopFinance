@@ -5,13 +5,13 @@
         </div>
         <div class="wrapper" id="coverage-content">
             <div class="left" id="coverage-left">
-                <div class="wrapper">
-                    <button type="button" class="btn btn-sm btn-info btn-full" id="btn-footballs">
+                <div class="wrapper {{footballsSelected}}">
+                    <button type="button" name="btn-footballs" value="btn-footballs" class="btn btn-footballs btn-sm btn-full {{disableOwner}}" id="btn-footballs">
                         Footballs
                     </button>
                 </div>
-                <div class="wrapper">
-                    <button type="button" class="btn btn-sm btn-info btn-full" id="btn-targets">
+                <div class="wrapper {{targetsSelected}}">
+                    <button type="button" name="btn-targets" value="btn-targets" class="btn btn-targets btn-sm btn-full {{disableOwner}}" id="btn-targets">
                         Targets
                     </button>
                 </div>

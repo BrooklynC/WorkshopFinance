@@ -22,8 +22,20 @@
                             <div class="gallery-row-title left">
                                 Football Name:
                             </div>
-                            <div class="gallery-row-value right">
-                                {{footballName}}
+                            <div class="wrapper" id="football-name">
+                                {{#if showName}}
+                                    <div id="football-name-value">
+                                        {{footballName}}
+                                    </div>
+                                {{else}}
+                                    <div>
+                                        <form id="football-name-form">
+                                            <div class="input-group-sm left">
+                                                <input name="football-name-edit" id="football-name-edit" autocomplete="off" type="text" value="{{footballName}}" placeholder="{{footballName}}" class="form-control"/>
+                                            </div>
+                                        </form>
+                                    </div>
+                                {{/if}}
                             </div>
                         </div>
                     </div>

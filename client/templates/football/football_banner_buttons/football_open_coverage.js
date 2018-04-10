@@ -3,7 +3,6 @@ Template.FootballOpenCoverage.events({
         e.preventDefault();
 
         Session.set("footballContent", "coverage");
-        Session.set("sessionCoverageType", "Footballs");
     }
 });
 

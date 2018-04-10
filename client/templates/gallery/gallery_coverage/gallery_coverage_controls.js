@@ -4,12 +4,6 @@ Template.CoverageControls.helpers({
         if(coverage == "Targets") {
             return true
         }
-    },
-    isValuations: function() {
-        var coverage = Session.get('sessionCoverageType');
-        if(coverage == "Valuations") {
-            return true
-        }
     }
 });
 

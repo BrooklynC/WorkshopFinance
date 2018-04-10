@@ -41,21 +41,12 @@
                         {{> sectorScreen}}
                     {{/if}}
                 </div>
-                {{#if privateTrue}}
-                    <div class="gallery-block-content football-items-library">
-                        {{>CoverageContent}}
-                    </div>
-                    <div class="gallery-block-controls">
-                        {{>CoverageControls}}
-                    </div>
-                {{else}}
-                    <div class="gallery-block-content football-items-library">
-                        {{>LibraryContent}}
-                    </div>
-                    <div class="gallery-block-controls">
-                        {{>LibraryControls}}
-                    </div>
-                {{/if}}
+                <div class="gallery-block-content football-items-library">
+                    {{>LibraryContent}}
+                </div>
+                <div class="gallery-block-controls">
+                    {{>LibraryControls}}
+                </div>
             </div>
         </div>
     </div>

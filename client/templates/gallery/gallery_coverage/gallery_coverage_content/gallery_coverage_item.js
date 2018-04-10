@@ -32,9 +32,6 @@ Template.CoverageItem.helpers({
             case "Footballs":
                 return Template.GalleryItemBaseFootballs;
                 break;
-            case "Valuations":
-                return Template.GalleryItemBaseValuations;
-                break;
             case "Targets":
                 return Template.GalleryItemBaseTargets;
                 break;
@@ -45,9 +42,6 @@ Template.CoverageItem.helpers({
         switch(coverage) {
             case "Footballs":
                 return Template.GalleryItemBlockFootballs;
-                break;
-            case "Valuations":
-                return Template.GalleryItemBlockValuations;
                 break;
             case "Targets":
                 return Template.GalleryItemBlockTargets;
@@ -89,9 +83,6 @@ Template.CoverageItem.helpers({
                     }
                 }
                 break;
-            case "Valuations":
-                return Template.GalleryItemSelect;
-                break;
             case "Targets":
                 return Template.GalleryItemFootballAdd;
                 break;
@@ -116,23 +107,6 @@ Template.CoverageItem.helpers({
                         break;
                     case "dark":
                         if (id == selected) {
-                            return "is-selected-dark"
-                        } else {
-                            return "is-notselected-dark"
-                        }
-                }
-                break;
-            case "Valuations":
-                switch(theme) {
-                    case "light":
-                        if (localSelections.findOne({_id: id})) {
-                            return "is-selected-light"
-                        } else {
-                            return "is-notselected-light"
-                        }
-                        break;
-                    case "dark":
-                        if (localSelections.findOne({_id: id})) {
                             return "is-selected-dark"
                         } else {
                             return "is-notselected-dark"

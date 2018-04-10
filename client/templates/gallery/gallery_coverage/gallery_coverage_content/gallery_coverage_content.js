@@ -25,21 +25,6 @@ Template.CoverageContent.helpers({
                     }
                 );
                 break;
-            case "Valuations":
-                return Valuations.find({
-                    $and: [
-                        {
-                            ownerId: currentUserId
-                        },
-                        {
-                            marketType: sessionCoverageScreen
-                        },
-                        {
-                            valuationFavorite: true
-                        }
-                    ]
-                });
-                break;
             case "Targets":
                 var targets = Options.findOne({ownerId: currentUserId}).targets;
                 var companies = [];
@@ -70,6 +55,5 @@ Template.CoverageContent.onCreated (function () {
     self.autorun(function() {
         self.subscribe('galleryFootballsUser');
         self.subscribe('galleryFootballsShared');
-        self.subscribe('galleryValuations');
     });
 });

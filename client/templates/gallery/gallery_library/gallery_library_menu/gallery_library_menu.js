@@ -31,6 +31,9 @@ Template.LibraryMenu.helpers({
             case "Deals Indices":
                 return Template.Blank;
                 break;
+            case "Valuations":
+                return Template.Blank;
+                break;
         }
     }
 });

@@ -27,6 +27,9 @@ Template.LibraryItem.helpers({
             case "Deals Indices":
                 return Template.GalleryItemBaseDealsIndices;
                 break;
+            case "Valuations":
+                return Template.GalleryItemBaseValuations;
+                break;
         }
     },
     itemBlock: function() {
@@ -43,6 +46,9 @@ Template.LibraryItem.helpers({
                 break;
             case "Deals Indices":
                 return Template.GalleryItemBlockDealsIndices;
+                break;
+            case "Valuations":
+                return Template.GalleryItemBlockValuations;
                 break;
         }
     },

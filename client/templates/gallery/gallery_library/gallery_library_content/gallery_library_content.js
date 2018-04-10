@@ -28,6 +28,19 @@ Template.LibraryContent.helpers({
             case "Deals Indices":
                 return FeedDealsIndices.find({});
                 break;
+            case "Valuations":
+                var currentUserId = Meteor.userId();
+                return Valuations.find({
+                    $and: [
+                        {
+                            ownerId: currentUserId
+                        },
+                        {
+                            valuationFavorite: true
+                        }
+                    ]
+                });
+                break;
         }
     }
 });
@@ -39,5 +52,6 @@ Template.LibraryContent.onCreated (function () {
         self.subscribe('galleryCompaniesIndices');
         self.subscribe('galleryDeals');
         self.subscribe('galleryDealsIndices');
+        self.subscribe('galleryValuations');
     });
 });

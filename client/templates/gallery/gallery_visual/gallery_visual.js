@@ -1,4 +1,27 @@
 Template.GalleryVisual.events({
+    'click #football-name-value': function(e) {
+        e.preventDefault();
+
+        var ownerId = this.ownerId;
+        var currentUserId = Meteor.userId();
+        var nameState = Template.instance().showName.get();
+
+        if(currentUserId == ownerId) {
+            if(nameState == true) {
+                Template.instance().showName.set(false);
+            }
+        }
+    },
+    'submit #football-name-form': function(e) {
+        e.preventDefault();
+
+        var currentFootballId = this._id;
+        var footballName = $(e.target).find('[name=football-name-edit]').val();
+
+        Meteor.call('footballNameUpdate', currentFootballId, footballName, function(error, result) {
+        });
+        Template.instance().showName.set(true)
+    },
     'click #gallery-visual-base': function(e) {
         e.preventDefault();
 
@@ -20,18 +43,23 @@ Template.GalleryVisual.helpers({
     },
     targetName: function() {
         var footballType = this.footballType;
-        if(footballType == "market") {
+        if (footballType == "market") {
             return "Market Comparison";
         } else {
             var targetId = this.footballTarget.targetId;
-            var target = FeedCompanies.findOne({_id:targetId});
+            var target = FeedCompanies.findOne({_id: targetId});
             return target.companyName;
         }
+    },
+    showName: function() {
+        return Template.instance().showName.get();
     }
+
 });
 
 Template.GalleryVisual.onCreated (function () {
     var self = this;
+    this.showName = new ReactiveVar(true);
     self.autorun(function() {
         var currentUserId = Meteor.userId();
         var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
