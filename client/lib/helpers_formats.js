@@ -284,6 +284,8 @@ Template.registerHelper('themeStyle', function() {
 
                     borderTop: "border-top-light",
                     borderBottom: "border-bottom-light",
+                    borderLeft: "border-left-light",
+                    borderRight: "border-right-light",
                     border: "border-light",
                     borderShaded: "border-shaded-light",
                     borderShadedBottom: "border-shaded-bottom-light",
@@ -305,6 +307,8 @@ Template.registerHelper('themeStyle', function() {
 
                     borderTop: "border-top-dark",
                     borderBottom: "border-bottom-dark",
+                    borderLeft: "border-left-dark",
+                    borderRight: "border-right-dark",
                     border: "border-dark",
                     borderShaded: "border-shaded-dark",
                     borderShadedBottom: "border-shaded-bottom-dark",

@@ -1,4 +1,4 @@
-Template.GalleryVisual.events({
+Template.GalleryControls.events({
     'click #football-name-value': function(e) {
         e.preventDefault();
 
@@ -22,11 +22,11 @@ Template.GalleryVisual.events({
         });
         Template.instance().showName.set(true)
     },
-    'click #gallery-visual-base': function(e) {
+    'click #gallery-controls-base': function(e) {
         e.preventDefault();
 
         var sessionGalleryExisting = Session.get('sessionGallery');
-        Session.set('sessionGallery', "visual");
+        Session.set('sessionGallery', "controls");
         var sessionGalleryNew = Session.get('sessionGallery');
 
         if(sessionGalleryExisting !== sessionGalleryNew) {
@@ -35,7 +35,7 @@ Template.GalleryVisual.events({
     }
 });
 
-Template.GalleryVisual.helpers({
+Template.GalleryControls.helpers({
     currentFootballId: function () {
         var currentUserId = Meteor.userId();
         var footballActive = Options.findOne({ownerId:currentUserId}).footballActive;
@@ -57,7 +57,7 @@ Template.GalleryVisual.helpers({
 
 });
 
-Template.GalleryVisual.onCreated (function () {
+Template.GalleryControls.onCreated (function () {
     var self = this;
     this.showName = new ReactiveVar(true);
     self.autorun(function() {

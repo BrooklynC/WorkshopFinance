@@ -1,9 +1,9 @@
 App.info({
-    name: 'WorkshopFinance',
+    name: 'Workshop Finance',
     description: 'The Art of Valuation',
     author: 'Brendan F. Cahill',
     email: 'brendan@workshopfinance.com',
-    website: 'http://workshopfinance.com'
+    website: 'http://www.workshopfinance.com'
 });
 
 App.icons({

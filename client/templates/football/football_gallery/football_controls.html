@@ -6,7 +6,7 @@
         <div class="wrapper" id="football-controls">
             <div class="wrapper {{themeStyle.borderShadedBottom}} " id="football-controls-details">
                 <div class="left mobile-controls" id="football-mobile-target">
-                    <div id="visual-result-inner wrapper">
+                    <div id="controls-result-inner wrapper">
                         <div class="gallery-row wrapper">
                             {{>FootballTarget}}
                         </div>
@@ -33,68 +33,66 @@
                     </div>
                 </div>
             </div>
-            <div class="left mobile-controls" id="football-controls-actions">
-                <div class="wrapper" id="visual-scroll">
-                    <div id="visual-scroll-inner">
-                        <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
-                                Output Type
-                            </div>
-                            <div class="visual-scroll-right right">
-                                {{>FootballOutput}}
-                            </div>
+            <div class="wrapper" id="football-controls-actions">
+                <div class="left wrapper" id="football-controls-left">
+                    <div class="gallery-row wrapper">
+                        <div class="controls-scroll-left left">
+                            Output Type
                         </div>
-                        <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
-                                Scale
-                            </div>
-                            <div class="visual-scroll-right right">
-                                {{>FootballScale}}
-                            </div>
+                        <div class="controls-scroll-right right">
+                            {{>FootballOutput}}
                         </div>
-                        <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
-                                Cushion
-                            </div>
-                            <div class="visual-scroll-right right">
-                                {{>FootballCushion}}
-                            </div>
+                    </div>
+                    <div class="gallery-row wrapper">
+                        <div class="controls-scroll-left left">
+                            Scale
+                        </div>
+                        <div class="controls-scroll-right right">
+                            {{>FootballScale}}
+                        </div>
+                    </div>
+                    <div class="gallery-row wrapper">
+                        <div class="controls-scroll-left left">
+                            Cushion
+                        </div>
+                        <div class="controls-scroll-right right">
+                            {{>FootballCushion}}
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="right mobile-controls">
-                <div class="gallery-row wrapper">
-                    <div class="visual-scroll-left left">
-                        Current Trading
-                    </div>
-                    <div class="visual-scroll-right right">
-                        {{>FootballCurrentToggle}}
-                    </div>
-                </div>
-                <div class="gallery-row wrapper">
-                    <div class="visual-scroll-left left">
-                        52-Week High/Low
-                    </div>
-                    <div class="visual-scroll-right right">
-                        {{>FootballTradingToggle}}
-                    </div>
-                </div>
-                <div class="gallery-row wrapper">
-                    <div class="visual-scroll-left left">
-                        Re-sort
-                    </div>
-                    <div class="visual-scroll-right right">
-                        {{>FootballSort}}
-                    </div>
-                </div>
-                <div class="wrapper" id="visual-actions">
-                    <div class="wrapper" id="visual-actions-inner">
-                        <div class="gallery-row wrapper">
-                            {{>FootballActions}}
+                <div class="right wrapper" id="football-controls-right">
+                    <div class="gallery-row wrapper">
+                        <div class="controls-scroll-left left">
+                            Current Trading
                         </div>
-                        <div class="gallery-row wrapper">
-                            {{>FootballActionsOption}}
+                        <div class="controls-scroll-right right">
+                            {{>FootballCurrentToggle}}
+                        </div>
+                    </div>
+                    <div class="gallery-row wrapper">
+                        <div class="controls-scroll-left left">
+                            52-Week High/Low
+                        </div>
+                        <div class="controls-scroll-right right">
+                            {{>FootballTradingToggle}}
+                        </div>
+                    </div>
+                    <div class="gallery-row wrapper">
+                        <div class="controls-scroll-left left">
+                            Re-sort
+                        </div>
+                        <div class="controls-scroll-right right">
+                            {{>FootballSort}}
+                        </div>
+                    </div>
+                    <div class="wrapper" id="controls-actions">
+                        <div class="wrapper" id="controls-actions-inner">
+                            <div class="gallery-row wrapper">
+                                {{>FootballActions}}
+                            </div>
+                            <div class="gallery-row wrapper">
+                                {{>FootballActionsOption}}
+                            </div>
                         </div>
                     </div>
                 </div>

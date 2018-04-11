@@ -1,15 +1,15 @@
 <!--Controls for active Football Field-->
-<template name="GalleryVisual">
-    <div class="panel-heading gallery-base" id="gallery-visual-base" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-visual-block" aria-expanded="true" aria-controls="gallery-visual-block">
+<template name="GalleryControls">
+    <div class="panel-heading gallery-base" id="gallery-controls-base" role="tab" data-toggle="collapse" data-parent="#gallery-menu-inner" href="#gallery-controls-block" aria-expanded="true" aria-controls="gallery-controls-block">
         <div class="gallery-base-title">
             <h5>Football Field Controls</h5>
         </div>
     </div>
     {{#if Template.subscriptionsReady}}
-        <div class="panel-collapse collapse gallery-block" id="gallery-visual-block" role="tabpanel">
+        <div class="panel-collapse collapse gallery-block" id="gallery-controls-block" role="tabpanel">
             {{#with currentFootballId}}
-                <div class="{{themeStyle.borderShadedBottom}}" id="visual-details">
-                    <div id="visual-details-inner">
+                <div class="{{themeStyle.borderShadedBottom}}" id="controls-details">
+                    <div id="controls-details-inner">
                         <div class="gallery-row">
                             <div class="gallery-row-title left">
                                 Target (if any):
@@ -40,67 +40,67 @@
                         </div>
                     </div>
                 </div>
-                <div class="{{themeStyle.borderShadedBottom}}" id="visual-result">
-                    <div id="visual-result-inner wrapper">
+                <div class="{{themeStyle.borderShadedBottom}}" id="controls-result">
+                    <div id="controls-result-inner wrapper">
                         <div class="gallery-row wrapper">
                             {{>FootballTarget}}
                         </div>
                     </div>
                 </div>
-                <div class="wrapper" id="visual-scroll">
-                    <div id="visual-scroll-inner">
+                <div class="wrapper" id="controls-scroll">
+                    <div id="controls-scroll-inner">
                         <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
+                            <div class="controls-scroll-left left">
                                 Output Type
                             </div>
-                            <div class="visual-scroll-right right">
+                            <div class="controls-scroll-right right">
                                 {{>FootballOutput}}
                             </div>
                         </div>
                         <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
+                            <div class="controls-scroll-left left">
                                 Scale
                             </div>
-                            <div class="visual-scroll-right right">
+                            <div class="controls-scroll-right right">
                                 {{>FootballScale}}
                             </div>
                         </div>
                         <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
+                            <div class="controls-scroll-left left">
                                 Cushion
                             </div>
-                            <div class="visual-scroll-right right">
+                            <div class="controls-scroll-right right">
                                 {{>FootballCushion}}
                             </div>
                         </div>
                         <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
+                            <div class="controls-scroll-left left">
                                 Current Trading
                             </div>
-                            <div class="visual-scroll-right right">
+                            <div class="controls-scroll-right right">
                                 {{>FootballCurrentToggle}}
                             </div>
                         </div>
                         <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
+                            <div class="controls-scroll-left left">
                                 52-Week High/Low
                             </div>
-                            <div class="visual-scroll-right right">
+                            <div class="controls-scroll-right right">
                                 {{>FootballTradingToggle}}
                             </div>
                         </div>
                         <div class="gallery-row wrapper">
-                            <div class="visual-scroll-left left">
+                            <div class="controls-scroll-left left">
                                 Re-sort
                             </div>
-                            <div class="visual-scroll-right right">
+                            <div class="controls-scroll-right right">
                                 {{>FootballSort}}
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="wrapper" id="visual-actions">
-                    <div class="wrapper" id="visual-actions-inner">
+                <div class="wrapper" id="controls-actions">
+                    <div class="wrapper" id="controls-actions-inner">
                         <div class="gallery-row wrapper">
                             {{>FootballActions}}
                         </div>
